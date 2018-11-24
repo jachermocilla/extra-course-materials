@@ -1,6 +1,7 @@
 ;; lifted from http://davidad.github.io/blog/2014/02/18/kernel-from-scratch/
-;;
-;;
+;; nasm boot64.asm bootsect.bin
+;; qemu-system-x86_64 bootsect.bin
+
 
 bits 16
 org 0x7c00
