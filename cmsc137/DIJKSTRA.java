@@ -107,26 +107,26 @@ public class DIJKSTRA{
       A.add(D,3);
 
       B.add(A,2);
-	   B.add(E,4);
-	   B.add(C,5);
+      B.add(E,4);
+      B.add(C,5);
 
-	   C.add(B,5);
-	   C.add(F,4);
-	   C.add(G,3);
+      C.add(B,5);
+      C.add(F,4);
+      C.add(G,3);
 
-	   D.add(A,3);
-	   D.add(E,5);
+      D.add(A,3);
+      D.add(E,5);
 
-	   E.add(B,4);
-	   E.add(D,5);
-	   E.add(F,2);
+      E.add(B,4);
+      E.add(D,5);
+      E.add(F,2);
 
-	   F.add(C,4);
-	   F.add(G,1);
-	   F.add(E,2);
+      F.add(C,4);
+      F.add(G,1);
+      F.add(E,2);
 
-	   G.add(C,3);
-	   G.add(F,1); 
+      G.add(C,3);
+      G.add(F,1); 
 
       Graph g=new Graph();
 
