@@ -86,6 +86,15 @@ class Graph{
       } 
    }
 
+   public void printDV(){
+      String tmp="Distance Vector: ["; 
+      for (Vertex v:V){
+         tmp+=" ("+v.name+","+v.d+") ";
+      }
+      tmp+="]"; 
+      System.out.println(tmp);
+   }
+
 }
 
 
@@ -144,6 +153,7 @@ public class DIJKSTRA{
       System.out.println("----Shortest Paths rooted at A----"); 
       g.dijkstra(A);
       g.printSP();
+      g.printDV();
 
       final long endTime = System.currentTimeMillis();
       System.out.println("Total execution time: " + (endTime - startTime)+" ms" );
