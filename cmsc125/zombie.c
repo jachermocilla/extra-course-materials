@@ -1,3 +1,7 @@
+//Zombie processes are those that have died but 
+//the parent process has not yet harvested the 
+//status code of the child process. 
+
 #include <stdlib.h> 
 #include <sys/types.h> 
 #include <unistd.h> 
