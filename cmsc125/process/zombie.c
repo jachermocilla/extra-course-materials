@@ -11,7 +11,7 @@ int main()
   
    // Parent process  
    if (pid > 0){ 
-        sleep(60);
+        sleep(60); //sleep longer that child so that the child dies first
    }
    
    // Child process 

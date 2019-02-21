@@ -1,3 +1,6 @@
+//Orphaned processes are those whose parent died
+
+
 #include<stdio.h> 
 #include <sys/types.h> 
 #include <unistd.h> 
@@ -9,7 +12,7 @@ int main()
 
    if (pid > 0){ 
       printf("Parent: I am alive but I'll die before my child.\n"); 
-      sleep(20);
+      sleep(20); //parent will die young, lives shorter than child
       printf("Parent: I died. Child becomes orphan.\n"); 
    }
 
