@@ -20,14 +20,14 @@
 int main()
 {
    /* the size (in bytes) of shared memory object */
-   int BSIZE = 4096;
+   const int BSIZE = 4096;
 
    /* name of the shared memory object */
-   char *name = "OS";
+   const char *name = "OS";
 
    /* strings written to shared memory */
-   char *message_0 = "Hello";
-   char *message_1 = "World!";
+   const char *message_0 = "Hello";
+   const char *message_1 = "World!";
 
    /* shared memory file descriptor */
    int shm_fd;
