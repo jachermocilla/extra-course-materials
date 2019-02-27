@@ -1,0 +1,55 @@
+/*
+ * gcc -o prod.exe prod.c -lrt
+ *
+*/
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <sys/shm.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+
+int main()
+{
+   /* the size (in bytes) of shared memory object */
+   int BSIZE = 4096;
+
+   /* name of the shared memory object */
+   char *name = "OS";
+
+   /* strings written to shared memory */
+   char *message_0 = "Hello";
+   char *message_1 = "World!";
+
+   /* shared memory file descriptor */
+   int shm_fd;
+
+   /* pointer to shared memory obect */
+   void *ptr;
+
+   /* create the shared memory object */
+   shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+
+   /* configure the size of the shared memory object */
+   ftruncate(shm_fd, BSIZE);
+
+   /* memory map the shared memory object */
+   ptr = mmap(0, BSIZE, PROT_WRITE, MAP_SHARED, shm_fd, 0);
+
+   /* write to the shared memory object */
+   sprintf(ptr,"%s",message_0);
+   ptr += strlen(message_0);
+
+   sprintf(ptr,"%s",message_1);
+   ptr += strlen(message_1);
+
+   return 0;
+}
