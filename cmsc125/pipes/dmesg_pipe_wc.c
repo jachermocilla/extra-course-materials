@@ -77,7 +77,7 @@ int main(void){
          /* close the unused end of the pipe */
          close(fd[READ_END]);
 
-         /* Set the STDOUT of the 'wc' process to the write end of the pipe */
+         /* Set the STDOUT of the 'dmesg' process to the write end of the pipe */
          dup2(fd[WRITE_END],STDOUT_FILENO); 
          
          /* Load the image for 'dmesg; */
