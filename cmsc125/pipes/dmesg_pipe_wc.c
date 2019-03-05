@@ -1,8 +1,8 @@
 /*
- * This example code illustrates how the command 'dmesg | wc' 
+ * This example code illustrates how the command line 'dmesg | wc' 
  * can be implemented using pipes.
  * 
- * All processes in linux has the following initial file descriptors:
+ * All processes in linux have the following initial file descriptors:
  * STDIN_FILENO = 0 which is the keyboard
  * STDOUT_FILENO = 1 which is the screen
  * STDERR_FILENO = 2 which is the screen
@@ -51,12 +51,12 @@ int main(void){
       //fork a child process for 'wc'
       pid_wc = fork();
       
-      if (pid_wc > 0){
+      if (pid_wc > 0){ /* in parent process */
          //Parent waits for the children
          wait(&status);
       }
 
-      else{ /*Child process for 'wc' */
+      else{ /* in child process for 'wc' */
              
          /* close the unused end of the pipe */
          close(fd[WRITE_END]);
@@ -72,7 +72,7 @@ int main(void){
 
       }
    }
-   else { /* child process for dmesg */
+   else { /* in child process for dmesg */
          
          /* close the unused end of the pipe */
          close(fd[READ_END]);
