@@ -33,7 +33,8 @@ void *thread_i(void *param){
    {
       flag[i]=true;
       turn=j;
-      while(flag[j] && turn==j);
+      while(flag[j] && turn==j)
+         ;
       
       shared_data+=100;
       printf("Process i: shared_data= %d\n",shared_data);
@@ -53,7 +54,8 @@ void *thread_j(void *param)
    {
       flag[j]=true;
       turn=i;
-      while(flag[i] && turn==i);
+      while(flag[i] && turn==i)
+         ;
       
       shared_data-=75;
       printf("Preocess j: shared_data= %d\n",shared_data);
