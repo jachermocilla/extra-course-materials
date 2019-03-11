@@ -13,7 +13,7 @@
 
 
 #define BUFFER_SIZE 5
-#define NITER 10
+#define NITER 100
 
 
 //Function prototypes

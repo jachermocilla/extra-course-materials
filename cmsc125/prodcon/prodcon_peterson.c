@@ -5,7 +5,7 @@
 
 //
 //solution to prod-con problem using a counter to be able to use  
-//all slots in the buffer. Suffers from race condition
+//all slots in the buffer. Uses petersons
 //-jach
 //
 
@@ -13,16 +13,13 @@
 #define NITER 100
 
 
-#define i 0
-#define j 1
-
+#define i 0    //producer
+#define j 1    //consumer
 #define true 1
 #define false 0
 
-
 int flag[2];
 int turn=0;
-int shared_data=100;
 
 
 //Function prototypes
@@ -78,6 +75,7 @@ void *producer(){
       while(flag[j] && turn==j)
          ;
 
+      //critical section
       counter++;
 
       flag[i]=false;
@@ -105,6 +103,7 @@ void *consumer(){
       while(flag[i] && turn==i)
          ;
 
+      //critical section
       counter--;
       
       flag[j]=false;
