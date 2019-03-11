@@ -12,6 +12,19 @@
 #define BUFFER_SIZE 5
 #define NITER 100
 
+
+#define i 0
+#define j 1
+
+#define true 1
+#define false 0
+
+
+int flag[2];
+int turn=0;
+int shared_data=100;
+
+
 //Function prototypes
 void *producer();
 void *consumer();
@@ -47,7 +60,7 @@ int main(){
 void *producer(){
    int next_produced; 
    //while (1){
-   for (int i=0; i< NITER; i++) { 
+   for (int c=0; c< NITER; c++) { 
       /* produce an item in next produced */ 
       next_produced=rand() % 100 + 1;
 
@@ -59,15 +72,24 @@ void *producer(){
       //printf("Producer produced [%d].(Placed in index:in=%d,out=%d)\n",next_produced,in,out);     
       in = (in + 1) % BUFFER_SIZE; 
 
-      //there is a race condition on this variable
+
+      flag[i]=true;
+      turn=j;
+      while(flag[j] && turn==j)
+         ;
+
       counter++;
+
+      flag[i]=false;
+
+
    }
 }
 
 void *consumer(){
    int next_consumed; 
    //while(1){ 
-   for (int i=0; i< NITER; i++) { 
+   for (int c=0; c< NITER; c++) { 
 
       //Do nothing until an item is available
       while (counter==0) 
@@ -77,8 +99,15 @@ void *consumer(){
       //printf("\t\tConsumer consumed [%d].(in=%d,Consumed from index: out=%d)\n",next_consumed,in,out);     
       out = (out + 1) % BUFFER_SIZE;
 
-      //there is a race condition on this variable
+
+      flag[j]=true;
+      turn=i;
+      while(flag[i] && turn==i)
+         ;
+
       counter--;
+      
+      flag[j]=false;
 
    } 
 }

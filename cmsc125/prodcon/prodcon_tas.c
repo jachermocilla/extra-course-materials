@@ -5,7 +5,7 @@
 
 //
 //solution to prod-con problem using a counter to be able to use  
-//all slots in the buffer. Suffers from race condition
+//all slots in the buffer. Uses test and set.
 //-jach
 //
 
@@ -24,6 +24,19 @@ int out = 0;   //first full position
 //Counter to hold the total number of elements
 //We use this in order to fill all slots.
 int counter=0;
+
+unsigned long lock=0;
+
+static inline unsigned long test_and_set(volatile unsigned long* ptr)
+{
+    unsigned long result;
+    asm volatile("lock;"
+                 "xchgq %0, %1;"
+                 : "=r"(result), "=m"(*ptr)
+                 : "0"(1), "m"(*ptr)
+                 : "memory");
+    return result;
+}
 
 int main(){
    pthread_t prod_thread, con_thread;
@@ -59,8 +72,15 @@ void *producer(){
       //printf("Producer produced [%d].(Placed in index:in=%d,out=%d)\n",next_produced,in,out);     
       in = (in + 1) % BUFFER_SIZE; 
 
-      //there is a race condition on this variable
+
+      while (test_and_set(&lock))
+         ; /* do nothing */
+
+      //critical section
       counter++;
+
+      lock=0;
+      
    }
 }
 
@@ -77,8 +97,13 @@ void *consumer(){
       //printf("\t\tConsumer consumed [%d].(in=%d,Consumed from index: out=%d)\n",next_consumed,in,out);     
       out = (out + 1) % BUFFER_SIZE;
 
-      //there is a race condition on this variable
+      while (test_and_set(&lock))
+         ; /* do nothing */
+
+      //critical section
       counter--;
+
+      lock=0;
 
    } 
 }

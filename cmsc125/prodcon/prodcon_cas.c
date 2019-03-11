@@ -5,7 +5,7 @@
 
 //
 //solution to prod-con problem using a counter to be able to use  
-//all slots in the buffer. Suffers from race condition
+//all slots in the buffer. Uses compare and swap
 //-jach
 //
 
@@ -25,11 +25,25 @@ int out = 0;   //first full position
 //We use this in order to fill all slots.
 int counter=0;
 
+
+unsigned long lock=0;
+
+static inline unsigned long
+compare_and_swap(volatile unsigned long* value, unsigned long expected, unsigned long new_value)
+{
+    unsigned long prev;
+    asm volatile("lock;"
+                 "cmpxchgq %1, %2;"
+                 : "=a"(prev)
+                 : "q"(new_value), "m"(*value), "a"(expected)
+                 : "memory");
+    return prev;
+}
+
+
 int main(){
    pthread_t prod_thread, con_thread;
    srand(time(NULL));
-
-   printf("Run started..\n");
 
    pthread_create (&prod_thread, NULL, producer, NULL);
    pthread_create (&con_thread, NULL, consumer, NULL);
@@ -59,8 +73,13 @@ void *producer(){
       //printf("Producer produced [%d].(Placed in index:in=%d,out=%d)\n",next_produced,in,out);     
       in = (in + 1) % BUFFER_SIZE; 
 
-      //there is a race condition on this variable
+      while (compare_and_swap(&lock, 0, 1) != 0)
+         ; /* do nothing */
+
+      //critical section
       counter++;
+
+      lock=0;
    }
 }
 
@@ -77,8 +96,13 @@ void *consumer(){
       //printf("\t\tConsumer consumed [%d].(in=%d,Consumed from index: out=%d)\n",next_consumed,in,out);     
       out = (out + 1) % BUFFER_SIZE;
 
-      //there is a race condition on this variable
+      while (compare_and_swap(&lock, 0, 1) != 0)
+         ; /* do nothing */
+
+      //critical section
       counter--;
+      
+      lock=0;
 
    } 
 }

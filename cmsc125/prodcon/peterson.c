@@ -20,6 +20,10 @@ int shared_data=100;
 int main()
 {
    pthread_t tid_i,tid_j;
+
+   printf("Initial shared_data= %d\n",shared_data);
+
+
    pthread_create(&tid_i,NULL,thread_i,NULL);
    pthread_create(&tid_j,NULL,thread_j,NULL);
    pthread_join(tid_i,NULL);
@@ -37,12 +41,13 @@ void *thread_i(void *param){
          ;
       
       shared_data+=100;
-      printf("Process i: shared_data= %d\n",shared_data);
       
       flag[i]=false;
+      
+      printf("Process i: shared_data= %d\n",shared_data);
 
       c++;
-      //sleep(2);   
+      sleep(2);   
    }
 }
 
@@ -58,12 +63,13 @@ void *thread_j(void *param)
          ;
       
       shared_data-=75;
-      printf("Preocess j: shared_data= %d\n",shared_data);
       
       flag[j]=false;
+      
+      printf("Preocess j: shared_data= %d\n",shared_data);
 
       c++;
-      //sleep(4);
+      sleep(3);
 
    }
 }
