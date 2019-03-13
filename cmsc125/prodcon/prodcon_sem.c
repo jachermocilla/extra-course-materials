@@ -21,13 +21,13 @@
 #define NPROD           1              
 
 //Number of consumer threads
-#define NCON            1              
+#define NCON            2              
 
 //Number of iterations in the producer
-#define PRODITER        20              
+#define PRODITER        200000              
 
 //Number of iterations in the consumer
-#define CONITER         20              
+#define CONITER         200000              
 
 //Function prototypes
 void *producer(void *);
