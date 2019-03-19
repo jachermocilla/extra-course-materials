@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
    /* set the scheduling algorithm to PCS or SCS */
    //pthread_attr_setscope(&attr, PTHREAD_SCOPE_SYSTEM);
-   pthread_attr_setscope(&attr, PTHREAD_SCOPE_PROCESS);
+   pthread_attr_setscope(&attr, PTHREAD_SCOPE_PROCESS); //no effect in linux because linux uses the 1:1 model
 
    /* create the threads */
    for (i = 0; i < NUM_THREADS; i++)
