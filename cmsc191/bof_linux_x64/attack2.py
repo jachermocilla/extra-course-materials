@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!!/usr/bin/python
 #attack2.py
 
 n=100
