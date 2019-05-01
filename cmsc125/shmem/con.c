@@ -39,6 +39,8 @@ int main()
    /* read from the shared memory object */
    printf("Consumer: %s\n",(char *)ptr);
 
+   getchar();
+
    /* remove the shared memory object */
    shm_unlink(name);
    

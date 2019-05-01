@@ -51,5 +51,7 @@ int main()
    sprintf(ptr,"%s",message_1);
    ptr += strlen(message_1);
 
+   getchar();
+
    return 0;
 }
