@@ -29,9 +29,9 @@ int main(){
    show_bytes((pointer)&c,sizeof(long));
    
    printf("long *lp = &c;\n");
-   show_bytes((pointer)&c,sizeof(long *));
+   show_bytes((pointer)&lp,sizeof(long *));
 
    printf("int *ip = &b;\n");
-   show_bytes((pointer)&c,sizeof(int *));
+   show_bytes((pointer)&ip,sizeof(int *));
 }
 
