@@ -4,13 +4,13 @@
 
 typedef unsigned char *pointer;
 
-
 void show_bytes(pointer start, int len){
    int i, c, k;
 
    for (i=0;i<len;i++){
       printf("0x%.2X ",start[i]);
    }
+   printf(", ");
    
    //binary
    for (i=0;i<len;i++){
@@ -21,8 +21,9 @@ void show_bytes(pointer start, int len){
          else
             printf("0");
       }
-      printf("\n");
+      printf(" ");
    }
+   printf("\n");
 }
 
 int main(){
