@@ -70,6 +70,10 @@ int main(){
    uca = usa; 
    show_bytes((pointer)&usa,sizeof(unsigned short));
    show_bytes((pointer)&uca,sizeof(unsigned char ));
+
+   //truncation is equivalent to getting the mod 2^w
+   unsigned short ustmp = usa % (1 << 8);
+   show_bytes((pointer)&ustmp,sizeof(unsigned short));
    
    printf("\n");
 
@@ -80,8 +84,11 @@ int main(){
    show_bytes((pointer)&ssa,sizeof(signed short));
    show_bytes((pointer)&sca,sizeof(signed char ));
    
+   //truncation is equivalent to getting the mod 2^w but treated as signed
+   short sstmp = ssa % (1 << 8);
+   show_bytes((pointer)&sstmp,sizeof(short));
+   
    printf("\n");
-
 
 
 
