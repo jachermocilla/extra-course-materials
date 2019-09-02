@@ -137,7 +137,33 @@ int main(){
    uctmp = uca+ucb;
    sctmp = uctmp;
    show_bytes((pointer)&sctmp,sizeof(char));
+  
+   printf("\n");
+   //unsigned multiplication 
+   uca=0x9B;
+   ucb=0x5;
+   uctmp = uca * ucb; 
+   show_bytes((pointer)&uca,sizeof(unsigned char));
+   show_bytes((pointer)&ucb,sizeof(unsigned char));
+   show_bytes((pointer)&uctmp,sizeof(unsigned char));
    
+   //equivalent to getting the (x*y) mod 2^w 
+   uctmp = (uca * ucb) % (1 << 8);
+   show_bytes((pointer)&uctmp,sizeof(unsigned char));
+   
+   printf("\n");
+   
+   //signed multiplication 
+   sca=-50;
+   scb=5;
+   sctmp = sca * scb; 
+   show_bytes((pointer)&sca,sizeof(char));
+   show_bytes((pointer)&scb,sizeof(char));
+   show_bytes((pointer)&sctmp,sizeof(char));
+   
+   //equivalent to getting the (x*y) mod 2^w 
+   sctmp = (sca * scb) % (1 << 8);
+   show_bytes((pointer)&sctmp,sizeof(char));
 
 }
 
