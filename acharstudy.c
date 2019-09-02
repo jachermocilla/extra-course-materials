@@ -34,7 +34,7 @@ int main(){
    char sca=-100,scb=-15;
    char sctmp;
    unsigned short usa;
-   short sa;
+   short ssa;
 
 
    //shows the correspondence between signed and unsigned 
@@ -58,11 +58,33 @@ int main(){
    printf("\n");
    
    //expansion signed
-   sa = sca;
+   ssa = sca;
    show_bytes((pointer)&sca,sizeof(char));
-   show_bytes((pointer)&sa,sizeof(short));
+   show_bytes((pointer)&ssa,sizeof(short));
 
    printf("\n");
+
+
+   //truncate unsigned
+   usa = 260;
+   uca = usa; 
+   show_bytes((pointer)&usa,sizeof(unsigned short));
+   show_bytes((pointer)&uca,sizeof(unsigned char ));
+   
+   printf("\n");
+
+   
+   //truncate signed
+   ssa = -260;
+   sca = ssa; 
+   show_bytes((pointer)&ssa,sizeof(signed short));
+   show_bytes((pointer)&sca,sizeof(signed char ));
+   
+   printf("\n");
+
+
+
+
 
    //addition of signed       
    uctmp = uca + ucb;
