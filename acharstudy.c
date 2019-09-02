@@ -131,7 +131,7 @@ int main(){
    show_bytes((pointer)&scb,sizeof(char));
    show_bytes((pointer)&sctmp,sizeof(char));
   
-   //signed using properties  
+   //signed addition using properties  
    uca = sca;
    ucb = scb;
    uctmp = uca+ucb;
