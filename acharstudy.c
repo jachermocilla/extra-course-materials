@@ -99,6 +99,7 @@ int main(){
    show_bytes((pointer)&scb,sizeof(signed char ));
    show_bytes((pointer)&sctmp,sizeof(signed char ));
 
+   //the case for zero
    sca=0;
    scb=~0;
    sctmp=scb+1;
@@ -108,11 +109,23 @@ int main(){
 
    printf("\n");
 
-   //addition of signed       
+   //addition of unsigned
+   uca=0xFE;
+   ucb=0x3;
    uctmp = uca + ucb;
    show_bytes((pointer)&uca,sizeof(unsigned char));
    show_bytes((pointer)&ucb,sizeof(unsigned char));
    show_bytes((pointer)&uctmp,sizeof(unsigned char));
+
+   //equivalent to getting the (x+y) mod 2^w 
+   uctmp = (uca + ucb) % (1 << 8);
+   show_bytes((pointer)&uctmp,sizeof(unsigned char));
+
+   printf("\n");
+
+
+   
+
 
 }
 
