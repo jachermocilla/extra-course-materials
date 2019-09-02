@@ -123,9 +123,21 @@ int main(){
 
    printf("\n");
 
-
+   //addition of signed
+   sca=60;
+   scb=-80;
+   sctmp=sca+scb;
+   show_bytes((pointer)&sca,sizeof(char));
+   show_bytes((pointer)&scb,sizeof(char));
+   show_bytes((pointer)&sctmp,sizeof(char));
+  
+   //signed using properties  
+   uca = sca;
+   ucb = scb;
+   uctmp = uca+ucb;
+   sctmp = uctmp;
+   show_bytes((pointer)&sctmp,sizeof(char));
    
-
 
 }
 
