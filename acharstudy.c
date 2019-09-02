@@ -90,8 +90,23 @@ int main(){
    
    printf("\n");
 
+   //complement and increment
 
+   sca=0x6D;
+   scb=~sca;
+   sctmp=scb+1;
+   show_bytes((pointer)&sca,sizeof(signed char ));
+   show_bytes((pointer)&scb,sizeof(signed char ));
+   show_bytes((pointer)&sctmp,sizeof(signed char ));
 
+   sca=0;
+   scb=~0;
+   sctmp=scb+1;
+   show_bytes((pointer)&sca,sizeof(signed char ));
+   show_bytes((pointer)&scb,sizeof(signed char ));
+   show_bytes((pointer)&sctmp,sizeof(signed char ));
+
+   printf("\n");
 
    //addition of signed       
    uctmp = uca + ucb;
@@ -101,5 +116,3 @@ int main(){
 
 }
 
-//It can be observed that the internal representations are the same
-//but the interpretations are different for signed and unsigned
