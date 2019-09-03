@@ -164,6 +164,23 @@ int main(){
    //equivalent to getting the (x*y) mod 2^w 
    sctmp = (sca * scb) % (1 << 8);
    show_bytes((pointer)&sctmp,sizeof(char));
+   
+   printf("\n");
+
+   //power of two multiply with shift 3 * 2^4
+   uca= 3 << 4;
+   ucb = 3 * (2  * 2 * 2 * 2 );
+   show_bytes((pointer)&uca,sizeof(unsigned char));
+   show_bytes((pointer)&ucb,sizeof(unsigned char));
+  
+   //signed 
+   sca= -3 << 4;
+   scb = -3 * (2  * 2 * 2 * 2 );
+   show_bytes((pointer)&sca,sizeof(char));
+   show_bytes((pointer)&scb,sizeof(char));
+
+   
+
 
 }
 
