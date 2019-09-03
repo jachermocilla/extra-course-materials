@@ -1,3 +1,13 @@
+/** 
+ * This code demonstrates the intricacies of intergral types 
+ * using char (8 bits) and short (16 bits) both signed and 
+ * unsigned. 
+ * Based on the slides for Chapter 2 of CS:APP2e
+ *
+ * Enjoy! :)
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
