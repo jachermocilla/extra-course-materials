@@ -4,8 +4,13 @@
  * unsigned. 
  * Based on the slides for Chapter 2 of CS:APP2e
  *
+ * Variable name prefix:
+ *    uc* - unsigned char
+ *    sc* - signed char
+ *    us  - unsigned short
+ *    ss  - signed short
  * Enjoy! :)
- * 
+ *
  */
 
 #include <stdio.h>
