@@ -172,14 +172,28 @@ int main(){
    ucb = 3 * (2  * 2 * 2 * 2 );
    show_bytes((pointer)&uca,sizeof(unsigned char));
    show_bytes((pointer)&ucb,sizeof(unsigned char));
+   
+   printf("\n");
   
-   //signed 
+   //power of two multiply with shift -3 * 2^4
    sca= -3 << 4;
    scb = -3 * (2  * 2 * 2 * 2 );
    show_bytes((pointer)&sca,sizeof(char));
    show_bytes((pointer)&scb,sizeof(char));
-
    
+   printf("\n");
+
+   //signed power of two divide with shift
+   //-66 / (2^4) = 66 >> 4
+
+   sca = -66 / (2*2*2*2);
+   scb = -66 >> 4;
+   sctmp = (-66 + (1 << 4) - 1) >> 4;
+   printf("%d\n",sca);;
+   show_bytes((pointer)&sca,sizeof(char));
+   show_bytes((pointer)&scb,sizeof(char));  //wrong since -66 < 9
+   show_bytes((pointer)&sctmp,sizeof(char));  //correct
+      
 
 
 }
