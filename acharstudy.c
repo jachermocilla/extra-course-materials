@@ -7,8 +7,8 @@
  * Variable name prefix:
  *    uc* - unsigned char
  *    sc* - signed char
- *    us  - unsigned short
- *    ss  - signed short
+ *    us* - unsigned short
+ *    ss* - signed short
  * Enjoy! :)
  *
  */
