@@ -3,6 +3,7 @@
 #include <unistd.h>
 
 typedef unsigned char *pointer;
+   
 
 void show_bytes(pointer start, int len){
    int i, c, k;
@@ -28,11 +29,13 @@ void show_bytes(pointer start, int len){
 
 void show_bin(pointer start, int len){
    int i, c, k;
+   unsigned char byte;
 
    //binary
    for (i=0;i<len;i++){
+      byte = start[i];
       for (c = 7; c >= 0; c--){
-         k = start[i] >> c;
+         k = byte >> c;
          if (k & 1)
             printf("1");
          else
@@ -54,11 +57,28 @@ void show_float(pointer start){
 }
 
 int main(){
-   float f = 15213.0f;
-   
+
+   float f = 4.0f;
+   float g = 5.0f;
+   float h;
+
+    
    show_float((pointer)&f);
    printf("\n");
    show_bytes((pointer)&f,sizeof(float));
+   
+//   h = 4.0;
+
+   
+   show_float((pointer)&g);
+   printf("\n");
+   show_bytes((pointer)&g,sizeof(float));
+   
+/*   
+   show_float((pointer)&h);
+   printf("\n");
+   show_bytes((pointer)&h,sizeof(float));
+*/
 
 }
 
