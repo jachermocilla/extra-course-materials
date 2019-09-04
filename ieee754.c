@@ -60,14 +60,25 @@ int main()
 
 	// Instantiate the union 
 	myfloat var; 
+   myfloat var2;
+   myfloat var3;
+   myfloat var4;
 
 	// Get the real value 
-	var.f = 15213.0f; 
+	var.f = 4.0f;
+   var2.f = 5.0f;
+   var3.f = var.f + var2.f; 
+   var4.f = var.f * var2.f; 
 
 	// Get the IEEE floating point representation 
-	printf("IEEE 754 representation of %f is : \n", 
-		var.f); 
+	printf("IEEE 754 representation of %f is : \n", var.f); 
 	printIEEE(var); 
+	printf("IEEE 754 representation of %f is : \n", var2.f); 
+	printIEEE(var2); 
+	printf("IEEE 754 representation of %f is : \n", var3.f); 
+	printIEEE(var3); 
+	printf("IEEE 754 representation of %f is : \n", var4.f); 
+	printIEEE(var4); 
 
 	return 0; 
 } 
