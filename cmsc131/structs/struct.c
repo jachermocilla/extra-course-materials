@@ -3,6 +3,9 @@ struct rec{
    int i;
    struct rec *n;
 };
+   
+struct rec my_rec;
+struct rec *p_my_rec=&my_rec;
 
 void set_i(struct rec *r, int val){
    r->i = val;
@@ -21,5 +24,9 @@ void set_val(struct rec *r, int val){
 }
 
 int main(){
+
+   my_rec.i=10;
+   set_i(p_my_rec,7); 
+
 
 }
