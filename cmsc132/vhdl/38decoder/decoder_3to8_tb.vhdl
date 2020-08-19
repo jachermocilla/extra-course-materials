@@ -25,8 +25,8 @@ begin
       wait for 50 ns;
 
 
-      INPUT_TB <= "000"; wait for 10 ns; assert OUTPUT_TB="00000000" report "000 failed,output= ";
-      INPUT_TB <= "001"; wait for 10 ns; assert OUTPUT_TB="00000001" report "001 failed,output= ";
+      INPUT_TB <= "000"; wait for 10 ns; assert OUTPUT_TB="00000001" report "000 failed,output= ";
+      INPUT_TB <= "001"; wait for 10 ns; assert OUTPUT_TB="00000010" report "001 failed,output= ";
       INPUT_TB <= "010"; wait for 10 ns; assert OUTPUT_TB="00000100" report "010 failed,output= "; 
       INPUT_TB <= "011"; wait for 10 ns; assert OUTPUT_TB="00001000" report "011 failed,output= ";
       INPUT_TB <= "100"; wait for 10 ns; assert OUTPUT_TB="00010000" report "100 failed,output= ";
