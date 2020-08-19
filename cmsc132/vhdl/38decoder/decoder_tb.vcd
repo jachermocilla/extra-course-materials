@@ -1,0 +1,68 @@
+$date
+  Wed Aug 19 22:22:14 2020
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module decoder_3to8_tb $end
+$var reg 3 ! input_tb[2:0] $end
+$var reg 8 " output_tb[7:0] $end
+$scope module uut $end
+$var reg 3 # input[2:0] $end
+$var reg 8 $ output[7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+bUUU !
+bUUUUUUUU "
+bUUU #
+bUUUUUUUU $
+#50000000
+b000 !
+b00000001 "
+b000 #
+b00000001 $
+#60000000
+b001 !
+b00000010 "
+b001 #
+b00000010 $
+#70000000
+b010 !
+b00000100 "
+b010 #
+b00000100 $
+#80000000
+b011 !
+b00001000 "
+b011 #
+b00001000 $
+#90000000
+b100 !
+b00010000 "
+b100 #
+b00010000 $
+#100000000
+b101 !
+b00100000 "
+b101 #
+b00100000 $
+#110000000
+b110 !
+b01000000 "
+b110 #
+b01000000 $
+#120000000
+b111 !
+b10000000 "
+b111 #
+b10000000 $
+#130000000
