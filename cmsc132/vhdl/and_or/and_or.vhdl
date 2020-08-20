@@ -24,13 +24,13 @@ ARCHITECTURE behavioral OF and_or IS
       C: OUT STD_LOGIC);
    END COMPONENT;
 
-   signal and_out: STD_LOGIC;
-   signal or_out: STD_LOGIC;
+   signal u: STD_LOGIC;
+   signal v: STD_LOGIC;
 
 BEGIN
 
-   u1: and_gate port map(a, b, and_out);
-   u2: or_gate port map(a, b, or_out);
-   u3: mux_2to1 port map(and_out, or_out, op); 
+   u1: and_gate port map(a, b, u);
+   u2: or_gate port map(a, b, v);
+   u3: mux_2to1 port map(u, v, op, result); 
 
 END behavioral;
