@@ -8,10 +8,8 @@ ARCHITECTURE behavior OF and_or_tb IS
          a, b, op: IN STD_LOGIC;
          result: OUT STD_LOGIC);
    END COMPONENT;
-
    SIGNAL input: STD_LOGIC_VECTOR(2 DOWNTO 0);
    SIGNAL output: STD_LOGIC;
-
 BEGIN 
    UUT: and_or PORT MAP (
       a => input(1),
@@ -19,7 +17,6 @@ BEGIN
       op => input(0),
       result => output
    );
-
    STIM_PROC: PROCESS
    BEGIN
       input <= "000"; WAIT FOR 10 NS; ASSERT output='0' REPORT "000 failed,output= " & STD_LOGIC'IMAGE(output);
