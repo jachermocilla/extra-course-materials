@@ -22,14 +22,14 @@ BEGIN
 
    STIM_PROC: PROCESS
    BEGIN
-      input <= "000"; WAIT FOR 10 NS; assert output='0' report "000 failed,output= " & std_logic'image(output);
-      input <= "001"; WAIT FOR 10 NS; assert output='0' report "001 failed,output= " & std_logic'image(output);
-      input <= "010"; WAIT FOR 10 NS; assert output='0' report "011 failed,output= " & std_logic'image(output);
-      input <= "011"; WAIT FOR 10 NS; assert output='1' report "011 failed,output= " & std_logic'image(output);
-      input <= "100"; WAIT FOR 10 NS; assert output='0' report "100 failed,output= " & std_logic'image(output);
-      input <= "101"; WAIT FOR 10 NS; assert output='1' report "100 failed,output= " & std_logic'image(output);
-      input <= "110"; WAIT FOR 10 NS; assert output='1' report "110 failed,output= " & std_logic'image(output);
-      input <= "111"; WAIT FOR 10 NS; assert output='1' report "111 failed,output= " & std_logic'image(output);
+      input <= "000"; WAIT FOR 10 NS; ASSERT output='0' REPORT "000 failed,output= " & std_logic'image(output);
+      input <= "001"; WAIT FOR 10 NS; ASSERT output='0' REPORT "001 failed,output= " & std_logic'image(output);
+      input <= "010"; WAIT FOR 10 NS; ASSERT output='0' REPORT "011 failed,output= " & std_logic'image(output);
+      input <= "011"; WAIT FOR 10 NS; ASSERT output='1' REPORT "011 failed,output= " & std_logic'image(output);
+      input <= "100"; WAIT FOR 10 NS; ASSERT output='0' REPORT "100 failed,output= " & std_logic'image(output);
+      input <= "101"; WAIT FOR 10 NS; ASSERT output='1' REPORT "100 failed,output= " & std_logic'image(output);
+      input <= "110"; WAIT FOR 10 NS; ASSERT output='1' REPORT "110 failed,output= " & std_logic'image(output);
+      input <= "111"; WAIT FOR 10 NS; ASSERT output='1' REPORT "111 failed,output= " & std_logic'image(output);
       WAIT;
    END PROCESS;
 END;      
