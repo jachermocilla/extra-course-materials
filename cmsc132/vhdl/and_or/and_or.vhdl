@@ -6,31 +6,23 @@ ENTITY and_or IS
    result: OUT STD_LOGIC);
 END and_or;
 --------------------------------
-
 ARCHITECTURE behavioral OF and_or IS
-
    COMPONENT mux_2to1 IS
       PORT (A, B, S: IN STD_LOGIC;
       C: OUT STD_LOGIC);
    END COMPONENT;
-
    COMPONENT and_gate IS
       PORT (A, B: IN STD_LOGIC;
       C: OUT STD_LOGIC);
    END COMPONENT;
-
    COMPONENT or_gate IS
       PORT (A, B: IN STD_LOGIC;
       C: OUT STD_LOGIC);
    END COMPONENT;
-
    signal u: STD_LOGIC;
    signal v: STD_LOGIC;
-
 BEGIN
-
    u1: and_gate port map(a, b, u);
    u2: or_gate port map(a, b, v);
    u3: mux_2to1 port map(u, v, op, result); 
-
 END behavioral;
