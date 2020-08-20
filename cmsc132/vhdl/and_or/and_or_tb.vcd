@@ -1,0 +1,159 @@
+$date
+  Thu Aug 20 15:44:01 2020
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module and_or_tb $end
+$var reg 3 ! input[2:0] $end
+$var reg 1 " output $end
+$scope module uut $end
+$var reg 1 # a $end
+$var reg 1 $ b $end
+$var reg 1 % op $end
+$var reg 1 & result $end
+$var reg 1 ' u $end
+$var reg 1 ( v $end
+$scope module u1 $end
+$var reg 1 ) a $end
+$var reg 1 * b $end
+$var reg 1 + c $end
+$upscope $end
+$scope module u2 $end
+$var reg 1 , a $end
+$var reg 1 - b $end
+$var reg 1 . c $end
+$upscope $end
+$scope module u3 $end
+$var reg 1 / a $end
+$var reg 1 0 b $end
+$var reg 1 1 s $end
+$var reg 1 2 c $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+b000 !
+0"
+0#
+0$
+0%
+0&
+0'
+0(
+0)
+0*
+0+
+0,
+0-
+0.
+0/
+00
+01
+02
+#10000000
+b001 !
+1"
+1#
+1%
+1&
+1(
+1)
+1,
+1.
+10
+11
+12
+#20000000
+b010 !
+0"
+0#
+1$
+0%
+0&
+0)
+1*
+0,
+1-
+01
+02
+#30000000
+b011 !
+1"
+1#
+1%
+1&
+1'
+1)
+1+
+1,
+1/
+11
+12
+#40000000
+b100 !
+0"
+0#
+0$
+0%
+0&
+0'
+0(
+0)
+0*
+0+
+0,
+0-
+0.
+0/
+00
+01
+02
+#50000000
+b101 !
+1"
+1#
+1%
+1&
+1(
+1)
+1,
+1.
+10
+11
+12
+#60000000
+b110 !
+0"
+0#
+1$
+0%
+0&
+0)
+1*
+0,
+1-
+01
+02
+#70000000
+b111 !
+1"
+1#
+1%
+1&
+1'
+1)
+1+
+1,
+1/
+11
+12
+#80000000
