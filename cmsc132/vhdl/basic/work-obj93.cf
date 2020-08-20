@@ -1,0 +1,7 @@
+v 4
+file . "or.vhdl" "d08ba87b2d702e824a7d959f74417a9828a07342" "20200820030338.945":
+  entity or_gate at 1( 0) + 0 on 13;
+  architecture pure_logic of or_gate at 10( 193) + 0 on 14;
+file . "and.vhdl" "295f9514cca1685217c82ef0ccfde9c50cdae07a" "20200820030248.787":
+  entity and_gate at 1( 0) + 0 on 11;
+  architecture pure_logic of and_gate at 10( 195) + 0 on 12;
