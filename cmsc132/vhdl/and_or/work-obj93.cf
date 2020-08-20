@@ -1,0 +1,13 @@
+v 4
+file . "and_or.vhdl" "94a538bf7d143fa5c345c3fce050fb671e560036" "20200820035217.028":
+  entity and_or at 1( 0) + 0 on 17;
+  architecture behavioral of and_or at 10( 200) + 0 on 18;
+file . "and.vhdl" "295f9514cca1685217c82ef0ccfde9c50cdae07a" "20200820035141.919":
+  entity and_gate at 1( 0) + 0 on 13;
+  architecture pure_logic of and_gate at 10( 195) + 0 on 14;
+file . "mux_2to1.vhd" "f4dd3b5215bb9407e461ed556bbdcfde2be6341c" "20200820035136.326":
+  entity mux_2to1 at 1( 0) + 0 on 11;
+  architecture pure_logic of mux_2to1 at 10( 198) + 0 on 12;
+file . "or.vhdl" "d08ba87b2d702e824a7d959f74417a9828a07342" "20200820035147.496":
+  entity or_gate at 1( 0) + 0 on 15;
+  architecture pure_logic of or_gate at 10( 193) + 0 on 16;
