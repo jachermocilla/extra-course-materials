@@ -1,39 +1,37 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
-
 ENTITY and_or_tb IS
 END and_or_tb;
-
-architecture behavior of and_or_tb is
-   component and_or is 
-      port (
+ARCHITECTURE behavior OF and_or_tb IS
+   COMPONENT and_or IS 
+      PORT (
          a, b, op: IN STD_LOGIC;
          result: OUT STD_LOGIC);
-   end component;
+   END COMPONENT;
 
-   signal input: STD_LOGIC_VECTOR(2 downto 0);
-   signal output: STD_LOGIC;
+   SIGNAL input: STD_LOGIC_VECTOR(2 DOWNTO 0);
+   SIGNAL output: STD_LOGIC;
 
-begin 
-   uut: and_or port map (
-      a => input(0),
-      b => input(1),
+BEGIN 
+   UUT: and_or PORT MAP (
+      a => input(1),
+      b => input(2),
       op => input(0),
       result => output
    );
 
-   stim_proc: process
-   begin
-      input <= "000"; wait for 10 ns; assert output='0' report "000 failed,output= " & std_logic'image(output);
-      input <= "001"; wait for 10 ns; assert output='0' report "001 failed,output= " & std_logic'image(output);
-      input <= "010"; wait for 10 ns; assert output='0' report "011 failed,output= " & std_logic'image(output);
-      input <= "011"; wait for 10 ns; assert output='1' report "011 failed,output= " & std_logic'image(output);
-      input <= "100"; wait for 10 ns; assert output='0' report "100 failed,output= " & std_logic'image(output);
-      input <= "101"; wait for 10 ns; assert output='1' report "100 failed,output= " & std_logic'image(output);
-      input <= "110"; wait for 10 ns; assert output='1' report "110 failed,output= " & std_logic'image(output);
-      input <= "111"; wait for 10 ns; assert output='1' report "111 failed,output= " & std_logic'image(output);
-      wait;
-   end process;
-end;      
+   STIM_PROC: PROCESS
+   BEGIN
+      input <= "000"; WAIT FOR 10 NS; assert output='0' report "000 failed,output= " & std_logic'image(output);
+      input <= "001"; WAIT FOR 10 NS; assert output='0' report "001 failed,output= " & std_logic'image(output);
+      input <= "010"; WAIT FOR 10 NS; assert output='0' report "011 failed,output= " & std_logic'image(output);
+      input <= "011"; WAIT FOR 10 NS; assert output='1' report "011 failed,output= " & std_logic'image(output);
+      input <= "100"; WAIT FOR 10 NS; assert output='0' report "100 failed,output= " & std_logic'image(output);
+      input <= "101"; WAIT FOR 10 NS; assert output='1' report "100 failed,output= " & std_logic'image(output);
+      input <= "110"; WAIT FOR 10 NS; assert output='1' report "110 failed,output= " & std_logic'image(output);
+      input <= "111"; WAIT FOR 10 NS; assert output='1' report "111 failed,output= " & std_logic'image(output);
+      WAIT;
+   END PROCESS;
+END;      
    
 
