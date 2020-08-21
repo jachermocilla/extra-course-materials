@@ -12,18 +12,14 @@ ARCHITECTURE behavioral OF alu IS
       E: OUT STD_LOGIC);
    END COMPONENT;
    COMPONENT and_gate IS
-      PORT (A, B: IN STD_LOGIC;
-      C: OUT STD_LOGIC);
+      PORT (A, B: IN STD_LOGIC; C: OUT STD_LOGIC);
    END COMPONENT;
    COMPONENT or_gate IS
-      PORT (A, B: IN STD_LOGIC;
-      C: OUT STD_LOGIC);
+      PORT (A, B: IN STD_LOGIC; C: OUT STD_LOGIC);
    END COMPONENT;
    COMPONENT full_adder is
-      PORT ( a : IN STD_LOGIC;
-         b : IN STD_LOGIC;
-         CarryIn : IN STD_LOGIC;
-         Sum : OUT STD_LOGIC;
+      PORT ( a : IN STD_LOGIC; b : IN STD_LOGIC;
+         CarryIn : IN STD_LOGIC;Sum : OUT STD_LOGIC;
          CarryOut : OUT STD_LOGIC);
    END COMPONENT;
    SIGNAL u, v, w, x: STD_LOGIC;
