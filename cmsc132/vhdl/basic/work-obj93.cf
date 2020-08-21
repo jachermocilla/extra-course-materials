@@ -1,4 +1,10 @@
 v 4
+file . "nor.vhdl" "75e5a888f02571ab830fd54a1476f7564d6362c8" "20200821041323.463":
+  entity nor_gate at 1( 0) + 0 on 23;
+  architecture pure_logic of nor_gate at 10( 195) + 0 on 24;
+file . "xnor.vhdl" "87e57ad40bddc5dacba4a0d2ea2b6cc724a5ebed" "20200821041143.654":
+  entity xnor_gate at 1( 0) + 0 on 19;
+  architecture pure_logic of xnor_gate at 10( 197) + 0 on 20;
 file . "inv.vhdl" "fad8ab47ebceb424e55df1f0fca499019266d8f9" "20200821040222.930":
   entity inv_gate at 1( 0) + 0 on 15;
   architecture pure_logic of inv_gate at 10( 192) + 0 on 16;
@@ -8,3 +14,9 @@ file . "and.vhdl" "295f9514cca1685217c82ef0ccfde9c50cdae07a" "20200820030248.787
 file . "or.vhdl" "d08ba87b2d702e824a7d959f74417a9828a07342" "20200820030338.945":
   entity or_gate at 1( 0) + 0 on 13;
   architecture pure_logic of or_gate at 10( 193) + 0 on 14;
+file . "xor.vhdl" "97fcd8109376fa3d7abeaf827b3ec2b5c568cf4b" "20200821041140.669":
+  entity xor_gate at 1( 0) + 0 on 17;
+  architecture pure_logic of xor_gate at 10( 195) + 0 on 18;
+file . "nand.vhdl" "8e7f1893430028d244097cc7ff1a0dfb3dfd1e53" "20200821041150.021":
+  entity nand_gate at 1( 0) + 0 on 21;
+  architecture pure_logic of nand_gate at 10( 197) + 0 on 22;
