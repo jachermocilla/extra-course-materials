@@ -27,8 +27,14 @@ BEGIN
    stim_proc: PROCESS
    BEGIN
       input <= "001010"; wait for 10 ns; assert output='1' report "00 failed,output= " & std_logic'image(output);
+      WAIT;
+
       input <= "011010"; wait for 10 ns; assert output='0' report "01 failed,output= " & std_logic'image(output);
+      WAIT;
+
       input <= "101010"; wait for 10 ns; assert output='1' report "10 failed,output= " & std_logic'image(output);
+      WAIT;
+
       input <= "111010"; wait for 10 ns; assert output='0' report "11 failed,output= " & std_logic'image(output);
       WAIT;
    END PROCESS;
