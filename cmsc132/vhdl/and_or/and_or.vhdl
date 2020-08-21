@@ -19,8 +19,8 @@ ARCHITECTURE behavioral OF and_or IS
       PORT (A, B: IN STD_LOGIC;
       C: OUT STD_LOGIC);
    END COMPONENT;
-   signal u: STD_LOGIC;
-   signal v: STD_LOGIC;
+   SIGNAL u: STD_LOGIC;
+   SIGNAL v: STD_LOGIC;
 BEGIN
    u1: and_gate port map(a, b, u);
    u2: or_gate port map(a, b, v);
