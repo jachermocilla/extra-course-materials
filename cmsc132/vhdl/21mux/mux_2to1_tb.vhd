@@ -15,9 +15,9 @@ ARCHITECTURE behavior OF mux_2to1_tb IS
 
 BEGIN 
    uut: mux_2to1 PORT MAP (
+      S => input(0),
       A => input(1),
       B => input(2),
-      S => input(0),
       C => output
    );
 
