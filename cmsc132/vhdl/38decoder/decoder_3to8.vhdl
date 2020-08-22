@@ -3,8 +3,8 @@ USE ieee.std_logic_1164.all;
 ---------------------------------
 ENTITY decoder_3to8 IS
    PORT (
-      I2, I1, I0: IN STD_LOGIC);
-      Out7, Out6, Out5, Out4, Out3, Out2, Out1, Out0: OUT STD_LOGIC;
+      I2, I1, I0: IN STD_LOGIC;
+      Out7, Out6, Out5, Out4, Out3, Out2, Out1, Out0: OUT STD_LOGIC,
    );
 END decoder_3to8;
 --------------------------------
