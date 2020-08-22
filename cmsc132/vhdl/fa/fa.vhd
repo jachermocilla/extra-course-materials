@@ -12,7 +12,7 @@ END full_adder;
 ARCHITECTURE gate_level OF full_adder IS
  
 BEGIN
- Sum <= A XOR B XOR CarryIn ;
- CarryOut <= (A AND B) OR (CarryIn AND A) 
-               OR (CarryIn AND B) ;
+ Sum <= a XOR b XOR CarryIn ;
+ CarryOut <= (a AND b) OR (CarryIn AND a) 
+               OR (CarryIn AND b) ;
 end gate_level;
