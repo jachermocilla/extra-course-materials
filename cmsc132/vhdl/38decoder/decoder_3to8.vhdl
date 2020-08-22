@@ -8,7 +8,6 @@ ENTITY decoder_3to8 IS
    );
 END decoder_3to8;
 --------------------------------
-
 ARCHITECTURE pure_logic OF decoder_3to8 IS
 BEGIN
    Out0 <= NOT I2 AND NOT I1 and NOT I0;
