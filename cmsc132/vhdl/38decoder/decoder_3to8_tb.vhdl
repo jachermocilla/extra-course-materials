@@ -4,19 +4,33 @@ USE ieee.std_logic_1164.all;
 ENTITY decoder_3to8_tb IS
 END decoder_3to8_tb;
 
-architecture behavior of decoder_3to8_tb is
-   component decoder_3to8 is 
-      port (
-         INPUT: IN STD_LOGIC_VECTOR(2 downto 0);
-         OUTPUT: OUT STD_LOGIC_VECTOR(7 downto 0));
-   end component;
-   signal INPUT_TB: STD_LOGIC_VECTOR(2 downto 0);
-   signal OUTPUT_TB: STD_LOGIC_VECTOR(7 downto 0);
+ARCHITECTURE behavior OF decoder_3to8_tb IS
+
+   COMPONENT decoder_3to8 IS
+   PORT (
+      I2, I1, I0: IN STD_LOGIC;
+      Out7, Out6, Out5, Out4, Out3, Out2, Out1, Out0: OUT STD_LOGIC
+   );
+   END COMPONENT;
+
+   SIGNAL INPUT_TB: STD_LOGIC_VECTOR(2 downto 0);
+   SIGNAL OUTPUT_TB: STD_LOGIC_VECTOR(7 downto 0);
 
 begin 
    uut: decoder_3to8 port map (
-      INPUT => INPUT_TB,
-      OUTPUT => OUTPUT_TB
+      I2 => INPUT_TB(2),
+      I1 => INPUT_TB(1),
+      I0 => INPUT_TB(0),
+      Out7 => OUTPUT_TB(7),
+      Out6 => OUTPUT_TB(6),
+      Out5 => OUTPUT_TB(5),
+      Out4 => OUTPUT_TB(4),
+      Out3 => OUTPUT_TB(3),
+      Out2 => OUTPUT_TB(2),
+      Out1 => OUTPUT_TB(1),
+      Out0 => OUTPUT_TB(0),
+
+
    );
 
    stim_proc: process
