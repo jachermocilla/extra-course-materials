@@ -11,12 +11,12 @@ END decoder_3to8;
 
 ARCHITECTURE pure_logic OF decoder_3to8 IS
 BEGIN
-   Out0 <= NOT INPUT(2) AND NOT INPUT(1) and NOT INPUT(0);
-   Out1 <= NOT INPUT(2) AND NOT INPUT(1) and INPUT(0);
-   Out2 <= NOT INPUT(2) AND INPUT(1) and NOT INPUT(0);
-   Out3 <= NOT INPUT(2) AND INPUT(1) and INPUT(0);
-   Out4 <= INPUT(2) AND NOT INPUT(1) and NOT INPUT(0);
-   Out5 <= INPUT(2) AND NOT INPUT(1) and INPUT(0);
-   Out6 <= INPUT(2) AND INPUT(1) and NOT INPUT(0);
-   Out7 <= INPUT(2) AND INPUT(1) and INPUT(0);
+   Out0 <= NOT I2 AND NOT I1 and NOT I0;
+   Out1 <= NOT I2 AND NOT I1 and I0;
+   Out2 <= NOT I2 AND I1 and NOT I0;
+   Out3 <= NOT I2 AND I1 and I0;
+   Out4 <= I2 AND NOT I1 and NOT I0;
+   Out5 <= I2 AND NOT I1 and I0;
+   Out6 <= I2 AND I1 and NOT I0;
+   Out7 <= I2 AND I1 and I0;
 END pure_logic;
