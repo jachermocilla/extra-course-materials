@@ -28,9 +28,7 @@ begin
       Out3 => OUTPUT_TB(3),
       Out2 => OUTPUT_TB(2),
       Out1 => OUTPUT_TB(1),
-      Out0 => OUTPUT_TB(0),
-
-
+      Out0 => OUTPUT_TB(0)
    );
 
    stim_proc: process
