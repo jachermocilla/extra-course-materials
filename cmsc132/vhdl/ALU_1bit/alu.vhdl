@@ -28,5 +28,6 @@ BEGIN
    u1: and_gate port map(a, b, u);
    u2: or_gate port map(a, b, v);
    u3: full_adder port map(a, b, CarryIn, w, CarryOut); 
-   u4: mux_4to1 port map(u, v, w, x, Operation(0), Operation(1), Result);
+   u4: mux_4to1 port map(u, v, w, x, Operation(0), 
+               Operation(1), Result);
 END behavioral;
