@@ -13,8 +13,8 @@ ARCHITECTURE behavior OF and_or_tb IS
 BEGIN 
    UUT: and_or PORT MAP (
       a => input(1),
-      b => input(2),
-      Operation => input(0),
+      b => input(0),
+      Operation => input(2),
       Result => output
    );
    STIM_PROC: PROCESS
