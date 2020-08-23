@@ -24,5 +24,5 @@ ARCHITECTURE behavioral OF and_or IS
 BEGIN
    u1: and_gate port map(a, b, u);
    u2: or_gate port map(a, b, v);
-   u3: mux_2to1 port map(u, v, Operation, iResult); 
+   u3: mux_2to1 port map(u, v, Operation, Result); 
 END behavioral;
