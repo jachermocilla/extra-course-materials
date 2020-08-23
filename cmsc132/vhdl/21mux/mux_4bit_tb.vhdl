@@ -29,7 +29,7 @@ BEGIN
       input_B <= "1000";
       input_S <= '0';
       WAIT FOR 10 ns;
-      ASSERT output_C="1000";   
+      ASSERT output_C="0011";   
       
       input_A <= "0011";
       input_B <= "1000";
