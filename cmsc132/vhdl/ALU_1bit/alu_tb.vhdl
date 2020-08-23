@@ -7,7 +7,7 @@ END alu_tb;
 ARCHITECTURE behavior OF alu_tb IS
    COMPONENT alu IS
       PORT (a, b, CarryIn: IN STD_LOGIC;
-      Operation: IN STD_LOGIC_VECTOR(1 DOWNTO 1);
+      Operation: IN STD_LOGIC_VECTOR(1 DOWNTO 01);
       Result, CarryOut: OUT STD_LOGIC);
    END COMPONENT;
    SIGNAL input: STD_LOGIC_VECTOR(4 DOWNTO 0);
