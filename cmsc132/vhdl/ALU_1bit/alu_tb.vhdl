@@ -25,13 +25,13 @@ BEGIN
    BEGIN
 
       -- 1 AND 1
-      input <= "00011"; WAIT FOR 10 NS; ASSERT res='1' REPORT "00011 failed,output= " & STD_LOGIC'IMAGE(res);
+      input <= "00011"; WAIT FOR 10 NS; ASSERT cout='0' REPORT "00011 failed,output= " & STD_LOGIC'IMAGE(res);
 
       -- 1 OR 1
-      input <= "01011"; WAIT FOR 10 NS; ASSERT res='1' REPORT "01011 failed,output= " & STD_LOGIC'IMAGE(res);
+      input <= "01011"; WAIT FOR 10 NS; ASSERT cout='0' REPORT "01011 failed,output= " & STD_LOGIC'IMAGE(res);
 
       -- 1 + 1
-      input <= "10011"; WAIT FOR 10 NS; ASSERT res='0' REPORT "01011 failed,output= " & STD_LOGIC'IMAGE(res);
+      input <= "10011"; WAIT FOR 10 NS; ASSERT cout='0' REPORT "01011 failed,output= " & STD_LOGIC'IMAGE(res);
       WAIT;
 
 
