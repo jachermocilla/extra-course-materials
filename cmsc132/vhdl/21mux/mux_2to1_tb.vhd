@@ -12,7 +12,6 @@ ARCHITECTURE behavior OF mux_2to1_tb IS
    END COMPONENT;
    SIGNAL input: STD_LOGIC_VECTOR(2 DOWNTO 0);
    SIGNAL output: STD_LOGIC;
-
 BEGIN 
    uut: mux_2to1 PORT MAP (
       S => input(2),
@@ -20,11 +19,16 @@ BEGIN
       B => input(0),
       C => output
    );
-
    stim_proc: PROCESS
    BEGIN
-      input <= "010"; wait for 10 ns; assert output='1' report "000 failed,output= " & std_logic'image(output);
-      input <= "110"; wait for 10 ns; assert output='0' report "000 failed,output= " & std_logic'image(output);
+      input <= "010"; wait for 10 ns; 
+      assert output='1' 
+      report "000 failed,output= " & std_logic'image(output);
+      
+      input <= "110"; wait for 10 ns; 
+      assert output='0' 
+      report "000 failed,output= " & std_logic'image(output);
+      
       WAIT;
    END PROCESS;
 END;      
