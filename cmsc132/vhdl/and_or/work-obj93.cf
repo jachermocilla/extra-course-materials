@@ -1,16 +1,16 @@
 v 4
-file . "and_or_tb.vhdl" "241ad11307139181ee1bd8b64ae0f168b48c8ea3" "20200823025909.244":
-  entity and_or_tb at 1( 0) + 0 on 39;
-  architecture behavior of and_or_tb at 5( 78) + 0 on 40;
-file . "or.vhdl" "d08ba87b2d702e824a7d959f74417a9828a07342" "20200820035147.496":
-  entity or_gate at 1( 0) + 0 on 15;
-  architecture pure_logic of or_gate at 10( 193) + 0 on 16;
-file . "mux_2to1.vhd" "f4dd3b5215bb9407e461ed556bbdcfde2be6341c" "20200820035136.326":
-  entity mux_2to1 at 1( 0) + 0 on 11;
-  architecture pure_logic of mux_2to1 at 10( 198) + 0 on 12;
-file . "and.vhdl" "295f9514cca1685217c82ef0ccfde9c50cdae07a" "20200820035141.919":
-  entity and_gate at 1( 0) + 0 on 13;
-  architecture pure_logic of and_gate at 10( 195) + 0 on 14;
 file . "and_or.vhdl" "84606eb7d2fdee018ecc803eb8bfc89dff3a012e" "20200823025516.160":
   entity and_or at 1( 0) + 0 on 37;
   architecture behavioral of and_or at 9( 206) + 0 on 38;
+file . "and.vhdl" "295f9514cca1685217c82ef0ccfde9c50cdae07a" "20200820035141.919":
+  entity and_gate at 1( 0) + 0 on 13;
+  architecture pure_logic of and_gate at 10( 195) + 0 on 14;
+file . "mux_2to1.vhd" "f4dd3b5215bb9407e461ed556bbdcfde2be6341c" "20200820035136.326":
+  entity mux_2to1 at 1( 0) + 0 on 11;
+  architecture pure_logic of mux_2to1 at 10( 198) + 0 on 12;
+file . "or.vhdl" "d08ba87b2d702e824a7d959f74417a9828a07342" "20200820035147.496":
+  entity or_gate at 1( 0) + 0 on 15;
+  architecture pure_logic of or_gate at 10( 193) + 0 on 16;
+file . "and_or_tb.vhdl" "7493f327a944898c37968e91c57749c29cd799e6" "20200823035507.360":
+  entity and_or_tb at 1( 0) + 0 on 41;
+  architecture behavior of and_or_tb at 5( 78) + 0 on 42;

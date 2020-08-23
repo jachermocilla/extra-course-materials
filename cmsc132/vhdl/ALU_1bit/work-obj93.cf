@@ -1,22 +1,22 @@
 v 4
-file . "mux_4to1.vhdl" "55c626b88eecbaa7d157c16587ea23102bf643eb" "20200823033810.802":
-  entity mux_4to1 at 1( 0) + 0 on 21;
-  architecture behavioral of mux_4to1 at 9( 208) + 0 on 22;
-file . "fa.vhd" "d91279c85ba4075e714972bf056b0946a7ae5af8" "20200823033756.996":
-  entity full_adder at 1( 0) + 0 on 17;
-  architecture gate_level of full_adder at 12( 226) + 0 on 18;
-file . "and.vhdl" "295f9514cca1685217c82ef0ccfde9c50cdae07a" "20200823033747.735":
-  entity and_gate at 1( 0) + 0 on 13;
-  architecture pure_logic of and_gate at 10( 195) + 0 on 14;
-file . "alu_tb.vhdl" "02bfa9ade1816709d0afe9640f7072b6d63810ef" "20200823033819.460":
-  entity alu_tb at 1( 0) + 0 on 25;
-  architecture behavior of alu_tb at 7( 74) + 0 on 26;
-file . "or.vhdl" "d08ba87b2d702e824a7d959f74417a9828a07342" "20200823033751.542":
-  entity or_gate at 1( 0) + 0 on 15;
-  architecture pure_logic of or_gate at 10( 193) + 0 on 16;
-file . "mux_2to1.vhdl" "f4dd3b5215bb9407e461ed556bbdcfde2be6341c" "20200823033807.833":
-  entity mux_2to1 at 1( 0) + 0 on 19;
-  architecture pure_logic of mux_2to1 at 10( 198) + 0 on 20;
 file . "alu.vhdl" "628d54ab8a9d44863dc502b05760a55f8aa7caab" "20200823033815.844":
   entity alu at 1( 0) + 0 on 23;
   architecture behavioral of alu at 10( 256) + 0 on 24;
+file . "mux_2to1.vhdl" "f4dd3b5215bb9407e461ed556bbdcfde2be6341c" "20200823033807.833":
+  entity mux_2to1 at 1( 0) + 0 on 19;
+  architecture pure_logic of mux_2to1 at 10( 198) + 0 on 20;
+file . "or.vhdl" "d08ba87b2d702e824a7d959f74417a9828a07342" "20200823033751.542":
+  entity or_gate at 1( 0) + 0 on 15;
+  architecture pure_logic of or_gate at 10( 193) + 0 on 16;
+file . "alu_tb.vhdl" "fc338066b6e68becc3aa57d5a1846ab7c1a0a080" "20200823042503.647":
+  entity alu_tb at 1( 0) + 0 on 43;
+  architecture behavior of alu_tb at 5( 72) + 0 on 44;
+file . "and.vhdl" "295f9514cca1685217c82ef0ccfde9c50cdae07a" "20200823033747.735":
+  entity and_gate at 1( 0) + 0 on 13;
+  architecture pure_logic of and_gate at 10( 195) + 0 on 14;
+file . "fa.vhd" "d91279c85ba4075e714972bf056b0946a7ae5af8" "20200823033756.996":
+  entity full_adder at 1( 0) + 0 on 17;
+  architecture gate_level of full_adder at 12( 226) + 0 on 18;
+file . "mux_4to1.vhdl" "55c626b88eecbaa7d157c16587ea23102bf643eb" "20200823033810.802":
+  entity mux_4to1 at 1( 0) + 0 on 21;
+  architecture behavioral of mux_4to1 at 9( 208) + 0 on 22;
