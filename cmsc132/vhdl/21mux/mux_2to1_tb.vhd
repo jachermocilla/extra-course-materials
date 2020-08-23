@@ -15,17 +15,16 @@ ARCHITECTURE behavior OF mux_2to1_tb IS
 
 BEGIN 
    uut: mux_2to1 PORT MAP (
-      S => input(0),
+      S => input(2),
       A => input(1),
-      B => input(2),
+      B => input(0),
       C => output
    );
 
    stim_proc: PROCESS
    BEGIN
       input <= "010"; wait for 10 ns; assert output='1' report "000 failed,output= " & std_logic'image(output);
-      WAIT;
-      input <= "110"; wait for 10 ns; assert output='0' report "001 failed,output= " & std_logic'image(input(2));
+      input <= "110"; wait for 10 ns; assert output='0' report "000 failed,output= " & std_logic'image(output);
       WAIT;
    END PROCESS;
 END;      
