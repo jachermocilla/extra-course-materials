@@ -1,5 +1,6 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
+
 ENTITY alu_tb IS
 END alu_tb;
 
@@ -25,11 +26,9 @@ BEGIN
 
       -- 1 AND 1
       input <= "00011"; WAIT FOR 10 NS; ASSERT res='1' REPORT "00011 failed,output= " & STD_LOGIC'IMAGE(res);
-      WAIT;
 
       -- 1 OR 1
       input <= "01011"; WAIT FOR 10 NS; ASSERT res='1' REPORT "01011 failed,output= " & STD_LOGIC'IMAGE(res);
-      WAIT;
 
       -- 1 + 1
       input <= "10011"; WAIT FOR 10 NS; ASSERT res='0' REPORT "01011 failed,output= " & STD_LOGIC'IMAGE(res);
