@@ -2,7 +2,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 ---------------------------------
 ENTITY and_or IS
-   PORT (a, b, op: IN STD_LOGIC;
+   PORT (a, b, Operation: IN STD_LOGIC;
    result: OUT STD_LOGIC);
 END and_or;
 --------------------------------
@@ -24,5 +24,5 @@ ARCHITECTURE behavioral OF and_or IS
 BEGIN
    u1: and_gate port map(a, b, u);
    u2: or_gate port map(a, b, v);
-   u3: mux_2to1 port map(u, v, op, result); 
+   u3: mux_2to1 port map(u, v, Operation, result); 
 END behavioral;
