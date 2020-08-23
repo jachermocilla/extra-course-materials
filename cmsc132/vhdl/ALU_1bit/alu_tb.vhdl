@@ -30,6 +30,8 @@ BEGIN
       input <= "10011"; WAIT FOR 10 NS; ASSERT res='0' REPORT "10011 failed,res= " & STD_LOGIC'IMAGE(res);
       -- 1 + 0
       input <= "10010"; WAIT FOR 10 NS; ASSERT res='1' REPORT "10011 failed,res= " & STD_LOGIC'IMAGE(res);
+      -- 1 + 0 cin=1
+      input <= "10110"; WAIT FOR 10 NS; ASSERT res='0' REPORT "10011 failed,res= " & STD_LOGIC'IMAGE(res);
       WAIT;
    END PROCESS;
 END;      
