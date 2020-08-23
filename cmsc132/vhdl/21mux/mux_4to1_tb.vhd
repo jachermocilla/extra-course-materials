@@ -29,7 +29,7 @@ BEGIN
       input <= "001011"; wait for 10 ns; assert output='1' report "00 failed,output= " & std_logic'image(output);
       input <= "011011"; wait for 10 ns; assert output='0' report "01 failed,output= " & std_logic'image(output);
       input <= "101011"; wait for 10 ns; assert output='1' report "10 failed,output= " & std_logic'image(output);
-      input <= "111011"; wait for 10 ns; assert output='0' report "11 failed,output= " & std_logic'image(output);
+      input <= "111011"; wait for 10 ns; assert output='1' report "11 failed,output= " & std_logic'image(output);
       WAIT;
    END PROCESS;
 END;      
