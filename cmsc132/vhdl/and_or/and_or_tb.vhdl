@@ -5,7 +5,7 @@ END and_or_tb;
 ARCHITECTURE behavior OF and_or_tb IS
    COMPONENT and_or IS 
       PORT (
-         a, b, op: IN STD_LOGIC;
+         a, b, Operation: IN STD_LOGIC;
          result: OUT STD_LOGIC);
    END COMPONENT;
    SIGNAL input: STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -14,7 +14,7 @@ BEGIN
    UUT: and_or PORT MAP (
       a => input(1),
       b => input(2),
-      op => input(0),
+      Operation => input(0),
       result => output
    );
    STIM_PROC: PROCESS
