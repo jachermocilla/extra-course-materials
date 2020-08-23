@@ -14,8 +14,8 @@ ARCHITECTURE behavior OF alu_tb IS
    SIGNAL res, cout: STD_LOGIC;
 BEGIN 
    UUT: alu PORT MAP (
-      S0 => input(0),
-      S1 => input(1),
+      Operation(0) => input(0),
+      Operation(1) => input(1),
       CarryIn => input(2),
       a => input(3),
       b => input(4),
