@@ -6,7 +6,7 @@ ARCHITECTURE behavior OF and_or_tb IS
    COMPONENT and_or IS 
       PORT (
          a, b, Operation: IN STD_LOGIC;
-         result: OUT STD_LOGIC);
+         Result: OUT STD_LOGIC);
    END COMPONENT;
    SIGNAL input: STD_LOGIC_VECTOR(2 DOWNTO 0);
    SIGNAL output: STD_LOGIC;
@@ -15,7 +15,7 @@ BEGIN
       a => input(1),
       b => input(2),
       Operation => input(0),
-      result => output
+      Result => output
    );
    STIM_PROC: PROCESS
    BEGIN
