@@ -1,0 +1,4 @@
+v 4
+file . "sr_latch.vhdl" "8c367333c2cdaa8ceeff7187972761f90e792a85" "20200824085926.184":
+  entity sr_latch at 1( 0) + 0 on 13;
+  architecture pure_logic of sr_latch at 10( 204) + 0 on 14;
