@@ -1,21 +1,21 @@
-library ieee;
-use ieee.std_logic_1164.all;
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
 
-entity DFF is
-port( din: in std_logic;
-      clk: in std_logic;
-      rst: in std_logic;
-      dout: out std_logic);
-end DFF;
+ENTITY dff is
+   PORT( D: IN STD_LOGIC;
+      C: IN STD_LOGIC;
+      Q: INOUT STD_LOGIC;
+      Q_BAR: INOUT STD_LOGIC);
+END dff;
 
-architecture behavioral of DFF is
-begin
-   process(rst,clk,din)
-      begin
-         if (rst='1') then
-         dout<='0';
-      elsif(rising_edge(clk)) then
-         dout<= din;
-      end if;
-   end process;
-end behavioral;
+ARCHITECTURE behavioral OF dff IS
+   COMPONENT d_latch IS
+      PORT (C, D: IN STD_LOGIC;
+      Q, Q_BAR: INOUT STD_LOGIC);
+   END COMPONENT;
+   SIGNAL u,v: STD_LOGIC;
+   SIGNAL NOTC: STD_LOGIC := NOT C;
+BEGIN
+   u1: d_latch port map (D, C, u, v);
+   u2: d_latch port map (D, NOTC, Q, Q_BAR);
+END behavioral;
