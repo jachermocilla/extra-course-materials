@@ -1,0 +1,7 @@
+v 4
+file . "decoder_1to2.vhdl" "cfe3318feb00b56f850db8349752398290576419" "20200825112650.633":
+  entity decoder_1to2 at 1( 0) + 0 on 19;
+  architecture pure_logic of decoder_1to2 at 10( 209) + 0 on 20;
+file . "reg_file.vhdl" "fdd947fdb03e129c7f03ba80ca610d117b380c8b" "20200825113238.686":
+  entity reg_file at 1( 0) + 0 on 21;
+  architecture behavioral of reg_file at 13( 300) + 0 on 22;
