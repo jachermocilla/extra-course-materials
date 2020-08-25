@@ -27,7 +27,7 @@ BEGIN
       WAIT FOR period / 2 ;
 
       D <= '1';
-      WAIT FOR 22 ns;
+      WAIT FOR 20 ns;
 
       D <= '0';
 
