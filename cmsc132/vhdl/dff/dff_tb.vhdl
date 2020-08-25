@@ -1,54 +1,41 @@
 LIBRARY ieee;
-USE ieee.std_logic_1164.ALL;
+USE ieee.std_logic_1164.all;
+ENTITY dff_tb IS
+END dff_tb;
+ARCHITECTURE behavior OF dff_tb IS
+   --100Mhz
+   CONSTANT frequency: integer := 100e6; 
+   CONSTANT period : time := 1000 ms / frequency;
+   SIGNAL clk : std_logic := '0';
 
-ENTITY DFF_tb IS
-END DFF_tb;
-
-ARCHITECTURE behavior OF DFF_tb IS 
-   COMPONENT DFF
-      PORT(
-         din : IN  std_logic;
-         clk : IN  std_logic;
-         rst : IN  std_logic;
-         dout : OUT  std_logic
-      ); 
+   COMPONENT dff is
+   PORT( D: IN STD_LOGIC;
+      C: IN STD_LOGIC;
+      Q: INOUT STD_LOGIC;
+      Q_BAR: INOUT STD_LOGIC);
    END COMPONENT;
-    
-   signal din : std_logic := '0';
-   signal clk : std_logic := '0';
-   signal rst : std_logic := '1';
-   signal dout : std_logic;
 
-   constant clk_period : time := 10 ns;
-
+   SIGNAL D: STD_LOGIC := '0';
+   SIGNAL Q: STD_LOGIC;
+   SIGNAL Q_BAR: STD_LOGIC;
+BEGIN 
+   uut: dff PORT MAP (D, clk, Q, Q_BAR);
+--   clk_process: PROCESS
+--   BEGIN
+      clk <= not clk after period;
+--   END PROCESS;
+   stim_proc: PROCESS
    BEGIN
+      D <= '0';
+      WAIT FOR period / 2 ;
 
-   uut: DFF PORT MAP (
-          din => din,
-          clk => clk,
-          rst => rst,
-          dout => dout
-        );
+      D <= '1';
+      WAIT FOR 22 ns;
 
-   clk_process :process
-   begin
-      clk <= '0';
-      wait for clk_period/2;
-      clk <= '1';
-      wait for clk_period/2;
-   end process;
+      D <= '0';
+      
 
-   stim_proc: process
-   begin  
-      rst <= '1';
-      wait for 50 ns; 
-   
-      rst <= '0';
-      din <= '0';
-      wait for 50 ns;
-  
-      rst <= '0';
-      din <= '1';  
-      wait;
-   end process;
-END;
+
+      WAIT;
+   END PROCESS;
+END ARCHITECTURE;
