@@ -16,7 +16,7 @@ ARCHITECTURE behavior OF dff_tb IS
    END COMPONENT;
 
    SIGNAL D: STD_LOGIC := '0';
-   SIGNAL Q: STD_LOGIC;
+   SIGNAL Q: STD_LOGIC := '0';
    SIGNAL Q_BAR: STD_LOGIC;
 BEGIN 
    clk <= not clk after period;
