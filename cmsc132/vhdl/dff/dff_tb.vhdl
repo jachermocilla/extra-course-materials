@@ -19,11 +19,8 @@ ARCHITECTURE behavior OF dff_tb IS
    SIGNAL Q: STD_LOGIC;
    SIGNAL Q_BAR: STD_LOGIC;
 BEGIN 
+   clk <= not clk after period;
    uut: dff PORT MAP (D, clk, Q, Q_BAR);
---   clk_process: PROCESS
---   BEGIN
-      clk <= not clk after period;
---   END PROCESS;
    stim_proc: PROCESS
    BEGIN
       D <= '0';
@@ -33,8 +30,6 @@ BEGIN
       WAIT FOR 22 ns;
 
       D <= '0';
-      
-
 
       WAIT;
    END PROCESS;
