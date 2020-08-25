@@ -7,7 +7,6 @@ ENTITY sr_latch IS
 END sr_latch;
 --------------------------------
 ARCHITECTURE pure_logic OF sr_latch IS
-   SIGNAL tmp: STD_LOGIC;
 BEGIN
    Q <= R NOR Q_BAR;
    Q_BAR <= S NOR Q;
