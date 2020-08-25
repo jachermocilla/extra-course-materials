@@ -1,7 +1,7 @@
 v 4
-file . "dff_tb.vhd" "6741bf8e572157bfe0f9d5d5050f6bb08fe7d931" "20200206034407.696":
-  entity dff_tb at 1( 0) + 0 on 21;
-  architecture behavior of dff_tb at 7( 74) + 0 on 22;
-file . "dff.vhd" "36e6dccdc8b4662c674309b0961ae860427da053" "20200206034407.695":
-  entity dff at 1( 0) + 0 on 19;
-  architecture behavioral of dff at 11( 153) + 0 on 20;
+file . "dff.vhdl" "a1229eec8066bc6a3bb1a5b4cf8e4ad91ce8c6a1" "20200825075220.597":
+  entity dff at 1( 0) + 0 on 17;
+  architecture behavioral of dff at 11( 174) + 0 on 18;
+file . "d_latch.vhdl" "381392bb178ef651f180cf39fe15bdba7d596de8" "20200825074818.789":
+  entity d_latch at 1( 0) + 0 on 15;
+  architecture pure_logic of d_latch at 9( 201) + 0 on 16;
