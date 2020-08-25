@@ -1,13 +1,11 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
-
 ENTITY dff is
    PORT( D: IN STD_LOGIC;
       C: IN STD_LOGIC;
       Q: INOUT STD_LOGIC;
       Q_BAR: INOUT STD_LOGIC);
 END dff;
-
 ARCHITECTURE behavioral OF dff IS
    COMPONENT d_latch IS
       PORT (C, D: IN STD_LOGIC;
