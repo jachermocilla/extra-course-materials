@@ -4,7 +4,7 @@ ENTITY reg_file is
    PORT( 
       read_n1: IN STD_LOGIC;
       read_n2: IN STD_LOGIC;
-      write_n1: IN STD_LOGIC;
+      write_n: IN STD_LOGIC;
       write_data: IN STD_LOGIC;
       write: IN STD_LOGIC;
       clk: IN STD_LOGIC;
@@ -42,7 +42,7 @@ ARCHITECTURE behavioral OF reg_file IS
    SIGNAL decoder_out0: STD_LOGIC;
    SIGNAL decoder_out1: STD_LOGIC;
 BEGIN
-   decoder: decoder_1to2 PORT MAP (write_n1, decoder_Out0, decoder_Out1);
+   decoder: decoder_1to2 PORT MAP (write_n, decoder_Out0, decoder_Out1);
    and0: and_gate PORT MAP(write, decoder_Out0, and_0);
    and1: and_gate PORT MAP(write, decoder_Out1, and_1);
    reg0: dff PORT MAP (write_data, and_0, reg0_Q, reg0_Q_BAR);
