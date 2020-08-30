@@ -5,7 +5,7 @@ ENTITY reg_file is
       read_n1: IN STD_LOGIC;
       read_n2: IN STD_LOGIC;
       write_n: IN STD_LOGIC;
-      write_data: IN STD_LOGIC;
+      write_data: IN STD_LOGIC := '0';
       write: IN STD_LOGIC;
       clk: IN STD_LOGIC;
       read_data1: OUT STD_LOGIC;

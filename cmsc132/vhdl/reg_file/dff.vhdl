@@ -14,6 +14,6 @@ ARCHITECTURE behavioral OF dff IS
    SIGNAL u,v: STD_LOGIC;
    SIGNAL NOTC: STD_LOGIC := NOT C;
 BEGIN
-   u1: d_latch port map (C, D, u, v);
-   u2: d_latch port map (NOTC, u, Q, Q_BAR);
+   master: d_latch port map (C, D, u, v);
+   slave: d_latch port map (NOTC, u, Q, Q_BAR);
 END behavioral;

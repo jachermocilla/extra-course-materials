@@ -1,5 +1,5 @@
 $date
-  Tue Aug 25 17:25:11 2020
+  Sun Aug 30 11:15:52 2020
 $end
 $version
   GHDL v0
@@ -24,13 +24,13 @@ $var reg 1 ( q_bar $end
 $var reg 1 ) u $end
 $var reg 1 * v $end
 $var reg 1 + notc $end
-$scope module u1 $end
+$scope module master $end
 $var reg 1 , c $end
 $var reg 1 - d $end
 $var reg 1 . q $end
 $var reg 1 / q_bar $end
 $upscope $end
-$scope module u2 $end
+$scope module slave $end
 $var reg 1 0 c $end
 $var reg 1 1 d $end
 $var reg 1 2 q $end
