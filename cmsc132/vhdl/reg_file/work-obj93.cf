@@ -1,7 +1,10 @@
 v 4
-file . "reg_file_tb.vhdl" "4b295544b0e77cbe6e8f97a8c101e2dc203b6e54" "20200830031317.241":
-  entity reg_file_tb at 1( 0) + 0 on 59;
-  architecture behavior of reg_file_tb at 5( 82) + 0 on 60;
+file . "reg_file2.vhdl" "0342b43ce9886ecc5fbb866f633fd74fc282683e" "20200830042932.904":
+  entity reg_file2 at 1( 0) + 0 on 79;
+  architecture behavioral of reg_file2 at 16( 353) + 0 on 80;
+file . "reg_file_tb.vhdl" "d6f5112876f8600b2b82c65cda398fcf7fd4af58" "20200830034217.080":
+  entity reg_file_tb at 1( 0) + 0 on 65;
+  architecture behavior of reg_file_tb at 5( 82) + 0 on 66;
 file . "mux_2to1.vhdl" "f4dd3b5215bb9407e461ed556bbdcfde2be6341c" "20200830023544.768":
   entity mux_2to1 at 1( 0) + 0 on 31;
   architecture pure_logic of mux_2to1 at 10( 198) + 0 on 32;
@@ -14,9 +17,12 @@ file . "decoder_1to2.vhdl" "cfe3318feb00b56f850db8349752398290576419" "202008251
 file . "and.vhdl" "295f9514cca1685217c82ef0ccfde9c50cdae07a" "20200830023511.249":
   entity and_gate at 1( 0) + 0 on 25;
   architecture pure_logic of and_gate at 10( 195) + 0 on 26;
-file . "dff.vhdl" "bebb7c013e58571657528cd5254648fd2d925d86" "20200830031313.768":
-  entity dff at 1( 0) + 0 on 57;
-  architecture behavioral of dff at 9( 172) + 0 on 58;
+file . "dff.vhdl" "84cd5934aaa758a54e401b81d4c58f4872392871" "20200830031911.216":
+  entity dff at 1( 0) + 0 on 63;
+  architecture behavioral of dff at 9( 172) + 0 on 64;
 file . "d_latch.vhdl" "381392bb178ef651f180cf39fe15bdba7d596de8" "20200830023557.025":
   entity d_latch at 1( 0) + 0 on 33;
   architecture pure_logic of d_latch at 9( 201) + 0 on 34;
+file . "reg_file2_tb.vhdl" "8a87bbf6f4d9b641fcc006aab3ad497d40792df0" "20200830043041.922":
+  entity reg_file2_tb at 1( 0) + 0 on 83;
+  architecture behavior of reg_file2_tb at 5( 84) + 0 on 84;
