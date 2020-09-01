@@ -1,4 +1,7 @@
 v 4
-file . "trafficlite.vhdl" "c4c4c7e2b161c837b34939dc25e5808b90fa9773" "20200901085228.434":
-  entity trafficlight at 1( 0) + 0 on 11;
-  architecture pure_logic of trafficlight at 11( 242) + 0 on 12;
+file . "trafficlite.vhdl" "b31095f2f98d7588b5d24f503103b3a2d7a098ef" "20200901094422.784":
+  entity trafficlite at 1( 0) + 0 on 29;
+  architecture pure_logic of trafficlite at 11( 240) + 0 on 30;
+file . "trafficlite_tb.vhdl" "18bffbcf7c87daf5b8b191780f56c917cefc4fb4" "20200901102037.116":
+  entity trafficlite_tb at 1( 0) + 0 on 37;
+  architecture behavior of trafficlite_tb at 5( 88) + 0 on 38;
