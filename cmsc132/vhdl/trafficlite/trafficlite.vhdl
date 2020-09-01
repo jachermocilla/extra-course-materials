@@ -22,6 +22,7 @@ BEGIN
             WHEN '1' =>
                state <= NSCar;
             WHEN others => 
+               state <= 'X';
          END CASE;
       END IF; 
    END PROCESS;
