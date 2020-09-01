@@ -2,8 +2,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 ---------------------------------
 ENTITY trafficlite IS
-   PORT (
-      EWCar, NSCar, clk: IN STD_LOGIC;
+   PORT (EWCar, NSCar, clk: IN STD_LOGIC;
       EWLite, NSLite: OUT STD_LOGIC
    );
 END trafficlite;
@@ -13,8 +12,7 @@ ARCHITECTURE pure_logic OF trafficlite IS
 BEGIN
    PROCESS(clk)
    BEGIN
-      NSLite <= NOT state;
-      EWLite <= state;
+      NSLite <= NOT state; EWLite <= state;
       IF (RISING_EDGE(clk)) THEN
          CASE state IS
             WHEN '0' =>
