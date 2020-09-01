@@ -20,10 +20,10 @@ BEGIN
    stim_proc: PROCESS
    BEGIN
       inputs <= "00";
-      WAIT FOR period / 2;
+      WAIT FOR period ;
       inputs <= "10";
-      WAIT FOR period / 2;
+      WAIT FOR period ;
       inputs <= "01";
-      WAIT FOR period / 2;
+      WAIT FOR period ;
    END PROCESS;
 END ARCHITECTURE;
