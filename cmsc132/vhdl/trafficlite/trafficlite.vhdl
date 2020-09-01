@@ -11,7 +11,7 @@ END trafficlite;
 ARCHITECTURE pure_logic OF trafficlite IS
    SIGNAL state : STD_LOGIC := '0'; 
 BEGIN
-   PROCESS
+   PROCESS(clk)
    BEGIN
       NSLite <= NOT state;
       EWLite <= state;
