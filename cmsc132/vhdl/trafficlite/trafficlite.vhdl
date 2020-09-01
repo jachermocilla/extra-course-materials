@@ -1,14 +1,14 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 ---------------------------------
-ENTITY trafficlight IS
+ENTITY trafficlite IS
    PORT (
       EWCar, NSCar, clk: IN STD_LOGIC;
       EWLite, NSLite: OUT STD_LOGIC
    );
-END trafficlight;
+END trafficlite;
 --------------------------------
-ARCHITECTURE pure_logic OF trafficlight IS
+ARCHITECTURE pure_logic OF trafficlite IS
    SIGNAL state : STD_LOGIC := '0'; 
 BEGIN
    PROCESS
