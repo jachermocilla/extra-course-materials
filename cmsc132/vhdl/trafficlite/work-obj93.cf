@@ -1,0 +1,4 @@
+v 4
+file . "trafficlite.vhdl" "c4c4c7e2b161c837b34939dc25e5808b90fa9773" "20200901085228.434":
+  entity trafficlight at 1( 0) + 0 on 11;
+  architecture pure_logic of trafficlight at 11( 242) + 0 on 12;
