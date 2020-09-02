@@ -5,6 +5,6 @@ file . "dff_tb.vhdl" "6bb6a825b67a015fee8139e5d6fc92fd18b2c00c" "20200830031530.
 file . "d_latch.vhdl" "381392bb178ef651f180cf39fe15bdba7d596de8" "20200825074818.789":
   entity d_latch at 1( 0) + 0 on 15;
   architecture pure_logic of d_latch at 9( 201) + 0 on 16;
-file . "dff.vhdl" "84cd5934aaa758a54e401b81d4c58f4872392871" "20200830031521.870":
-  entity dff at 1( 0) + 0 on 73;
-  architecture behavioral of dff at 9( 172) + 0 on 74;
+file . "dff3.vhdl" "18d23483a475b2bb0ad494f1d897e5620fdcea9e" "20200902102741.797":
+  entity dff at 1( 0) + 0 on 79;
+  architecture behavioral of dff at 12( 195) + 0 on 80;
