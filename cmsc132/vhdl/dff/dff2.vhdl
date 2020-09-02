@@ -1,21 +1,21 @@
-library ieee;
-use ieee.std_logic_1164.all;
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
 
-entity DFF is
-port( din: in std_logic;
-      clk: in std_logic;
-      rst: in std_logic;
-      dout: out std_logic);
-end DFF;
+ENTITY DFF is
+PORT( din: IN STD_LOGIC;
+      clk: IN STD_LOGIC;
+      rst: IN STD_LOGIC;
+      dout: OUT STD_LOGIC);
+END DFF;
 
-architecture behavioral of DFF is
-begin
-   process(rst,clk,din)
-      begin
-         if (rst='1') then
+ARCHITECTURE behavioral of DFF is
+BEGIN
+   PROCESS(rst,clk,din)
+      BEGIN
+         IF (rst='1') THEN
          dout<='0';
-      elsif(rising_edge(clk)) then
+      ELSIF(RISING_EDGE(clk)) THEN
          dout<= din;
-      end if;
-   end process;
-end behavioral;
+      END IF;
+   END PROCESS;
+END behavioral;
