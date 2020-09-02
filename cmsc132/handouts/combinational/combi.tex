@@ -1,0 +1,137 @@
+\documentclass[a4paper, 11pt,oneside]{article}
+\usepackage[
+  top=1.5cm,
+  bottom=1cm,
+  left=2cm,
+  right=1.5cm,
+  headheight=25.22153pt, % as per the warning by fancyhdr
+  includehead,includefoot,
+  heightrounded, % to avoid spurious underfull messages
+]{geometry} 
+
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{fancyvrb}
+\usepackage{lipsum}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\usepackage{datetime}
+\usepackage{amsthm}
+\usepackage{graphicx}
+
+\settimeformat{hhmmsstime}
+\yyyymmdddate
+
+\pagestyle{fancy}
+\fancyhf{} % clear all fields
+
+\pagestyle{fancy}
+\lhead{CMSC 132: Computer Architecture \\ First Semester 2020-2021}
+\rhead{Institute of Computer Science \\ University of the Philippines Los Banos}
+\rfoot{JACHermocilla (CC NC-BY-SA 4.0)}
+%\cfoot{Enjoy!:)}
+\cfoot{\thepage\ of \pageref{LastPage}}
+\lfoot{Revision: \today\ \currenttime}
+%\rfoot{https://jachermocilla.org/teaching/125}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+\begin{center}
+	{\LARGE \textbf{Combinational Logic Circuits}}
+\end{center}
+
+\section*{Learning Outcomes}
+   At the end of this activity, you should be able to:
+   \begin{enumerate}[itemsep=0pt,parsep=0pt]
+   	   \item differentiate combinational and sequential elements in a processor;
+       \item implement combinational logic circuit elements in VHDL;
+
+   \end{enumerate}   
+
+\tableofcontents
+
+\section{Discussion}
+The discussion in this handout aims only to provide an outline of what is in the video lecture. It is recommended that you watch the video in its entirety.
+
+The computer can only execute machine language that it understands. This language is part of its architectural design or the Istruction Set Architecture (ISA). Machine language is nothing more than an encoding of bits. The computer can will do nothing unless instructions are given to it. These instructions will come from programmers. However, it is very difficult for programmers to use machine language directly. Instead, assembly language is used which is more comprehensible for humans. The assembler translates the assembly language program to machine language. 
+
+\subsection{Definitions}
+Here are some terms worth knowing and remembering in this lab.
+
+\begin{itemize}
+	\item{\textit{Datapath} - The component of the processor that performs arithmetic operations}
+
+	\item{\textit{Control} - The component of the processor that commands the datapath, memory, and I/O devices according to the instructions of the program}
+
+	\item{\textit{Combinational elements} - Logic elements in the datapath that operate on data values}
+
+	\item{\textit{State elements} - contains state, has some internal storage}
+
+	\item{\textit{Edge-triggered clocking} - that any values stored in a sequential logic element are updated only on a clock edge, which is a quick transition from low to high or high to low}
+
+	\item{\textit{Clock cycle length} - time to propagate the signal from state element 1, through the combinational element, and state element 2}
+
+\end{itemize}
+
+\subsection{Single-Cycle Datapath and Control}
+A processor is composed of the datapath and control unit. Figure \ref{fig:datapath} shows an example of a 
+single-cycle datapath and control. The main functional units are the following
+\begin{itemize}
+	\item{\textit{Program Counter (PC)} - holds the address of the next instruction to be executed}
+	\item{\textit{Instruction Memory (IM)}-holds the instructions/machine language}
+	\item{\textit{Register File (RF)}- fast storage}
+	\item{\textit{Arithmetic and Logic Unit (ALU)}- performs computations}
+	\item{\textit{Data Memory (DM)}- holds data used by programs}
+	\item{\textit{Control Unit (CU)}- drives the execution }
+\end{itemize}
+\begin{figure}
+	\includegraphics[width=\linewidth]{single-cycle-dp-control.png}
+	\caption{Single-Cycle Datapath and Control.}
+	\label{fig:datapath}
+\end{figure}
+The blue lines indicate control signals most of which originate from control based on the instruction being executed. You can think of the Control Unit as the 'brain' and the rest as the body parts.
+
+Eeach of the above functional components are implemented using combinational and sequential logic circuits as building blocks. 
+
+Instruction execution follows the following cycle or states:
+
+\begin{itemize}
+	\item {\textit{Instruction Fetch (IF)} - instruction is fetch from IM at address specified by PC}
+	\item {\textit{Instruction Decode (ID)} - current instruction is examined for opcode and operands }
+	\item {\textit{Execute (EX)} - permome operations based on opcode}
+	\item {\textit{Memory (MEM)} - need to store data to DM}
+	\item {\textit{Writeback (WB)} - result will be used stored in register or used in the next instruction}
+\end{itemize}
+
+
+\subsection{Decoders}
+\begin{figure}
+	\includegraphics[width=\linewidth]{decoder.png}
+	\caption{3-to-8 decoder.}
+	\label{fig:decoder} shows an example
+\end{figure}
+
+Decoders accepts an n-bit input and produces 2$^n$  outputs but only one output is asserted. Figure \ref{fig:decoder}
+
+
+
+\section{Examples}
+
+
+
+\section{Summary}
+
+\section{Learning Activities}
+
+\subsection{Self-Study Questions/Sample Problems}
+
+
+%\begin{thebibliography}{9}
+%\end{thebibliography}
+
+\end{document}
