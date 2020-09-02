@@ -18,6 +18,8 @@ BEGIN
          ELSIF(RISING_EDGE(clk)) THEN
             IF (en='1') THEN
                dout<= din;
+            ELSE
+               dout<='Z';
             END IF;
       END IF;
    END PROCESS;
