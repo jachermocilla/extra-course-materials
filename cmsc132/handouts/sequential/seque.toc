@@ -1,12 +1,12 @@
 \contentsline {section}{\numberline {1}Resources}{1}{section.1}
 \contentsline {section}{\numberline {2}Discussion}{1}{section.2}
 \contentsline {subsection}{\numberline {2.1}Clocks}{1}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Latches}{3}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Flip-Flops}{3}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Register Files}{4}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Static RAM}{5}{subsection.2.5}
-\contentsline {subsection}{\numberline {2.6}Dynamic RAM}{7}{subsection.2.6}
-\contentsline {subsection}{\numberline {2.7}Finite State Machines}{7}{subsection.2.7}
-\contentsline {section}{\numberline {3}Summary}{8}{section.3}
-\contentsline {section}{\numberline {4}Learning Activities}{9}{section.4}
-\contentsline {section}{\numberline {5}Deliverable}{9}{section.5}
+\contentsline {subsection}{\numberline {2.2}Latches}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Flip-Flops}{4}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Register Files}{5}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Static RAM}{6}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Dynamic RAM}{8}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Finite State Machines}{8}{subsection.2.7}
+\contentsline {section}{\numberline {3}Summary}{9}{section.3}
+\contentsline {section}{\numberline {4}Learning Activities}{10}{section.4}
+\contentsline {section}{\numberline {5}Deliverable}{10}{section.5}

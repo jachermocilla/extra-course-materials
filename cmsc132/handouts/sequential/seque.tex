@@ -70,10 +70,17 @@ Sequential elements are sometimes called memory elements because they store stat
 An understanding of clocks is important in the study of sequential elements.
 
 \subsection{Clocks}
-Clocks determine when the current state of a sequential elements needs to be updated. It is a \textit{signal} that transitions from low to high and high to low in a fixed cycle time or clock period. Figure \ref{fig:clock0} shows an example clock signal. It is a digital signal so it is represented by a square wave and the transition from low to high or high to low is abrupt unline in analog signals. These abrupt transitions are called \textit{clock edges} which may be a \textit{rising edge} (low to high) or \textit{falling edge} (high to low). The \textit{clock period} is the time to complete a cycle and the number of cycles per second is called the \textit{frequency} in \textit{hertz}. The higher the frequency the higher the number of cycles per second. We will use these parameters later when we go to the performance evaluation lab.
-
-
-
+Clocks determine when the current state of a sequential elements needs to be
+updated. It is a \textit{signal} that transitions from low to high and high to
+low in a fixed cycle time or clock period. Figure \ref{fig:clock0} shows an
+example clock signal. It is a digital signal so it is represented by a square 
+wave and the transition from low to high or high to low is abrupt unlike in 
+analog signals. These abrupt transitions are called \textit{clock edges} which 
+may be a \textit{rising edge} (low to high) or \textit{falling edge} (high to
+low). The \textit{clock period} is the time to complete a cycle and the number 
+of cycles per second is called the \textit{frequency} in \textit{hertz}. The 
+higher the frequency the higher the number of cycles per second. We will use 
+these parameters later when we go to the performance evaluation lab. 
 
 \begin{figure}[H]
 	\begin{center}
@@ -83,7 +90,12 @@ Clocks determine when the current state of a sequential elements needs to be upd
 	\end{center}
 \end{figure}
 
-The updating of the state element is usually done at the edge of the clock to ensure that the signals will be valid. Figure \ref{fig:clock1} shows a comninational element sandwiched between two state elements. Observe that the updating of the state elements are done at the rising edge. Using the clock edge as marker allows the same state element to be the input and output of the combinational element without invalidating the signal. 
+The updating of state elements is usually done at clock edge to ensure that the 
+signals will be valid. Figure \ref{fig:clock1} shows a combinational element 
+sandwiched between two state elements. Observe that the updating of the state 
+elements is done at the rising edge. Using the clock edge as marker allows the 
+same state element to be the input and output of the combinational element, 
+without invalidating the signal. 
 
 \begin{figure}[H]
 	\begin{center}
@@ -93,6 +105,8 @@ The updating of the state element is usually done at the edge of the clock to en
 	\end{center}
 \end{figure}
 
+The VHDL code below shows how to generate a clock signal \textit{clk} that can 
+be used in a testbench as input to sequential elements being tested. 
 
 \begin{minted}[frame=single,framesep=10pt]{vhdl}
 LIBRARY ieee;
@@ -111,38 +125,115 @@ END ARCHITECTURE;
 \end{minted}
 
 \subsection{Latches}
+Latches are unclocked memory elements. Figure \ref{fig:latch0} shows a
+Set-Reset(SR) latch using two NOR gates. Q is the main output and Q bar is the 
+complement of Q. When Q is true, if S is asserted then Q will be asserted. 
+When R is asserted, then Q bar will be asserted. 
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=3in]{latch0.png}
-	\caption{2-to-1 Multiplexer.}
-	\label{fig:mux} 
+	\includegraphics[width=2in]{latch0.png}
+	\caption{A Set-Reset latch.}
+	\label{fig:latch0} 
 	\end{center}
 \end{figure}
 
+The code VHDL code for the S-R latch is shown below.
+
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+---------------------------------
+ENTITY sr_latch IS
+   PORT (R, S: IN STD_LOGIC;
+   Q, Q_BAR: INOUT STD_LOGIC);
+END sr_latch;
+--------------------------------
+ARCHITECTURE pure_logic OF sr_latch IS
+BEGIN
+   Q <= R NOR Q_BAR;
+   Q_BAR <= S NOR Q;
+END pure_logic;
+\end{minted}
+
+When a clock is added to a latch, it is called a clocked latch. Figure 
+\ref{fig:latch1} shows a D latch. The clock input is C and the data input is D. 
+Q is the internal state. It is basically an extension of the S-R latch. An
+important thing to remember is that in clocked latches, \textit{the state 
+changes whenever the input change and the clock is asserted}.
+
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=3in]{latch1.png}
-	\caption{2-to-1 Multiplexer.}
-	\label{fig:mux} 
+	\includegraphics[width=2.5in]{latch1.png}
+	\caption{A D latch. }
+	\label{fig:latch1} 
 	\end{center}
 \end{figure}
+
+The VHDL code for the D latch is shown below. 
+
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+---------------------------------
+ENTITY d_latch IS
+   PORT (C, D: IN STD_LOGIC;
+   Q, Q_BAR: INOUT STD_LOGIC);
+END d_latch;
+--------------------------------
+ARCHITECTURE pure_logic OF d_latch IS
+BEGIN
+   Q <= (C AND NOT D) NOR Q_BAR;
+   Q_BAR <= (D AND C) NOR Q;
+END pure_logic;
+\end{minted}
 
 \subsection{Flip-Flops}
+Flip-flops are similar to clocked-latches. The main difference is the 
+update of the state happens at the edge of the clock signal. Recall the
+advantage of edge-triggered clocking methodology above. Figure \ref{fig:dff0} 
+shows a D flip-flop using D latches.
 
 \begin{figure}[H]
 	\begin{center}
 	\includegraphics[width=4in]{dff0.png}
-	\caption{2-to-1 Multiplexer.}
-	\label{fig:mux} 
+	\caption{A D flip-flop created using two D latches in a master-slave 
+	configuration.}
+	\label{fig:dff0} 
 	\end{center}
 \end{figure}
+
+The VHDL code for this D flip-flop is shown below. There is a simpler code for
+this described in the video.
+
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+ENTITY dff is
+   PORT( D: IN STD_LOGIC;
+      C: IN STD_LOGIC;
+      Q: INOUT STD_LOGIC;
+      Q_BAR: INOUT STD_LOGIC);
+END dff;
+ARCHITECTURE behavioral OF dff IS
+   COMPONENT d_latch IS
+      PORT (C, D: IN STD_LOGIC;
+      Q, Q_BAR: INOUT STD_LOGIC);
+   END COMPONENT;
+   SIGNAL u,v: STD_LOGIC;
+   SIGNAL NOTC: STD_LOGIC := NOT C;
+BEGIN
+   master: d_latch port map (C, D, u, v);
+   slave: d_latch port map (NOTC, u, Q, Q_BAR);
+END behavioral;
+\end{minted}
+
 
 \subsection{Register Files}
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=4in]{rf0.png}
+	\includegraphics[width=3in]{rf0.png}
 	\caption{2-to-1 Multiplexer.}
 	\label{fig:mux} 
 	\end{center}

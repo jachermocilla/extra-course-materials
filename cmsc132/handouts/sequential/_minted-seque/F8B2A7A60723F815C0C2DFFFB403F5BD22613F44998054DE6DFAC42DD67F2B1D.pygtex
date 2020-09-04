@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{LIBRARY} \PYG{n+nn}{ieee}\PYG{p}{;}
+\PYG{k}{USE} \PYG{n+nn}{ieee.std\PYGZus{}logic\PYGZus{}1164.}\PYG{k}{ALL}\PYG{p}{;}
+\PYG{k}{ENTITY} \PYG{n+nc}{dff} \PYG{k}{is}
+   \PYG{k}{PORT}\PYG{p}{(} \PYG{n}{D}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{C}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{Q}\PYG{o}{:} \PYG{k}{INOUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{Q\PYGZus{}BAR}\PYG{o}{:} \PYG{k}{INOUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{);}
+\PYG{k}{END} \PYG{n+nc}{dff}\PYG{p}{;}
+\PYG{k}{ARCHITECTURE} \PYG{n+nc}{behavioral} \PYG{k}{OF} \PYG{n+nc}{dff} \PYG{k}{IS}
+   \PYG{k}{COMPONENT} \PYG{n+nc}{d\PYGZus{}latch} \PYG{k}{IS}
+      \PYG{k}{PORT} \PYG{p}{(}\PYG{n}{C}\PYG{p}{,} \PYG{n}{D}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{Q}\PYG{p}{,} \PYG{n}{Q\PYGZus{}BAR}\PYG{o}{:} \PYG{k}{INOUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{);}
+   \PYG{k}{END} \PYG{k}{COMPONENT}\PYG{p}{;}
+   \PYG{k}{SIGNAL} \PYG{n}{u}\PYG{p}{,}\PYG{n}{v}\PYG{o}{:} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+   \PYG{k}{SIGNAL} \PYG{n}{NOTC}\PYG{o}{:} \PYG{k+kt}{STD\PYGZus{}LOGIC} \PYG{o}{:=} \PYG{k}{NOT} \PYG{n}{C}\PYG{p}{;}
+\PYG{k}{BEGIN}
+   \PYG{n}{master}\PYG{o}{:} \PYG{n}{d\PYGZus{}latch} \PYG{k}{port} \PYG{k}{map} \PYG{p}{(}\PYG{n}{C}\PYG{p}{,} \PYG{n}{D}\PYG{p}{,} \PYG{n}{u}\PYG{p}{,} \PYG{n}{v}\PYG{p}{);}
+   \PYG{n}{slave}\PYG{o}{:} \PYG{n}{d\PYGZus{}latch} \PYG{k}{port} \PYG{k}{map} \PYG{p}{(}\PYG{n}{NOTC}\PYG{p}{,} \PYG{n}{u}\PYG{p}{,} \PYG{n}{Q}\PYG{p}{,} \PYG{n}{Q\PYGZus{}BAR}\PYG{p}{);}
+\PYG{k}{END} \PYG{n+nc}{behavioral}\PYG{p}{;}
+\end{Verbatim}

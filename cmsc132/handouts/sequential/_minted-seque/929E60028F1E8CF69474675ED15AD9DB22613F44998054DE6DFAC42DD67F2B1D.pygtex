@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{LIBRARY} \PYG{n+nn}{ieee}\PYG{p}{;}
+\PYG{k}{USE} \PYG{n+nn}{ieee.std\PYGZus{}logic\PYGZus{}1164.}\PYG{k}{all}\PYG{p}{;}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{k}{ENTITY} \PYG{n+nc}{sr\PYGZus{}latch} \PYG{k}{IS}
+   \PYG{k}{PORT} \PYG{p}{(}\PYG{n}{R}\PYG{p}{,} \PYG{n}{S}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+   \PYG{n}{Q}\PYG{p}{,} \PYG{n}{Q\PYGZus{}BAR}\PYG{o}{:} \PYG{k}{INOUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{);}
+\PYG{k}{END} \PYG{n+nc}{sr\PYGZus{}latch}\PYG{p}{;}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{k}{ARCHITECTURE} \PYG{n+nc}{pure\PYGZus{}logic} \PYG{k}{OF} \PYG{n+nc}{sr\PYGZus{}latch} \PYG{k}{IS}
+\PYG{k}{BEGIN}
+   \PYG{n}{Q} \PYG{o}{\PYGZlt{}=} \PYG{n}{R} \PYG{k}{NOR} \PYG{n}{Q\PYGZus{}BAR}\PYG{p}{;}
+   \PYG{n}{Q\PYGZus{}BAR} \PYG{o}{\PYGZlt{}=} \PYG{n}{S} \PYG{k}{NOR} \PYG{n}{Q}\PYG{p}{;}
+\PYG{k}{END} \PYG{n+nc}{pure\PYGZus{}logic}\PYG{p}{;}
+\end{Verbatim}
