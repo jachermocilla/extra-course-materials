@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{LIBRARY} \PYG{n+nn}{ieee}\PYG{p}{;}
+\PYG{k}{USE} \PYG{n+nn}{ieee.std\PYGZus{}logic\PYGZus{}1164.}\PYG{k}{all}\PYG{p}{;}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{k}{ENTITY} \PYG{n+nc}{alu} \PYG{k}{IS}
+   \PYG{k}{PORT} \PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{CarryIn} \PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+   \PYG{n}{Operation}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC\PYGZus{}VECTOR}\PYG{p}{(}\PYG{l+m+mi}{1} \PYG{k}{DOWNTO} \PYG{l+m+mi}{0}\PYG{p}{);}
+   \PYG{n}{Result}\PYG{p}{,} \PYG{n}{CarryOut}\PYG{o}{:} \PYG{k}{OUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{);}
+\PYG{k}{END} \PYG{n+nc}{alu}\PYG{p}{;}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{k}{ARCHITECTURE} \PYG{n+nc}{behavioral} \PYG{k}{OF} \PYG{n+nc}{alu} \PYG{k}{IS}
+   \PYG{k}{COMPONENT} \PYG{n+nc}{mux\PYGZus{}4to1} \PYG{k}{IS}
+      \PYG{k}{PORT} \PYG{p}{(}\PYG{n}{A}\PYG{p}{,} \PYG{n}{B}\PYG{p}{,} \PYG{n}{C}\PYG{p}{,} \PYG{n}{D}\PYG{p}{,} \PYG{n}{S0}\PYG{p}{,} \PYG{n}{S1}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{E}\PYG{o}{:} \PYG{k}{OUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{);}
+   \PYG{k}{END} \PYG{k}{COMPONENT}\PYG{p}{;}
+   \PYG{k}{COMPONENT} \PYG{n+nc}{and\PYGZus{}gate} \PYG{k}{IS}
+      \PYG{k}{PORT} \PYG{p}{(}\PYG{n}{A}\PYG{p}{,} \PYG{n}{B}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;} \PYG{n}{C}\PYG{o}{:} \PYG{k}{OUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{);}
+   \PYG{k}{END} \PYG{k}{COMPONENT}\PYG{p}{;}
+   \PYG{k}{COMPONENT} \PYG{n+nc}{or\PYGZus{}gate} \PYG{k}{IS}
+      \PYG{k}{PORT} \PYG{p}{(}\PYG{n}{A}\PYG{p}{,} \PYG{n}{B}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;} \PYG{n}{C}\PYG{o}{:} \PYG{k}{OUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{);}
+   \PYG{k}{END} \PYG{k}{COMPONENT}\PYG{p}{;}
+   \PYG{k}{COMPONENT} \PYG{n+nc}{full\PYGZus{}adder} \PYG{k}{is}
+      \PYG{k}{PORT} \PYG{p}{(} \PYG{n}{a} \PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;} \PYG{n}{b} \PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+         \PYG{n}{CarryIn} \PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}\PYG{n}{Sum} \PYG{o}{:} \PYG{k}{OUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+         \PYG{n}{CarryOut} \PYG{o}{:} \PYG{k}{OUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{);}
+   \PYG{k}{END} \PYG{k}{COMPONENT}\PYG{p}{;}
+   \PYG{k}{SIGNAL} \PYG{n}{u}\PYG{p}{,} \PYG{n}{v}\PYG{p}{,} \PYG{n}{w}\PYG{p}{,} \PYG{n}{x}\PYG{o}{:} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+\PYG{k}{BEGIN}
+   \PYG{n}{u1}\PYG{o}{:} \PYG{n}{and\PYGZus{}gate} \PYG{k}{port} \PYG{k}{map}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{u}\PYG{p}{);}
+   \PYG{n}{u2}\PYG{o}{:} \PYG{n}{or\PYGZus{}gate} \PYG{k}{port} \PYG{k}{map}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{v}\PYG{p}{);}
+   \PYG{n}{u3}\PYG{o}{:} \PYG{n}{full\PYGZus{}adder} \PYG{k}{port} \PYG{k}{map}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{CarryIn}\PYG{p}{,} \PYG{n}{w}\PYG{p}{,} \PYG{n}{CarryOut}\PYG{p}{);}
+   \PYG{n}{u4}\PYG{o}{:} \PYG{n}{mux\PYGZus{}4to1} \PYG{k}{port} \PYG{k}{map}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{v}\PYG{p}{,} \PYG{n}{w}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{Operation}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{),}
+               \PYG{n}{Operation}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{),} \PYG{n}{Result}\PYG{p}{);}
+\PYG{k}{END} \PYG{n+nc}{behavioral}\PYG{p}{;}
+\end{Verbatim}
