@@ -80,7 +80,7 @@ Here are some terms worth knowing and remembering in this lab.
 
 \subsection{Single-Cycle Datapath and Control}
 A processor is composed of the datapath and control unit. Figure \ref{fig:datapath} shows an example of a 
-single-cycle datapath and control. The main functional units are the following
+single-cycle datapath and control. The main functional units are the following:
 \begin{itemize}
 	\item{\textit{Program Counter (PC)} - holds the address of the next instruction to be executed}
 	\item{\textit{Instruction Memory (IM)}-holds the instructions/machine language}
@@ -103,7 +103,7 @@ Instruction execution follows the following cycle or states:
 \begin{itemize}
 	\item {\textit{Instruction Fetch (IF)} - instruction is fetch from IM at address specified by PC}
 	\item {\textit{Instruction Decode (ID)} - current instruction is examined for opcode and operands }
-	\item {\textit{Execute (EX)} - permome operations based on opcode}
+	\item {\textit{Execute (EX)} - perform operations based on opcode}
 	\item {\textit{Memory (MEM)} - need to store data to DM}
 	\item {\textit{Writeback (WB)} - result will be used stored in register or used in the next instruction}
 \end{itemize}
@@ -116,7 +116,28 @@ Instruction execution follows the following cycle or states:
 	\label{fig:decoder} 
 \end{figure}
 
-Decoders accepts an n-bit input and produces 2$^n$  outputs but only one output is asserted. Figure \ref{fig:decoder} shows an example decoder.
+Decoders accepts an n-bit input and produces 2$^n$  outputs but only one output is asserted. Figure \ref{fig:decoder} shows an example 3-to-8 decoder.
+
+\subsection{Multiplexers/Selectors}
+A multiplexer select which input will be allowed to pass through as output. Figure \ref{fig:mux} show a mux with the selecter \textit{S} and two inputs \textit{A} and \textit{B}. It is implemented using two AND gates and one OR gate. To support multiple bits, this single bit multiplexer can be cascaded as an array as shown in Figure \ref{fig:mux_bits}.
+
+\begin{figure}
+	\begin{center}
+	\includegraphics[width=4in]{mux.png}
+	\caption{2-to-1 Multiplexer.}
+	\label{fig:mux} 
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+	\includegraphics[height=3.5in]{mux_bits.png}
+	\caption{An array of 1-bit multiplexers to select from two 64-bit inputs.}
+	\label{fig:mux_bits} 
+	\end{center}
+\end{figure}
+
+\subsection{Designing a 1-bit ALU}
 
 
 
