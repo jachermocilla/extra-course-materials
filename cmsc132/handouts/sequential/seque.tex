@@ -312,6 +312,8 @@ END behavioral;
 Registers are fast memory elements but has limited storage. For example, in the 
 Intel x86\_64 processor, the size of the the registers is 64-bits. For larger 
 storage, Random Access Memory (RAMs) is used. 
+
+
 \subsection{Static RAM}
 Static RAM (SRAM) has a specific configuration in terms of the \textit{number 
 of 
@@ -335,8 +337,6 @@ assert. The circuitry to allow enable this is called the
 \textit{three-state buffer} or \textit{tristate buffer} 
 (Figure \ref{fig:sram1}).
 
-
-
 \begin{figure}[H]
 	\begin{center}
 	\includegraphics[width=3in]{sram1.png}
@@ -346,10 +346,53 @@ assert. The circuitry to allow enable this is called the
 	\end{center}
 \end{figure}
 
+The VHDL code for the D flip-flop with the \textit{Enable} line and 
+\textit{Reset} line is shown below. 
+
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY DFF is
+PORT( din: IN STD_LOGIC;
+      clk: IN STD_LOGIC;
+      rst: IN STD_LOGIC;
+      en: IN STD_LOGIC;
+      dout: OUT STD_LOGIC);
+END DFF;
+
+ARCHITECTURE behavioral of DFF is
+BEGIN
+   PROCESS(rst,clk,din)
+      BEGIN
+         IF (rst='1') THEN
+            dout<='0';
+         ELSIF(RISING_EDGE(clk)) THEN
+            IF (en='1') THEN
+               dout<= din;
+            ELSE
+               dout<='Z';
+            END IF;
+      END IF;
+   END PROCESS;
+END behavioral;
+\end{minted}
+
+
+A small 4x2 SRAM might be built using D latches with an \textit{Enable} line.
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=3.5in]{sram3.png}
+	\caption{A 4x2 SRAM.}
+	\label{fig:sram2} 
+	\end{center}
+\end{figure}
+
 To reduce the size of the decoder, SRAMs use a two-step decoding method. In 
-Figure \ref{fig:sram2}, the first decoder generates tje addresses for eight 
+Figure \ref{fig:sram2}, the first decoder generates the addresses for an eight 
 4K x 1024 arrays then a set of multiplexers is used to select 1 bit from each 
-1024-bit-wide array. 
+1024-bit-wide array. The address lines are split into two groups.
 
 \begin{figure}[H]
 	\begin{center}
@@ -359,15 +402,26 @@ Figure \ref{fig:sram2}, the first decoder generates tje addresses for eight
 	\end{center}
 \end{figure}
 
-
-
 \subsection{Dynamic RAM}
+The values in SRAM are stored in the flip-flops. As long as there is power, the
+values stored can be kept indefinitely. In Dynamic RAM (DRAM), the values are 
+stored as charge in a capacitor. It uses a single transistor to access the
+the values. SRAMs require four to six transistors per bit, thus DRAMs are much 
+cheaper for use in main memory. SRAMs are usually used for caches. The main 
+drawback for DRAMs is that it must periodically be refreshed (read the 
+values then write again), thus the word \textit{dynamic}. DRAMs use two-level 
+decoding consisting of a row access followed by a column access.  
+Figure \ref{fig:dram0} shows a 4Mx1 DRAM. Notice that a address line is used to 
+for both the row and column access. A pair of signals are used to tell whether 
+the value in the address line is for row or column.
+
+
 
 \begin{figure}[H]
 	\begin{center}
 	\includegraphics[width=4in]{dram0.png}
-	\caption{2-to-1 Multiplexer.}
-	\label{fig:mux} 
+	\caption{A 4Mx1 DRAM with 2048x2048 array.}
+	\label{fig:dram0} 
 	\end{center}
 \end{figure}
 
