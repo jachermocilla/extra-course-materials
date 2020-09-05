@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  5 SEP 2020 22:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  5 SEP 2020 23:00
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -891,7 +891,7 @@ runsystem(rm combi.pyg)...executed.
 Here is how much of TeX's memory you used:
  13955 strings out of 494923
  226405 string characters out of 6180742
- 512079 words of memory out of 5000000
+ 511079 words of memory out of 5000000
  16962 multiletter control sequences out of 15000+600000
  16161 words of font info for 58 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -905,7 +905,7 @@ ype1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super
 /sfit1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/
 share/texmf/fonts/type1/public/cm-super/sfti1095.pfb></usr/share/texmf/fonts/ty
 pe1/public/cm-super/sftt1095.pfb>
-Output written on combi.pdf (8 pages, 384427 bytes).
+Output written on combi.pdf (8 pages, 384452 bytes).
 PDF statistics:
  199 PDF objects out of 1000 (max. 8388607)
  171 compressed objects within 2 object streams
