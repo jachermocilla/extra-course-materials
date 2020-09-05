@@ -6,7 +6,7 @@
 \contentsline {subsection}{\numberline {2.4}Register Files}{5}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}Static RAM}{7}{subsection.2.5}
 \contentsline {subsection}{\numberline {2.6}Dynamic RAM}{10}{subsection.2.6}
-\contentsline {subsection}{\numberline {2.7}Finite State Machines}{11}{subsection.2.7}
+\contentsline {subsection}{\numberline {2.7}Finite State Machines}{10}{subsection.2.7}
 \contentsline {section}{\numberline {3}Summary}{12}{section.3}
 \contentsline {section}{\numberline {4}Learning Activities}{12}{section.4}
 \contentsline {section}{\numberline {5}Deliverable}{12}{section.5}
