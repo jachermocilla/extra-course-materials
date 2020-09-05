@@ -232,12 +232,11 @@ BEGIN
 END behavioral;
 \end{minted}
 
-
 \subsection{Register Files}
 A register file consists of a set of registers that can be read and written by
 supplying a register number to be accessed. Figure \ref{fig:rf0} shows an 
 example register file where two registers can be read and one register can be 
-written into. In order to write to a register, the \textit{write enable} 
+written into. In order to write to a register, the \textit{Write} enable
 control signal should be asserted.
 
 \begin{figure}[H]
@@ -262,18 +261,52 @@ the register file allows two registers to be read.
 \end{figure}
 
 Writing to a register file will require a decoder to select the register to 
-write to. The output of the decoder is anded to the\textit{Write} control 
+write to. The output of the decoder is and-ed to the\textit{Write} control 
 signal. The result is used as the clock input to the register(flip-flop) as 
 shown in Figure \ref{fig:rf2}. 
-
 
 \begin{figure}[H]
 	\begin{center}
 	\includegraphics[width=4in]{rf2.png}
-	\caption{Writing in a register file.}
+	\caption{Writing to a register file.}
 	\label{fig:rf2} 
 	\end{center}
 \end{figure}
+
+The VHDL source code for a register file with 2 1-bit registers is shown below. 
+The \textit{registers} signal is defined as an array type. 
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
+
+ENTITY reg_file2 is
+   PORT( 
+      read_n1: IN STD_LOGIC;
+      read_n2: IN STD_LOGIC;
+      write_n: IN STD_LOGIC;
+      write_data: IN STD_LOGIC;
+      write: IN STD_LOGIC;
+      clk: IN STD_LOGIC;
+      read_data1: OUT STD_LOGIC;
+      read_data2: OUT STD_LOGIC);
+END reg_file2;
+ARCHITECTURE behavioral OF reg_file2 IS
+TYPE rf_type IS ARRAY(0 to 1) of STD_LOGIC;
+SIGNAL registers : rf_type;
+BEGIN
+   rf: PROCESS(clk)
+   BEGIN
+      IF RISING_EDGE(clk) THEN
+         IF (write ='1') THEN
+            registers(TO_INTEGER(UNSIGNED'('0' & write_n))) <= write_data;
+         END IF;
+      END IF;
+      read_data1 <= registers(TO_INTEGER(UNSIGNED'( '0' & read_n1)));
+      read_data2 <= registers(TO_INTEGER(UNSIGNED'( '0' & read_n2)));
+   END PROCESS;
+END behavioral;
+\end{minted}
 
 \subsection{Static RAM}
 

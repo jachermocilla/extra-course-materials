@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{LIBRARY} \PYG{n+nn}{ieee}\PYG{p}{;}
+\PYG{k}{USE} \PYG{n+nn}{ieee.std\PYGZus{}logic\PYGZus{}1164.}\PYG{k}{ALL}\PYG{p}{;}
+\PYG{k}{USE} \PYG{n+nn}{IEEE.NUMERIC\PYGZus{}STD.}\PYG{k}{ALL}\PYG{p}{;}
+
+\PYG{k}{ENTITY} \PYG{n+nc}{reg\PYGZus{}file2} \PYG{k}{is}
+   \PYG{k}{PORT}\PYG{p}{(}
+      \PYG{n}{read\PYGZus{}n1}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{read\PYGZus{}n2}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{write\PYGZus{}n}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{write\PYGZus{}data}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{write}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{clk}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{read\PYGZus{}data1}\PYG{o}{:} \PYG{k}{OUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{read\PYGZus{}data2}\PYG{o}{:} \PYG{k}{OUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{);}
+\PYG{k}{END} \PYG{n+nc}{reg\PYGZus{}file2}\PYG{p}{;}
+\PYG{k}{ARCHITECTURE} \PYG{n+nc}{behavioral} \PYG{k}{OF} \PYG{n+nc}{reg\PYGZus{}file2} \PYG{k}{IS}
+\PYG{k}{TYPE} \PYG{n}{rf\PYGZus{}type} \PYG{k}{IS} \PYG{k}{ARRAY}\PYG{p}{(}\PYG{l+m+mi}{0} \PYG{k}{to} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{of} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+\PYG{k}{SIGNAL} \PYG{n}{registers} \PYG{o}{:} \PYG{n}{rf\PYGZus{}type}\PYG{p}{;}
+\PYG{k}{BEGIN}
+   \PYG{n+nc}{rf}\PYG{o}{:} \PYG{k}{PROCESS}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{)}
+   \PYG{k}{BEGIN}
+      \PYG{k}{IF} \PYG{n}{RISING\PYGZus{}EDGE}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{)} \PYG{k}{THEN}
+         \PYG{k}{IF} \PYG{p}{(}\PYG{n}{write} \PYG{o}{=}\PYG{l+s+sc}{\PYGZsq{}1\PYGZsq{}}\PYG{p}{)} \PYG{k}{THEN}
+            \PYG{n}{registers}\PYG{p}{(}\PYG{n}{TO\PYGZus{}INTEGER}\PYG{p}{(}\PYG{k+kt}{UNSIGNED}\PYG{p}{\PYGZsq{}(}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}} \PYG{o}{\PYGZam{}} \PYG{n}{write\PYGZus{}n}\PYG{p}{)))} \PYG{o}{\PYGZlt{}=} \PYG{n}{write\PYGZus{}data}\PYG{p}{;}
+         \PYG{k}{END} \PYG{k}{IF}\PYG{p}{;}
+      \PYG{k}{END} \PYG{k}{IF}\PYG{p}{;}
+      \PYG{n}{read\PYGZus{}data1} \PYG{o}{\PYGZlt{}=} \PYG{n}{registers}\PYG{p}{(}\PYG{n}{TO\PYGZus{}INTEGER}\PYG{p}{(}\PYG{k+kt}{UNSIGNED}\PYG{p}{\PYGZsq{}(} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}} \PYG{o}{\PYGZam{}} \PYG{n}{read\PYGZus{}n1}\PYG{p}{)));}
+      \PYG{n}{read\PYGZus{}data2} \PYG{o}{\PYGZlt{}=} \PYG{n}{registers}\PYG{p}{(}\PYG{n}{TO\PYGZus{}INTEGER}\PYG{p}{(}\PYG{k+kt}{UNSIGNED}\PYG{p}{\PYGZsq{}(} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}} \PYG{o}{\PYGZam{}} \PYG{n}{read\PYGZus{}n2}\PYG{p}{)));}
+   \PYG{k}{END} \PYG{k}{PROCESS}\PYG{p}{;}
+\PYG{k}{END} \PYG{n+nc}{behavioral}\PYG{p}{;}
+\end{Verbatim}

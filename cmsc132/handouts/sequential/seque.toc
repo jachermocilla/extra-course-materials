@@ -4,9 +4,9 @@
 \contentsline {subsection}{\numberline {2.2}Latches}{2}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Flip-Flops}{4}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Register Files}{5}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Static RAM}{7}{subsection.2.5}
-\contentsline {subsection}{\numberline {2.6}Dynamic RAM}{8}{subsection.2.6}
-\contentsline {subsection}{\numberline {2.7}Finite State Machines}{8}{subsection.2.7}
-\contentsline {section}{\numberline {3}Summary}{10}{section.3}
-\contentsline {section}{\numberline {4}Learning Activities}{10}{section.4}
-\contentsline {section}{\numberline {5}Deliverable}{10}{section.5}
+\contentsline {subsection}{\numberline {2.5}Static RAM}{8}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Dynamic RAM}{9}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Finite State Machines}{9}{subsection.2.7}
+\contentsline {section}{\numberline {3}Summary}{11}{section.3}
+\contentsline {section}{\numberline {4}Learning Activities}{11}{section.4}
+\contentsline {section}{\numberline {5}Deliverable}{11}{section.5}
