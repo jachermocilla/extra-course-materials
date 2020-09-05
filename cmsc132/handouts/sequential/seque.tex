@@ -318,7 +318,7 @@ storage, Random Access Memory (RAMs) is used.
 \subsection{Static RAM}
 Static RAM (SRAM) has a specific configuration in terms of the \textit{number 
 of 
-addressable locations} and w\textit{idth of each addressable location}. Figure 
+addressable locations} and \textit{width of each addressable location}. Figure 
 \ref{fig:sram0} shows an SRAM with 2M addressable locations and each
 location is 16 bits. The address line is 21 bits and the data input and output 
 is 16 bits.
@@ -380,13 +380,14 @@ END behavioral;
 \end{minted}
 
 
-A small 4x2 SRAM might be built using D latches with an \textit{Enable} line.
+A small 4x2 SRAM might be built using D latches with an \textit{Enable} line as 
+shown in Figure \ref{fig:sram3}. 
 
 \begin{figure}[H]
 	\begin{center}
 	\includegraphics[width=3.5in]{sram3.png}
 	\caption{A 4x2 SRAM.}
-	\label{fig:sram2} 
+	\label{fig:sram3} 
 	\end{center}
 \end{figure}
 
@@ -523,29 +524,78 @@ contain the specification.
 	\end{center}
 \end{figure}
 
-
+Finite State Machines can be visually represented as State Transition Diagrams 
+(STDs). Nodes represent the states. The active outputs for the state are placed
+inside the nodes. Directed arcs are used to show the next-state function, with 
+labels on the arcs specifying the input conditions as logic functions.
 
 \begin{figure}[H]
 	\begin{center}
 	\includegraphics[width=4in]{fsm3.png}
-	\caption{2-to-1 Multiplexer.}
+	\caption{State Transition Diagram for Traffic Lite.}
 	\label{fig:mux} 
 	\end{center}
 \end{figure}
 
+The final VHDL Code for the traffic lite is given below.
+
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+---------------------------------
+ENTITY trafficlite IS
+   PORT (EWCar, NSCar, clk: IN STD_LOGIC;
+      EWLite, NSLite: OUT STD_LOGIC
+   );
+END trafficlite;
+--------------------------------
+ARCHITECTURE pure_logic OF trafficlite IS
+   SIGNAL state : STD_LOGIC := '0'; 
+BEGIN
+   PROCESS(clk)
+   BEGIN
+      NSLite <= NOT state; EWLite <= state;
+      IF (RISING_EDGE(clk)) THEN
+         CASE state IS
+            WHEN '0' =>
+               state <= EWCar;
+            WHEN '1' =>
+               state <= NSCar;
+            WHEN others => 
+               state <= '0';
+         END CASE;
+      END IF; 
+   END PROCESS;
+END pure_logic;
+\end{minted}
+
 
 \section{Summary}
-We discussed some of the sequential elements that are useful in the design of a 
-processor. We also showed the design and implementation of a simple traffic 
-light system using finite state machines.
+In this lab, you learned some of the sequential elements that are useful in the 
+design of a processor as well as the importance of clocks. We also showed the
+design and implementation of a simple traffic light system using finite state 
+machines since a simple truth table is not enough to characterize a sequential 
+system. 
 
 \section{Learning Activities}
 Download the source codes for this lab then try experimenting by adding more 
 test cases in the testbenches. Submit a PDF document that shows screenshots of 
 your modifications and runs. 
 
+\section{Self-Assessment Questions}
+\begin{enumerate}
+\item What is the main purpose of clocks in sequential circuits?
+\item What is the difference between a clocked latch and a flip-flop?
+\item Why can't a multiplexer be used in RAM?
+\item Why is SRAM more expensive than DRAM?
+\item If my CPU is clocked at 800 MHz, what is the period?
+\end{enumerate}
+
+
 \section{Deliverable}
-Your final deliverable for this lab is described in the accompanying exercise handout.
+Your final deliverable for this lab is implement the RAM in Figure 
+ \ref{fig:sram3}. Submit the VHDL code including a testbench as well as images 
+of the waveforms.
 
 \section{Further Reading}
 \begin{itemize}

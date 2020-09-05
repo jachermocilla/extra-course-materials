@@ -1,6 +1,6 @@
 \contentsline {section}{\numberline {1}Resources}{1}{section.1}
 \contentsline {section}{\numberline {2}Discussion}{1}{section.2}
-\contentsline {subsection}{\numberline {2.1}Clocks}{1}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.1}Clocks}{2}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Latches}{3}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Flip-Flops}{4}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Register Files}{5}{subsection.2.4}
@@ -8,7 +8,8 @@
 \contentsline {subsection}{\numberline {2.6}Dynamic RAM}{10}{subsection.2.6}
 \contentsline {subsection}{\numberline {2.7}Finite State Machines}{10}{subsection.2.7}
 \contentsline {subsubsection}{\numberline {2.7.1}Example: Traffic Lite}{11}{subsubsection.2.7.1}
-\contentsline {section}{\numberline {3}Summary}{12}{section.3}
+\contentsline {section}{\numberline {3}Summary}{13}{section.3}
 \contentsline {section}{\numberline {4}Learning Activities}{13}{section.4}
-\contentsline {section}{\numberline {5}Deliverable}{13}{section.5}
-\contentsline {section}{\numberline {6}Further Reading}{13}{section.6}
+\contentsline {section}{\numberline {5}Self-Assessment Questions}{13}{section.5}
+\contentsline {section}{\numberline {6}Deliverable}{14}{section.6}
+\contentsline {section}{\numberline {7}Further Reading}{14}{section.7}
