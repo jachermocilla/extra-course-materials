@@ -429,33 +429,101 @@ section on a simple implementation of RAM in VHDL.
 Sequential systems are described using Finite State Machines (FSMs). Their 
 behaviour depends on both the input and internal state thus using a truth table
 is not enough. Figure \ref{fig:fsm0} shows a block diagram of the main 
-components. 
+components of an FSM. 
 
-
+\begin{itemize}
+\item \textit{Set of States} - corresponds to all the possible values of the 
+internal storage
+\item \textit{Current State} - corresponds to current value of the 
+internal storage
+\item \textit{Next-state Function} - a combinatinal function that, given the 
+current 
+state, determines the next state of the system.
+\item \textit{Output function} - produces a set of outputs from the current 
+state and 
+the inputs  
+\end{itemize}
 
 \begin{figure}[H]
 	\begin{center}
 	\includegraphics[width=4in]{fsm0.png}
-	\caption{A Finite State Machine.}
+	\caption{A Finite State Machine and its main components.}
 	\label{fig:fsm0} 
 	\end{center}
 \end{figure}
 
+\subsubsection{Example: Traffic Lite}
+Let us design a simple traffic light system. The following tables and figures 
+contain the specification. 
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Outputs.}
+    \label{tab:Outputs}
+    \begin{tabular}{l|p{4in}} 
+      \textbf{Signal} & \textbf{Description}\\
+      \hline
+      NSLite & When this signal is asserted, the light on the north-south 
+      road is green; when this signal is deasserted, the light on the 
+      north-south road is red \\ \hline
+      EWLite & When this signal is asserted, the light on the east-west road is 
+      green when this signal is deasserted, the light on the east-west 
+      road is 
+      red \\ \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Inputs.}
+    \label{tab:inputs}
+    \begin{tabular}{l|p{4in}} 
+      \textbf{Signal} & \textbf{Description}\\
+      \hline
+      NScar & Indicates that a car is over the detector placed in the roadbed 
+      in front of the light on the north-south road (going north or south) \\ 
+      \hline
+      EWcar & Indicates that a car is over the detector placed in the roadbed 
+      in front of the light on the east-west road (going east or west) red \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{States.}
+    \label{tab:states}
+    \begin{tabular}{l|p{4in}} 
+      \textbf{Signal} & \textbf{Description}\\
+      \hline
+      NSgreen & The traffic light is green in the north-south direction \\ 
+      \hline
+      EWgreen & The traffic light is green in the east-west direction. \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=4in]{fsm1.png}
-	\caption{2-to-1 Multiplexer.}
-	\label{fig:mux} 
+	\includegraphics[width=4.5in]{fsm1.png}
+	\caption{Next-state function.}
+	\label{fig:fsm1} 
 	\end{center}
 \end{figure}
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=4in]{fsm2.png}
-	\caption{2-to-1 Multiplexer.}
-	\label{fig:mux} 
+	\includegraphics[width=3in]{fsm2.png}
+	\caption{Output function.}
+	\label{fig:fsm2} 
 	\end{center}
 \end{figure}
+
+
 
 \begin{figure}[H]
 	\begin{center}

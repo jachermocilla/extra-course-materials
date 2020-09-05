@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  5 SEP 2020 18:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  5 SEP 2020 19:19
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -574,12 +574,6 @@ runsystem(rm seque.aex)...executed.
 
 LaTeX Warning: Label `fig:sram2' multiply defined.
 
-
-LaTeX Warning: Label `fig:mux' multiply defined.
-
-
-LaTeX Warning: Label `fig:mux' multiply defined.
-
 )
 \openout1 = `seque.aux'.
 
@@ -730,12 +724,12 @@ Package Fancyhdr Warning: \headheight is too small (25.22153pt):
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-<clock0.png, id=91, 742.775pt x 182.6825pt>
+<clock0.png, id=96, 742.775pt x 182.6825pt>
 File: clock0.png Graphic file (type png)
 <use clock0.png>
 Package pdftex.def Info: clock0.png  used on input line 91.
 (pdftex.def)             Requested size: 289.07999pt x 71.09814pt.
-<clock1.png, id=93, 513.92pt x 162.6075pt>
+<clock1.png, id=98, 513.92pt x 162.6075pt>
 File: clock1.png Graphic file (type png)
 <use clock1.png>
 Package pdftex.def Info: clock1.png  used on input line 106.
@@ -768,12 +762,6 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 )
-<latch0.png, id=95, 325.215pt x 273.02pt>
-File: latch0.png Graphic file (type png)
-<use latch0.png>
-Package pdftex.def Info: latch0.png  used on input line 140.
-(pdftex.def)             Requested size: 144.54pt x 121.34563pt.
-
 
 Package Fancyhdr Warning: \headheight is too small (25.22153pt): 
  Make it at least 25.89063pt.
@@ -785,20 +773,25 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.144 \end{figure}
-                  pdfTeX warning (ext4): destination with the same identifier (
-name{figure.2}) has been already used, duplicate ignored
+l.137 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.144 \end{figure}
-                   <./clock0.png> <./clock1.png>]
+l.137 
+       <./clock0.png> <./clock1.png>]
+<latch0.png, id=109, 325.215pt x 273.02pt>
+File: latch0.png Graphic file (type png)
+<use latch0.png>
+Package pdftex.def Info: latch0.png  used on input line 140.
+(pdftex.def)             Requested size: 144.54pt x 121.34563pt.
 \openout3 = `seque.pyg'.
 
 
 (./_minted-seque/929E60028F1E8CF69474675ED15AD9DB22613F44998054DE6DFAC42DD67F2B
 1D.pygtex)
-<latch1.png, id=107, 490.83376pt x 317.185pt>
+<latch1.png, id=111, 490.83376pt x 317.185pt>
 File: latch1.png Graphic file (type png)
 <use latch1.png>
 Package pdftex.def Info: latch1.png  used on input line 172.
@@ -819,17 +812,16 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.5 ...TY} \PYG{n+nc}{d\PYGZus{}latch} \PYG{k}{IS}
-                                                  pdfTeX warning (ext4): destin
-ation with the same identifier (name{figure.4}) has been already used, duplicat
-e ignored
+l.1 \begin{Verbatim}[commandchars=\\\{\}]
+                                         pdfTeX warning (ext4): destination wit
+h the same identifier (name{figure.4}) has been already used, duplicate ignored
+
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.5 ...TY} \PYG{n+nc}{d\PYGZus{}latch} \PYG{k}{IS}
-                                                   <./latch0.png> <./latch1.png
->])
-<dff0.png, id=115, 577.15625pt x 234.8775pt>
+l.1 \begin{Verbatim}[commandchars=\\\{\}]
+                                          <./latch0.png> <./latch1.png>])
+<dff0.png, id=120, 577.15625pt x 234.8775pt>
 File: dff0.png Graphic file (type png)
 <use dff0.png>
 Package pdftex.def Info: dff0.png  used on input line 204.
@@ -852,12 +844,12 @@ has been already used, duplicate ignored
                                                   \fi \fi 
 l.17 \PYG{k}{BEGIN}
                     <./dff0.png>])
-<rf0.png, id=123, 480.79625pt x 378.41376pt>
+<rf0.png, id=128, 480.79625pt x 378.41376pt>
 File: rf0.png Graphic file (type png)
 <use rf0.png>
 Package pdftex.def Info: rf0.png  used on input line 245.
 (pdftex.def)             Requested size: 216.81pt x 170.64261pt.
-<rf1.png, id=125, 549.05125pt x 553.06625pt>
+<rf1.png, id=130, 549.05125pt x 553.06625pt>
 File: rf1.png Graphic file (type png)
 <use rf1.png>
 Package pdftex.def Info: rf1.png  used on input line 258.
@@ -876,7 +868,7 @@ has been already used, duplicate ignored
                                                   \fi \fi 
 l.263 
        <./rf0.png>]
-<rf2.png, id=134, 567.11874pt x 447.6725pt>
+<rf2.png, id=139, 567.11874pt x 447.6725pt>
 File: rf2.png Graphic file (type png)
 <use rf2.png>
 Package pdftex.def Info: rf2.png  used on input line 271.
@@ -906,7 +898,7 @@ h the same identifier (name{figure.8}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.1 \begin{Verbatim}[commandchars=\\\{\}]
                                           <./rf1.png> <./rf2.png>])
-<sram0.png, id=142, 496.85625pt x 283.0575pt>
+<sram0.png, id=147, 496.85625pt x 283.0575pt>
 File: sram0.png Graphic file (type png)
 <use sram0.png>
 Package pdftex.def Info: sram0.png  used on input line 328.
@@ -919,7 +911,7 @@ Package Fancyhdr Warning: \headheight is too small (25.22153pt):
  This may cause the page layout to be inconsistent, however.
 
 [7]
-<sram1.png, id=151, 361.35pt x 397.485pt>
+<sram1.png, id=157, 361.35pt x 397.485pt>
 File: sram1.png Graphic file (type png)
 <use sram1.png>
 Package pdftex.def Info: sram1.png  used on input line 343.
@@ -950,12 +942,12 @@ te ignored
 l.13 ...l} \PYG{k}{of} \PYG{n+nc}{DFF} \PYG{k}{is}
                                                    <./sram0.png> <./sram1.png>]
 )
-<sram3.png, id=159, 564.1075pt x 613.29124pt>
+<sram3.png, id=164, 564.1075pt x 613.29124pt>
 File: sram3.png Graphic file (type png)
 <use sram3.png>
 Package pdftex.def Info: sram3.png  used on input line 387.
 (pdftex.def)             Requested size: 252.94499pt x 274.99591pt.
-<sram2.png, id=161, 714.67pt x 304.13625pt>
+<sram2.png, id=166, 714.67pt x 304.13625pt>
 File: sram2.png Graphic file (type png)
 <use sram2.png>
 Package pdftex.def Info: sram2.png  used on input line 400.
@@ -974,16 +966,11 @@ Package Fancyhdr Warning: \headheight is too small (25.22153pt):
                                                   \fi \fi 
 l.405 
        <./sram3.png>]
-<dram0.png, id=170, 645.41125pt x 467.7475pt>
+<dram0.png, id=175, 645.41125pt x 467.7475pt>
 File: dram0.png Graphic file (type png)
 <use dram0.png>
 Package pdftex.def Info: dram0.png  used on input line 422.
 (pdftex.def)             Requested size: 289.07999pt x 209.49948pt.
-<fsm0.png, id=172, 670.505pt x 325.215pt>
-File: fsm0.png Graphic file (type png)
-<use fsm0.png>
-Package pdftex.def Info: fsm0.png  used on input line 438.
-(pdftex.def)             Requested size: 289.07999pt x 140.2119pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (25.22153pt): 
@@ -996,30 +983,30 @@ Package Fancyhdr Warning: \headheight is too small (25.22153pt):
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.443 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-13}) has been already used, duplicate ignored
+l.437 \item \textit
+                   {Current State} - corresponds to current value of thepdfTeX 
+warning (ext4): destination with the same identifier (name{figure.13}) has been
+ already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.443 
-       <./sram2.png> <./dram0.png>]
-<fsm1.png, id=180, 675.52374pt x 233.87375pt>
+l.437 \item \textit
+                   {Current State} - corresponds to current value of the <./sra
+m2.png> <./dram0.png>]
+<fsm0.png, id=184, 670.505pt x 325.215pt>
+File: fsm0.png Graphic file (type png)
+<use fsm0.png>
+Package pdftex.def Info: fsm0.png  used on input line 449.
+(pdftex.def)             Requested size: 289.07999pt x 140.2119pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<fsm1.png, id=185, 675.52374pt x 233.87375pt>
 File: fsm1.png Graphic file (type png)
 <use fsm1.png>
-Package pdftex.def Info: fsm1.png  used on input line 446.
-(pdftex.def)             Requested size: 289.07999pt x 100.08554pt.
-<fsm2.png, id=181, 429.605pt x 139.52126pt>
-File: fsm2.png Graphic file (type png)
-<use fsm2.png>
-Package pdftex.def Info: fsm2.png  used on input line 454.
-(pdftex.def)             Requested size: 289.07999pt x 93.88536pt.
-<fsm3.png, id=182, 579.16376pt x 298.11375pt>
-File: fsm3.png Graphic file (type png)
-<use fsm3.png>
-Package pdftex.def Info: fsm3.png  used on input line 462.
-(pdftex.def)             Requested size: 289.07999pt x 148.79723pt.
-
+Package pdftex.def Info: fsm1.png  used on input line 512.
+(pdftex.def)             Requested size: 325.215pt x 112.59355pt.
 
 Package Fancyhdr Warning: \headheight is too small (25.22153pt): 
  Make it at least 25.89063pt.
@@ -1031,21 +1018,63 @@ Package Fancyhdr Warning: \headheight is too small (25.22153pt):
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.467 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-15}) has been already used, duplicate ignored
+l.517 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.467 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-16}) has been already used, duplicate ignored
+l.517 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.2
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.467 
-       <./fsm0.png> <./fsm1.png> <./fsm2.png>] (./seque.bbl)
+l.517 
+       <./fsm0.png>]
+<fsm2.png, id=193, 429.605pt x 139.52126pt>
+File: fsm2.png Graphic file (type png)
+<use fsm2.png>
+Package pdftex.def Info: fsm2.png  used on input line 520.
+(pdftex.def)             Requested size: 216.81pt x 70.41402pt.
+<fsm3.png, id=194, 579.16376pt x 298.11375pt>
+File: fsm3.png Graphic file (type png)
+<use fsm3.png>
+Package pdftex.def Info: fsm3.png  used on input line 530.
+(pdftex.def)             Requested size: 289.07999pt x 148.79723pt.
 
+
+Package Fancyhdr Warning: \headheight is too small (25.22153pt): 
+ Make it at least 25.89063pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12pdfTeX warning (ext4): destination with the same identifier (name{table.3}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.547 \section
+              {Deliverable}pdfTeX warning (ext4): destination with the same ide
+ntifier (name{figure.15}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.547 \section
+              {Deliverable}pdfTeX warning (ext4): destination with the same ide
+ntifier (name{figure.16}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.547 \section
+              {Deliverable}pdfTeX warning (ext4): destination with the same ide
+ntifier (name{figure.17}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.547 \section
+              {Deliverable} <./fsm1.png> <./fsm2.png> <./fsm3.png>]
+(./seque.bbl) 
 AED: lastpage setting LastPage
 
 Package Fancyhdr Warning: \headheight is too small (25.22153pt): 
@@ -1053,20 +1082,14 @@ Package Fancyhdr Warning: \headheight is too small (25.22153pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12pdfTeX warning (ext4): destination with the same identifier (name{figure.17}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.497 \end{document}
-                     <./fsm3.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 497.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 497.
+[13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 565.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 565.
  (./seque.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 497.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 497.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 565.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 565.
 Package rerunfilecheck Info: File `seque.out' has not changed.
-(rerunfilecheck)             Checksum: C81D4B94E8D59C0EB4E1AD7F2B75C5AF;707.
+(rerunfilecheck)             Checksum: 9471534C9E93BB67CFF2E9207CDAE865;788.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1075,10 +1098,10 @@ runsystem(rm seque.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 14084 strings out of 494923
- 228561 string characters out of 6180742
- 510952 words of memory out of 5000000
- 17018 multiletter control sequences out of 15000+600000
+ 14097 strings out of 494923
+ 228706 string characters out of 6180742
+ 512145 words of memory out of 5000000
+ 17026 multiletter control sequences out of 15000+600000
  17832 words of font info for 79 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,15n,43p,1006b,606s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1090,10 +1113,10 @@ fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfit1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb
 ></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb></usr/share/texmf/f
 onts/type1/public/cm-super/sftt1095.pfb>
-Output written on seque.pdf (12 pages, 454187 bytes).
+Output written on seque.pdf (13 pages, 459623 bytes).
 PDF statistics:
- 244 PDF objects out of 1000 (max. 8388607)
- 202 compressed objects within 3 object streams
- 49 named destinations out of 1000 (max. 500000)
- 14526 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 258 PDF objects out of 1000 (max. 8388607)
+ 215 compressed objects within 3 object streams
+ 54 named destinations out of 1000 (max. 500000)
+ 14534 words of extra memory for PDF output out of 17280 (max. 10000000)
 
