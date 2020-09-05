@@ -64,10 +64,13 @@
 
 
 \section{Discussion}
-The discussion in this handout aims only to provide an outline of what is in the video lecture. It is recommended that you watch the video in its entirety.
+The discussion in this handout aims only to provide an outline of what is in 
+the video lecture. It is recommended that you watch the video in its entirety.
 
-Sequential elements are sometimes called memory elements because they store state information. The\textit{ output} of any memory element dependes on both the \textit{input} and the \textit{value stored} in it.
-An understanding of clocks is important in the study of sequential elements.
+Sequential elements are sometimes called memory elements because they store 
+state information. The\textit{ output} of any memory element dependes on both 
+the \textit{input} and the \textit{value stored} in it. An understanding of 
+clocks is important in the study of sequential elements. 
 
 \subsection{Clocks}
 Clocks determine when the current state of a sequential elements needs to be
@@ -100,7 +103,8 @@ without invalidating the signal.
 \begin{figure}[H]
 	\begin{center}
 	\includegraphics[width=4in]{clock1.png}
-	\caption{A combinational element is sandwiched between two state elements. The state elements are updated at the rising clock edge.}
+	\caption{A combinational element is sandwiched between two state elements. 
+	The state elements are updated at the rising clock edge.}
 	\label{fig:clock1} 
 	\end{center}
 \end{figure}
@@ -230,12 +234,19 @@ END behavioral;
 
 
 \subsection{Register Files}
+A register file consists of a set of registers that can be read and written by
+supplying a register number to be accessed. Figure \ref{fig:rf0} shows an 
+example register file where two registers can be read and one register can be 
+written into. In order to write to a register, the \textit{write enable} 
+control signal should be asserted.
+
+
 
 \begin{figure}[H]
 	\begin{center}
 	\includegraphics[width=3in]{rf0.png}
 	\caption{2-to-1 Multiplexer.}
-	\label{fig:mux} 
+	\label{fig:rf0} 
 	\end{center}
 \end{figure}
 
@@ -357,7 +368,9 @@ processor. We also showed the design and implementation of a simple traffic
 light system using finite state machines.
 
 \section{Learning Activities}
-Download the source codes for this lab then try experimenting by adding more test cases in the testbenches. Submit a PDF document that shows screenshots of your modifications and runs.
+Download the source codes for this lab then try experimenting by adding more 
+test cases in the testbenches. Submit a PDF document that shows screenshots of 
+your modifications and runs. 
 
 \section{Deliverable}
 Your final deliverable for this lab is described in the accompanying exercise handout.
