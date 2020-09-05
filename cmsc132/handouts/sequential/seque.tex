@@ -274,7 +274,8 @@ shown in Figure \ref{fig:rf2}.
 \end{figure}
 
 The VHDL source code for a register file with 2 1-bit registers is shown below. 
-The \textit{registers} signal is defined as an array type. 
+The \textit{registers} signal is defined as an array type. The register numbers
+are used as index into this array.  
 \begin{minted}[frame=single,framesep=10pt]{vhdl}
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -308,29 +309,53 @@ BEGIN
 END behavioral;
 \end{minted}
 
+Registers are fast memory elements but has limited storage. For example, in the 
+Intel x86\_64 processor, the size of the the registers is 64-bits. For larger 
+storage, Random Access Memory (RAMs) is used. 
 \subsection{Static RAM}
+Static RAM (SRAM) has a specific configuration in terms of the \textit{number 
+of 
+addressable locations} and w\textit{idth of each addressable location}. Figure 
+\ref{fig:sram0} shows an SRAM with 2M addressable locations and each
+location is 16 bits. The address line is 21 bits and the data input and output 
+is 16 bits.
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=4in]{sram0.png}
-	\caption{2-to-1 Multiplexer.}
-	\label{fig:mux} 
+	\includegraphics[width=3in]{sram0.png}
+	\caption{A 2Mx16 SRAM.}
+	\label{fig:sram0} 
 	\end{center}
 \end{figure}
 
-\begin{figure}[H]
-	\begin{center}
-	\includegraphics[width=4in]{sram1.png}
-	\caption{2-to-1 Multiplexer.}
-	\label{fig:mux} 
-	\end{center}
-\end{figure}
+Since SRAMs can store large amount of information, using a multiplexer to 
+select the location is not cost-effective. Instead, a shared output line, called
+a \textit{bit line}, allows multiple memory cells in the memory array to
+assert. The circuitry to allow enable this is called the 
+\textit{three-state buffer} or \textit{tristate buffer} 
+(Figure \ref{fig:sram1}).
+
+
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=4in]{sram2.png}
-	\caption{2-to-1 Multiplexer.}
-	\label{fig:mux} 
+	\includegraphics[width=3in]{sram1.png}
+	\caption{Tristate buffer allows multiple memory cells to share a bit line 
+	making it more cost-effective than using a multiplexer.}
+	\label{fig:sram1} 
+	\end{center}
+\end{figure}
+
+To reduce the size of the decoder, SRAMs use a two-step decoding method. In 
+Figure \ref{fig:sram2}, the first decoder generates tje addresses for eight 
+4K x 1024 arrays then a set of multiplexers is used to select 1 bit from each 
+1024-bit-wide array. 
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=5in]{sram2.png}
+	\caption{Two-step decoding to reduce the size of the decoder in SRAM.}
+	\label{fig:sram2} 
 	\end{center}
 \end{figure}
 
