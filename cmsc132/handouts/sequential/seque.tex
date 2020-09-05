@@ -411,11 +411,10 @@ cheaper for use in main memory. SRAMs are usually used for caches. The main
 drawback for DRAMs is that it must periodically be refreshed (read the 
 values then write again), thus the word \textit{dynamic}. DRAMs use two-level 
 decoding consisting of a row access followed by a column access.  
-Figure \ref{fig:dram0} shows a 4Mx1 DRAM. Notice that a address line is used to 
-for both the row and column access. A pair of signals are used to tell whether 
-the value in the address line is for row or column.
-
-
+Figure \ref{fig:dram0} shows a 4Mx1 DRAM. Notice that a single  address line is
+used to for both the row and column access. A pair of signals are used to tell 
+whether the value in the address line is for row or column. See Further Reading
+section on a simple implementation of RAM in VHDL.  
 
 \begin{figure}[H]
 	\begin{center}
@@ -424,7 +423,6 @@ the value in the address line is for row or column.
 	\label{fig:dram0} 
 	\end{center}
 \end{figure}
-
 
 \subsection{Finite State Machines}
 
@@ -495,6 +493,14 @@ your modifications and runs.
 
 \section{Deliverable}
 Your final deliverable for this lab is described in the accompanying exercise handout.
+
+\section{Further Reading}
+\begin{itemize}
+\item 
+\href{https://www.doulos.com/knowhow/vhdl/simple-ram-model/}
+{https://www.doulos.com/knowhow/vhdl/simple-ram-model/}
+\end{itemize}
+
 
 %\begin{thebibliography}{9}
 %\end{thebibliography}

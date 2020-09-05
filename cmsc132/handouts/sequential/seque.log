@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  5 SEP 2020 17:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  5 SEP 2020 18:06
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -723,15 +723,15 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write7
 \openout7 = `seque.toc'.
 
-<clock0.png, id=67, 742.775pt x 182.6825pt>
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+]
+<clock0.png, id=91, 742.775pt x 182.6825pt>
 File: clock0.png Graphic file (type png)
 <use clock0.png>
 Package pdftex.def Info: clock0.png  used on input line 90.
 (pdftex.def)             Requested size: 289.07999pt x 71.09814pt.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-]
-<clock1.png, id=88, 513.92pt x 162.6075pt>
+<clock1.png, id=93, 513.92pt x 162.6075pt>
 File: clock1.png Graphic file (type png)
 <use clock1.png>
 Package pdftex.def Info: clock1.png  used on input line 105.
@@ -763,7 +763,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 )
-<latch0.png, id=90, 325.215pt x 273.02pt>
+<latch0.png, id=95, 325.215pt x 273.02pt>
 File: latch0.png Graphic file (type png)
 <use latch0.png>
 Package pdftex.def Info: latch0.png  used on input line 139.
@@ -773,20 +773,20 @@ Package pdftex.def Info: latch0.png  used on input line 139.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.144 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-2}) has been already used, duplicate ignored
+l.143 \end{figure}
+                  pdfTeX warning (ext4): destination with the same identifier (
+name{figure.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.144 
-       <./clock0.png> <./clock1.png>]
+l.143 \end{figure}
+                   <./clock0.png> <./clock1.png>]
 \openout3 = `seque.pyg'.
 
 
 (./_minted-seque/929E60028F1E8CF69474675ED15AD9DB22613F44998054DE6DFAC42DD67F2B
 1D.pygtex)
-<latch1.png, id=102, 490.83376pt x 317.185pt>
+<latch1.png, id=107, 490.83376pt x 317.185pt>
 File: latch1.png Graphic file (type png)
 <use latch1.png>
 Package pdftex.def Info: latch1.png  used on input line 171.
@@ -800,17 +800,17 @@ igure.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.7 ...T} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{);}
+l.5 ...TY} \PYG{n+nc}{d\PYGZus{}latch} \PYG{k}{IS}
                                                   pdfTeX warning (ext4): destin
 ation with the same identifier (name{figure.4}) has been already used, duplicat
 e ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.7 ...T} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{);}
+l.5 ...TY} \PYG{n+nc}{d\PYGZus{}latch} \PYG{k}{IS}
                                                    <./latch0.png> <./latch1.png
 >])
-<dff0.png, id=110, 577.15625pt x 234.8775pt>
+<dff0.png, id=115, 577.15625pt x 234.8775pt>
 File: dff0.png Graphic file (type png)
 <use dff0.png>
 Package pdftex.def Info: dff0.png  used on input line 203.
@@ -824,14 +824,14 @@ igure.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.21 \end{Verbatim}
+l.17 \PYG{k}{BEGIN}
                     <./dff0.png>])
-<rf0.png, id=118, 480.79625pt x 378.41376pt>
+<rf0.png, id=123, 480.79625pt x 378.41376pt>
 File: rf0.png Graphic file (type png)
 <use rf0.png>
 Package pdftex.def Info: rf0.png  used on input line 244.
 (pdftex.def)             Requested size: 216.81pt x 170.64261pt.
-<rf1.png, id=120, 549.05125pt x 553.06625pt>
+<rf1.png, id=125, 549.05125pt x 553.06625pt>
 File: rf1.png Graphic file (type png)
 <use rf1.png>
 Package pdftex.def Info: rf1.png  used on input line 257.
@@ -843,7 +843,7 @@ Package pdftex.def Info: rf1.png  used on input line 257.
                                                   \fi \fi 
 l.262 
        <./rf0.png>]
-<rf2.png, id=129, 567.11874pt x 447.6725pt>
+<rf2.png, id=134, 567.11874pt x 447.6725pt>
 File: rf2.png Graphic file (type png)
 <use rf2.png>
 Package pdftex.def Info: rf2.png  used on input line 270.
@@ -866,13 +866,13 @@ h the same identifier (name{figure.8}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.1 \begin{Verbatim}[commandchars=\\\{\}]
                                           <./rf1.png> <./rf2.png>])
-<sram0.png, id=137, 496.85625pt x 283.0575pt>
+<sram0.png, id=142, 496.85625pt x 283.0575pt>
 File: sram0.png Graphic file (type png)
 <use sram0.png>
 Package pdftex.def Info: sram0.png  used on input line 327.
 (pdftex.def)             Requested size: 216.81pt x 123.51773pt.
  [7]
-<sram1.png, id=146, 361.35pt x 397.485pt>
+<sram1.png, id=151, 361.35pt x 397.485pt>
 File: sram1.png Graphic file (type png)
 <use sram1.png>
 Package pdftex.def Info: sram1.png  used on input line 342.
@@ -896,12 +896,12 @@ te ignored
 l.13 ...l} \PYG{k}{of} \PYG{n+nc}{DFF} \PYG{k}{is}
                                                    <./sram0.png> <./sram1.png>]
 )
-<sram3.png, id=154, 564.1075pt x 613.29124pt>
+<sram3.png, id=159, 564.1075pt x 613.29124pt>
 File: sram3.png Graphic file (type png)
 <use sram3.png>
 Package pdftex.def Info: sram3.png  used on input line 386.
 (pdftex.def)             Requested size: 252.94499pt x 274.99591pt.
-<sram2.png, id=156, 714.67pt x 304.13625pt>
+<sram2.png, id=161, 714.67pt x 304.13625pt>
 File: sram2.png Graphic file (type png)
 <use sram2.png>
 Package pdftex.def Info: sram2.png  used on input line 399.
@@ -913,62 +913,62 @@ Package pdftex.def Info: sram2.png  used on input line 399.
                                                   \fi \fi 
 l.404 
        <./sram3.png>]
-<dram0.png, id=165, 645.41125pt x 467.7475pt>
+<dram0.png, id=170, 645.41125pt x 467.7475pt>
 File: dram0.png Graphic file (type png)
 <use dram0.png>
-Package pdftex.def Info: dram0.png  used on input line 422.
+Package pdftex.def Info: dram0.png  used on input line 421.
 (pdftex.def)             Requested size: 289.07999pt x 209.49948pt.
-<fsm0.png, id=166, 670.505pt x 325.215pt>
+<fsm0.png, id=171, 670.505pt x 325.215pt>
 File: fsm0.png Graphic file (type png)
 <use fsm0.png>
-Package pdftex.def Info: fsm0.png  used on input line 433.
+Package pdftex.def Info: fsm0.png  used on input line 431.
 (pdftex.def)             Requested size: 289.07999pt x 140.2119pt.
  [10pdfTeX warning (ext4): destination with the same identifier (name{figure.12
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.438 
+l.436 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 13}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.438 
+l.436 
        <./sram2.png> <./dram0.png>]
-<fsm1.png, id=173, 675.52374pt x 233.87375pt>
+<fsm1.png, id=178, 675.52374pt x 233.87375pt>
 File: fsm1.png Graphic file (type png)
 <use fsm1.png>
-Package pdftex.def Info: fsm1.png  used on input line 441.
+Package pdftex.def Info: fsm1.png  used on input line 439.
 (pdftex.def)             Requested size: 289.07999pt x 100.08554pt.
-<fsm2.png, id=174, 429.605pt x 139.52126pt>
+<fsm2.png, id=179, 429.605pt x 139.52126pt>
 File: fsm2.png Graphic file (type png)
 <use fsm2.png>
-Package pdftex.def Info: fsm2.png  used on input line 449.
+Package pdftex.def Info: fsm2.png  used on input line 447.
 (pdftex.def)             Requested size: 289.07999pt x 93.88536pt.
-<fsm3.png, id=175, 579.16376pt x 298.11375pt>
+<fsm3.png, id=180, 579.16376pt x 298.11375pt>
 File: fsm3.png Graphic file (type png)
 <use fsm3.png>
-Package pdftex.def Info: fsm3.png  used on input line 457.
+Package pdftex.def Info: fsm3.png  used on input line 455.
 (pdftex.def)             Requested size: 289.07999pt x 148.79723pt.
  [11pdfTeX warning (ext4): destination with the same identifier (name{figure.14
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.462 
+l.460 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 15}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.462 
+l.460 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 16}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.462 
+l.460 
        <./fsm0.png> <./fsm1.png> <./fsm2.png>]
 \openout3 = `seque.pyg'.
 
@@ -979,17 +979,17 @@ ntifier (name{figure.17}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.10 \end{thebibliography}
-                           <./fsm3.png>]) 
+l.9 
+     <./fsm3.png>]) 
 AED: lastpage setting LastPage
 [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 506.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 506.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 512.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 512.
  (./seque.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 506.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 506.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 512.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 512.
 Package rerunfilecheck Info: File `seque.out' has not changed.
-(rerunfilecheck)             Checksum: 20C01EC54284DC68C84A2FF6BB932E99;656.
+(rerunfilecheck)             Checksum: C81D4B94E8D59C0EB4E1AD7F2B75C5AF;707.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -998,13 +998,13 @@ runsystem(rm seque.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 14084 strings out of 494923
- 228839 string characters out of 6180742
- 511978 words of memory out of 5000000
- 17017 multiletter control sequences out of 15000+600000
+ 14086 strings out of 494923
+ 228859 string characters out of 6180742
+ 510978 words of memory out of 5000000
+ 17018 multiletter control sequences out of 15000+600000
  17769 words of font info for 78 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,14n,43p,1006b,610s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,14n,43p,1006b,606s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf
 /fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf/fonts/type1/public/
 cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pf
@@ -1013,10 +1013,10 @@ fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfit1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb
 ></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb></usr/share/texmf/f
 onts/type1/public/cm-super/sftt1095.pfb>
-Output written on seque.pdf (13 pages, 456718 bytes).
+Output written on seque.pdf (13 pages, 459019 bytes).
 PDF statistics:
- 242 PDF objects out of 1000 (max. 8388607)
- 200 compressed objects within 2 object streams
- 49 named destinations out of 1000 (max. 500000)
- 14518 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 249 PDF objects out of 1000 (max. 8388607)
+ 206 compressed objects within 3 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 14526 words of extra memory for PDF output out of 17280 (max. 10000000)
 

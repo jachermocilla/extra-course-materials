@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{LIBRARY} \PYG{n+nn}{ieee}\PYG{p}{;}
+\PYG{k}{USE} \PYG{n+nn}{ieee.std\PYGZus{}logic\PYGZus{}1164.}\PYG{k}{all}\PYG{p}{;}
+
+\PYG{k}{ENTITY} \PYG{n+nc}{DFF} \PYG{k}{is}
+\PYG{k}{PORT}\PYG{p}{(} \PYG{n}{din}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{clk}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{rst}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{en}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{dout}\PYG{o}{:} \PYG{k}{OUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{);}
+\PYG{k}{END} \PYG{n+nc}{DFF}\PYG{p}{;}
+
+\PYG{k}{ARCHITECTURE} \PYG{n+nc}{behavioral} \PYG{k}{of} \PYG{n+nc}{DFF} \PYG{k}{is}
+\PYG{k}{BEGIN}
+   \PYG{k}{PROCESS}\PYG{p}{(}\PYG{n}{rst}\PYG{p}{,}\PYG{n}{clk}\PYG{p}{,}\PYG{n}{din}\PYG{p}{)}
+      \PYG{k}{BEGIN}
+         \PYG{k}{IF} \PYG{p}{(}\PYG{n}{rst}\PYG{o}{=}\PYG{l+s+sc}{\PYGZsq{}1\PYGZsq{}}\PYG{p}{)} \PYG{k}{THEN}
+            \PYG{n}{dout}\PYG{o}{\PYGZlt{}=}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{;}
+         \PYG{k}{ELSIF}\PYG{p}{(}\PYG{n}{RISING\PYGZus{}EDGE}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{))} \PYG{k}{THEN}
+            \PYG{k}{IF} \PYG{p}{(}\PYG{n}{en}\PYG{o}{=}\PYG{l+s+sc}{\PYGZsq{}1\PYGZsq{}}\PYG{p}{)} \PYG{k}{THEN}
+               \PYG{n}{dout}\PYG{o}{\PYGZlt{}=} \PYG{n}{din}\PYG{p}{;}
+            \PYG{k}{ELSE}
+               \PYG{n}{dout}\PYG{o}{\PYGZlt{}=}\PYG{l+s+sc}{\PYGZsq{}Z\PYGZsq{}}\PYG{p}{;}
+            \PYG{k}{END} \PYG{k}{IF}\PYG{p}{;}
+      \PYG{k}{END} \PYG{k}{IF}\PYG{p}{;}
+   \PYG{k}{END} \PYG{k}{PROCESS}\PYG{p}{;}
+\PYG{k}{END} \PYG{n+nc}{behavioral}\PYG{p}{;}
+\end{Verbatim}
