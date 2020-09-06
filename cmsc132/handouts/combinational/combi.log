@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  5 SEP 2020 23:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  6 SEP 2020 11:21
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -710,11 +710,11 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write7
 \openout7 = `combi.toc'.
 
-<playground.png, id=68, 805.0075pt x 479.7925pt>
+<playground.png, id=68, 1010.77625pt x 541.02126pt>
 File: playground.png Graphic file (type png)
 <use playground.png>
 Package pdftex.def Info: playground.png  used on input line 76.
-(pdftex.def)             Requested size: 361.34999pt x 215.36285pt.
+(pdftex.def)             Requested size: 361.34999pt x 193.41362pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (25.22153pt): 
@@ -736,10 +736,9 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.110 	\item{
-             \textit{Instruction Memory (IM)}-holds the instructions/machine...
- <./playground.png>]
-<single-cycle-dp-control.png, id=96, 980.66376pt x 731.73375pt>
+l.111 	\item{
+             \textit{Register File (RF)}- fast storage} <./playground.png>]
+<single-cycle-dp-control.png, id=97, 980.66376pt x 731.73375pt>
 File: single-cycle-dp-control.png Graphic file (type png)
 <use single-cycle-dp-control.png>
 Package pdftex.def Info: single-cycle-dp-control.png  used on input line 118.
@@ -756,8 +755,8 @@ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.131 	\item {
-              \textit{Instruction Decode (ID)} - current instruction is exam...
+l.134 	\item {
+              \textit{Writeback (WB)} - result will be used stored in regist...
  <./single-cycle-dp-control.png>]
 <decoder.png, id=104, 1087.06125pt x 325.215pt>
 File: decoder.png Graphic file (type png)
@@ -905,7 +904,7 @@ ype1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super
 /sfit1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/
 share/texmf/fonts/type1/public/cm-super/sfti1095.pfb></usr/share/texmf/fonts/ty
 pe1/public/cm-super/sftt1095.pfb>
-Output written on combi.pdf (8 pages, 384441 bytes).
+Output written on combi.pdf (8 pages, 409239 bytes).
 PDF statistics:
  199 PDF objects out of 1000 (max. 8388607)
  171 compressed objects within 2 object streams
