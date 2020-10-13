@@ -1,0 +1,7 @@
+
+mkfifo /tmp/mypipe
+ls -l /tmp/mypipe
+echo "data" > /tmp/mypipe
+
+open a new terminal 
+cat /tmp/mypipe
