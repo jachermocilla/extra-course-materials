@@ -101,7 +101,7 @@ SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC_VECTOR(1 DOWNTO 0);      --op (alu), alu_
 SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC_VECTOR(7 DOWNTO 0);      --rs (alu)
 SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC_VECTOR(7 DOWNTO 0);      --rt (alu)
 SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC_VECTOR(1 DOWNTO 0);      --instr (control), op (instruciton) 
-SIGNAL	SYNTHESIZED_WIRE_17 :  STD_LOGIC_VECTOR(2 DOWNTO 0);     --current_instruction, instr_addr (instruction), current_instr, next_instr (pc)
+SIGNAL	SYNTHESIZED_WIRE_17 :  STD_LOGIC_VECTOR(2 DOWNTO 0) := "000";     --current_instruction, instr_addr (instruction), current_instr, next_instr (pc)
 SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC;                         --reg_dst (control), sel (mux0) 
 SIGNAL	SYNTHESIZED_WIRE_18 :  STD_LOGIC_VECTOR(1 DOWNTO 0);     --rt_addr (instruction), a (mux0), rt_addr (registers)
 SIGNAL	SYNTHESIZED_WIRE_19 :  STD_LOGIC_VECTOR(1 DOWNTO 0);     --rd_addr (instruction), b (mux0), data_in (sign_extend)

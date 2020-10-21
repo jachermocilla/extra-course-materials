@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity Instruction is
   port(
-    instr_addr : in std_logic_vector(2 downto 0);    -- instruction address
+    instr_addr : in std_logic_vector(2 downto 0) := "000";    -- instruction address
 
     op         : out std_logic_vector(1 downto 0);   -- operation code
     rs_addr    : out std_logic_vector(1 downto 0);   -- source register 1 address
