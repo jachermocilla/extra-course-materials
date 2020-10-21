@@ -19,7 +19,7 @@ begin
     alu_op <= "00" when "00",   -- AND
               "01" when "01",   -- OR
               "10" when "10",   -- ADD
-              "11" when "11";   -- ADDi
+              "11" when "11",   -- ADDi
               "XX" when others;   -- error
 
   with instr select

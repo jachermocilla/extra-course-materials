@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_unsigned.all;
+use IEEE.numeric_std.all;
+--use ieee.std_logic_unsigned.all;
 
 entity ALU is
   port(
@@ -23,11 +24,11 @@ begin
     if (op = "00") then      -- AND
       result <= rs and rt;
     elsif (op = "01") then   -- ADD
-      result <= rs + rt;
+      result <= std_logic_vector(unsigned(rs) + unsigned(rt));
     elsif (op = "10") then   -- SUB
-      result <= rs - rt;
+      result <= std_logic_vector(unsigned(rs) - unsigned(rt));
     elsif (op = "11") then   -- ADDi
-      result <= rs + rt;
+      result <= std_logic_vector(unsigned(rs) + unsigned(rt));
     end if;
   end process;
 
