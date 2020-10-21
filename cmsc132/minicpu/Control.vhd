@@ -20,6 +20,7 @@ begin
               "01" when "01",   -- OR
               "10" when "10",   -- ADD
               "11" when "11";   -- ADDi
+              "XX" when others;   -- error
 
   with instr select
     alu_src <= '1' when "11",   -- ADDi
