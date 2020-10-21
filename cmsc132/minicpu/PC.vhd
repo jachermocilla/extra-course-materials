@@ -19,7 +19,11 @@ begin
   process(clk)
   begin
     if falling_edge(clk) then
-      next_signal <= std_logic_vector(unsigned(current_instr) + to_unsigned(1, 3));
+      if (current_instr = "UUU") then
+         next_signal <= "000";
+      else
+         next_signal <= std_logic_vector(unsigned(current_instr) + to_unsigned(1, 3));
+      end if;
     end if;
   end process;
 

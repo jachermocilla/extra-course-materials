@@ -78,7 +78,7 @@ COMPONENT pc
 		 current_instr : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
 		 next_instr : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
 	);
-END COMPONENT;
+   END COMPONENT;
 
 COMPONENT registers
 	PORT(clk : IN STD_LOGIC;
