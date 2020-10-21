@@ -30,7 +30,12 @@ begin
     elsif (op = "11") then   -- ADDi
       result <= std_logic_vector(unsigned(rs) + unsigned(rt));
     end if;
+  
+    if (result = "XXXXXXXX") then
+      result <= "00000000";
+    end if;
   end process;
+
 
   rd <= result;
 
