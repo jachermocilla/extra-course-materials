@@ -20,9 +20,17 @@ end Registers;
 architecture behavioral of Registers is
 
   type registerFile is array(0 to 3) of std_logic_vector(7 downto 0);
-  signal reg: registerFile;
+  --put some initial values to the registers
+  --
+  signal reg: registerFile := (
+   "00000001",
+   "00000010",
+   "00000011",
+   "00000100"
+   );
 
 begin
+
   process(clk)
   begin
     if falling_edge(clk) then
