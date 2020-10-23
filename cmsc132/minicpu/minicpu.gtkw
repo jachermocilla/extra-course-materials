@@ -1,0 +1,87 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Fri Oct 23 14:35:27 2020
+[*]
+[dumpfile] "/home/jachermocilla/Sources/github/cmsc132-extra-course-materials/cmsc132/minicpu/minicpu.vcd"
+[dumpfile_mtime] "Fri Oct 23 14:03:19 2020"
+[dumpfile_size] 6074
+[savefile] "/home/jachermocilla/Desktop/minicpu.gtkw"
+[timestart] 0
+[size] 1366 741
+[pos] 1591 -33
+*-26.233438 100000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] processor_tb.
+[treeopen] processor_tb.uut.
+[sst_width] 223
+[signals_width] 287
+[sst_expanded] 1
+[sst_vpaned_height] 202
+@200
+-Processor
+@28
+processor_tb.clk
+processor_tb.ci[2:0]
+@25
+processor_tb.val[7:0]
+@200
+-Program Counter
+@28
+processor_tb.uut.b2v_program_counter.current_instr[2:0]
+processor_tb.uut.b2v_program_counter.next_instr[2:0]
+processor_tb.uut.b2v_program_counter.next_signal[2:0]
+@200
+-Instruction Memory
+@28
+processor_tb.uut.b2v_instruction_memory.instr_addr[2:0]
+processor_tb.uut.b2v_instruction_memory.op[1:0]
+processor_tb.uut.b2v_instruction_memory.rs_addr[1:0]
+processor_tb.uut.b2v_instruction_memory.rt_addr[1:0]
+processor_tb.uut.b2v_instruction_memory.rd_addr[1:0]
+@200
+-Control Unit
+@28
+processor_tb.uut.b2v_control_unit.instr[1:0]
+processor_tb.uut.b2v_control_unit.alu_op[1:0]
+processor_tb.uut.b2v_control_unit.alu_src
+processor_tb.uut.b2v_control_unit.reg_dst
+@200
+-Mux0
+@28
+processor_tb.uut.b2v_mux0.sel
+processor_tb.uut.b2v_mux0.a[1:0]
+processor_tb.uut.b2v_mux0.b[1:0]
+processor_tb.uut.b2v_mux0.y[1:0]
+@200
+-Sign Extend
+@28
+processor_tb.uut.b2v_sign_extend.data_in[1:0]
+processor_tb.uut.b2v_sign_extend.data_out[7:0]
+@200
+-Mux1
+@28
+processor_tb.uut.b2v_mux1.sel
+@24
+processor_tb.uut.b2v_mux1.a[7:0]
+@22
+processor_tb.uut.b2v_mux1.y[7:0]
+processor_tb.uut.b2v_mux1.b[7:0]
+@200
+-Registers
+@28
+processor_tb.uut.b2v_registers_file.rd_addr[1:0]
+processor_tb.uut.b2v_registers_file.rs_addr[1:0]
+processor_tb.uut.b2v_registers_file.rt_addr[1:0]
+@22
+processor_tb.uut.b2v_registers_file.wr_data[7:0]
+processor_tb.uut.b2v_registers_file.rt[7:0]
+processor_tb.uut.b2v_registers_file.rs[7:0]
+@200
+-ALU
+@28
+processor_tb.uut.b2v_arithmetic_logic_unit.op[1:0]
+@22
+processor_tb.uut.b2v_arithmetic_logic_unit.rs[7:0]
+processor_tb.uut.b2v_arithmetic_logic_unit.rt[7:0]
+processor_tb.uut.b2v_arithmetic_logic_unit.rd[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
