@@ -2,10 +2,10 @@
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
 [*] Fri Oct 23 14:35:27 2020
 [*]
-[dumpfile] "/home/jachermocilla/Sources/github/cmsc132-extra-course-materials/cmsc132/minicpu/minicpu.vcd"
+[dumpfile] "./toma.vcd"
 [dumpfile_mtime] "Fri Oct 23 14:03:19 2020"
 [dumpfile_size] 6074
-[savefile] "/home/jachermocilla/Desktop/minicpu.gtkw"
+[savefile] "./minicpu.gtkw"
 [timestart] 0
 [size] 1366 741
 [pos] 1591 -33
