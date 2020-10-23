@@ -21,7 +21,7 @@ architecture behavioral of Registers is
 
   type registerFile is array(0 to 3) of std_logic_vector(7 downto 0);
   --put some initial values to the registers
-  --
+  --because we don't have load instructions!
   signal reg: registerFile := (
    "00000001",
    "00000010",
