@@ -3,9 +3,9 @@
 
 FPGA-based 8-bit simple processor designed using the VHDL language
 
-Mainly components
+Main components
 * Program counter (PC)
-* 8 Instructions with 8-bit
+* Can accommodate 8 Instructions with 8-bit instruction word
 * 4 8-bit registers
 * Arithmetic logic unit (ALU)
 * Control unit
