@@ -7,4 +7,4 @@ done
   
 ghdl -a Processor_tb.vhdl
 ghdl -e Processor_tb
-ghdl -r  Processor_tb  --vcd=minicpu.vcd  --stop-time=200ns
+ghdl -r  Processor_tb  --vcd=toma.vcd  --stop-time=200ns
