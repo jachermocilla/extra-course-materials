@@ -1,4 +1,4 @@
-# 8-Bit Simple Processor
+# The Optimal Machine Architecture (T.O.M.A.)
 (Original: https://github.com/jirawatsaesu/8-Bit-Simple-Processor)
 
 FPGA-based 8-bit simple processor designed using the VHDL language
@@ -51,7 +51,7 @@ R-type instruction splitted.
 
 
 ## Registers File
-4 8-bit registers to store the binary from ``00000000`` to ``11111111`` (defaults first register is ``00000001``, second register is ``00000010`` and so on). Fetch each registers with address.
+4 8-bit registers to store the binary from ``00000000`` to ``11111111`` (default first register is ``00000001``, second register is ``00000010`` and so on). Fetch each registers with address.
 
 * 8-bit value of source register 1 and 2 send to **ALU**.
 ```
