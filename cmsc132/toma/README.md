@@ -1,5 +1,5 @@
 # 8-Bit Simple Processor
-(https://github.com/jirawatsaesu/8-Bit-Simple-Processor)
+(Original: https://github.com/jirawatsaesu/8-Bit-Simple-Processor)
 
 FPGA-based 8-bit simple processor designed using the VHDL language
 
