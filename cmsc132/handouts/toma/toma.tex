@@ -80,11 +80,25 @@ implemented using a \textbf{finite state machine} for
 \subsection{Instruction Set Architecture}
 Instruction Set Architecture (ISA) is an \textbf{abstraction} between the 
 hardware and the lowest-level software. It includes anything programmers need 
-to know to make a binary machine language program work correctly.
+to know to make a binary machine language program work correctly. Typically a 
+documentation of the \textit{set of instructions that can be performed by the 
+processor}, \textit{number and name of available registers}, \textit{memory 
+addressing modes}, \textit{I/O}, \textit{interrupt processing}, etc.
 
+It allows computer designers to talk about functions indepedently from the 
+hardware that performs them. This abstact interface enables many 
+implementations (aka \textbf{microarchitectures}) of varying costs and 
+performance to run identical software.
 
-allows computer designers to talk about functions indepedently from the 
-hardware that performs them.
+Examples of ISA include the \textbf{IA-32} and \textbf{x86-64} which are 
+commonly used in desktop and laptops. Intel implements these ISA in their Intel 
+Core i5 product as 8th Generation aka as \textbf{Kaby Lake Refresh}. AMD also 
+implements these ISA in the Ryzen 5000 as 4th Gen aka \textbf{Zen 3}. There are 
+other implementations that vary in their performance characteristics.
+
+For mobile devices a popular ISA is the \textbf{ARMv8 A64}. MediaTek uses ARM's 
+Cortex-A73 and Cortex-A53 implementation in their Helio P70. Qualcomm also uses 
+the same implementations in their Kryo 240 Snapdragon SoC.
 
 
 %%\begin{figure}[H]
