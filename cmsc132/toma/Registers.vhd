@@ -11,8 +11,8 @@ entity Registers is
     rd_addr : in std_logic_vector(1 downto 0);    -- destination register address
     wr_data : in std_logic_vector(7 downto 0);    -- write data to destination register
 
-    rs      : out std_logic_vector(7 downto 0);   -- source register 1
-    rt      : out std_logic_vector(7 downto 0)    -- source register 2
+    rs      : out std_logic_vector(7 downto 0);   -- source register 1 value
+    rt      : out std_logic_vector(7 downto 0)    -- source register 2 value
   );
 end Registers;
 
