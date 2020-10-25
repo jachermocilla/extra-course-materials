@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  25 OCT 2020 19:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  25 OCT 2020 20:00
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1072,6 +1072,11 @@ Package pdftex.def Info: control_unit.png  used on input line 465.
 \openout5 = `toma.pyg'.
 
 
+(./_minted-toma/78285AFCC086F3809AD95C3B8A893B0C546677A2B0D9A2AF13D34810DCBE51A
+7.pygtex)
+\openout5 = `toma.pyg'.
+
+
 (./_minted-toma/0D358B08729353F05427B11BC63B6152546677A2B0D9A2AF13D34810DCBE51A
 7.pygtex)
 \openout3 = `toma.pyg'.
@@ -1082,20 +1087,20 @@ Package pdftex.def Info: control_unit.png  used on input line 465.
 <sim.png, id=273, 828.09375pt x 649.42625pt>
 File: sim.png Graphic file (type png)
 <use sim.png>
-Package pdftex.def Info: sim.png  used on input line 540.
+Package pdftex.def Info: sim.png  used on input line 541.
 (pdftex.def)             Requested size: 433.62pt x 340.07195pt.
  [12 <./sim.png>]
 
-LaTeX Warning: Reference `fig:sram3' on page 13 undefined on input line 574.
+LaTeX Warning: Reference `fig:sram3' on page 13 undefined on input line 575.
 
 (./toma.bbl) 
 AED: lastpage setting LastPage
 [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 593.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 593.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 594.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 594.
  (./toma.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 593.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 593.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 594.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 594.
 Package rerunfilecheck Info: File `toma.out' has not changed.
 (rerunfilecheck)             Checksum: 0A0662ED8FF92AB16C294096335F45DF;1915.
 
@@ -1109,8 +1114,8 @@ runsystem(rm toma.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 15378 strings out of 494923
- 261881 string characters out of 6180742
+ 15380 strings out of 494923
+ 262051 string characters out of 6180742
  541053 words of memory out of 5000000
  18201 multiletter control sequences out of 15000+600000
  16581 words of font info for 60 fonts, out of 8000000 for 9000
@@ -1125,7 +1130,7 @@ m-super/sfit1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb
 ></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/f
 onts/type1/public/cm-super/sfti1095.pfb></usr/share/texmf/fonts/type1/public/cm
 -super/sftt1095.pfb>
-Output written on toma.pdf (13 pages, 455741 bytes).
+Output written on toma.pdf (13 pages, 455751 bytes).
 PDF statistics:
  349 PDF objects out of 1000 (max. 8388607)
  301 compressed objects within 4 object streams

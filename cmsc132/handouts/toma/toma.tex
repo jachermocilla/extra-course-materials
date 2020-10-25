@@ -514,7 +514,8 @@ end mux1;
 
 
 \subsubsection{Sign Extend}
-If the instruction is addi, then the 2-bit immediate value which is from the 
+If the instruction is \mintinline{vhdl}{addi}, then the 2-bit immediate value 
+which is from the 
 \mintinline{vhdl}{rd_addr} output of the Instruction Memory will be converted 
 to 8 bits before being passed to the ALU which perform operations on 8-bit 
 values.
