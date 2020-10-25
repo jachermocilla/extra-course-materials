@@ -267,6 +267,8 @@ END Processor;
 %%[width=10in]
 
 \subsubsection{Program Counter}
+The Program Counter will generate the address of the next instruction. It adds 
+1 to the value of \mintinline{vhdl}{current_instr}.
 \begin{listing}[H]
 \caption{Interface to the Program Counter.}
 \label{code:pc}
@@ -290,6 +292,12 @@ end PC;
 \end{figure}
 
 \subsubsection{Instruction Memory}
+Instruction Memory contains the instructions to be executed in an array of 
+1-byte cells. It will decode the instruction specified by 
+\mintinline{vhdl}{instr_addr}. The decode process will extract and output the 
+different parts of the instruction: op, rs\_address, rt\_address, 
+rd\_address/imm.
+
 \begin{listing}[H]
 \caption{Interface to the Instruction Memory.}
 \label{code:im}
@@ -318,7 +326,7 @@ end Instruction;
 \end{figure}
 
 \begin{listing}[H]
-\caption{Hard-coded instruction in the instruction memory.}
+\caption{Hard-coded instructions in the instruction memory.}
 \label{code:im_code}
 \begin{minted}[frame=single,framesep=10pt]{vhdl}
      constant instr : instruction_set := (

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  25 OCT 2020 18:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  25 OCT 2020 18:30
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -825,6 +825,11 @@ Overfull \hbox (67.83469pt too wide) in paragraph at lines 261--262
 [6
 
  <./redhorse500.png>]
+\openout5 = `toma.pyg'.
+
+
+(./_minted-toma/99128F2DF248FECC9D7CE25788E2D11B546677A2B0D9A2AF13D34810DCBE51A
+7.pygtex)
 \openout3 = `toma.pyg'.
 
 
@@ -833,8 +838,13 @@ Overfull \hbox (67.83469pt too wide) in paragraph at lines 261--262
 <pc.png, id=210, 784.43062pt x 359.84438pt>
 File: pc.png Graphic file (type png)
 <use pc.png>
-Package pdftex.def Info: pc.png  used on input line 286.
+Package pdftex.def Info: pc.png  used on input line 288.
 (pdftex.def)             Requested size: 216.81pt x 99.45442pt.
+\openout5 = `toma.pyg'.
+
+
+(./_minted-toma/9B73B59D38D2FA5E31D50E4484B681BE546677A2B0D9A2AF13D34810DCBE51A
+7.pygtex)
 \openout3 = `toma.pyg'.
 
 
@@ -843,7 +853,7 @@ Package pdftex.def Info: pc.png  used on input line 286.
 <im.png, id=211, 675.27281pt x 408.77719pt>
 File: im.png Graphic file (type png)
 <use im.png>
-Package pdftex.def Info: im.png  used on input line 314.
+Package pdftex.def Info: im.png  used on input line 322.
 (pdftex.def)             Requested size: 216.81pt x 131.24174pt.
  [7
 
@@ -861,7 +871,7 @@ Package pdftex.def Info: im.png  used on input line 314.
 <rf.png, id=222, 476.53032pt x 411.03563pt>
 File: rf.png Graphic file (type png)
 <use rf.png>
-Package pdftex.def Info: rf.png  used on input line 362.
+Package pdftex.def Info: rf.png  used on input line 370.
 (pdftex.def)             Requested size: 216.81pt x 187.01523pt.
  [8 <./im.png>]
 \openout3 = `toma.pyg'.
@@ -877,7 +887,7 @@ Package pdftex.def Info: rf.png  used on input line 362.
 <alu.png, id=232, 577.40718pt x 413.29407pt>
 File: alu.png Graphic file (type png)
 <use alu.png>
-Package pdftex.def Info: alu.png  used on input line 401.
+Package pdftex.def Info: alu.png  used on input line 409.
 (pdftex.def)             Requested size: 216.81pt x 155.18669pt.
  [9 <./rf.png>]
 \openout3 = `toma.pyg'.
@@ -888,7 +898,7 @@ Package pdftex.def Info: alu.png  used on input line 401.
 <control_unit.png, id=242, 710.655pt x 417.81094pt>
 File: control_unit.png Graphic file (type png)
 <use control_unit.png>
-Package pdftex.def Info: control_unit.png  used on input line 428.
+Package pdftex.def Info: control_unit.png  used on input line 436.
 (pdftex.def)             Requested size: 216.81pt x 127.46721pt.
 \openout3 = `toma.pyg'.
 
@@ -906,16 +916,16 @@ Package pdftex.def Info: control_unit.png  used on input line 428.
 (./_minted-toma/899877E9F2BF6E51C20CB3EDC8CE4D13546677A2B0D9A2AF13D34810DCBE51A
 7.pygtex) [11]
 
-LaTeX Warning: Reference `fig:sram3' on page 12 undefined on input line 509.
+LaTeX Warning: Reference `fig:sram3' on page 12 undefined on input line 517.
 
 (./toma.bbl) 
 AED: lastpage setting LastPage
 [12]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 528.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 528.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 536.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 536.
  (./toma.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 528.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 528.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 536.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 536.
 Package rerunfilecheck Info: File `toma.out' has not changed.
 (rerunfilecheck)             Checksum: 300A6735A2982611DEDF290FC501ADE5;1844.
 
@@ -929,11 +939,11 @@ runsystem(rm toma.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 15247 strings out of 494923
- 252932 string characters out of 6180742
- 538420 words of memory out of 5000000
- 18174 multiletter control sequences out of 15000+600000
- 15437 words of font info for 53 fonts, out of 8000000 for 9000
+ 15257 strings out of 494923
+ 253592 string characters out of 6180742
+ 538552 words of memory out of 5000000
+ 18176 multiletter control sequences out of 15000+600000
+ 15500 words of font info for 54 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  53i,14n,92p,1005b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/
@@ -944,7 +954,7 @@ fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfit1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb
 ></usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb></usr/share/texmf/f
 onts/type1/public/cm-super/sftt1095.pfb>
-Output written on toma.pdf (12 pages, 383004 bytes).
+Output written on toma.pdf (12 pages, 383412 bytes).
 PDF statistics:
  323 PDF objects out of 1000 (max. 8388607)
  280 compressed objects within 3 object streams
