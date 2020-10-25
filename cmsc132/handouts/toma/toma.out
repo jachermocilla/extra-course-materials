@@ -5,9 +5,11 @@
 \BOOKMARK [2][-]{subsection.2.3}{ISA Taxonomy}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.4}{Considerations in ISA Design}{section.2}% 6
 \BOOKMARK [2][-]{subsection.2.5}{Example Instruction Formats}{section.2}% 7
-\BOOKMARK [2][-]{subsection.2.6}{The Optimal Machine Architecture \(TOMA\)}{section.2}% 8
-\BOOKMARK [1][-]{section.3}{Summary}{}% 9
-\BOOKMARK [1][-]{section.4}{Learning Activities}{}% 10
-\BOOKMARK [1][-]{section.5}{Self-Assessment Questions}{}% 11
-\BOOKMARK [1][-]{section.6}{Deliverable}{}% 12
-\BOOKMARK [1][-]{section.7}{Further Reading}{}% 13
+\BOOKMARK [2][-]{subsection.2.6}{The Optimal Machine Architecture \(TOMA\) ISA}{section.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.6.1}{Features}{subsection.2.6}% 9
+\BOOKMARK [3][-]{subsubsection.2.6.2}{Instruction Format}{subsection.2.6}% 10
+\BOOKMARK [1][-]{section.3}{Summary}{}% 11
+\BOOKMARK [1][-]{section.4}{Learning Activities}{}% 12
+\BOOKMARK [1][-]{section.5}{Self-Assessment Questions}{}% 13
+\BOOKMARK [1][-]{section.6}{Deliverable}{}% 14
+\BOOKMARK [1][-]{section.7}{Further Reading}{}% 15

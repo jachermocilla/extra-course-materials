@@ -5,9 +5,11 @@
 \contentsline {subsection}{\numberline {2.3}ISA Taxonomy}{2}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Considerations in ISA Design}{2}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}Example Instruction Formats}{3}{subsection.2.5}
-\contentsline {subsection}{\numberline {2.6}The Optimal Machine Architecture (TOMA)}{3}{subsection.2.6}
-\contentsline {section}{\numberline {3}Summary}{5}{section.3}
-\contentsline {section}{\numberline {4}Learning Activities}{5}{section.4}
-\contentsline {section}{\numberline {5}Self-Assessment Questions}{5}{section.5}
-\contentsline {section}{\numberline {6}Deliverable}{5}{section.6}
-\contentsline {section}{\numberline {7}Further Reading}{5}{section.7}
+\contentsline {subsection}{\numberline {2.6}The Optimal Machine Architecture (TOMA) ISA}{3}{subsection.2.6}
+\contentsline {subsubsection}{\numberline {2.6.1}Features}{3}{subsubsection.2.6.1}
+\contentsline {subsubsection}{\numberline {2.6.2}Instruction Format}{4}{subsubsection.2.6.2}
+\contentsline {section}{\numberline {3}Summary}{6}{section.3}
+\contentsline {section}{\numberline {4}Learning Activities}{6}{section.4}
+\contentsline {section}{\numberline {5}Self-Assessment Questions}{6}{section.5}
+\contentsline {section}{\numberline {6}Deliverable}{6}{section.6}
+\contentsline {section}{\numberline {7}Further Reading}{6}{section.7}

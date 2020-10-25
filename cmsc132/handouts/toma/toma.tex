@@ -159,18 +159,30 @@ manuals. The x86-64 format is more complex than that of the ARMv8.
 	\end{center}
 \end{figure}
 
-\subsection{The Optimal Machine Architecture (TOMA)}
-Let us take a look at a simple ISA which we will call TOMA. The following are 
-its "features".
-\begin{itemize}
-\item Has 4 8-bit registers named \$s0, \$s1, \$s2, \$s3 in assembly code
-\item Instruction memory is 8x8, address line is 3 bits
-\item Has a 3-bit Program Counter (PC) register
-\item Single-cycle - completes instruction execution in one clock cycle
-\item Has no data memory, thus has no load and store instructions
-\item Has no control transfer instructions
+\subsection{The Optimal Machine Architecture (TOMA) ISA}
 
+\subsubsection{Features}
+\begin{itemize}
+\item Four 8-bit registers named \$s0, \$s1, \$s2, \$s3 in assembly code
+\item Instruction memory is 8 bytes(8x8), address line is 3 bits
+\item Three-bit Program Counter (PC)
+\item Single-cycle - completes instruction execution in one clock cycle
+\item No data memory, thus has no load and store instructions
+\item No control transfer instructions
 \end{itemize}
+
+\subsubsection{Instruction Format}
+The size of an instruction in TOMA is 8 bits divided into the configuration 
+shown in Figure \ref{fig:ins_format}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=5in]{ins_format.png}
+	\caption{TOMA instruction format.}
+	\label{fig:ins_format} 
+	\end{center}
+\end{figure}
+
 
 \begin{landscape}
 \thispagestyle{plain}
@@ -183,7 +195,6 @@ its "features".
 \end{figure}
 \end{landscape}
 %%[width=10in]
-
 
 \begin{minted}[frame=single,framesep=10pt]{vhdl}
 LIBRARY ieee;
