@@ -6,7 +6,7 @@
 \contentsline {subsection}{\numberline {2.4}Considerations in ISA Design}{2}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}Example Instruction Formats}{3}{subsection.2.5}
 \contentsline {subsection}{\numberline {2.6}TOMA: The Optimal Machine Architecture}{3}{subsection.2.6}
-\contentsline {subsubsection}{\numberline {2.6.1}Features}{3}{subsubsection.2.6.1}
+\contentsline {subsubsection}{\numberline {2.6.1}Features}{4}{subsubsection.2.6.1}
 \contentsline {subsubsection}{\numberline {2.6.2}Instruction Format}{4}{subsubsection.2.6.2}
 \contentsline {subsubsection}{\numberline {2.6.3}Supported Instructions}{4}{subsubsection.2.6.3}
 \contentsline {subsubsection}{\numberline {2.6.4}Example assembly code and machine code}{4}{subsubsection.2.6.4}
@@ -19,7 +19,7 @@
 \contentsline {subsubsection}{\numberline {2.7.6}Control Unit}{10}{subsubsection.2.7.6}
 \contentsline {subsubsection}{\numberline {2.7.7}Mux0}{11}{subsubsection.2.7.7}
 \contentsline {subsubsection}{\numberline {2.7.8}Mux1}{11}{subsubsection.2.7.8}
-\contentsline {subsubsection}{\numberline {2.7.9}Sign Extend}{11}{subsubsection.2.7.9}
+\contentsline {subsubsection}{\numberline {2.7.9}Sign Extend}{12}{subsubsection.2.7.9}
 \contentsline {section}{\numberline {3}Summary}{12}{section.3}
 \contentsline {section}{\numberline {4}Learning Activities}{12}{section.4}
 \contentsline {section}{\numberline {5}Self-Assessment Questions}{12}{section.5}

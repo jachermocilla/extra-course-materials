@@ -95,11 +95,11 @@ implementations (aka \textbf{microarchitectures}) of varying costs and
 performance to run identical software.
 
 Examples of ISA include the \textbf{IA-32} and \textbf{x86-64} which are 
-commonly used in desktop and laptops. Intel implements these ISA in their Intel 
-Core i5 product as \textbf{8th Generation aka as Kaby Lake Refresh}. AMD also 
-implements these ISA in the Ryzen 5000 as \textbf{4th Gen aka Zen 3}. There are 
-other implementations(aka generations) that vary in their performance 
-characteristics.
+commonly used in desktop and laptops. For example, Intel implements these ISA 
+in their Intel Core i5 product as \textbf{8th Generation aka as Kaby Lake 
+Refresh}. AMD also implements these ISA in the Ryzen 5000 as \textbf{4th Gen 
+aka Zen 3}. There are other implementations(aka generations) that vary in their 
+performance characteristics.
 
 For mobile devices, a popular ISA is the \textbf{ARMv8 A64}. MediaTek uses 
 ARM's \textbf{Cortex-A73} and \textbf{Cortex-A53} implementations in their 
@@ -150,7 +150,7 @@ of bits for the opcode.
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=3in]{x86-64.png}
+	\includegraphics[width=4in]{x86-64.png}
 	\caption{x86-64 Instruction Format (CISC).}
 	\label{fig:x86-64} 
 	\end{center}
@@ -158,7 +158,7 @@ of bits for the opcode.
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=3in]{armv8.png}
+	\includegraphics[width=4in]{armv8.png}
 	\caption{ARMv8 Instruction Format (RISC).}
 	\label{fig:armv8} 
 	\end{center}
@@ -186,7 +186,7 @@ shown in Figure \ref{fig:ins_format}.
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=5in]{ins_format.png}
+	\includegraphics[width=4.5in]{ins_format.png}
 	\caption{TOMA instruction format.}
 	\label{fig:ins_format} 
 	\end{center}
@@ -238,6 +238,8 @@ use VHDL for the implementation.
 The interface to the processor is shown in Listing \ref{code:processor} which 
 shows that it has one input which is the clock and two outputs. Figure 
 \ref{fig:redhorse500} shows the complete wiring of the functional components. 
+We will discuss the operation of the individual components in the remaining 
+subsections. 
 
 \begin{listing}[H]
 \caption{Interface to the processor.}
@@ -285,7 +287,7 @@ end PC;
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=3in]{pc.png}
+	\includegraphics[width=2in]{pc.png}
 	\caption{Program Counter.}
 	\label{fig:pc} 
 	\end{center}
@@ -319,14 +321,15 @@ end Instruction;
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=3in]{im.png}
+	\includegraphics[width=2in]{im.png}
 	\caption{Instruction Memory.}
 	\label{fig:im} 
 	\end{center}
 \end{figure}
 
 \begin{listing}[H]
-\caption{Hard-coded instructions in the instruction memory.}
+\caption{Hard-coded instructions in the instruction memory which can be 
+changed.}
 \label{code:im_code}
 \begin{minted}[frame=single,framesep=10pt]{vhdl}
      constant instr : instruction_set := (
@@ -344,6 +347,13 @@ end Instruction;
 
 
 \subsubsection{Register File}
+The Register File is composed of four 8-bit registers. The contents of the 
+registers specified by rs\_addr and rt\_addr are the outputs rs and rt. At the 
+falling edge of the clock, the data in wr\_data is written into the register 
+specified by rd\_addr. The rd\_addr input will come from Mux0 due to the addi 
+instruction(See Figure \ref{fig:redhorse500}).
+
+
 \begin{listing}[H]
 \caption{Interface to the Register File.}
 \label{code:rf}
@@ -367,14 +377,14 @@ end Registers;
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=3in]{rf.png}
+	\includegraphics[width=2in]{rf.png}
 	\caption{Register File.}
 	\label{fig:rf} 
 	\end{center}
 \end{figure}
 
 \begin{listing}[H]
-\caption{Hard-coded initial values for the registers.}
+\caption{Hard-coded initial values for the registers which can be changed.}
 \label{code:rf_values}
 \begin{minted}[frame=single,framesep=10pt]{vhdl}
    signal reg: registerFile := (
@@ -387,6 +397,12 @@ end Registers;
 \end{listing}
 
 \subsubsection{ALU}
+The ALU performs the supported instructions depending on the opcode in op. This 
+is 
+an 8-bit ALU so operatons are performed on 8-bit values. The inputs are in rs 
+and rt and the results in rd. rt input will come form Mux1 due to the addi 
+instruction (See Figure \ref{fig:redhorse500}).
+
 \begin{listing}[H]
 \caption{Interface to the ALU.}
 \label{code:alu}
@@ -406,13 +422,20 @@ end ALU;
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=3in]{alu.png}
+	\includegraphics[width=2in]{alu.png}
 	\caption{ALU.}
 	\label{fig:alu} 
 	\end{center}
 \end{figure}
 
 \subsubsection{Control Unit}
+The Control Unit activates control lines depending on the opcode in instr. It 
+tells 
+the ALU what operation to perform through the alu\_op line. A special case is 
+the addi instruction which activates the alu\_src and reg\_dst to adjust the 
+inputs to the ALU and the Register File, respectively (See Figure 
+\ref{fig:redhorse500}). 
+
 
 \begin{listing}[H]
 \caption{Interface to the Control Unit.}
@@ -433,13 +456,17 @@ end Control;
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=3in]{control_unit.png}
+	\includegraphics[width=2in]{control_unit.png}
 	\caption{Control Unit.}
 	\label{fig:cu} 
 	\end{center}
 \end{figure}
 
 \subsubsection{Mux0}
+Mux0 will decide wether the rd\_addr input to the Register File will come from 
+the rt\_addr output or rd\_addr output of the Instruction Memory. If the 
+instruction is addi, then the Register File rd\_addr input will come from the 
+rt\_addr output of the Instruction Memory (See Figure \ref{fig:redhorse500}).
 
 \begin{listing}[H]
 \caption{Interface to Mux0.}
@@ -457,6 +484,10 @@ end mux0;
 \end{listing}
 
 \subsubsection{Mux1}
+Mux1 will decide whether the rt\_input to the ALU will come from register 
+rt\_addr or from the sign-extended immediate value if the instruction is addi 
+(See Figure \ref{fig:redhorse500}).
+
 \begin{listing}[H]
 \caption{Interface to Mux1.}
 \label{code:mux1}
@@ -474,8 +505,11 @@ end mux1;
 
 
 \subsubsection{Sign Extend}
+If the instruction is addi, then the 2-bit immediate value which is from the 
+rd\_addr output of the Instruction Memory will be converted to 8 bits before 
+being passed to the ALU which perform operations on 8-bit values.
 \begin{listing}[H]
-\caption{Interface to Sign Extend}
+\caption{Interface to Sign Extend.}
 \label{code:sign_extend}
 \begin{minted}[frame=single,framesep=10pt]{vhdl}
 entity sign_extend is
