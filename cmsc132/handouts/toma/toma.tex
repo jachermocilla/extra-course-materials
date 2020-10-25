@@ -123,7 +123,7 @@ operating systems. In Windows, it uses its own \textbf{x64 ABI}.
 \subsection{ISA Taxonomy}
 We can categorize ISAs based on where operands in instructions are stored.
 \textbf{Stack-based} ISAs uses a stack(LIFO) where operations are performed on 
-the operands on the top of the stack. In \textbf{accumulatr-based} ISAs, one 
+the operands on the top of the stack. In \textbf{accumulator-based} ISAs, one 
 register is designated as accumulator and its use in operations is implied. 
 Modern ISAs are \textbf{general purpose} where operands are explicitly named in 
 the instruction. Operations can be register-to-register, register-to-memory, 
@@ -150,7 +150,7 @@ of bits for the opcode.
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=4in]{x86-64.png}
+	\includegraphics[width=3in]{x86-64.png}
 	\caption{x86-64 Instruction Format (CISC).}
 	\label{fig:x86-64} 
 	\end{center}
@@ -158,14 +158,14 @@ of bits for the opcode.
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=4in]{armv8.png}
+	\includegraphics[width=3in]{armv8.png}
 	\caption{ARMv8 Instruction Format (RISC).}
 	\label{fig:armv8} 
 	\end{center}
 \end{figure}
 
-\subsection{The Optimal Machine Architecture (TOMA) ISA}
-Let us look at the design of a simple ISA called TOMA.
+\subsection{TOMA: The Optimal Machine Architecture}
+Let us look at the design of a simple ISA which we will call TOMA.
 
 \subsubsection{Features}
 \begin{itemize}
@@ -283,7 +283,7 @@ end PC;
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=4in]{pc.png}
+	\includegraphics[width=3in]{pc.png}
 	\caption{Program Counter.}
 	\label{fig:pc} 
 	\end{center}
@@ -311,7 +311,7 @@ end Instruction;
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=4in]{im.png}
+	\includegraphics[width=3in]{im.png}
 	\caption{Instruction Memory.}
 	\label{fig:im} 
 	\end{center}
@@ -359,7 +359,7 @@ end Registers;
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=4in]{rf.png}
+	\includegraphics[width=3in]{rf.png}
 	\caption{Register File.}
 	\label{fig:rf} 
 	\end{center}
@@ -398,7 +398,7 @@ end ALU;
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=4in]{alu.png}
+	\includegraphics[width=3in]{alu.png}
 	\caption{ALU.}
 	\label{fig:alu} 
 	\end{center}
@@ -425,7 +425,7 @@ end Control;
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=4in]{control_unit.png}
+	\includegraphics[width=3in]{control_unit.png}
 	\caption{Control Unit.}
 	\label{fig:cu} 
 	\end{center}
