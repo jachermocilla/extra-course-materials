@@ -297,8 +297,9 @@ end PC;
 Instruction Memory contains the instructions to be executed in an array of 
 1-byte cells. It will decode the instruction specified by 
 \mintinline{vhdl}{instr_addr}. The decode process will extract and output the 
-different parts of the instruction: op, rs\_address, rt\_address, 
-rd\_address/imm.
+different parts of the instruction: \mintinline{vhdl}{op}, 
+\mintinline{vhdl}{rs_address}, \mintinline{vhdl}{rt_address}, 
+\mintinline{vhdl}{rd_address/imm}.
 
 \begin{listing}[H]
 \caption{Interface to the Instruction Memory.}
@@ -348,10 +349,13 @@ changed.}
 
 \subsubsection{Register File}
 The Register File is composed of four 8-bit registers. The contents of the 
-registers specified by rs\_addr and rt\_addr are the outputs rs and rt. At the 
-falling edge of the clock, the data in wr\_data is written into the register 
-specified by rd\_addr. The rd\_addr input will come from Mux0 due to the addi 
-instruction(See Figure \ref{fig:redhorse500}).
+registers specified by \mintinline{vhdl}{rs_addr} and 
+\mintinline{vhdl}{rt_addr} are the outputs \mintinline{vhdl}{rs} and 
+\mintinline{vhdl}{rt}. At the falling edge of the clock, the data in 
+\mintinline{vhdl}{wr_data} is written into the register 
+specified by \mintinline{vhdl}{rd_addr}. The \mintinline{vhdl}{rd_addr} input 
+will come from Mux0 in case the instruction is \mintinline{vhdl}{addi}(See 
+Figure \ref{fig:redhorse500}).
 
 
 \begin{listing}[H]
@@ -397,11 +401,12 @@ end Registers;
 \end{listing}
 
 \subsubsection{ALU}
-The ALU performs the supported instructions depending on the opcode in op. This 
-is 
-an 8-bit ALU so operatons are performed on 8-bit values. The inputs are in rs 
-and rt and the results in rd. rt input will come form Mux1 due to the addi 
-instruction (See Figure \ref{fig:redhorse500}).
+The ALU performs the supported instructions depending on the opcode in 
+\mintinline{vhdl}{addi}{op}. This is an 8-bit ALU so operatons are performed on 
+8-bit values. The inputs are in \mintinline{vhdl}{rs} and \mintinline{vhdl}{rt} 
+and the results in \mintinline{vhdl}{rd}. \mintinline{vhdl}{rt} input will come 
+form Mux1 in case the instruction is \mintinline{vhdl}{addi}(See Figure 
+\ref{fig:redhorse500}).
 
 \begin{listing}[H]
 \caption{Interface to the ALU.}
@@ -429,10 +434,11 @@ end ALU;
 \end{figure}
 
 \subsubsection{Control Unit}
-The Control Unit activates control lines depending on the opcode in instr. It 
-tells 
-the ALU what operation to perform through the alu\_op line. A special case is 
-the addi instruction which activates the alu\_src and reg\_dst to adjust the 
+The Control Unit activates control lines depending on the opcode in 
+\mintinline{vhdl}{instr}. It tells the ALU what operation to perform through 
+the \mintinline{vhdl}{alu_op} line. A special case is 
+the \mintinline{vhdl}{addi} instruction which activates the 
+\mintinline{vhdl}{alu_src} and \mintinline{vhdl}{reg_dst} to adjust the 
 inputs to the ALU and the Register File, respectively (See Figure 
 \ref{fig:redhorse500}). 
 
@@ -463,10 +469,12 @@ end Control;
 \end{figure}
 
 \subsubsection{Mux0}
-Mux0 will decide wether the rd\_addr input to the Register File will come from 
-the rt\_addr output or rd\_addr output of the Instruction Memory. If the 
-instruction is addi, then the Register File rd\_addr input will come from the 
-rt\_addr output of the Instruction Memory (See Figure \ref{fig:redhorse500}).
+Mux0 will decide wether the \mintinline{vhdl}{rd_addr} input to the Register 
+File will come from the \mintinline{vhdl}{rt_addr} output or 
+\mintinline{vhdl}{rd_addr} output of the Instruction Memory. If the 
+instruction is \mintinline{vhdl}{addi}, then the Register File 
+\mintinline{vhdl}{rd_addr} input will come from the \mintinline{vhdl}{rt_addr} 
+output of the Instruction Memory (See Figure \ref{fig:redhorse500}).
 
 \begin{listing}[H]
 \caption{Interface to Mux0.}
@@ -484,9 +492,10 @@ end mux0;
 \end{listing}
 
 \subsubsection{Mux1}
-Mux1 will decide whether the rt\_input to the ALU will come from register 
-rt\_addr or from the sign-extended immediate value if the instruction is addi 
-(See Figure \ref{fig:redhorse500}).
+Mux1 will decide whether the \mintinline{vhdl}{rt} input to the ALU will come 
+from register \mintinline{vhdl}{rt_addr} or from the sign-extended immediate 
+value if the instruction is \mintinline{vhdl}{addi}(See Figure 
+\ref{fig:redhorse500}).
 
 \begin{listing}[H]
 \caption{Interface to Mux1.}
@@ -506,8 +515,9 @@ end mux1;
 
 \subsubsection{Sign Extend}
 If the instruction is addi, then the 2-bit immediate value which is from the 
-rd\_addr output of the Instruction Memory will be converted to 8 bits before 
-being passed to the ALU which perform operations on 8-bit values.
+\mintinline{vhdl}{rd_addr} output of the Instruction Memory will be converted 
+to 8 bits before being passed to the ALU which perform operations on 8-bit 
+values.
 \begin{listing}[H]
 \caption{Interface to Sign Extend.}
 \label{code:sign_extend}
