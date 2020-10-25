@@ -1,10 +1,13 @@
 \contentsline {section}{\numberline {1}Resources}{1}{section.1}
 \contentsline {section}{\numberline {2}Discussion}{1}{section.2}
-\contentsline {subsection}{\numberline {2.1}Instruction Set Architecture}{1}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.1}Instruction Set Architecture}{2}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Application Binary Interface}{2}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}ISA Taxonomy}{2}{subsection.2.3}
-\contentsline {section}{\numberline {3}Summary}{4}{section.3}
-\contentsline {section}{\numberline {4}Learning Activities}{4}{section.4}
-\contentsline {section}{\numberline {5}Self-Assessment Questions}{4}{section.5}
-\contentsline {section}{\numberline {6}Deliverable}{4}{section.6}
-\contentsline {section}{\numberline {7}Further Reading}{4}{section.7}
+\contentsline {subsection}{\numberline {2.4}Considerations in ISA Design}{2}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Example Instruction Formats}{3}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}The Optimal Machine Architecture (TOMA)}{3}{subsection.2.6}
+\contentsline {section}{\numberline {3}Summary}{5}{section.3}
+\contentsline {section}{\numberline {4}Learning Activities}{5}{section.4}
+\contentsline {section}{\numberline {5}Self-Assessment Questions}{5}{section.5}
+\contentsline {section}{\numberline {6}Deliverable}{5}{section.6}
+\contentsline {section}{\numberline {7}Further Reading}{5}{section.7}

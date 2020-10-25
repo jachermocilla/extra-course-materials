@@ -126,6 +126,52 @@ Modern ISAs are \textbf{general purpose} where operands are explicitly named in
 the instruction. Operations can be register-to-register, register-to-memory, 
 or memory-to-register.
 
+\subsection{Considerations in ISA Design}
+\begin{itemize}
+\item \textit{Types/Class of instructions(Operations in the instruction set)} - 
+arithmetic/logic, data movement, branching/control flow, I/O, etc.
+\item \textit{Types and sizes of operands} - 8, 16, 32, 64, 128, floating point
+\item \textit{Addressing modes} - register, direct, indirect, immediate, etc.
+\item \textit{Addressing memory} - byte-addressable, word-addressable
+\item \textit{Encoding and Instruction Formats} - opcode field, addresses 
+field, mode 
+field
+\item \textit{Compiler-related issues} - optimization features
+\end{itemize}
+
+\subsection{Example Instruction Formats}
+Below are the instruction formats for x86-64 and ARMv8 taken from documentation 
+manuals. The x86-64 format is more complex than that of the ARMv8.
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=4in]{x86-64.png}
+	\caption{x86-64 Instruction Format (CISC).}
+	\label{fig:x86-64} 
+	\end{center}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=4in]{armv8.png}
+	\caption{ARMv8 Instruction Format (RISC).}
+	\label{fig:armv8} 
+	\end{center}
+\end{figure}
+
+\subsection{The Optimal Machine Architecture (TOMA)}
+Let us take a look at a simple ISA which we will call TOMA. The following are 
+its "features".
+\begin{itemize}
+\item Has 4 8-bit registers named \$s0, \$s1, \$s2, \$s3 in assembly code
+\item Instruction memory is 8x8, address line is 3 bits
+\item Has a 3-bit Program Counter (PC) register
+\item Single-cycle - completes instruction execution in one clock cycle
+\item Has no data memory, thus has no load and store instructions
+\item Has no control transfer instructions
+
+\end{itemize}
+
 \begin{landscape}
 \thispagestyle{plain}
 \begin{figure}[H]

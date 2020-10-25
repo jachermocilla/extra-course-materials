@@ -3,8 +3,11 @@
 \BOOKMARK [2][-]{subsection.2.1}{Instruction Set Architecture}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Application Binary Interface}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{ISA Taxonomy}{section.2}% 5
-\BOOKMARK [1][-]{section.3}{Summary}{}% 6
-\BOOKMARK [1][-]{section.4}{Learning Activities}{}% 7
-\BOOKMARK [1][-]{section.5}{Self-Assessment Questions}{}% 8
-\BOOKMARK [1][-]{section.6}{Deliverable}{}% 9
-\BOOKMARK [1][-]{section.7}{Further Reading}{}% 10
+\BOOKMARK [2][-]{subsection.2.4}{Considerations in ISA Design}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Example Instruction Formats}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.6}{The Optimal Machine Architecture \(TOMA\)}{section.2}% 8
+\BOOKMARK [1][-]{section.3}{Summary}{}% 9
+\BOOKMARK [1][-]{section.4}{Learning Activities}{}% 10
+\BOOKMARK [1][-]{section.5}{Self-Assessment Questions}{}% 11
+\BOOKMARK [1][-]{section.6}{Deliverable}{}% 12
+\BOOKMARK [1][-]{section.7}{Further Reading}{}% 13
