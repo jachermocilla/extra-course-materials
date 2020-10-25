@@ -235,8 +235,13 @@ Given the TOMA ISA, let us implement the ISA and call it REDHORSE 500. We will
 use VHDL for the implementation.
 
 \subsubsection{Processor}
-The interface to the processor is shown in the code below which has one input 
-and two outputs. 
+The interface to the processor is shown in Listing \ref{code:processor} which 
+shows that it has one input and two outputs. Figure \ref{fig:redhorse500} 
+shows the complete wiring of the functional components. 
+
+\begin{listing}[H]
+\caption{Interface to the processor.}
+\label{code:processor}
 \begin{minted}[frame=single,framesep=10pt]{vhdl}
 ENTITY Processor IS 
     PORT
@@ -247,9 +252,7 @@ ENTITY Processor IS
     );
 END Processor;
 \end{minted}
-
-
-
+\end{listing}
 
 \begin{landscape}
 \thispagestyle{plain}
@@ -265,21 +268,6 @@ END Processor;
 
 
 
-\begin{minted}[frame=single,framesep=10pt]{vhdl}
-LIBRARY ieee;
-USE ieee.std_logic_1164.all;
-ENTITY clocker_tb IS
-END clocker_tb;
-ARCHITECTURE behavior OF clocker_tb IS
-   --100Mhz
-   CONSTANT frequency: integer := 100e6; 
-   CONSTANT period : time := 1000 ms / frequency;
-   SIGNAL clk : std_logic := '0';
-BEGIN 
-   clk <= not clk after period / 2;
-   -- do some stuff here using clk as input
-END ARCHITECTURE;
-\end{minted}
 
 \section{Summary}
 In this lab, you learned some of the sequential elements that are useful in the 
