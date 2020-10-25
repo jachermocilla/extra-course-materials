@@ -17,7 +17,7 @@
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Resources}{1}{section.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Discussion}{1}{section.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Discussion}{2}{section.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Instruction Set Architecture}{2}{subsection.2.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Application Binary Interface}{2}{subsection.2.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}ISA Taxonomy}{2}{subsection.2.3}}
@@ -29,7 +29,7 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces ARMv8 Instruction Format (RISC).\relax }}{3}{figure.caption.4}}
 \newlabel{fig:armv8}{{2}{3}{ARMv8 Instruction Format (RISC).\relax }{figure.caption.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.6}The Optimal Machine Architecture (TOMA) ISA}{3}{subsection.2.6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.1}Features}{3}{subsubsection.2.6.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.1}Features}{4}{subsubsection.2.6.1}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.6.2}Instruction Format}{4}{subsubsection.2.6.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces TOMA instruction format.\relax }}{4}{figure.caption.5}}
 \newlabel{fig:ins_format}{{3}{4}{TOMA instruction format.\relax }{figure.caption.5}{}}
@@ -47,18 +47,56 @@
 \newlabel{code:processor}{{4}{5}{Interface to the processor.\relax }{listing.caption.9}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces REDHORSE 500.\relax }}{6}{figure.caption.10}}
 \newlabel{fig:redhorse500}{{4}{6}{REDHORSE 500.\relax }{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.2}Program Counter}{7}{subsubsection.2.7.2}}
+\@writefile{lol}{\contentsline {listing}{\numberline {5}{\ignorespaces Interface to the Program Counter.\relax }}{7}{listing.caption.11}}
+\newlabel{code:pc}{{5}{7}{Interface to the Program Counter.\relax }{listing.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Program Counter.\relax }}{7}{figure.caption.12}}
+\newlabel{fig:pc}{{5}{7}{Program Counter.\relax }{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.3}Instruction Memory}{7}{subsubsection.2.7.3}}
+\@writefile{lol}{\contentsline {listing}{\numberline {6}{\ignorespaces Interface to the Instruction Memory.\relax }}{7}{listing.caption.13}}
+\newlabel{code:im}{{6}{7}{Interface to the Instruction Memory.\relax }{listing.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Instruction Memory.\relax }}{8}{figure.caption.14}}
+\newlabel{fig:im}{{6}{8}{Instruction Memory.\relax }{figure.caption.14}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {7}{\ignorespaces Hard-coded instruction in the instruction memory.\relax }}{8}{listing.caption.15}}
+\newlabel{code:im_code}{{7}{8}{Hard-coded instruction in the instruction memory.\relax }{listing.caption.15}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.4}Register File}{9}{subsubsection.2.7.4}}
+\@writefile{lol}{\contentsline {listing}{\numberline {8}{\ignorespaces Interface to the Register File.\relax }}{9}{listing.caption.16}}
+\newlabel{code:rf}{{8}{9}{Interface to the Register File.\relax }{listing.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Register File.\relax }}{9}{figure.caption.17}}
+\newlabel{fig:rf}{{7}{9}{Register File.\relax }{figure.caption.17}{}}
+\@writefile{lol}{\contentsline {listing}{\numberline {9}{\ignorespaces Hard-coded initial values for the registers.\relax }}{10}{listing.caption.18}}
+\newlabel{code:rf_values}{{9}{10}{Hard-coded initial values for the registers.\relax }{listing.caption.18}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.5}ALU}{10}{subsubsection.2.7.5}}
+\@writefile{lol}{\contentsline {listing}{\numberline {10}{\ignorespaces Interface to the ALU.\relax }}{10}{listing.caption.19}}
+\newlabel{code:alu}{{10}{10}{Interface to the ALU.\relax }{listing.caption.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces ALU.\relax }}{10}{figure.caption.20}}
+\newlabel{fig:alu}{{8}{10}{ALU.\relax }{figure.caption.20}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.6}Control Unit}{11}{subsubsection.2.7.6}}
+\@writefile{lol}{\contentsline {listing}{\numberline {11}{\ignorespaces Interface to the Control Unit.\relax }}{11}{listing.caption.21}}
+\newlabel{code:control}{{11}{11}{Interface to the Control Unit.\relax }{listing.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Control Unit.\relax }}{11}{figure.caption.22}}
+\newlabel{fig:cu}{{9}{11}{Control Unit.\relax }{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.7}Mux0}{11}{subsubsection.2.7.7}}
+\@writefile{lol}{\contentsline {listing}{\numberline {12}{\ignorespaces Interface to Mux0.\relax }}{11}{listing.caption.23}}
+\newlabel{code:mux0}{{12}{11}{Interface to Mux0.\relax }{listing.caption.23}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.8}Mux1}{12}{subsubsection.2.7.8}}
+\@writefile{lol}{\contentsline {listing}{\numberline {13}{\ignorespaces Interface to Mux1.\relax }}{12}{listing.caption.24}}
+\newlabel{code:mux1}{{13}{12}{Interface to Mux1.\relax }{listing.caption.24}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.7.9}Sign Extend}{12}{subsubsection.2.7.9}}
+\@writefile{lol}{\contentsline {listing}{\numberline {14}{\ignorespaces Interface to Sign Extend\relax }}{12}{listing.caption.25}}
+\newlabel{code:sign_extend}{{14}{12}{Interface to Sign Extend\relax }{listing.caption.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Summary}{12}{section.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Learning Activities}{12}{section.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Self-Assessment Questions}{12}{section.5}}
 \bibstyle{unsrt}
 \bibdata{toma}
 \bibcite{10.5555/2568134}{1}
 \citation{*}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Summary}{7}{section.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Learning Activities}{7}{section.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Self-Assessment Questions}{7}{section.5}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Deliverable}{7}{section.6}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Further Reading}{7}{section.7}}
-\newlabel{LastPage}{{}{7}{}{page.7}{}}
-\xdef\lastpage@lastpage{7}
-\xdef\lastpage@lastpageHy{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Deliverable}{13}{section.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Further Reading}{13}{section.7}}
+\newlabel{LastPage}{{}{13}{}{page.13}{}}
+\xdef\lastpage@lastpage{13}
+\xdef\lastpage@lastpageHy{13}
 \gdef\minted@oldcachelist{,
   default-pyg-prefix.pygstyle,
   default.pygstyle,
@@ -67,4 +105,14 @@
   E212D91FA94F033F6723EA921B33D6AF546677A2B0D9A2AF13D34810DCBE51A7.pygtex,
   613EC396540C37B81D8AF71B5C5AACEDCF9E22A70B8FCA9534D117D960C75F57.pygtex,
   876882E372CA6B9BE7ADCAB3C1B740ACCF9E22A70B8FCA9534D117D960C75F57.pygtex,
-  0ECC5DBCAA9E99AC1D0F3BFBABB4CAB9546677A2B0D9A2AF13D34810DCBE51A7.pygtex}
+  0ECC5DBCAA9E99AC1D0F3BFBABB4CAB9546677A2B0D9A2AF13D34810DCBE51A7.pygtex,
+  C772B4F370449191F8D5AA225F443F1E546677A2B0D9A2AF13D34810DCBE51A7.pygtex,
+  743B67A4890922995BF78D5E36E9FE12546677A2B0D9A2AF13D34810DCBE51A7.pygtex,
+  6099972A72185101D8627BFBAA270098546677A2B0D9A2AF13D34810DCBE51A7.pygtex,
+  48455D53505B6FBAC824C11BE628CC99546677A2B0D9A2AF13D34810DCBE51A7.pygtex,
+  1E5BD703EEAB671A1FDB6CAA6DB9D7AB546677A2B0D9A2AF13D34810DCBE51A7.pygtex,
+  B2D8A15D1F1FBE3A2D664CAF0653319C546677A2B0D9A2AF13D34810DCBE51A7.pygtex,
+  486B2678DA474EB1CC92962A8277915E546677A2B0D9A2AF13D34810DCBE51A7.pygtex,
+  06C6A46A1F37B1CB70CED97FBF8548FA546677A2B0D9A2AF13D34810DCBE51A7.pygtex,
+  D737CF670902A64612CE9ECA5F96EFBC546677A2B0D9A2AF13D34810DCBE51A7.pygtex,
+  899877E9F2BF6E51C20CB3EDC8CE4D13546677A2B0D9A2AF13D34810DCBE51A7.pygtex}

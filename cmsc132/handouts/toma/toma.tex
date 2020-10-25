@@ -56,7 +56,7 @@ Philippines Los Banos}
 \section*{Learning Outcomes}
    At the end of this lab, you should be able to:
    \begin{enumerate}[itemsep=0pt,parsep=0pt]
-   	   \item understand and modify a simple ISA;
+   	   \item understand and modify a simple ISA and its implementation;
        \item write a simple assembler
    \end{enumerate}   
 \tableofcontents
@@ -266,8 +266,218 @@ END Processor;
 \end{landscape}
 %%[width=10in]
 
+\subsubsection{Program Counter}
+\begin{listing}[H]
+\caption{Interface to the Program Counter.}
+\label{code:pc}
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+entity PC is
+  port(
+    clk           : in std_logic;
+    current_instr : in std_logic_vector(2 downto 0);   -- current instruction
+    next_instr    : out std_logic_vector(2 downto 0)   -- next instruction
+  );
+end PC;
+\end{minted}
+\end{listing}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=4in]{pc.png}
+	\caption{Program Counter.}
+	\label{fig:pc} 
+	\end{center}
+\end{figure}
+
+\subsubsection{Instruction Memory}
+\begin{listing}[H]
+\caption{Interface to the Instruction Memory.}
+\label{code:im}
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+entity Instruction is
+  port(
+    instr_addr : in std_logic_vector(2 downto 0);  -- instruction address
+
+    op         : out std_logic_vector(1 downto 0); -- operation code
+    rs_addr    : out std_logic_vector(1 downto 0); -- source register 1 addr    
+    rt_addr    : out std_logic_vector(1 downto 0); -- source register 2 addr
+    rd_addr    : out std_logic_vector(1 downto 0)  -- dest register addr
+  );
+end Instruction;
 
 
+\end{minted}
+\end{listing}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=4in]{im.png}
+	\caption{Instruction Memory.}
+	\label{fig:im} 
+	\end{center}
+\end{figure}
+
+\begin{listing}[H]
+\caption{Hard-coded instruction in the instruction memory.}
+\label{code:im_code}
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+     constant instr : instruction_set := (
+       "11000010",  -- addi $s0, $s0, 2
+       "11010101",  -- addi $s1, $s1, 1
+       "11101011",  -- addi $s2, $s2, 3
+       "01000111",  -- add  $s3, $s0, $s1
+       "10101100",  -- sub  $s0, $s2, $s3
+       "00000000",
+       "00000000",
+       "00000000"
+     );    
+\end{minted}
+\end{listing}
+
+
+\subsubsection{Register File}
+\begin{listing}[H]
+\caption{Interface to the Register File.}
+\label{code:rf}
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+entity Registers is
+  port(
+    clk     : in std_logic;
+
+    rs_addr : in std_logic_vector(1 downto 0);    -- source register 1 address
+    rt_addr : in std_logic_vector(1 downto 0);    -- source register 2 address
+    rd_addr : in std_logic_vector(1 downto 0);    -- destion register address
+    wr_data : in std_logic_vector(7 downto 0);    -- write data to dest register
+
+    rs      : out std_logic_vector(7 downto 0);   -- source register 1 value
+    rt      : out std_logic_vector(7 downto 0)    -- source register 2 value
+  );
+end Registers;
+
+\end{minted}
+\end{listing}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=4in]{rf.png}
+	\caption{Register File.}
+	\label{fig:rf} 
+	\end{center}
+\end{figure}
+
+\begin{listing}[H]
+\caption{Hard-coded initial values for the registers.}
+\label{code:rf_values}
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+   signal reg: registerFile := (
+    "00000001",
+    "00000010",
+    "00000011",
+    "00000100"
+);
+\end{minted}
+\end{listing}
+
+\subsubsection{ALU}
+\begin{listing}[H]
+\caption{Interface to the ALU.}
+\label{code:alu}
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+entity ALU is
+  port(
+    op  : in std_logic_vector(1 downto 0);   -- operation code
+
+    rs  : in std_logic_vector(7 downto 0);   -- source register 1
+    rt  : in std_logic_vector(7 downto 0);   -- source register 2
+    rd  : out std_logic_vector(7 downto 0)   -- destination register
+  );
+end ALU;
+
+\end{minted}
+\end{listing}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=4in]{alu.png}
+	\caption{ALU.}
+	\label{fig:alu} 
+	\end{center}
+\end{figure}
+
+\subsubsection{Control Unit}
+
+\begin{listing}[H]
+\caption{Interface to the Control Unit.}
+\label{code:control}
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+entity Control is
+  port(
+    instr   : in std_logic_vector(1 downto 0);   -- instruction
+
+    alu_op  : out std_logic_vector(1 downto 0);  -- operation code of AlU
+    alu_src : out std_logic;                     -- ALU select ADDi
+    reg_dst : out std_logic                      -- select destination address 
+    register
+  );
+end Control;
+\end{minted}
+\end{listing}
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=4in]{control_unit.png}
+	\caption{Control Unit.}
+	\label{fig:cu} 
+	\end{center}
+\end{figure}
+
+\subsubsection{Mux0}
+
+\begin{listing}[H]
+\caption{Interface to Mux0.}
+\label{code:mux0}
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+entity mux0 is
+  port(
+    sel : in std_logic;                      -- select destination address
+    a   : in std_logic_vector(1 downto 0);   -- source register address
+    b   : in std_logic_vector(1 downto 0);   -- default destination address
+    y   : out std_logic_vector(1 downto 0)   -- destination address
+  );
+end mux0;
+\end{minted}
+\end{listing}
+
+\subsubsection{Mux1}
+\begin{listing}[H]
+\caption{Interface to Mux1.}
+\label{code:mux1}
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+entity mux1 is
+  port(
+    sel : in std_logic;                      -- select data
+    a   : in std_logic_vector(7 downto 0);   -- default data
+    b   : in std_logic_vector(7 downto 0);   -- data from instruction
+    y   : out std_logic_vector(7 downto 0)   -- data out
+  );
+end mux1;
+\end{minted}
+\end{listing}
+
+
+\subsubsection{Sign Extend}
+\begin{listing}[H]
+\caption{Interface to Sign Extend}
+\label{code:sign_extend}
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+entity sign_extend is
+  port(
+    data_in  : in std_logic_vector(1 downto 0);
+    data_out : out std_logic_vector(7 downto 0)
+  );
+end sign_extend;
+\end{minted}
+\end{listing}
 
 \section{Summary}
 In this lab, you learned some of the sequential elements that are useful in the 

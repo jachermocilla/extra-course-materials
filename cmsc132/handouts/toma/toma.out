@@ -12,8 +12,16 @@
 \BOOKMARK [3][-]{subsubsection.2.6.4}{Example assembly code and machine code}{subsection.2.6}% 12
 \BOOKMARK [2][-]{subsection.2.7}{REDHORSE 500: An implementation of TOMA}{section.2}% 13
 \BOOKMARK [3][-]{subsubsection.2.7.1}{Processor}{subsection.2.7}% 14
-\BOOKMARK [1][-]{section.3}{Summary}{}% 15
-\BOOKMARK [1][-]{section.4}{Learning Activities}{}% 16
-\BOOKMARK [1][-]{section.5}{Self-Assessment Questions}{}% 17
-\BOOKMARK [1][-]{section.6}{Deliverable}{}% 18
-\BOOKMARK [1][-]{section.7}{Further Reading}{}% 19
+\BOOKMARK [3][-]{subsubsection.2.7.2}{Program Counter}{subsection.2.7}% 15
+\BOOKMARK [3][-]{subsubsection.2.7.3}{Instruction Memory}{subsection.2.7}% 16
+\BOOKMARK [3][-]{subsubsection.2.7.4}{Register File}{subsection.2.7}% 17
+\BOOKMARK [3][-]{subsubsection.2.7.5}{ALU}{subsection.2.7}% 18
+\BOOKMARK [3][-]{subsubsection.2.7.6}{Control Unit}{subsection.2.7}% 19
+\BOOKMARK [3][-]{subsubsection.2.7.7}{Mux0}{subsection.2.7}% 20
+\BOOKMARK [3][-]{subsubsection.2.7.8}{Mux1}{subsection.2.7}% 21
+\BOOKMARK [3][-]{subsubsection.2.7.9}{Sign Extend}{subsection.2.7}% 22
+\BOOKMARK [1][-]{section.3}{Summary}{}% 23
+\BOOKMARK [1][-]{section.4}{Learning Activities}{}% 24
+\BOOKMARK [1][-]{section.5}{Self-Assessment Questions}{}% 25
+\BOOKMARK [1][-]{section.6}{Deliverable}{}% 26
+\BOOKMARK [1][-]{section.7}{Further Reading}{}% 27

@@ -1,19 +1,27 @@
 \contentsline {section}{\numberline {1}Resources}{1}{section.1}
-\contentsline {section}{\numberline {2}Discussion}{1}{section.2}
+\contentsline {section}{\numberline {2}Discussion}{2}{section.2}
 \contentsline {subsection}{\numberline {2.1}Instruction Set Architecture}{2}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Application Binary Interface}{2}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}ISA Taxonomy}{2}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Considerations in ISA Design}{2}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}Example Instruction Formats}{3}{subsection.2.5}
 \contentsline {subsection}{\numberline {2.6}The Optimal Machine Architecture (TOMA) ISA}{3}{subsection.2.6}
-\contentsline {subsubsection}{\numberline {2.6.1}Features}{3}{subsubsection.2.6.1}
+\contentsline {subsubsection}{\numberline {2.6.1}Features}{4}{subsubsection.2.6.1}
 \contentsline {subsubsection}{\numberline {2.6.2}Instruction Format}{4}{subsubsection.2.6.2}
 \contentsline {subsubsection}{\numberline {2.6.3}Supported Instructions}{4}{subsubsection.2.6.3}
 \contentsline {subsubsection}{\numberline {2.6.4}Example assembly code and machine code}{4}{subsubsection.2.6.4}
 \contentsline {subsection}{\numberline {2.7}REDHORSE 500: An implementation of TOMA}{5}{subsection.2.7}
 \contentsline {subsubsection}{\numberline {2.7.1}Processor}{5}{subsubsection.2.7.1}
-\contentsline {section}{\numberline {3}Summary}{7}{section.3}
-\contentsline {section}{\numberline {4}Learning Activities}{7}{section.4}
-\contentsline {section}{\numberline {5}Self-Assessment Questions}{7}{section.5}
-\contentsline {section}{\numberline {6}Deliverable}{7}{section.6}
-\contentsline {section}{\numberline {7}Further Reading}{7}{section.7}
+\contentsline {subsubsection}{\numberline {2.7.2}Program Counter}{7}{subsubsection.2.7.2}
+\contentsline {subsubsection}{\numberline {2.7.3}Instruction Memory}{7}{subsubsection.2.7.3}
+\contentsline {subsubsection}{\numberline {2.7.4}Register File}{9}{subsubsection.2.7.4}
+\contentsline {subsubsection}{\numberline {2.7.5}ALU}{10}{subsubsection.2.7.5}
+\contentsline {subsubsection}{\numberline {2.7.6}Control Unit}{11}{subsubsection.2.7.6}
+\contentsline {subsubsection}{\numberline {2.7.7}Mux0}{11}{subsubsection.2.7.7}
+\contentsline {subsubsection}{\numberline {2.7.8}Mux1}{12}{subsubsection.2.7.8}
+\contentsline {subsubsection}{\numberline {2.7.9}Sign Extend}{12}{subsubsection.2.7.9}
+\contentsline {section}{\numberline {3}Summary}{12}{section.3}
+\contentsline {section}{\numberline {4}Learning Activities}{12}{section.4}
+\contentsline {section}{\numberline {5}Self-Assessment Questions}{12}{section.5}
+\contentsline {section}{\numberline {6}Deliverable}{13}{section.6}
+\contentsline {section}{\numberline {7}Further Reading}{13}{section.7}
