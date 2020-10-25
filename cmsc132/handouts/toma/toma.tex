@@ -332,7 +332,7 @@ end Instruction;
 \caption{Hard-coded instructions in the instruction memory which can be 
 changed.}
 \label{code:im_code}
-\begin{minted}[frame=single,framesep=10pt]{vhdl}
+\begin{minted}[frame=single,framesep=10pt,linenos]{vhdl}
      constant instr : instruction_set := (
        "11000010",  -- addi $s0, $s0, 2
        "11010101",  -- addi $s1, $s1, 1
@@ -530,6 +530,19 @@ entity sign_extend is
 end sign_extend;
 \end{minted}
 \end{listing}
+
+\subsubsection{Simulation}
+Figure \ref{fig:sim} shows the simulation with the red vertical bar marking the 
+execution of the instruction in line 4 of Listing \ref{code:im_code}.
+
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=6in]{sim.png}
+	\caption{Control Unit.}
+	\label{fig:sim} 
+	\end{center}
+\end{figure}
+
 
 \section{Summary}
 In this lab, you learned some of the sequential elements that are useful in the 

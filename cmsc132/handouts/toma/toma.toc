@@ -20,8 +20,9 @@
 \contentsline {subsubsection}{\numberline {2.7.7}Mux0}{11}{subsubsection.2.7.7}
 \contentsline {subsubsection}{\numberline {2.7.8}Mux1}{11}{subsubsection.2.7.8}
 \contentsline {subsubsection}{\numberline {2.7.9}Sign Extend}{12}{subsubsection.2.7.9}
-\contentsline {section}{\numberline {3}Summary}{12}{section.3}
-\contentsline {section}{\numberline {4}Learning Activities}{12}{section.4}
-\contentsline {section}{\numberline {5}Self-Assessment Questions}{12}{section.5}
-\contentsline {section}{\numberline {6}Deliverable}{12}{section.6}
-\contentsline {section}{\numberline {7}Further Reading}{12}{section.7}
+\contentsline {subsubsection}{\numberline {2.7.10}Simulation}{12}{subsubsection.2.7.10}
+\contentsline {section}{\numberline {3}Summary}{13}{section.3}
+\contentsline {section}{\numberline {4}Learning Activities}{13}{section.4}
+\contentsline {section}{\numberline {5}Self-Assessment Questions}{13}{section.5}
+\contentsline {section}{\numberline {6}Deliverable}{13}{section.6}
+\contentsline {section}{\numberline {7}Further Reading}{13}{section.7}
