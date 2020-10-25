@@ -8,6 +8,7 @@
 \contentsline {subsection}{\numberline {2.6}The Optimal Machine Architecture (TOMA) ISA}{3}{subsection.2.6}
 \contentsline {subsubsection}{\numberline {2.6.1}Features}{3}{subsubsection.2.6.1}
 \contentsline {subsubsection}{\numberline {2.6.2}Instruction Format}{4}{subsubsection.2.6.2}
+\contentsline {subsubsection}{\numberline {2.6.3}Example assembly code and machine code}{4}{subsubsection.2.6.3}
 \contentsline {section}{\numberline {3}Summary}{6}{section.3}
 \contentsline {section}{\numberline {4}Learning Activities}{6}{section.4}
 \contentsline {section}{\numberline {5}Self-Assessment Questions}{6}{section.5}

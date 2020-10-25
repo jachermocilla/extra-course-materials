@@ -140,8 +140,10 @@ field
 \end{itemize}
 
 \subsection{Example Instruction Formats}
-Below are the instruction formats for x86-64 and ARMv8 taken from documentation 
-manuals. The x86-64 format is more complex than that of the ARMv8.
+Figure \ref{fig:x86-64} and Figure \ref{fig:armv8}  are the instruction formats 
+for x86-64 and ARMv8, taken from their documentation manuals. The x86-64 format 
+is more complex than that of the ARMv8 with variable widths in terms of number 
+of bits for the opcode.
 
 \begin{figure}[H]
 	\begin{center}
@@ -160,10 +162,12 @@ manuals. The x86-64 format is more complex than that of the ARMv8.
 \end{figure}
 
 \subsection{The Optimal Machine Architecture (TOMA) ISA}
+Let us look at the design of a simple ISA called TOMA.
 
 \subsubsection{Features}
 \begin{itemize}
-\item Four 8-bit registers named \$s0, \$s1, \$s2, \$s3 in assembly code
+\item Four 8-bit registers named \$s0, \$s1, \$s2, \$s3 when used in assembly 
+code
 \item Instruction memory is 8 bytes(8x8), address line is 3 bits
 \item Three-bit Program Counter (PC)
 \item Single-cycle - completes instruction execution in one clock cycle
@@ -173,7 +177,7 @@ manuals. The x86-64 format is more complex than that of the ARMv8.
 
 \subsubsection{Instruction Format}
 The size of an instruction in TOMA is 8 bits divided into the configuration 
-shown in Figure \ref{fig:ins_format}
+shown in Figure \ref{fig:ins_format}.
 
 \begin{figure}[H]
 	\begin{center}
@@ -183,6 +187,14 @@ shown in Figure \ref{fig:ins_format}
 	\end{center}
 \end{figure}
 
+\subsubsection{Example assembly code and machine code}
+\begin{minted}[frame=single,framesep=10pt]{gas}
+addi $s0, $s0, 2         ; 11000010b, 0xC2
+addi $s1, $s1, 1         ; 11010101b, 0xD5
+addi $s2, $s2, 3         ; 11101011b, 0xEB
+add $s3, $s0, $s1        ; 01000111b, 0x47
+sub $s0, $s2, $s3        ; 10101100b, 0xAC
+\end{minted}
 
 \begin{landscape}
 \thispagestyle{plain}
