@@ -166,11 +166,13 @@ Let us look at the design of a simple ISA called TOMA.
 
 \subsubsection{Features}
 \begin{itemize}
-\item Four 8-bit registers named \$s0, \$s1, \$s2, \$s3 when used in assembly 
-code
-\item Instruction memory is 8 bytes(8x8), address line is 3 bits
+\item Four 8-bit registers named \mintinline{asm}{$s0, $s1, $s2, $s3} when 
+used in assembly code
+\item Instruction memory (IM) is 8 bytes(8x8), address line is 3 bits
 \item Three-bit Program Counter (PC)
 \item Single-cycle - completes instruction execution in one clock cycle
+\item Supports the following instructions: \mintinline{asm}{and, add, sub, 
+addi}
 \item No data memory, thus has no load and store instructions
 \item No control transfer instructions
 \end{itemize}
@@ -187,14 +189,32 @@ shown in Figure \ref{fig:ins_format}.
 	\end{center}
 \end{figure}
 
+\subsubsection{Supported Instructions}
+\begin{minted}[frame=single,framesep=10pt]{vhdl}
+and : rd <= rs AND rt           (op=00)
+add : rd <= rs + rt             (op=01)
+sub : rd <= rs -  rt            (op=10)
+addi : rs <= rt + immediate     (op=11)
+\end{minted}
+
+
 \subsubsection{Example assembly code and machine code}
-\begin{minted}[frame=single,framesep=10pt]{gas}
+\begin{minted}[frame=single,framesep=10pt]{nasm}
 addi $s0, $s0, 2         ; 11000010b, 0xC2
 addi $s1, $s1, 1         ; 11010101b, 0xD5
 addi $s2, $s2, 3         ; 11101011b, 0xEB
 add $s3, $s0, $s1        ; 01000111b, 0x47
 sub $s0, $s2, $s3        ; 10101100b, 0xAC
 \end{minted}
+
+The syntax for the assembly language is
+\begin{minted}[frame=single,framesep=10pt]{nasm}
+<instruction> <dst>, <src1>, <src2/imm>
+\end{minted}
+
+\subsection{REDHORSE 500: An implementation of TOMA}
+Given the TOMA ISA, let us implement the ISA and call it REDHORSE 500. We will 
+use VHDL for the implementation.
 
 \begin{landscape}
 \thispagestyle{plain}
