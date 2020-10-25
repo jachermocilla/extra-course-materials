@@ -10,9 +10,10 @@
 \contentsline {subsubsection}{\numberline {2.6.2}Instruction Format}{4}{subsubsection.2.6.2}
 \contentsline {subsubsection}{\numberline {2.6.3}Supported Instructions}{4}{subsubsection.2.6.3}
 \contentsline {subsubsection}{\numberline {2.6.4}Example assembly code and machine code}{4}{subsubsection.2.6.4}
-\contentsline {subsection}{\numberline {2.7}REDHORSE 500: An implementation of TOMA}{4}{subsection.2.7}
-\contentsline {section}{\numberline {3}Summary}{6}{section.3}
-\contentsline {section}{\numberline {4}Learning Activities}{6}{section.4}
-\contentsline {section}{\numberline {5}Self-Assessment Questions}{6}{section.5}
-\contentsline {section}{\numberline {6}Deliverable}{6}{section.6}
-\contentsline {section}{\numberline {7}Further Reading}{6}{section.7}
+\contentsline {subsection}{\numberline {2.7}REDHORSE 500: An implementation of TOMA}{5}{subsection.2.7}
+\contentsline {subsubsection}{\numberline {2.7.1}Processor}{5}{subsubsection.2.7.1}
+\contentsline {section}{\numberline {3}Summary}{7}{section.3}
+\contentsline {section}{\numberline {4}Learning Activities}{7}{section.4}
+\contentsline {section}{\numberline {5}Self-Assessment Questions}{7}{section.5}
+\contentsline {section}{\numberline {6}Deliverable}{7}{section.6}
+\contentsline {section}{\numberline {7}Further Reading}{7}{section.7}
