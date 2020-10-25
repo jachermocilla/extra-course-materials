@@ -9,6 +9,7 @@
   heightrounded, % to avoid spurious underfull messages
 ]{geometry} 
 
+\usepackage{pdflscape}
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
 \usepackage{fancyhdr}
@@ -116,14 +117,17 @@ C data types, executable file formats (ELF, PE)}. Examples are the IA-32 and
 \textbf{x86-64 System V ABI} which is used in Linux and other Unix-type 
 operating systems. In Windows, it uses its own \textbf{x64 ABI}.
 
-%%\begin{figure}[H]
-%%	\begin{center}
-%%	\includegraphics[width=4in]{clock0.png}
-%%	\caption{A clock signal showin the clock period, falling edge, and rising 
-%%edge.}
-%%	\label{fig:clock0} 
-%%	\end{center}
-%%\end{figure}
+\begin{landscape}
+\thispagestyle{plain}
+\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=10.5in]{redhorse500.png}
+	\caption{REDHORSE 500.}
+	\label{fig:clock0} 
+	\end{center}
+\end{figure}
+\end{landscape}
+%%[width=10in]
 
 
 \begin{minted}[frame=single,framesep=10pt]{vhdl}
