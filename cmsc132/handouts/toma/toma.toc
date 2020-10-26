@@ -9,18 +9,19 @@
 \contentsline {subsubsection}{\numberline {2.6.1}Features}{4}{subsubsection.2.6.1}
 \contentsline {subsubsection}{\numberline {2.6.2}Instruction Format}{4}{subsubsection.2.6.2}
 \contentsline {subsubsection}{\numberline {2.6.3}Supported Instructions}{4}{subsubsection.2.6.3}
-\contentsline {subsubsection}{\numberline {2.6.4}Example assembly code and machine code}{4}{subsubsection.2.6.4}
+\contentsline {subsubsection}{\numberline {2.6.4}Assembly Language}{4}{subsubsection.2.6.4}
 \contentsline {subsection}{\numberline {2.7}REDHORSE 500: An implementation of TOMA}{5}{subsection.2.7}
-\contentsline {subsubsection}{\numberline {2.7.1}Processor}{5}{subsubsection.2.7.1}
-\contentsline {subsubsection}{\numberline {2.7.2}Program Counter}{7}{subsubsection.2.7.2}
-\contentsline {subsubsection}{\numberline {2.7.3}Instruction Memory}{7}{subsubsection.2.7.3}
-\contentsline {subsubsection}{\numberline {2.7.4}Register File}{8}{subsubsection.2.7.4}
-\contentsline {subsubsection}{\numberline {2.7.5}ALU}{9}{subsubsection.2.7.5}
-\contentsline {subsubsection}{\numberline {2.7.6}Control Unit}{10}{subsubsection.2.7.6}
-\contentsline {subsubsection}{\numberline {2.7.7}Mux0}{11}{subsubsection.2.7.7}
-\contentsline {subsubsection}{\numberline {2.7.8}Mux1}{11}{subsubsection.2.7.8}
-\contentsline {subsubsection}{\numberline {2.7.9}Sign Extend}{12}{subsubsection.2.7.9}
-\contentsline {subsubsection}{\numberline {2.7.10}Simulation}{12}{subsubsection.2.7.10}
+\contentsline {subsubsection}{\numberline {2.7.1}Features}{5}{subsubsection.2.7.1}
+\contentsline {subsubsection}{\numberline {2.7.2}Processor}{5}{subsubsection.2.7.2}
+\contentsline {subsubsection}{\numberline {2.7.3}Program Counter}{7}{subsubsection.2.7.3}
+\contentsline {subsubsection}{\numberline {2.7.4}Instruction Memory}{7}{subsubsection.2.7.4}
+\contentsline {subsubsection}{\numberline {2.7.5}Register File}{8}{subsubsection.2.7.5}
+\contentsline {subsubsection}{\numberline {2.7.6}ALU}{9}{subsubsection.2.7.6}
+\contentsline {subsubsection}{\numberline {2.7.7}Control Unit}{10}{subsubsection.2.7.7}
+\contentsline {subsubsection}{\numberline {2.7.8}Mux0}{11}{subsubsection.2.7.8}
+\contentsline {subsubsection}{\numberline {2.7.9}Mux1}{11}{subsubsection.2.7.9}
+\contentsline {subsubsection}{\numberline {2.7.10}Sign Extend}{12}{subsubsection.2.7.10}
+\contentsline {subsubsection}{\numberline {2.7.11}Simulation}{12}{subsubsection.2.7.11}
 \contentsline {section}{\numberline {3}Summary}{13}{section.3}
 \contentsline {section}{\numberline {4}Learning Activities}{13}{section.4}
 \contentsline {section}{\numberline {5}Self-Assessment Questions}{13}{section.5}

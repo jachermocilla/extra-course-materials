@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  26 OCT 2020 18:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.6.10)  26 OCT 2020 19:03
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -601,11 +601,7 @@ runsystem(which pygmentize && touch toma.aex)...executed.
 
 runsystem(rm toma.aex)...executed.
 
- (./toma.aux
-
-LaTeX Warning: Label `code:assembly' multiply defined.
-
-)
+ (./toma.aux)
 \openout1 = `toma.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
@@ -624,7 +620,8 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
 LaTeX Font Info:    ... okay on input line 50.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 50.
- (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 50.
@@ -752,15 +749,15 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ] [2]
-<x86-64.png, id=199, 619.31375pt x 354.32375pt>
+<x86-64.png, id=204, 619.31375pt x 354.32375pt>
 File: x86-64.png Graphic file (type png)
 <use x86-64.png>
-Package pdftex.def Info: x86-64.png  used on input line 158.
+Package pdftex.def Info: x86-64.png  used on input line 160.
 (pdftex.def)             Requested size: 289.07999pt x 165.3968pt.
-<armv8.png, id=201, 689.57625pt x 460.72125pt>
+<armv8.png, id=206, 689.57625pt x 460.72125pt>
 File: armv8.png Graphic file (type png)
 <use armv8.png>
-Package pdftex.def Info: armv8.png  used on input line 166.
+Package pdftex.def Info: armv8.png  used on input line 168.
 (pdftex.def)             Requested size: 289.07999pt x 193.14307pt.
 \openout5 = `toma.pyg'.
 
@@ -782,13 +779,13 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 (./_minted-toma/584392845F2A8194D05F0B13FE70EA429A2AA98B9A16B1CB0BEDDA65140618B
 6.pygtex)
-<ins_format.png, id=212, 1003.75pt x 193.72375pt>
+<ins_format.png, id=217, 1003.75pt x 193.72375pt>
 File: ins_format.png Graphic file (type png)
 <use ins_format.png>
-Package pdftex.def Info: ins_format.png  used on input line 194.
+Package pdftex.def Info: ins_format.png  used on input line 196.
 (pdftex.def)             Requested size: 325.215pt x 62.76732pt.
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
-t line 202.
+t line 204.
 \openout3 = `toma.pyg'.
 
 
@@ -800,25 +797,25 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
 \openout3 = `toma.pyg'.
 
 
-(./_minted-toma/613EC396540C37B81D8AF71B5C5AACEDCF9E22A70B8FCA9534D117D960C75F5
+(./_minted-toma/876882E372CA6B9BE7ADCAB3C1B740ACCF9E22A70B8FCA9534D117D960C75F5
 7.pygtex)
 \openout3 = `toma.pyg'.
 
 
-(./_minted-toma/876882E372CA6B9BE7ADCAB3C1B740ACCF9E22A70B8FCA9534D117D960C75F5
+(./_minted-toma/613EC396540C37B81D8AF71B5C5AACEDCF9E22A70B8FCA9534D117D960C75F5
 7.pygtex) [4 <./ins_format.png>]
 \openout3 = `toma.pyg'.
 
 
 (./_minted-toma/0ECC5DBCAA9E99AC1D0F3BFBABB4CAB9546677A2B0D9A2AF13D34810DCBE51A
 7.pygtex) [5]
-<redhorse500.png, id=235, 927.465pt x 211.54031pt>
+<redhorse500.png, id=240, 927.465pt x 211.54031pt>
 File: redhorse500.png Graphic file (type png)
 <use redhorse500.png>
-Package pdftex.def Info: redhorse500.png  used on input line 268.
+Package pdftex.def Info: redhorse500.png  used on input line 275.
 (pdftex.def)             Requested size: 758.83499pt x 173.08005pt.
 
-Overfull \hbox (67.83469pt too wide) in paragraph at lines 268--269
+Overfull \hbox (67.83469pt too wide) in paragraph at lines 275--276
  [] 
  []
 
@@ -835,10 +832,10 @@ Overfull \hbox (67.83469pt too wide) in paragraph at lines 268--269
 
 (./_minted-toma/C772B4F370449191F8D5AA225F443F1E546677A2B0D9A2AF13D34810DCBE51A
 7.pygtex)
-<pc.png, id=241, 784.43062pt x 359.84438pt>
+<pc.png, id=246, 784.43062pt x 359.84438pt>
 File: pc.png Graphic file (type png)
 <use pc.png>
-Package pdftex.def Info: pc.png  used on input line 295.
+Package pdftex.def Info: pc.png  used on input line 302.
 (pdftex.def)             Requested size: 144.54pt x 66.30112pt.
 \openout5 = `toma.pyg'.
 
@@ -870,10 +867,10 @@ Package pdftex.def Info: pc.png  used on input line 295.
 
 (./_minted-toma/743B67A4890922995BF78D5E36E9FE12546677A2B0D9A2AF13D34810DCBE51A
 7.pygtex)
-<im.png, id=242, 675.27281pt x 408.77719pt>
+<im.png, id=247, 675.27281pt x 408.77719pt>
 File: im.png Graphic file (type png)
 <use im.png>
-Package pdftex.def Info: im.png  used on input line 330.
+Package pdftex.def Info: im.png  used on input line 337.
 (pdftex.def)             Requested size: 144.54pt x 87.49242pt.
  [7
 
@@ -928,10 +925,10 @@ Package pdftex.def Info: im.png  used on input line 330.
 
 (./_minted-toma/48455D53505B6FBAC824C11BE628CC99546677A2B0D9A2AF13D34810DCBE51A
 7.pygtex) [8 <./im.png>]
-<rf.png, id=263, 476.53032pt x 411.03563pt>
+<rf.png, id=268, 476.53032pt x 411.03563pt>
 File: rf.png Graphic file (type png)
 <use rf.png>
-Package pdftex.def Info: rf.png  used on input line 389.
+Package pdftex.def Info: rf.png  used on input line 396.
 (pdftex.def)             Requested size: 144.54pt x 124.67264pt.
 \openout3 = `toma.pyg'.
 
@@ -973,10 +970,10 @@ Package pdftex.def Info: rf.png  used on input line 389.
 
 (./_minted-toma/B2D8A15D1F1FBE3A2D664CAF0653319C546677A2B0D9A2AF13D34810DCBE51A
 7.pygtex) [9 <./rf.png>]
-<alu.png, id=274, 577.40718pt x 413.29407pt>
+<alu.png, id=279, 577.40718pt x 413.29407pt>
 File: alu.png Graphic file (type png)
 <use alu.png>
-Package pdftex.def Info: alu.png  used on input line 435.
+Package pdftex.def Info: alu.png  used on input line 442.
 (pdftex.def)             Requested size: 144.54pt x 103.45569pt.
 \openout5 = `toma.pyg'.
 
@@ -1008,10 +1005,10 @@ Package pdftex.def Info: alu.png  used on input line 435.
 
 (./_minted-toma/486B2678DA474EB1CC92962A8277915E546677A2B0D9A2AF13D34810DCBE51A
 7.pygtex)
-<control_unit.png, id=276, 710.655pt x 417.81094pt>
+<control_unit.png, id=281, 710.655pt x 417.81094pt>
 File: control_unit.png Graphic file (type png)
 <use control_unit.png>
-Package pdftex.def Info: control_unit.png  used on input line 470.
+Package pdftex.def Info: control_unit.png  used on input line 477.
 (pdftex.def)             Requested size: 144.54pt x 84.97601pt.
  [10 <./alu.png>]
 \openout5 = `toma.pyg'.
@@ -1084,14 +1081,14 @@ Package pdftex.def Info: control_unit.png  used on input line 470.
 
 (./_minted-toma/899877E9F2BF6E51C20CB3EDC8CE4D13546677A2B0D9A2AF13D34810DCBE51A
 7.pygtex) [11 <./control_unit.png>]
-<sim.png, id=300, 828.09375pt x 649.42625pt>
+<sim.png, id=305, 828.09375pt x 649.42625pt>
 File: sim.png Graphic file (type png)
 <use sim.png>
-Package pdftex.def Info: sim.png  used on input line 546.
+Package pdftex.def Info: sim.png  used on input line 553.
 (pdftex.def)             Requested size: 433.62pt x 340.07195pt.
  [12 <./sim.png>]
 
-LaTeX Warning: Reference `fig:sram3' on page 13 undefined on input line 580.
+LaTeX Warning: Reference `fig:sram3' on page 13 undefined on input line 587.
 
 (./toma.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 16--21
@@ -1126,31 +1123,28 @@ Underfull \hbox (badness 6220) in paragraph at lines 58--62
 ) 
 AED: lastpage setting LastPage
 [14]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 599.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 599.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 606.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 606.
  (./toma.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 599.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 599.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 606.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 606.
 Package rerunfilecheck Info: File `toma.out' has not changed.
-(rerunfilecheck)             Checksum: 0A0662ED8FF92AB16C294096335F45DF;1915.
+(rerunfilecheck)             Checksum: 22B889BE33DA7F2F91BEA18179C06562;1963.
 
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
 
 runsystem(rm toma.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 15411 strings out of 494923
- 262390 string characters out of 6180742
- 541485 words of memory out of 5000000
- 18213 multiletter control sequences out of 15000+600000
+ 15414 strings out of 494923
+ 262454 string characters out of 6180742
+ 540531 words of memory out of 5000000
+ 18215 multiletter control sequences out of 15000+600000
  16886 words of font info for 63 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 53i,14n,92p,1005b,600s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,14n,92p,1005b,594s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/
 fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf/fonts/type1/public/
 cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pf
@@ -1160,10 +1154,10 @@ m-super/sfit1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb
 ></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/f
 onts/type1/public/cm-super/sfti1095.pfb></usr/share/texmf/fonts/type1/public/cm
 -super/sftt1095.pfb>
-Output written on toma.pdf (14 pages, 464497 bytes).
+Output written on toma.pdf (14 pages, 464772 bytes).
 PDF statistics:
- 403 PDF objects out of 1000 (max. 8388607)
- 354 compressed objects within 4 object streams
- 90 named destinations out of 1000 (max. 500000)
- 14611 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 409 PDF objects out of 1000 (max. 8388607)
+ 360 compressed objects within 4 object streams
+ 91 named destinations out of 1000 (max. 500000)
+ 14619 words of extra memory for PDF output out of 17280 (max. 10000000)
 

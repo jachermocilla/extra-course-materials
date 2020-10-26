@@ -9,20 +9,21 @@
 \BOOKMARK [3][-]{subsubsection.2.6.1}{Features}{subsection.2.6}% 9
 \BOOKMARK [3][-]{subsubsection.2.6.2}{Instruction Format}{subsection.2.6}% 10
 \BOOKMARK [3][-]{subsubsection.2.6.3}{Supported Instructions}{subsection.2.6}% 11
-\BOOKMARK [3][-]{subsubsection.2.6.4}{Example assembly code and machine code}{subsection.2.6}% 12
+\BOOKMARK [3][-]{subsubsection.2.6.4}{Assembly Language}{subsection.2.6}% 12
 \BOOKMARK [2][-]{subsection.2.7}{REDHORSE 500: An implementation of TOMA}{section.2}% 13
-\BOOKMARK [3][-]{subsubsection.2.7.1}{Processor}{subsection.2.7}% 14
-\BOOKMARK [3][-]{subsubsection.2.7.2}{Program Counter}{subsection.2.7}% 15
-\BOOKMARK [3][-]{subsubsection.2.7.3}{Instruction Memory}{subsection.2.7}% 16
-\BOOKMARK [3][-]{subsubsection.2.7.4}{Register File}{subsection.2.7}% 17
-\BOOKMARK [3][-]{subsubsection.2.7.5}{ALU}{subsection.2.7}% 18
-\BOOKMARK [3][-]{subsubsection.2.7.6}{Control Unit}{subsection.2.7}% 19
-\BOOKMARK [3][-]{subsubsection.2.7.7}{Mux0}{subsection.2.7}% 20
-\BOOKMARK [3][-]{subsubsection.2.7.8}{Mux1}{subsection.2.7}% 21
-\BOOKMARK [3][-]{subsubsection.2.7.9}{Sign Extend}{subsection.2.7}% 22
-\BOOKMARK [3][-]{subsubsection.2.7.10}{Simulation}{subsection.2.7}% 23
-\BOOKMARK [1][-]{section.3}{Summary}{}% 24
-\BOOKMARK [1][-]{section.4}{Learning Activities}{}% 25
-\BOOKMARK [1][-]{section.5}{Self-Assessment Questions}{}% 26
-\BOOKMARK [1][-]{section.6}{Deliverable}{}% 27
-\BOOKMARK [1][-]{section.7}{Further Reading}{}% 28
+\BOOKMARK [3][-]{subsubsection.2.7.1}{Features}{subsection.2.7}% 14
+\BOOKMARK [3][-]{subsubsection.2.7.2}{Processor}{subsection.2.7}% 15
+\BOOKMARK [3][-]{subsubsection.2.7.3}{Program Counter}{subsection.2.7}% 16
+\BOOKMARK [3][-]{subsubsection.2.7.4}{Instruction Memory}{subsection.2.7}% 17
+\BOOKMARK [3][-]{subsubsection.2.7.5}{Register File}{subsection.2.7}% 18
+\BOOKMARK [3][-]{subsubsection.2.7.6}{ALU}{subsection.2.7}% 19
+\BOOKMARK [3][-]{subsubsection.2.7.7}{Control Unit}{subsection.2.7}% 20
+\BOOKMARK [3][-]{subsubsection.2.7.8}{Mux0}{subsection.2.7}% 21
+\BOOKMARK [3][-]{subsubsection.2.7.9}{Mux1}{subsection.2.7}% 22
+\BOOKMARK [3][-]{subsubsection.2.7.10}{Sign Extend}{subsection.2.7}% 23
+\BOOKMARK [3][-]{subsubsection.2.7.11}{Simulation}{subsection.2.7}% 24
+\BOOKMARK [1][-]{section.3}{Summary}{}% 25
+\BOOKMARK [1][-]{section.4}{Learning Activities}{}% 26
+\BOOKMARK [1][-]{section.5}{Self-Assessment Questions}{}% 27
+\BOOKMARK [1][-]{section.6}{Deliverable}{}% 28
+\BOOKMARK [1][-]{section.7}{Further Reading}{}% 29
