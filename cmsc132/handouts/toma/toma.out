@@ -23,6 +23,8 @@
 \BOOKMARK [3][-]{subsubsection.2.7.10}{Sign Extend}{subsection.2.7}% 23
 \BOOKMARK [3][-]{subsubsection.2.7.11}{Simulation}{subsection.2.7}% 24
 \BOOKMARK [1][-]{section.3}{Summary}{}% 25
-\BOOKMARK [1][-]{section.4}{Learning Activities}{}% 26
-\BOOKMARK [1][-]{section.5}{Self-Assessment Questions}{}% 27
-\BOOKMARK [1][-]{section.6}{Deliverable}{}% 28
+\BOOKMARK [1][-]{section.4}{Self-Assessment Questions}{}% 26
+\BOOKMARK [1][-]{section.5}{Learning Activities and Deliverables}{}% 27
+\BOOKMARK [2][-]{subsection.5.1}{Write a testbench}{section.5}% 28
+\BOOKMARK [2][-]{subsection.5.2}{Write an assembler for TOMA}{section.5}% 29
+\BOOKMARK [2][-]{subsection.5.3}{Test your assembler}{section.5}% 30

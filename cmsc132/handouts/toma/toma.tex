@@ -63,7 +63,8 @@ Philippines Los Banos}
 
 \section{Resources}
 \begin{itemize}
-	\item Video: \href{TBA}{TBA}.
+	\item Video: 
+	\href{https://youtu.be/u\_\_T3TgqjRg}{https://youtu.be/u\_\_T3TgqjRg}.
 	\item Source Codes: \href{https://git.io/JTK0T}{https://git.io/JTK0T}
 \end{itemize}	
 
@@ -212,7 +213,7 @@ addi : rs <= rt + immediate     (op=11)
 
 
 \subsubsection{Assembly Language}
-
+\label{marker:assembly}
 
 The syntax for the assembly language is shown in Listing \ref{code:assembly}.
 
@@ -559,33 +560,71 @@ execution of the instruction in line 4 of Listing \ref{code:im_code}.
 In this lab, you learned that ISAs enable programmers to program the processor 
 without knowing the low-level hardware implementation details. It also allows 
 multiple vendors to develop different implementations with varying  
-performance characteristics and cost. You also learned that an ISA when 
-combined with operating system services provides an ABI that allow application 
-programmers to write programs that will run for a given operating system 
-supporting a specific processor.
+performance characteristics and costs. 
 
-You were also introduced to the simple TOMA ISA and its implementation, 
+You also learned that an ISA combined with an operating system's services 
+is an ABI that allows application programmers to write programs that will run 
+on the specific microarchitecture that implememnts the ISA and supported by 
+that operating system.
+
+Lastly, you were also introduced to the simple TOMA ISA and its implementation, 
 the REDHORSE 500.
 
-\section{Learning Activities}
-Download the source codes for this lab then try experimenting by adding more 
-test cases in the testbenches. Submit a PDF document that shows screenshots of 
-your modifications and runs. 
 
 \section{Self-Assessment Questions}
 \begin{enumerate}
-\item What is the main purpose of clocks in sequential circuits?
-\item What is the difference between a clocked latch and a flip-flop?
-\item Why can't a multiplexer be used in RAM?
-\item Why is SRAM more expensive than DRAM?
-\item If my CPU is clocked at 800 MHz, what is the period?
+\item What is an ISA?
+\item What is an ABI?
+\item Is it possible to run linux applications compiled/built for IA-32 on an 
+x86-64?Why or why not?
+\item What is purpose of Mux0 and Mux1 in REDHORSE 500?
+\item Why is the sign extension component needed in REDHORSE 500?
+\item Can you consider TOMA a RISC or a CISC?
 \end{enumerate}
 
-\section{Deliverable}
-Your final deliverable for this lab is implement the RAM in Figure 
- \ref{fig:sram3}. Submit the VHDL code including a testbench as well as images 
-of the waveforms. NOTE: Enable lines should be connected to the output of the 
-decoder and the rightmost Din in the figure should be Din[0].
+\section{Learning Activities and Deliverables}
+Download and study the source codes for this lab. Run the script, 
+\mintinline{bash}{build.sh}, to build everything. 
+To check the operation of REDHORSE 500, there is a  file named 
+\mintinline{bash}{redhorse500.gtkw}. Open this file in 
+\mintinline{bash}{gtkwave} and study the simulation. 
+
+\subsection{Write a testbench}
+You will observe that there is no testbench in the source codes. Write a 
+testbench and experiment with using different clock frequencies starting with 
+100MHz. Capture screenshots of the simulations generated using your own 
+testbenches.
+
+\textit{Deliverables}: \mintinline{bash}{Processor_tb.vhdl}, simulation 
+screenshots
+
+\subsection{Write an assembler for TOMA}
+Write an assember that reads a file of TOMA assembly language code (see  
+\nameref{marker:assembly}) and outputs a file containing binary strings 
+representing the machine code. . You can use any programming/scipting language 
+you want.
+
+\textit{Deliverables}: \mintinline{bash}{tomasm.py} or depending on what 
+language you used. Only submit source code.
+
+\subsection{Test your assembler}
+Using your assembler, assemble the code in Listing \ref{code:surprise}. 
+\begin{listing}[H]
+\caption{surprise.toma.}
+\label{code:surprise}
+\begin{minted}[frame=single,framesep=10pt]{nasm}
+add  $s0, $s0, $s1
+addi $s0, $s3, 6 
+and  $s2, $s3, 
+\end{minted}
+\end{listing}
+
+
+
+
+
+
+
 
 
 %\begin{thebibliography}{9}
