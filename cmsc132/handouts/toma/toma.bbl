@@ -1,5 +1,17 @@
 \begin{thebibliography}{10}
 
+\bibitem{CODARM}
+David~A. Patterson and John~L. Hennessy.
+\newblock {\em Computer Organization and Design: The Hardware/Software
+  Interface, ARM Edition}.
+\newblock Morgan Kaufmann Publishers Inc., San Francisco, CA, USA, arm edition,
+  2017.
+
+\bibitem{AMD64ISA}
+Amd64 architecture programmer's manual volume 1:application programming.
+\newblock \url{https://www.amd.com/system/files/TechDocs/24592.pdf}.
+\newblock Accessed: 2020-10-26.
+
 \bibitem{Corei5}
 Intel core i5-8250u processor (6m cache, up to 3.40 ghz) product
   specifications.
@@ -63,12 +75,5 @@ x64 software conventions | microsoft docs.
 Android abis | android ndk | android developers.
 \newblock \url{https://developer.android.com/ndk/guides/abis}.
 \newblock Accessed: 2020-10-26.
-
-\bibitem{10.5555/2568134}
-David~A. Patterson and John~L. Hennessy.
-\newblock {\em Computer Organization and Design: The Hardware/Software
-  Interface, ARM Edition}.
-\newblock Morgan Kaufmann Publishers Inc., San Francisco, CA, USA, arm edition,
-  2017.
 
 \end{thebibliography}

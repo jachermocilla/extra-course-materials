@@ -87,20 +87,20 @@ hardware and the lowest-level software. It includes anything programmers need
 to know to make a binary machine language program work correctly. Typically it  
 documents the set of instructions that can be performed by the 
 processor, the number and name of available registers, the memory 
-addressing modes, I/O, interrupt processing, etc.
+addressing modes, I/O, interrupt processing, etc \cite{CODARM}.
 
 ISA allows computer designers to talk about functions indepedently from the 
 hardware that performs them. This abstact interface enables many 
 implementations (aka \textbf{microarchitectures}) of varying costs and 
 performance to run identical software.
 
-Examples of ISA include the \textbf{IA-32} and \textbf{x86-64} which are 
-commonly used in desktop and laptops. For example, Intel implements these ISA 
-in their Intel Core i5-8250U\cite{Corei5} product as \textbf{8th Generation aka 
-Kaby Lake Refresh}\cite{KarbyLaKeR}. AMD also implements these ISA in the Ryzen 
-5000 \cite{Ryzen5000} as \textbf{4th Gen aka Zen 3}\cite{Zen3}. There are other 
-implementations(aka generations) that vary in their 
-performance characteristics.
+Examples of ISA include the \textbf{IA-32} and \textbf{x86-64}\cite{AMD64ISA} 
+which are commonly used in desktop and laptops. For example, Intel implements 
+these ISA in their Intel Core i5-8250U\cite{Corei5} product as \textbf{8th 
+Generation aka Kaby Lake Refresh}\cite{KarbyLaKeR}. AMD also implements these 
+ISA in the Ryzen 5000 \cite{Ryzen5000} as \textbf{4th Gen aka Zen 
+3}\cite{Zen3}. There are other implementations(aka generations) that vary in 
+their performance characteristics.
 
 For mobile devices, a popular ISA is the \textbf{ARMv8 A64}\cite{ARMv8ISA}. 
 MediaTek uses ARM's \textbf{Cortex-A73} and \textbf{Cortex-A53}\cite{CortexA73} 
@@ -129,10 +129,10 @@ ABI}\cite{Winx64ABI}. Android supports different ABIs\cite{AndroidABI}.
 We can categorize ISAs based on where operands in instructions are stored.
 \textbf{Stack-based} ISAs uses a stack(LIFO) where operations are performed on 
 the operands on the top of the stack. In \textbf{accumulator-based} ISAs, one 
-register is designated as accumulator and its use in operations is implied. 
-Modern ISAs are \textbf{general purpose} where operands are explicitly named in 
-the instruction. Operations can be register-to-register, register-to-memory, 
-or memory-to-register.
+register is designated as the \textit{accumulator} and its use in operations is 
+implied. Modern ISAs are \textbf{general purpose} where operands are explicitly 
+named in the instruction. In this category, operations can be 
+register-to-register, register-to-memory, or memory-to-register.
 
 \subsection{Considerations in ISA Design}
 \begin{itemize}
