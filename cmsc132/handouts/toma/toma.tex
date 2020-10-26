@@ -102,8 +102,8 @@ Kaby Lake Refresh}\cite{KarbyLaKeR}. AMD also implements these ISA in the Ryzen
 implementations(aka generations) that vary in their 
 performance characteristics.
 
-For mobile devices, a popular ISA is the \textbf{ARMv8 A64}. MediaTek uses 
-ARM's \textbf{Cortex-A73} and \textbf{Cortex-A53}\cite{CortexA73} 
+For mobile devices, a popular ISA is the \textbf{ARMv8 A64}\cite{ARMv8ISA}. 
+MediaTek uses ARM's \textbf{Cortex-A73} and \textbf{Cortex-A53}\cite{CortexA73} 
 implementations in their Octa-core Helio P70\cite{HelioP70}. Qualcomm also uses 
 the same implementations in their Kryo 240 processor for Snapdragon 460 Mobile 
 Platform\cite{Snapdragon460}.
@@ -113,14 +113,17 @@ Application Binary Interface (ABI) is a combination of the basic instruction
 set and the operating system interface provided for application programmers. 
 
 For general-purpose use such a desktops and laptops, programming a processor 
-using only the basic instruction set is inefficient. Thus, operating systems 
+using only the basic instruction set is insufficient. Thus, operating systems 
 perform an important role in the management and efficient use of hardware 
 resources in addition to making it easier for users to use a computer. 
 
 ABI describes function-calling conventions, parameter passing, sizes of 
 C data types, executable file formats (ELF, PE). Examples are the IA-32 and 
-\textbf{x86-64 System V ABI} which is used in Linux and other Unix-type 
-operating systems. In Windows, it uses its own \textbf{x64 ABI}.
+\textbf{x86-64 System V ABI}\cite{x64ABI} which are used in Linux and other 
+Unix-type 
+operating systems. Windows has its own ABI called \textbf{x64 
+ABI}\cite{Winx64ABI}. Android supports different ABIs\cite{AndroidABI}.
+
 
 \subsection{ISA Taxonomy}
 We can categorize ISAs based on where operands in instructions are stored.

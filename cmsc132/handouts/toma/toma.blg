@@ -3,44 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: toma.aux
 The style file: unsrt.bst
 Database file #1: toma.bib
-You've used 8 entries,
+You've used 12 entries,
             1791 wiz_defined-function locations,
-            480 strings with 4709 characters,
-and the built_in function-call counts, 959 in all, are:
-= -- 86
-> -- 15
+            496 strings with 5274 characters,
+and the built_in function-call counts, 1397 in all, are:
+= -- 126
+> -- 19
 < -- 0
-+ -- 10
++ -- 14
 - -- 2
 * -- 10
-:= -- 114
-add.period$ -- 24
-call.type$ -- 8
-change.case$ -- 8
+:= -- 160
+add.period$ -- 36
+call.type$ -- 12
+change.case$ -- 12
 chr.to.int$ -- 0
-cite$ -- 8
-duplicate$ -- 45
-empty$ -- 146
+cite$ -- 12
+duplicate$ -- 65
+empty$ -- 218
 format.name$ -- 2
-if$ -- 246
+if$ -- 362
 int.to.chr$ -- 0
-int.to.str$ -- 8
+int.to.str$ -- 12
 missing$ -- 2
-newline$ -- 43
+newline$ -- 63
 num.names$ -- 1
-pop$ -- 61
+pop$ -- 93
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 24
+skip$ -- 35
 stack$ -- 0
 substring$ -- 0
-swap$ -- 8
+swap$ -- 12
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
 while$ -- 1
-width$ -- 9
-write$ -- 77
+width$ -- 14
+write$ -- 113

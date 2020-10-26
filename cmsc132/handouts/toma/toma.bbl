@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Corei5}
 Intel core i5-8250u processor (6m cache, up to 3.40 ghz) product
@@ -24,6 +24,12 @@ Amd zen 3 release date, specs and price: everything we know about amd ryzen
 \newblock \url{https://www.techradar.com/news/amd-zen-3}.
 \newblock Accessed: 2020-10-26.
 
+\bibitem{ARMv8ISA}
+Armv8-a instruction set architecture.
+\newblock
+  \url{https://developer.arm.com/-/media/Arm%20Developer%20Community/PDF/Learn%20the%20Architecture/Armv8-A%20Instruction%20Set%20Architecture.pdf}.
+\newblock Accessed: 2020-10-26.
+
 \bibitem{CortexA73}
 Cortex-a73 – arm developer.
 \newblock
@@ -40,6 +46,22 @@ Mediatek helio p70.
 Snapdragon 460 mobile platform | qualcomm.
 \newblock
   \url{https://www.qualcomm.com/products/snapdragon-460-mobile-platform}.
+\newblock Accessed: 2020-10-26.
+
+\bibitem{x64ABI}
+Projects · x86 psabis / x86-64 psabi · gitlab.
+\newblock \url{https://gitlab.com/x86-psABIs/x86-64-ABI}.
+\newblock Accessed: 2020-10-26.
+
+\bibitem{Winx64ABI}
+x64 software conventions | microsoft docs.
+\newblock
+  \url{https://docs.microsoft.com/en-us/cpp/build/x64-software-conventions?view=vs-2019}.
+\newblock Accessed: 2020-10-26.
+
+\bibitem{AndroidABI}
+Android abis | android ndk | android developers.
+\newblock \url{https://developer.android.com/ndk/guides/abis}.
 \newblock Accessed: 2020-10-26.
 
 \bibitem{10.5555/2568134}
