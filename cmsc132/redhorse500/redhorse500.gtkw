@@ -2,7 +2,7 @@
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
 [*] Fri Oct 23 14:35:27 2020
 [*]
-[dumpfile] "./toma.vcd"
+[dumpfile] "./redhorse500.vcd"
 [dumpfile_mtime] "Fri Oct 23 14:03:19 2020"
 [dumpfile_size] 6074
 [savefile] "./minicpu.gtkw"
