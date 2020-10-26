@@ -1,5 +1,47 @@
 \begin{thebibliography}{1}
 
+\bibitem{Corei5}
+Intel core i5-8250u processor (6m cache, up to 3.40 ghz) product
+  specifications.
+\newblock
+  \url{https://ark.intel.com/content/www/us/en/ark/products/124967/intel-core-i5-8250u-processor-6m-cache-up-to-3-40-ghz.html}.
+\newblock Accessed: 2020-10-26.
+
+\bibitem{KarbyLaKeR}
+Products formerly kaby lake r.
+\newblock
+  \url{https://ark.intel.com/content/www/us/en/ark/products/codename/126287/kaby-lake-r.html}.
+\newblock Accessed: 2020-10-26.
+
+\bibitem{Ryzen5000}
+Ryzen 5000 series desktop processors | fastest in the game | amd.
+\newblock \url{https://www.amd.com/en/processors/ryzen}.
+\newblock Accessed: 2020-10-26.
+
+\bibitem{Zen3}
+Amd zen 3 release date, specs and price: everything we know about amd ryzen
+  4000 | techradar.
+\newblock \url{https://www.techradar.com/news/amd-zen-3}.
+\newblock Accessed: 2020-10-26.
+
+\bibitem{CortexA73}
+Cortex-a73 – arm developer.
+\newblock
+  \url{https://developer.arm.com/ip-products/processors/cortex-a/cortex-a73}.
+\newblock Accessed: 2020-10-26.
+
+\bibitem{HelioP70}
+Mediatek helio p70.
+\newblock
+  \url{https://www.mediatek.com/products/smartphones/mediatek-helio-p70}.
+\newblock Accessed: 2020-10-26.
+
+\bibitem{Snapdragon460}
+Snapdragon 460 mobile platform | qualcomm.
+\newblock
+  \url{https://www.qualcomm.com/products/snapdragon-460-mobile-platform}.
+\newblock Accessed: 2020-10-26.
+
 \bibitem{10.5555/2568134}
 David~A. Patterson and John~L. Hennessy.
 \newblock {\em Computer Organization and Design: The Hardware/Software

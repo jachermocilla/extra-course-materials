@@ -75,9 +75,9 @@ The \textbf{processor(CPU)} is composed of the \textbf{datapath} and
 sequential circuit elements are used as building blocks to create the 
 functional components of the datapath and control. Examples of these functional 
 elements include the \textbf{ALU, Register File, Program Counter, and Memory}. 
-You also learned that a \textbf{clock} drives the execution and control is 
-implemented using a \textbf{finite state machine} for 
-\textbf{fetch-decode-execute cycle}. One question that we can answer next is: 
+You also learned that a \textbf{clock} drives the execution forward and control 
+is implemented using a \textbf{finite state machines} for the 
+\textbf{fetch-decode-execute} cycle. One question that we can answer next is: 
 \textit{How do we program the CPU?}
 
 
@@ -86,7 +86,7 @@ Instruction Set Architecture (ISA) is an \textbf{abstraction} between the
 hardware and the lowest-level software. It includes anything programmers need 
 to know to make a binary machine language program work correctly. Typically it  
 documents the set of instructions that can be performed by the 
-processor, number and name of available registers, memory 
+processor, the number and name of available registers, the memory 
 addressing modes, I/O, interrupt processing, etc.
 
 ISA allows computer designers to talk about functions indepedently from the 
@@ -96,15 +96,17 @@ performance to run identical software.
 
 Examples of ISA include the \textbf{IA-32} and \textbf{x86-64} which are 
 commonly used in desktop and laptops. For example, Intel implements these ISA 
-in their Intel Core i5 product as \textbf{8th Generation aka as Kaby Lake 
-Refresh}. AMD also implements these ISA in the Ryzen 5000 as \textbf{4th Gen 
-aka Zen 3}. There are other implementations(aka generations) that vary in their 
+in their Intel Core i5-8250U\cite{Corei5} product as \textbf{8th Generation aka 
+Kaby Lake Refresh}\cite{KarbyLaKeR}. AMD also implements these ISA in the Ryzen 
+5000 \cite{Ryzen5000} as \textbf{4th Gen aka Zen 3}\cite{Zen3}. There are other 
+implementations(aka generations) that vary in their 
 performance characteristics.
 
 For mobile devices, a popular ISA is the \textbf{ARMv8 A64}. MediaTek uses 
-ARM's \textbf{Cortex-A73} and \textbf{Cortex-A53} implementations in their 
-Octa-core Helio P70. Qualcomm also uses the same implementations in their Kryo 
-240 processor for Snapdragon SoC.
+ARM's \textbf{Cortex-A73} and \textbf{Cortex-A53}\cite{CortexA73} 
+implementations in their Octa-core Helio P70\cite{HelioP70}. Qualcomm also uses 
+the same implementations in their Kryo 240 processor for Snapdragon 460 Mobile 
+Platform\cite{Snapdragon460}.
 
 \subsection{Application Binary Interface}
 Application Binary Interface (ABI) is a combination of the basic instruction 
