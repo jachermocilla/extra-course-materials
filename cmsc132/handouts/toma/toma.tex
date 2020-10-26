@@ -608,18 +608,27 @@ you want.
 language you used. Only submit source code.
 
 \subsection{Test your assembler}
-Using your assembler, assemble the code in Listing \ref{code:surprise}. 
+Using your assembler, assemble the code in Listing \ref{code:surprise}. Plug in 
+the result to the Intruction Memory. Simulate the execution.
+
 \begin{listing}[H]
 \caption{surprise.toma.}
 \label{code:surprise}
 \begin{minted}[frame=single,framesep=10pt]{nasm}
 add  $s0, $s0, $s1
 addi $s0, $s3, 6 
-and  $s2, $s3, 
+and  $s2, $s3, $s1
+sub  $s0, $s3, $s0
 \end{minted}
 \end{listing}
 
+\textit{Deliverables}: Assembled output and screenshots of simulations.
 
+\subsection{Discussion}
+Discuss the changes you have to make to TOMA and REDHORSE 500 if you are to use 
+the ALU you implemented in the Combinational Circuits lab. 
+
+\textit{Deliverables}: Paragraphs describing your approach.
 
 
 
