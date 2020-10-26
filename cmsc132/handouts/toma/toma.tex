@@ -110,7 +110,8 @@ Platform\cite{Snapdragon460}.
 
 \subsection{Application Binary Interface}
 Application Binary Interface (ABI) is a combination of the basic instruction 
-set and the operating system interface provided for application programmers. 
+set and the operating system interface provided for application 
+programmers\cite{CODARM}. 
 
 For general-purpose use such a desktops and laptops, programming a processor 
 using only the basic instruction set is insufficient. Thus, operating systems 
@@ -242,7 +243,7 @@ sub $s0, $s2, $s3        ; 10101100b, 0xAC
 
 \subsubsection{Features}
 \begin{itemize}
-\item Implements the TOMA ISA
+\item Implements the TOMA ISA in VHDL
 \item Clocked at 100MHz
 \end{itemize}
 
@@ -273,7 +274,7 @@ END Processor;
 \begin{figure}[H]
 	\begin{center}
 	\includegraphics[width=10.5in]{redhorse500.png}
-	\caption{REDHORSE 500.}
+	\caption{Wiring of the different functional components of REDHORSE 500.}
 	\label{fig:redhorse500} 
 	\end{center}
 \end{figure}
@@ -341,8 +342,7 @@ end Instruction;
 \end{figure}
 
 \begin{listing}[H]
-\caption{Hard-coded instructions in the instruction memory which can be 
-changed.}
+\caption{Sample hard-coded instructions in the instruction memory.}
 \label{code:im_code}
 \begin{minted}[frame=single,framesep=10pt,linenos]{vhdl}
      constant instr : instruction_set := (
@@ -400,7 +400,7 @@ end Registers;
 \end{figure}
 
 \begin{listing}[H]
-\caption{Hard-coded initial values for the registers which can be changed.}
+\caption{Sample hard-coded initial values for the registers.}
 \label{code:rf_values}
 \begin{minted}[frame=single,framesep=10pt]{vhdl}
    signal reg: registerFile := (
@@ -414,7 +414,7 @@ end Registers;
 
 \subsubsection{ALU}
 The ALU performs the supported instructions depending on the opcode in 
-\mintinline{vhdl}{addi}{op}. This is an 8-bit ALU so operatons are performed on 
+\mintinline{vhdl}{op}. This is an 8-bit ALU so operations are performed on 
 8-bit values. The inputs are in \mintinline{vhdl}{rs} and \mintinline{vhdl}{rt} 
 and the results in \mintinline{vhdl}{rd}. \mintinline{vhdl}{rt} input will come 
 form Mux1 in case the instruction is \mintinline{vhdl}{addi}(See Figure 
@@ -451,7 +451,7 @@ The Control Unit activates control lines depending on the opcode in
 the \mintinline{vhdl}{alu_op} line. A special case is 
 the \mintinline{vhdl}{addi} instruction which activates the 
 \mintinline{vhdl}{alu_src} and \mintinline{vhdl}{reg_dst} to adjust the 
-inputs to the ALU and the Register File, respectively (See Figure 
+inputs to the ALU and the Register File respectively (See Figure 
 \ref{fig:redhorse500}). 
 
 
@@ -551,21 +551,23 @@ execution of the instruction in line 4 of Listing \ref{code:im_code}.
 \begin{figure}[H]
 	\begin{center}
 	\includegraphics[width=6in]{sim.png}
-	\caption{Control Unit.}
+	\caption{Simulation run of REDHORSE 500.}
 	\label{fig:sim} 
 	\end{center}
 \end{figure}
 
 
 \section{Summary}
-In this lab, you learned some of the sequential elements that are useful in the 
-design of a processor as well as the importance of clocks. We also showed the
-design and implementation of a simple traffic light system using finite state 
-machines since a simple truth table is not enough to characterize a sequential 
-system. 
+In this lab, you learned that ISAs enable programmers to program the processor 
+without knowing the low-level hardware implementation details. It also allows 
+multiple vendors to develop different implementations with provide varying  
+performance characteristics and cost. You also learned that an ISA when 
+combined with operating system services provides an ABI that allow application 
+programmers to write programs that will run for a given operating system 
+supporting a specific processor.
 
-You should now be able to tell whether a functional component of a datapath and 
-control is composed of a combinational or sequential element.
+You were also introduced to the simple TOMA ISA and its implementation, 
+REDHORSE 500.
 
 \section{Learning Activities}
 Download the source codes for this lab then try experimenting by adding more 
@@ -587,13 +589,6 @@ Your final deliverable for this lab is implement the RAM in Figure
  \ref{fig:sram3}. Submit the VHDL code including a testbench as well as images 
 of the waveforms. NOTE: Enable lines should be connected to the output of the 
 decoder and the rightmost Din in the figure should be Din[0].
-
-\section{Further Reading}
-\begin{itemize}
-\item 
-\href{https://www.doulos.com/knowhow/vhdl/simple-ram-model/}
-{https://www.doulos.com/knowhow/vhdl/simple-ram-model/}
-\end{itemize}
 
 
 %\begin{thebibliography}{9}

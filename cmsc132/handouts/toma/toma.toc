@@ -26,4 +26,3 @@
 \contentsline {section}{\numberline {4}Learning Activities}{13}{section.4}
 \contentsline {section}{\numberline {5}Self-Assessment Questions}{13}{section.5}
 \contentsline {section}{\numberline {6}Deliverable}{13}{section.6}
-\contentsline {section}{\numberline {7}Further Reading}{13}{section.7}
