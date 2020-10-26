@@ -5,6 +5,6 @@ for f in *.vhd; do
   ghdl -e "${f%%.*}"
 done
   
-ghdl -a Processor_tb.vhdl
-ghdl -e Processor_tb
-ghdl -r  Processor_tb  --vcd=toma.vcd  --stop-time=200ns
+#ghdl -a Processor_tb.vhdl
+#ghdl -e Processor_tb
+#ghdl -r  Processor_tb  --vcd=toma.vcd  --stop-time=200ns
