@@ -1,6 +1,7 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int sum; /* this data is shared by the thread(s) */
 
@@ -39,5 +40,6 @@ void *runner(void *param)
    sum = 0;
    for (i = 1; i <= upper; i++)
       sum += i;
+   sleep(120);
    pthread_exit(0);
 }
