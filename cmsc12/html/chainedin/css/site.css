@@ -4,7 +4,7 @@ label {
 
 .column {
     float: left;
-    width: 300px;
+    width: 250px;
 }
 
 .row:after {
@@ -15,14 +15,19 @@ label {
 }
 
 fieldset {
-    display:inline-block;
+    width: 500px;
 }
 
 textarea {
-    width: 590px;
+    width: 435px;
     height: 80px;
 }
 
 select {
-    width: 590px;
+    width: 435px;
 }
+
+input[type=text] {
+    width: 435px;
+}
+
