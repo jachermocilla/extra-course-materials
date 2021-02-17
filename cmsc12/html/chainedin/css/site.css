@@ -1,0 +1,28 @@
+label {
+    color: gray;
+}
+
+.column {
+    float: left;
+    width: 300px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+    padding-bottom: 5px;
+}
+
+fieldset {
+    display:inline-block;
+}
+
+textarea {
+    width: 590px;
+    height: 80px;
+}
+
+select {
+    width: 590px;
+}

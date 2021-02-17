@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!---
+    *https://www.smashingmagazine.com/2009/04/from-table-hell-to-div-hell/ 
+    *https://www.tutorialrepublic.com/html-tutorial/html-layout.php
+    *https://www.w3schools.com/howto/howto_css_two_columns.asp
+-->
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="site.css" />
+    </head>
+    <body>
+        <h2>ChainedIn</h2>
+        <form>
+            <fieldset>
+                <legend>Edit intro</legend>
+                    <div class="row">
+                        <div class="column">
+                            <label>First Name *</label>
+                        </div>                        
+                        <div class="column">
+                            <label>Last Name *</label>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="column">
+                            <input type="text" size="25" required>
+                        </div>
+                        <div class="column">
+                            <input type="text" size="25" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label>Headline *</label>
+                    </div>
+                    
+                    <div class="row">
+                        <textarea required></textarea>
+                    </div>
+
+                    <div class="row">
+                        <label>Current Position *</label>
+                    </div>
+                    <div class="row">
+                        <select required>
+                            <option value="dev">Software Developer</option>
+                            <option value="sysad">System Administrator</option>
+                            <option value="datasci">Data Scientist</option>
+                            <option value="trainer">Trainer</option>
+                        </select>
+                    </div>    
+
+                    <div class="row" >
+                        <div class="column">
+                            <p></p>
+                        </div>
+                        <div class="column" style="text-align:right;">
+                            <a href="position.html" >Add new position</a>
+                        </div>                            
+                    </div>
+
+                    <div class="row">
+                        <div class="column">
+                            <a href="education.html">+ Add new education</a>
+                        </div>
+                        <div class="column">
+                            <p></p>
+                        </div>
+                    </div>
+                        
+                    <div class="row">
+                        <label>Country/Region *</label>
+                    </div>
+                    <div class="row">
+                        <input type="text" size="58" required>
+                    </div>
+                    
+                    <div class="row">
+                        <label>Locations in this Country/Region</label>
+                    </div>
+
+                    <div class="row">
+                        <input type="text" size="58">
+                    </div>
+                        
+                    <div class="row">
+                        <label>Industry *</label>
+                    </div>
+
+                    <div class="row">
+                        <select style="width:590px;" required>
+                            <option value="highered">Higher Education</option>
+                            <option value="gov">Government</option>
+                            <option value="food">Food</option>
+                            <option value="retail">Retail</option>
+                        </select>
+                    </div>
+                        
+                    <div class="row">
+                        <label>Contact info</label>
+                    </div>
+
+                    <div class="row">
+                        <input type="text" size="58">
+                    </div>
+                        
+                    <div class="row">
+                        <div class="column"><p></p></div>
+                        <div class="column" style="text-align:right;">
+                            <a href=""><b>SAVE</b></a>
+                        </div>
+                    </div>
+            </fieldset>
+        </form>
+    </body>
+</html>
