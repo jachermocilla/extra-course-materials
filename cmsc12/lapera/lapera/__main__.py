@@ -4,6 +4,6 @@
 """lapera.__main__: executed when lapera directory is called as script."""
 
 
-from .bootstrap import main
+from .lapera import main
 
 main()
