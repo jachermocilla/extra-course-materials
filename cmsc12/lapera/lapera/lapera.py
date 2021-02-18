@@ -5,6 +5,7 @@
 
 __version__ = "0.1.0"
 
+import io
 import sys
 from .register import *
 from .login import *
@@ -19,8 +20,7 @@ def main_menu():
     print("[2] Register Shopper ")
     print("[3] Login Seller ")
     print("[4] Login Shopper ")
-    print("")
-    choice = input("Enter choice: ")
+    choice = str(input("Enter choice: "))
     #print(choice)
     if choice == "1":
         register_seller()
@@ -28,8 +28,10 @@ def main_menu():
         register_shopper()
     elif choice == "3":
         login_seller()
-    else:
+    elif choice == "4":
         login_shopper()
+    else:
+        print("Unknown choice",choice,"Exiting.")
 
 
 
