@@ -10,6 +10,9 @@ from .register import *
 from .login import *
 
 def main():
+    main_menu()
+
+def main_menu():
     #print("Executing lapera version %s." % __version__)
     print("Welcome to LAPERA Online Shopping!")
     print("[1] Register Seller ")
