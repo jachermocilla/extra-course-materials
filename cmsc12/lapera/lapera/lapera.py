@@ -19,11 +19,11 @@ def main():
     print("")
     choice = input("Enter choice: ")
     #print(choice)
-    if choice == 1:
+    if choice == "1":
         register_seller()
-    elif choice == 2:
+    elif choice == "2":
         register_shopper()
-    elif choice == 3:
+    elif choice == "3":
         login_seller()
     else:
         login_shopper()
