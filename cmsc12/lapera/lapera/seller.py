@@ -1,5 +1,7 @@
 import getpass, os, hashlib
 
+from .lapera import *
+
 #global variables
 sellers = []
 
@@ -35,7 +37,7 @@ def load_seller_db():
     count = 0
     for line in lines:
         count += 1        
-        fields = line.split(",")
+        fields = line.strip().split(",")
         #print(fields) 
         sellers.append(create_seller_dict(  fields[0],
                                             fields[1],
@@ -74,7 +76,7 @@ def email_exists(email_to_check):
             return True
     return False
 
-def register_seller():
+def seller_register():
     print("<<Register Seller>>")
     new_seller_dict = {}
     
@@ -92,18 +94,42 @@ def register_seller():
     #TODO: check of the user exists in the seller file
     matched = False
     while not matched:
-        password1 = hashlib.sha256(getpass.getpass("Password: ").encode('utf-8')).hexdigest()
-        password2 = hashlib.sha256(getpass.getpass("Retype Password: ").encode('utf-8')).hexdigest()
+        password_hash_1 = hashlib.sha256(getpass.getpass("Password: ").encode('utf-8')).hexdigest()
+        password_hash_2 = hashlib.sha256(getpass.getpass("Retype Password: ").encode('utf-8')).hexdigest()
         #TODO: Make sure the password is not empty
-        if password1 != password2:
+        if password_hash_1 != password_hash_2:
             print("Password did not match! ")
         else:
             matched = True
 
-    new_seller_dict["seller_password_hash"] = password1
+    new_seller_dict["seller_password_hash"] = password_hash_1
     #print(new_seller_dict)
     save_seller_dict(new_seller_dict)
+    
+    #reload the in-mem sellers list
+    load_seller_db()
+    
 
+def seller_login():
+    input_email = str(input("Email: "))
+    input_password_hash = hashlib.sha256(getpass.getpass("Password: ").encode('utf-8')).hexdigest()
+
+    login_valid = False
+    
+    for seller in sellers:
+        if seller["seller_email"] == input_email:
+            print("email found")
+            print(seller["seller_password_hash"])
+            print(input_password_hash)
+            if seller["seller_password_hash"] == input_password_hash:
+                print("Here")
+                login_valid = True
+                break
+    
+    if login_valid == True:
+        print("Valid")
+    else:
+        print("Invalid")
 
 
 
