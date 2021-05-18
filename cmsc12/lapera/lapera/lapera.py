@@ -15,6 +15,7 @@ from .seller import *
 def main():
     #main_menu()
     seller_init()
+    register_seller()
 
 def main_menu():
     #print("Executing lapera version %s." % __version__)
