@@ -8,14 +8,18 @@ __version__ = "0.1.0"
 
 import io
 import sys
+
 from .register import *
 from .login import *
+
 from .seller import *
+from .buyer import *
 
 def main():
-    #main_menu()
     seller_init()
-    register_seller()
+    buyer_init()
+    main_menu()
+    #register_seller()
 
 def main_menu():
     #print("Executing lapera version %s." % __version__)
@@ -29,7 +33,7 @@ def main_menu():
     if choice == "1":
         register_seller()
     elif choice == "2":
-        register_shopper()
+        register_buyer()
     elif choice == "3":
         login_seller()
     elif choice == "4":

@@ -1,33 +1,32 @@
 import getpass, os, hashlib
 
-#global va
+#global variables
 sellers = []
-seller_next_id = None
-seller_db_handle = None
 
-root_seller_dict = {    "seller_id":"0",
-                        "seller_first_name":"root",
+admin_seller_dict = {   "seller_id":"0",
+                        "seller_email":"admin@gmail.com",
+                        "seller_first_name":"admin",
                         "seller_last_name":"seller",
-                        "seller_login_name":"root_seller",
                         "seller_password_hash":"1234"
                     }
 
 def create_seller_dict( seller_id,
+                        seller_email,
                         seller_first_name,
                         seller_last_name,
-                        seller_login_name,
                         seller_password_hash
                     ):
     
     new_seller_dict = {}
     
     new_seller_dict["seller_id"] = seller_id
+    new_seller_dict["seller_email"] = seller_email
     new_seller_dict["seller_first_name"] = seller_first_name
     new_seller_dict["seller_last_name"] = seller_last_name 
-    new_seller_dict["seller_login_name"] = seller_login_name 
     new_seller_dict["seller_password_hash"] = seller_password_hash
     
     return new_seller_dict
+
 
 def load_seller_db():
     seller_db_handle = open("data/seller.db","r")
@@ -41,38 +40,54 @@ def load_seller_db():
         sellers.append(create_seller_dict(  fields[0],
                                             fields[1],
                                             fields[2],
-                                            fields[3], 
-                                            fields[4]  
+                                            fields[3],
+                                            fields[4]
                                               ))
-    print(sellers)
+    #print(sellers)
     seller_db_handle.close()
+
 
 def seller_init():
     if not os.path.exists("data/seller.db"):
         seller_db_handle = open("data/seller.db","w")
         seller_db_handle.close()
-        save_seller_dict(root_seller_dict)    
+        save_seller_dict(admin_seller_dict)    
     load_seller_db()
-    
+
+
 def save_seller_dict(seller_dict):
     seller_db_handle = open("data/seller.db","a+")
     
     output_line = str(seller_dict["seller_id"]+","+
+                    seller_dict["seller_email"]+","+
                     seller_dict["seller_first_name"]+","+ 
                     seller_dict["seller_last_name"]+","+ 
-                    seller_dict["seller_login_name"]+","+ 
                     seller_dict["seller_password_hash"]+"\n") 
     print(output_line)
     seller_db_handle.write(output_line)
     seller_db_handle.close()
 
+
+def email_exists(email_to_check):
+    for seller in sellers:
+        if seller["seller_email"] == email_to_check:
+            return True
+    return False
+
 def register_seller():
     print("<<Register Seller>>")
     new_seller_dict = {}
+    
     new_seller_dict['seller_id'] = str(len(sellers))
+    
+    email=str(input("Email: "))
+    while email_exists(email):
+        print(email + " already exists! Please use another email")
+        email=str(input("Email: "))
+        
+    new_seller_dict["seller_email"] = email
     new_seller_dict["seller_first_name"] = str(input("First Name: "))
     new_seller_dict["seller_last_name"] = str(input("Last Name: "))
-    new_seller_dict["seller_login_name"] = str(input("Login Name: "))
     
     #TODO: check of the user exists in the seller file
     matched = False
@@ -84,12 +99,11 @@ def register_seller():
             print("Password did not match! ")
         else:
             matched = True
+
     new_seller_dict["seller_password_hash"] = password1
-    print(new_seller_dict)
+    #print(new_seller_dict)
     save_seller_dict(new_seller_dict)
 
-def register_shopper():
-    print("Register Shopper")
 
 
 
