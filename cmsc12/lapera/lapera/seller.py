@@ -5,14 +5,14 @@ from .lapera import *
 #global variables
 sellers = []
 
-admin_seller_dict = {   "seller_id":"0",
+seller_admin_dict = {   "seller_id":"0",
                         "seller_email":"admin@gmail.com",
                         "seller_first_name":"admin",
                         "seller_last_name":"seller",
                         "seller_password_hash":"1234"
                     }
 
-def create_seller_dict( seller_id,
+def seller_create_dict( seller_id,
                         seller_email,
                         seller_first_name,
                         seller_last_name,
@@ -30,7 +30,7 @@ def create_seller_dict( seller_id,
     return new_seller_dict
 
 
-def load_seller_db():
+def seller_load_db():
     seller_db_handle = open("data/seller.db","r")
     lines = seller_db_handle.readlines()
     sellers.clear()
@@ -39,7 +39,7 @@ def load_seller_db():
         count += 1        
         fields = line.strip().split(",")
         #print(fields) 
-        sellers.append(create_seller_dict(  fields[0],
+        sellers.append(seller_create_dict(  fields[0],
                                             fields[1],
                                             fields[2],
                                             fields[3],
@@ -53,11 +53,11 @@ def seller_init():
     if not os.path.exists("data/seller.db"):
         seller_db_handle = open("data/seller.db","w")
         seller_db_handle.close()
-        save_seller_dict(admin_seller_dict)    
-    load_seller_db()
+        seller_save_dict(seller_admin_dict)    
+    seller_load_db()
 
 
-def save_seller_dict(seller_dict):
+def seller_save_dict(seller_dict):
     seller_db_handle = open("data/seller.db","a+")
     
     output_line = str(seller_dict["seller_id"]+","+
@@ -70,7 +70,7 @@ def save_seller_dict(seller_dict):
     seller_db_handle.close()
 
 
-def email_exists(email_to_check):
+def seller_email_exists(email_to_check):
     for seller in sellers:
         if seller["seller_email"] == email_to_check:
             return True
@@ -83,7 +83,7 @@ def seller_register():
     new_seller_dict['seller_id'] = str(len(sellers))
     
     email=str(input("Email: "))
-    while email_exists(email):
+    while seller_email_exists(email):
         print(email + " already exists! Please use another email")
         email=str(input("Email: "))
         
@@ -104,10 +104,10 @@ def seller_register():
 
     new_seller_dict["seller_password_hash"] = password_hash_1
     #print(new_seller_dict)
-    save_seller_dict(new_seller_dict)
+    seller_save_dict(new_seller_dict)
     
     #reload the in-mem sellers list
-    load_seller_db()
+    seller_load_db()
     
 
 def seller_login():
