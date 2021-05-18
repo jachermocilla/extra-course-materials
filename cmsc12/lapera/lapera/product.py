@@ -3,7 +3,7 @@ import getpass, os, hashlib
 products = []
 
 def create_product_dict( product_id,
-                        product_product_id,
+                        product_seller_id,
                         product_category,
                         product_name,
                         product_description,
@@ -14,7 +14,7 @@ def create_product_dict( product_id,
     new_product_dict = {}
     
     new_product_dict["product_id"] = product_id
-    new_product_dict["product_product_id"] = product_product_id
+    new_product_dict["product_seller_id"] = product_seller_id
     new_product_dict["product_category"] = product_category
     new_product_dict["product_name"] = product_name
     new_product_dict["product_description"] = product_description
@@ -23,12 +23,13 @@ def create_product_dict( product_id,
     
     return new_product_dict
 
+
 def save_product_dict(product_dict):
     product_db_handle = open("data/product.db","a+")
     
     output_line = str(
                     product_dict["product_id"]+","+
-                    product_dict["product_product_id"]+","+
+                    product_dict["product_seller_id"]+","+
                     product_dict["product_category"]+","+ 
                     product_dict["product_name"]+","+ 
                     product_dict["product_description"]+","+ 

@@ -14,25 +14,28 @@ from .login import *
 
 from .seller import *
 from .buyer import *
+from .product import *
 
 user_session = {}
 
 def main():
     seller_init()
     buyer_init()
+    product_init()
     main_menu()
     #register_seller()
 
 def main_menu():
     choice = '8'
-    while choice != '5':
+    while choice != 'q':
         #print("Executing lapera version %s." % __version__)
         print("Welcome to LAPERA Online Shopping!")
         print("[1] Register Seller ")
         print("[2] Register Shopper ")
         print("[3] Login Seller ")
         print("[4] Login Shopper ")
-        print("[5] Exit ")
+        print("[5] View 10 Random Products")
+        print("[q] Exit ")
         choice = str(input("Enter choice: "))
         #print(choice)
         if choice == "1":
