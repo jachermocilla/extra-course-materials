@@ -118,16 +118,20 @@ def seller_login():
     
     for seller in sellers:
         if seller["seller_email"] == input_email:
-            print("email found")
-            print(seller["seller_password_hash"])
-            print(input_password_hash)
+            #print("email found")
+            #print(seller["seller_password_hash"])
+            #print(input_password_hash)
             if seller["seller_password_hash"] == input_password_hash:
-                print("Here")
+                #print("Here")
                 login_valid = True
                 break
     
     if login_valid == True:
         print("Valid")
+        session_id = seller["seller_id"];
+        user_session = {"session_id":session_id,"session_details":seller}
+        print(user_session)
+
     else:
         print("Invalid")
 

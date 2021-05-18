@@ -15,7 +15,7 @@ from .login import *
 from .seller import *
 from .buyer import *
 
-session = {}
+user_session = {}
 
 def main():
     seller_init()
