@@ -10,9 +10,11 @@ import io
 import sys
 from .register import *
 from .login import *
+from .seller import *
 
 def main():
-    main_menu()
+    #main_menu()
+    seller_init()
 
 def main_menu():
     #print("Executing lapera version %s." % __version__)
