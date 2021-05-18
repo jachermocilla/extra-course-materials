@@ -1,9 +1,11 @@
 import getpass, os, hashlib
 
-from .lapera import *
+from .globals import *
+from .product import *
+
 
 #global variables
-sellers = []
+
 
 seller_admin_dict = {   "seller_id":"0",
                         "seller_email":"admin@gmail.com",
@@ -76,7 +78,7 @@ def seller_email_exists(email_to_check):
             return True
     return False
 
-def seller_register():
+def seller_view_register():
     print("<<Register Seller>>")
     new_seller_dict = {}
     
@@ -110,7 +112,7 @@ def seller_register():
     seller_load_db()
     
 
-def seller_login():
+def seller_view_login():
     input_email = str(input("Email: "))
     input_password_hash = hashlib.sha256(getpass.getpass("Password: ").encode('utf-8')).hexdigest()
 
@@ -129,12 +131,50 @@ def seller_login():
     if login_valid == True:
         print("Valid")
         session_id = seller["seller_id"];
+        global user_session
         user_session = {"session_id":session_id,"session_details":seller}
-        print(user_session)
-
+        #print(user_session)
+        seller_view_menu()
     else:
         print("Invalid")
 
+def seller_view_add_product():
 
+    new_product_dict = {}
 
+    print(">>Add Product<<")
+
+    new_product_dict['product_id'] = str(len(products))
     
+    global user_session
+    print(user_session)
+    new_product_dict["product_seller_id"] = user_session["session_id"]
+    
+    new_product_dict["product_category"] = str(input("Category: "))
+    new_product_dict["product_name"] = str(input("Product Name: "))
+    new_product_dict["product_description"] = str(input("Product Description: "))
+    new_product_dict["product_quantity"] = str(input("Quantity: "))
+    new_product_dict["product_unit_price"] = str(input("Unit Price: "))
+    
+    product_save_dict(new_product_dict)
+    product_load_db()
+
+    return 0
+
+def seller_view_menu():
+    choice = '8'
+    while choice != 'q':
+        print(">>[Seller Menu]<<")
+        print("[1] Add Product ")
+        print("[2] View Sales ")
+        print("[q] Exit ")
+        choice = str(input("Enter choice: "))
+        if choice == "1":
+            seller_view_add_product()
+        elif choice == "2":
+            buyer_view_register()
+        elif choice == "3":
+            seller_view_login()
+        elif choice == "4":
+            buyer_view_login()
+    print("\nThank you for using LAPERA! See you again!\n")

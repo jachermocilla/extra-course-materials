@@ -16,8 +16,6 @@ from .seller import *
 from .buyer import *
 from .product import *
 
-user_session = {}
-
 def main():
     seller_init()
     buyer_init()
@@ -39,13 +37,13 @@ def main_menu():
         choice = str(input("Enter choice: "))
         #print(choice)
         if choice == "1":
-            seller_register()
+            seller_view_register()
         elif choice == "2":
-            buyer_register()
+            buyer_view_register()
         elif choice == "3":
-            seller_login()
+            seller_view_login()
         elif choice == "4":
-            buyer_login()
+            buyer_view_login()
     print("\nThank you for using LAPERA! See you again!\n")
 
 
