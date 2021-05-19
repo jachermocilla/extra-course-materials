@@ -3,14 +3,6 @@ import getpass, os, hashlib
 from .globals import *
 from .product import *
 
-#global variables
-#seller_admin_dict = {   "seller_id":"0",
-#                        "seller_email":"admin@gmail.com",
-#                        "seller_first_name":"admin",
-#                        "seller_last_name":"seller",
-#                        "seller_password_hash":"1234"
-#                    }
-
 def seller_create_dict( seller_id,
                         seller_email,
                         seller_first_name,
@@ -164,7 +156,8 @@ def seller_view_menu():
         print(">>[Seller Menu]<<")
         print("[1] Add Product ")
         print("[2] Search ")
-        print("[3] View Sales ")
+        print("[3] My Products ")
+        print("[4] My Revenue ")
         print("[q] Exit ")
         choice = str(input("Enter choice: "))
         if choice == "1":
@@ -172,9 +165,27 @@ def seller_view_menu():
         elif choice == "2":
             product_view_search()            
         elif choice == "3":
-            seller_view_sales()
+            seller_view_my_products()
 
     print("\nThank you for using LAPERA! See you again!\n")    
 
 def seller_view_sales():
+    return 0
+
+def seller_view_my_products():
+    global products
+
+    print("Below are your products: ")
+    for product in products:
+        if product["product_seller_id"] == user_session["session_id"]:
+            print(
+                product["product_name"]+", "+
+                product["product_description"]+", "+
+                product["product_category"]+", "+
+                product["product_unit_price"]+", "+
+                product["product_quantity"]
+            )
+
+
+
     return 0

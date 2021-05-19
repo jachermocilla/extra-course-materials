@@ -168,14 +168,17 @@ def buyer_view_menu():
     choice = '8'
     while choice != 'q':
         print(">>[Buyer Menu]<<")
-        print("[1] Search ")
+        print("[1] Search/Add To Cart ")
         print("[2] View Cart")        
+        print("[3] View Total Expenses")        
         print("[q] Exit ")
         choice = str(input("Enter choice: "))
         if choice == "1":
             buyer_view_search()
         elif choice == "2":
             buyer_view_cart()
+        elif choice == "3":
+            buyer_view_total_expenses()
         
     print("\nThank you for using LAPERA! See you again!\n")
 
@@ -230,6 +233,9 @@ def buyer_view_cart():
                             str(datetime.now())
                         ))
         
+        #reload sale db
+        sale_load_db()
+
         #update the quantity in products
         product["product_quantity"] = str(remaining_qty)
 
@@ -243,7 +249,18 @@ def buyer_view_cart():
         #product_load_db()
         cart_flush_to_file()
         #cart_load_db()
+        input("The item will be delivered within 5 days. Please press [ENTER]..")
 
+
+def buyer_view_total_expenses():
+    global sales
+    global user_session
+
+    total_expenses = 0;
+    for sale in sales:
+        if sale["sale_buyer_id"] == user_session["session_id"]:
+            total_expenses += int(sale["sale_total_amount"])
+    print("Your total expenses: ", total_expenses)
 
 def buyer_view_search():
     product_view_search()
