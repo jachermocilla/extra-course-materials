@@ -181,9 +181,19 @@ def buyer_view_menu():
 def buyer_view_cart():
     global carts
     global user_session
+    global products
+    
+    print("Below are the contents of your cart:")
+    count=0;
     for cart in carts:
         if cart["cart_buyer_id"] == user_session["session_id"]:
-            print(cart)
+            count += 1
+            product = products[int(cart["cart_product_id"])]
+            print(  "[" + product["product_id"] + "] - " +
+                    product["product_name"]+" - " 
+                    + cart["cart_quantity"] + " items" )
+    print("There are " +  str(count) + " item(s)")
+
 
 def buyer_view_search():
     print(">>[SEARCH]<<")
