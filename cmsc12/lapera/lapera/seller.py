@@ -157,7 +157,7 @@ def seller_view_menu():
         print("[1] Add Product ")
         print("[2] Search ")
         print("[3] My Products ")
-        print("[4] My Revenue ")
+        print("[4] My Total Sales ")
         print("[q] Exit ")
         choice = str(input("Enter choice: "))
         if choice == "1":
@@ -166,11 +166,22 @@ def seller_view_menu():
             product_view_search()            
         elif choice == "3":
             seller_view_my_products()
+        elif choice == "4":
+            seller_view_my_sales()
 
     print("\nThank you for using LAPERA! See you again!\n")    
 
-def seller_view_sales():
-    return 0
+def seller_view_my_sales():
+    global sales
+    global user_session
+
+    total_sales = 0;
+    for sale in sales:
+        if sale["sale_buyer_id"] == user_session["session_id"]:
+            total_sales += int(sale["sale_total_amount"])
+    print("Your total sales: ", total_sales)
+    input("Press [ENTER] to continue..")
+
 
 def seller_view_my_products():
     global products

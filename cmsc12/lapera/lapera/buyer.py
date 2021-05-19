@@ -261,6 +261,7 @@ def buyer_view_total_expenses():
         if sale["sale_buyer_id"] == user_session["session_id"]:
             total_expenses += int(sale["sale_total_amount"])
     print("Your total expenses: ", total_expenses)
+    input("Press [ENTER] to continue..")
 
 def buyer_view_search():
     product_view_search()
