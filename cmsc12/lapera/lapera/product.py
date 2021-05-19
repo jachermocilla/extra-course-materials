@@ -76,6 +76,21 @@ def product_init():
     product_load_db()
 
 def product_search(keyword):
-    return 0
+    """Given a keyword, returns a list of matching products.
+
+    The keyword is searched in the category, name, and description 
+    fields/keys of the product dictionary.
+    """
+    global products
+    matches = []
+    for product in products:
+        #print(product)
+        keyword=keyword.lower()
+        if keyword in str(product['product_category']).lower() or \
+            keyword in str(product['product_name']).lower() or \
+            keyword in str(product['product_description']).lower():
+                matches.append(product)
+    #print(matches)
+    return matches
 
     

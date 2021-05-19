@@ -28,7 +28,7 @@ def main_menu():
         print("[1] Register Seller ")
         print("[2] Register Buyer ")
         print("[3] Login Seller ")
-        print("[4] Login Shopper ")
+        print("[4] Login Buyer ")
         print("[5] View 10 Random Products")
         print("[q] Exit ")
         choice = str(input("Enter choice: "))

@@ -165,16 +165,19 @@ def buyer_view_menu():
     choice = '8'
     while choice != 'q':
         print(">>[buyer Menu]<<")
-        print("[1] Add Product ")
-        print("[2] View Sales ")
+        print("[1] Search ")
+        print("[2] View Cart")        
         print("[q] Exit ")
         choice = str(input("Enter choice: "))
         if choice == "1":
-            buyer_view_add_product()
+            seller_view_search()
         elif choice == "2":
             buyer_view_register()
-        elif choice == "3":
-            buyer_view_login()
-        elif choice == "4":
-            buyer_view_login()
+        
     print("\nThank you for using LAPERA! See you again!\n")
+
+
+def seller_view_search():
+    print(">>[SEARCH]<<")
+    search_keyword = str(input("Keyword: "))
+    product_search(search_keyword)
