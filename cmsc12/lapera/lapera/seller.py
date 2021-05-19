@@ -22,7 +22,7 @@ def seller_create_dict( seller_id,
                     ):
     
     new_seller_dict = {}
-    
+
     new_seller_dict["seller_id"] = seller_id
     new_seller_dict["seller_email"] = seller_email
     new_seller_dict["seller_first_name"] = seller_first_name

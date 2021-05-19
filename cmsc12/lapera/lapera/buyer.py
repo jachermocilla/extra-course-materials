@@ -1,7 +1,9 @@
 import getpass, os, hashlib
+from datetime import date
 
 from .globals import *
 from .product import *
+from .cart import *
 
 
 #global variables
@@ -184,9 +186,24 @@ def seller_view_search():
     print(str(len(matches)) + " matche(s) found.")
     for match in matches:
         print("["+match["product_id"] +"]-"+match["product_name"]+","+
-                match["product_description"]
+                match["product_description"]+","+match["product_quantity"]
                 )
     add_to_cart = str(input("Add to card?[y/n]"))
+
+    global user_session
+    global carts
     if add_to_cart == 'y':
-        item_to_add = str(input("Enter product id of item: "))
+        product_id = str(input("Enter product id of item: "))
+        qty = str(input("How many units of the product? "))
+        cart_save_dict(cart_create_dict(   str(len(carts)),
+                            user_session["session_id"],
+                            product_id,
+                            qty,
+                            "0",
+                            str(date.today()))
+                    )
+        cart_load_db()
+
+
+
 

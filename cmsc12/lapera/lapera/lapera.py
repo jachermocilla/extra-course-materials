@@ -12,10 +12,13 @@ import sys
 from .seller import *
 from .buyer import *
 from .product import *
+from .cart import *
+
 
 def main():
     if not os.path.exists("data"):
         os.makedirs('data')
+    cart_init()
     seller_init()
     buyer_init()
     product_init()
