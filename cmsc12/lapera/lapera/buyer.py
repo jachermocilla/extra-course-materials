@@ -172,14 +172,20 @@ def buyer_view_menu():
         print("[q] Exit ")
         choice = str(input("Enter choice: "))
         if choice == "1":
-            seller_view_search()
+            buyer_view_search()
         elif choice == "2":
-            buyer_view_register()
+            buyer_view_cart()
         
     print("\nThank you for using LAPERA! See you again!\n")
 
+def buyer_view_cart():
+    global carts
+    global user_session
+    for cart in carts:
+        if cart["cart_buyer_id"] == user_session["session_id"]:
+            print(cart)
 
-def seller_view_search():
+def buyer_view_search():
     print(">>[SEARCH]<<")
     search_keyword = str(input("Keyword: "))
     matches=product_search(search_keyword)
