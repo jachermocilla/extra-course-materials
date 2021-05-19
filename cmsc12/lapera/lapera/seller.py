@@ -129,14 +129,14 @@ def seller_view_login():
                 break
     
     if login_valid == True:
-        print("Valid")
+        print("\nWelcome " + seller["seller_first_name"] + "!" )
         session_id = seller["seller_id"];
         global user_session
         user_session = {"session_id":session_id,"session_details":seller}
         #print(user_session)
         seller_view_menu()
     else:
-        print("Invalid")
+        input("Unknown seller! Press [ENTER] to continue.")
 
 def seller_view_add_product():
 
@@ -172,9 +172,9 @@ def seller_view_menu():
         if choice == "1":
             seller_view_add_product()
         elif choice == "2":
-            buyer_view_register()
-        elif choice == "3":
-            seller_view_login()
-        elif choice == "4":
-            buyer_view_login()
+            seller_view_sales()
+
     print("\nThank you for using LAPERA! See you again!\n")    
+
+def seller_view_sales():
+    return 0

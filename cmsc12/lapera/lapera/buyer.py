@@ -129,14 +129,14 @@ def buyer_view_login():
                 break
     
     if login_valid == True:
-        print("Valid")
-        session_id = buyer["buyer_id"];
         global user_session
+        print("\nWelcome " + buyer["buyer_first_name"] + "!" )
+        session_id = buyer["buyer_id"];
         user_session = {"session_id":session_id,"session_details":buyer}
         #print(user_session)
         buyer_view_menu()
     else:
-        print("Invalid")
+        input("Unknown buyer! Press [ENTER] to continue.")
 
 def buyer_view_add_product():
 
@@ -164,7 +164,7 @@ def buyer_view_add_product():
 def buyer_view_menu():
     choice = '8'
     while choice != 'q':
-        print(">>[buyer Menu]<<")
+        print(">>[Buyer Menu]<<")
         print("[1] Search ")
         print("[2] View Cart")        
         print("[q] Exit ")
@@ -181,4 +181,12 @@ def seller_view_search():
     print(">>[SEARCH]<<")
     search_keyword = str(input("Keyword: "))
     matches=product_search(search_keyword)
-    print(matches)
+    print(str(len(matches)) + " matche(s) found.")
+    for match in matches:
+        print("["+match["product_id"] +"]-"+match["product_name"]+","+
+                match["product_description"]
+                )
+    add_to_cart = str(input("Add to card?[y/n]"))
+    if add_to_cart == 'y':
+        item_to_add = str(input("Enter product id of item: "))
+

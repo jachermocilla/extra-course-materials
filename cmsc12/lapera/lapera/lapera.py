@@ -14,6 +14,8 @@ from .buyer import *
 from .product import *
 
 def main():
+    if not os.path.exists("data"):
+        os.makedirs('data')
     seller_init()
     buyer_init()
     product_init()
