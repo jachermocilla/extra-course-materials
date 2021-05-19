@@ -180,4 +180,5 @@ def buyer_view_menu():
 def seller_view_search():
     print(">>[SEARCH]<<")
     search_keyword = str(input("Keyword: "))
-    product_search(search_keyword)
+    matches=product_search(search_keyword)
+    print(matches)

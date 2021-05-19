@@ -149,7 +149,7 @@ def seller_view_add_product():
     global user_session
     #print(user_session)
     new_product_dict["product_seller_id"] = user_session["session_id"]
-    
+    print("Existing Categories:>> " + str(product_get_categories().keys()))
     new_product_dict["product_category"] = str(input("Category: "))
     new_product_dict["product_name"] = str(input("Product Name: "))
     new_product_dict["product_description"] = str(input("Product Description: "))
@@ -177,4 +177,4 @@ def seller_view_menu():
             seller_view_login()
         elif choice == "4":
             buyer_view_login()
-    print("\nThank you for using LAPERA! See you again!\n")
+    print("\nThank you for using LAPERA! See you again!\n")    

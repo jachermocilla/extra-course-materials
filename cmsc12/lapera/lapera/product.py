@@ -93,4 +93,9 @@ def product_search(keyword):
     #print(matches)
     return matches
 
-    
+def product_get_categories():
+    global products
+    categories = {}
+    for product in products:
+        categories[product["product_category"]] = ""
+    return categories
