@@ -28,7 +28,7 @@ def sale_save_dict(sale_dict):
                     sale_dict["sale_quantity"]+","+ 
                     sale_dict["sale_total_amount"]+","+
                     sale_dict["sale_date"]+"\n") 
-    print(output_line)
+    #print(output_line)
     sale_db_handle.write(output_line)
     sale_db_handle.close()
 

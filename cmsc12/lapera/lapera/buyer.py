@@ -192,15 +192,18 @@ def buyer_view_cart():
         if cart_item["cart_buyer_id"] == user_session["session_id"]:
             current_user_cart.append(cart_item)
 
+    count = 0
     for cart_item in current_user_cart:
         product = products[int(cart_item["cart_product_id"])]
         print(  "[" + cart_item["cart_id"] + "] - " +
                 product["product_name"]+" - " 
                 + cart_item["cart_quantity"] + " units " )
+        count = count + 1
+
     print("There are " +  str(len(current_user_cart)) + " item(s)")
     checkout = str(input("Checkout an item?[y/n]"))
     if checkout == 'y':
-        cart_item_id = str(input("Enter [cart item id] of item: "))
+        cart_item_id = str(input("Enter [item id] of item: "))
         cart_item = current_user_cart[int(cart_item_id)]
         #print(cart_item)
         product = products[int(cart_item["cart_product_id"])]
@@ -222,7 +225,7 @@ def buyer_view_cart():
                             str(date.today())
                         ))
         product["product_quantity"] =str(remaining_qty)
-        print(products)
+        #print(products)
         product_flush_to_file()
         product_load_db()
 

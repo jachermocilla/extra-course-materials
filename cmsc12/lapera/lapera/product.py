@@ -128,7 +128,7 @@ def product_flush_to_file():
                     product_dict["product_quantity"]+","+ 
                     product_dict["product_unit_price"]+"\n"                    
                     ) 
-        print(output_line)
+        #print(output_line)
         product_db_handle.write(output_line)
 
     product_db_handle.close()
