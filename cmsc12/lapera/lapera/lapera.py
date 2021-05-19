@@ -9,9 +9,6 @@ __version__ = "0.1.0"
 import io
 import sys
 
-from .register import *
-from .login import *
-
 from .seller import *
 from .buyer import *
 from .product import *
@@ -29,7 +26,7 @@ def main_menu():
         #print("Executing lapera version %s." % __version__)
         print("Welcome to LAPERA Online Shopping!")
         print("[1] Register Seller ")
-        print("[2] Register Shopper ")
+        print("[2] Register Buyer ")
         print("[3] Login Seller ")
         print("[4] Login Shopper ")
         print("[5] View 10 Random Products")

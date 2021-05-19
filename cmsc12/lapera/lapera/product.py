@@ -13,6 +13,12 @@ def product_create_dict( product_id,
                         product_unit_price
                     ):
     
+    """Creates dictionary for a product.
+    
+    The parameters are the individual field values 
+    and the return value is the created dictionary.
+
+    """
     new_product_dict = {}
     
     new_product_dict["product_id"] = product_id

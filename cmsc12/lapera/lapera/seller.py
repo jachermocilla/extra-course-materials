@@ -147,7 +147,7 @@ def seller_view_add_product():
     new_product_dict['product_id'] = str(len(products))
     
     global user_session
-    print(user_session)
+    #print(user_session)
     new_product_dict["product_seller_id"] = user_session["session_id"]
     
     new_product_dict["product_category"] = str(input("Category: "))
