@@ -193,17 +193,15 @@ def buyer_view_cart():
                     product["product_name"]+" - " 
                     + cart["cart_quantity"] + " items" )
     print("There are " +  str(count) + " item(s)")
+    checkout = str(input("Checkout an item?[y/n]"))
+    if checkout == 'y':
+        product_id = str(input("Enter product id of item: "))
+
+
 
 
 def buyer_view_search():
-    print(">>[SEARCH]<<")
-    search_keyword = str(input("Keyword: "))
-    matches=product_search(search_keyword)
-    print(str(len(matches)) + " matche(s) found.")
-    for match in matches:
-        print("["+match["product_id"] +"]-"+match["product_name"]+","+
-                match["product_description"]+","+match["product_quantity"]
-                )
+    product_view_search()
     add_to_cart = str(input("Add to card?[y/n]"))
 
     global user_session

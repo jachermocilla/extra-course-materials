@@ -93,6 +93,16 @@ def product_search(keyword):
     #print(matches)
     return matches
 
+def product_view_search():
+    print(">>[SEARCH]<<")
+    search_keyword = str(input("Keyword: "))
+    matches=product_search(search_keyword)
+    print(str(len(matches)) + " match(es) found.")
+    for match in matches:
+        print("["+match["product_id"] +"]-"+match["product_name"]+","+
+                match["product_description"]+","+match["product_quantity"]
+                )
+
 def product_get_categories():
     global products
     categories = {}
