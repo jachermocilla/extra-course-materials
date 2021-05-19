@@ -4,6 +4,7 @@ from datetime import date
 from .globals import *
 from .product import *
 from .cart import *
+from .sale import *
 
 
 #global variables
@@ -182,6 +183,7 @@ def buyer_view_cart():
     global carts
     global user_session
     global products
+    global sales
     
     print("Below are the contents of your cart:")
     
@@ -200,8 +202,29 @@ def buyer_view_cart():
     if checkout == 'y':
         cart_item_id = str(input("Enter [cart item id] of item: "))
         cart_item = current_user_cart[int(cart_item_id)]
-        print(cart_item)
+        #print(cart_item)
+        product = products[int(cart_item["cart_product_id"])]
         
+        total_amount = int(cart_item["cart_quantity"]) * \
+                            int(product["product_unit_price"])
+        #print(str(total_amount))
+        
+        remaining_qty = int(product["product_quantity"]) - \
+                            int(cart_item["cart_quantity"])
+
+        #print(remaining_qty)
+
+        sale_save_dict(sale_create_dict(str(len(sales)),
+                            cart_item["cart_buyer_id"],
+                            cart_item["cart_product_id"],
+                            cart_item["cart_quantity"],
+                            str(total_amount),
+                            str(date.today())
+                        ))
+        product["product_quantity"] =str(remaining_qty)
+        print(products)
+        product_flush_to_file()
+        product_load_db()
 
 
 

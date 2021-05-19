@@ -99,8 +99,11 @@ def product_view_search():
     matches=product_search(search_keyword)
     print(str(len(matches)) + " match(es) found.")
     for match in matches:
-        print("["+match["product_id"] +"]-"+match["product_name"]+","+
-                match["product_description"]+","+match["product_quantity"] + 
+        print("["+match["product_id"] +"]-"+
+                    match["product_name"]+","+
+                    match["product_description"]+","+
+                    match["product_unit_price"]+" per unit,"+
+                    match["product_quantity"] + 
                 " unit(s) available"
                 )
     input("Press [ENTER] to continue..")
@@ -111,3 +114,21 @@ def product_get_categories():
     for product in products:
         categories[product["product_category"]] = ""
     return categories
+
+def product_flush_to_file():
+    product_db_handle = open("data/product.db","w")
+   
+    for product_dict in products:
+        output_line = str(
+                    product_dict["product_id"]+","+
+                    product_dict["product_seller_id"]+","+
+                    product_dict["product_category"]+","+ 
+                    product_dict["product_name"]+","+ 
+                    product_dict["product_description"]+","+ 
+                    product_dict["product_quantity"]+","+ 
+                    product_dict["product_unit_price"]+"\n"                    
+                    ) 
+        print(output_line)
+        product_db_handle.write(output_line)
+
+    product_db_handle.close()
