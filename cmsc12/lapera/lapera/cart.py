@@ -1,5 +1,3 @@
-
-
 from .globals import *
 from .product import *
 
@@ -21,6 +19,7 @@ def cart_create_dict(   cart_id,
 
     return new_cart_dict
 
+
 def cart_save_dict(cart_dict):
     cart_db_handle = open("data/cart.db","a+")
     
@@ -33,6 +32,7 @@ def cart_save_dict(cart_dict):
     print(output_line)
     cart_db_handle.write(output_line)
     cart_db_handle.close()
+
 
 def cart_load_db():
     cart_db_handle = open("data/cart.db","r")
@@ -50,7 +50,6 @@ def cart_load_db():
                                             fields[4],
                                             fields[5]
                                               ))
-    #print(carts)
     cart_db_handle.close()
 
 
@@ -70,6 +69,5 @@ def cart_flush_to_file():
                         cart_dict["cart_quantity"]+","+ 
                         cart_dict["cart_checkedout"]+","+
                         cart_dict["cart_date"]+"\n") 
-        #print(output_line)
         cart_db_handle.write(output_line)
     cart_db_handle.close()

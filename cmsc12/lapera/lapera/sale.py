@@ -19,6 +19,7 @@ def sale_create_dict(   sale_id,
 
     return new_sale_dict
 
+
 def sale_save_dict(sale_dict):
     sale_db_handle = open("data/sale.db","a+")
     
@@ -31,6 +32,7 @@ def sale_save_dict(sale_dict):
     #print(output_line)
     sale_db_handle.write(output_line)
     sale_db_handle.close()
+
 
 def sale_load_db():
     sale_db_handle = open("data/sale.db","r")
@@ -48,7 +50,7 @@ def sale_load_db():
                                             fields[4],
                                             fields[5]
                                               ))
-    #print(sales)
+
     sale_db_handle.close()
 
 

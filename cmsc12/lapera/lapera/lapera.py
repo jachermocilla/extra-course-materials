@@ -22,7 +22,6 @@ def main():
     buyer_init()
     product_init()
     main_menu()
-    #register_seller()
 
 def main_menu():
     choice = '8'
@@ -36,7 +35,6 @@ def main_menu():
         print("[5] View 5 Random Products")
         print("[q] Exit ")
         choice = str(input("Enter choice: "))
-        #print(choice)
         if choice == "1":
             seller_view_register()
         elif choice == "2":
@@ -45,6 +43,7 @@ def main_menu():
             seller_view_login()
         elif choice == "4":
             buyer_view_login()
+
     print("\nThank you for using LAPERA! See you again!\n")
 
 

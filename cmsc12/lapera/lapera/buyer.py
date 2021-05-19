@@ -6,17 +6,6 @@ from .product import *
 from .cart import *
 from .sale import *
 
-
-#global variables
-
-
-#buyer_admin_dict = {   "buyer_id":"0",
-#                        "buyer_email":"admin@gmail.com",
-#                        "buyer_first_name":"admin",
-#                        "buyer_last_name":"buyer",
-#                        "buyer_password_hash":"1234"
-#                    }
-
 def buyer_create_dict( buyer_id,
                         buyer_email,
                         buyer_first_name,
@@ -43,14 +32,12 @@ def buyer_load_db():
     for line in lines:
         count += 1        
         fields = line.strip().split(",")
-        #print(fields) 
         buyers.append(buyer_create_dict(  fields[0],
                                             fields[1],
                                             fields[2],
                                             fields[3],
                                             fields[4]
                                               ))
-    #print(buyers)
     buyer_db_handle.close()
 
 
@@ -58,7 +45,6 @@ def buyer_init():
     if not os.path.exists("data/buyer.db"):
         buyer_db_handle = open("data/buyer.db","w")
         buyer_db_handle.close()
-        #buyer_save_dict(buyer_admin_dict)    
     buyer_load_db()
 
 
@@ -70,7 +56,6 @@ def buyer_save_dict(buyer_dict):
                     buyer_dict["buyer_first_name"]+","+ 
                     buyer_dict["buyer_last_name"]+","+ 
                     buyer_dict["buyer_password_hash"]+"\n") 
-    print(output_line)
     buyer_db_handle.write(output_line)
     buyer_db_handle.close()
 
@@ -108,7 +93,6 @@ def buyer_view_register():
             matched = True
 
     new_buyer_dict["buyer_password_hash"] = password_hash_1
-    #print(new_buyer_dict)
     buyer_save_dict(new_buyer_dict)
     
     #reload the in-mem buyers list
@@ -123,11 +107,7 @@ def buyer_view_login():
     
     for buyer in buyers:
         if buyer["buyer_email"] == input_email:
-            #print("email found")
-            #print(buyer["buyer_password_hash"])
-            #print(input_password_hash)
             if buyer["buyer_password_hash"] == input_password_hash:
-                #print("Here")
                 login_valid = True
                 break
     
@@ -136,33 +116,10 @@ def buyer_view_login():
         print("\nWelcome " + buyer["buyer_first_name"] + "!" )
         session_id = buyer["buyer_id"];
         user_session = {"session_id":session_id,"session_details":buyer}
-        #print(user_session)
         buyer_view_menu()
     else:
         input("Unknown buyer! Press [ENTER] to continue.")
 
-def buyer_view_add_product():
-
-    new_product_dict = {}
-
-    print(">>Add Product<<")
-
-    new_product_dict['product_id'] = str(len(products))
-    
-    global user_session
-    #print(user_session)
-    new_product_dict["product_buyer_id"] = user_session["session_id"]
-    
-    new_product_dict["product_category"] = str(input("Category: "))
-    new_product_dict["product_name"] = str(input("Product Name: "))
-    new_product_dict["product_description"] = str(input("Product Description: "))
-    new_product_dict["product_quantity"] = str(input("Quantity: "))
-    new_product_dict["product_unit_price"] = str(input("Unit Price: "))
-    
-    product_save_dict(new_product_dict)
-    product_load_db()
-
-    return 0
 
 def buyer_view_menu():
     choice = '8'
@@ -179,8 +136,7 @@ def buyer_view_menu():
             buyer_view_cart()
         elif choice == "3":
             buyer_view_total_expenses()
-        
-    print("\nThank you for using LAPERA! See you again!\n")
+
 
 def buyer_view_cart():
     global carts
@@ -213,17 +169,13 @@ def buyer_view_cart():
             if cart_item["cart_id"] == cart_item_id:
                 break;
         
-        #print(cart_item)
         product = products[int(cart_item["cart_product_id"])]
         
         total_amount = int(cart_item["cart_quantity"]) * \
                             int(product["product_unit_price"])
-        #print(str(total_amount))
         
         remaining_qty = int(product["product_quantity"]) - \
                             int(cart_item["cart_quantity"])
-
-        #print(remaining_qty)
 
         sale_save_dict(sale_create_dict(str(len(sales)),
                             cart_item["cart_buyer_id"],
@@ -232,8 +184,6 @@ def buyer_view_cart():
                             str(total_amount),
                             str(datetime.now())
                         ))
-        
-        #reload sale db
         sale_load_db()
 
         #update the quantity in products
@@ -241,14 +191,11 @@ def buyer_view_cart():
 
         #make the cart item checkedout
         cart_item["cart_checkedout"] = "1"
-        #print(carts)
-        #print(products)
         
         #flush to file and reload
         product_flush_to_file()
-        #product_load_db()
         cart_flush_to_file()
-        #cart_load_db()
+
         input("The item will be delivered within 5 days. Please press [ENTER]..")
 
 
@@ -263,12 +210,14 @@ def buyer_view_total_expenses():
     print("Your total expenses: ", total_expenses)
     input("Press [ENTER] to continue..")
 
+
 def buyer_view_search():
+    global user_session
+    global carts
+
     product_view_search()
     add_to_cart = str(input("Add to cart?[y/n]"))
 
-    global user_session
-    global carts
     if add_to_cart == 'y':
         product_id = str(input("Enter product id of item: "))
         qty = str(input("How many units of the product? "))
@@ -280,7 +229,5 @@ def buyer_view_search():
                             str(datetime.now()))
                     )
         cart_load_db()
-
-
 
 
