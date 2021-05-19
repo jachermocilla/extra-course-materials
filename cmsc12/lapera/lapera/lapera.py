@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-
 """lapera.lapera: provides entry point main()."""
 
 __version__ = "0.1.0"
-
 
 import io
 import sys
@@ -13,11 +11,12 @@ from .seller import *
 from .buyer import *
 from .product import *
 from .cart import *
-
+from .sale import *
 
 def main():
     if not os.path.exists("data"):
         os.makedirs('data')
+    sale_init()
     cart_init()
     seller_init()
     buyer_init()

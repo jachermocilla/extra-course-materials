@@ -100,8 +100,10 @@ def product_view_search():
     print(str(len(matches)) + " match(es) found.")
     for match in matches:
         print("["+match["product_id"] +"]-"+match["product_name"]+","+
-                match["product_description"]+","+match["product_quantity"]
+                match["product_description"]+","+match["product_quantity"] + 
+                " unit(s) available"
                 )
+    input("Press [ENTER] to continue..")
 
 def product_get_categories():
     global products

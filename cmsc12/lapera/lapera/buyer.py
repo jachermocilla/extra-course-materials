@@ -9,12 +9,12 @@ from .cart import *
 #global variables
 
 
-buyer_admin_dict = {   "buyer_id":"0",
-                        "buyer_email":"admin@gmail.com",
-                        "buyer_first_name":"admin",
-                        "buyer_last_name":"buyer",
-                        "buyer_password_hash":"1234"
-                    }
+#buyer_admin_dict = {   "buyer_id":"0",
+#                        "buyer_email":"admin@gmail.com",
+#                        "buyer_first_name":"admin",
+#                        "buyer_last_name":"buyer",
+#                        "buyer_password_hash":"1234"
+#                    }
 
 def buyer_create_dict( buyer_id,
                         buyer_email,
@@ -57,7 +57,7 @@ def buyer_init():
     if not os.path.exists("data/buyer.db"):
         buyer_db_handle = open("data/buyer.db","w")
         buyer_db_handle.close()
-        buyer_save_dict(buyer_admin_dict)    
+        #buyer_save_dict(buyer_admin_dict)    
     buyer_load_db()
 
 
@@ -184,25 +184,31 @@ def buyer_view_cart():
     global products
     
     print("Below are the contents of your cart:")
-    count=0;
-    for cart in carts:
-        if cart["cart_buyer_id"] == user_session["session_id"]:
-            count += 1
-            product = products[int(cart["cart_product_id"])]
-            print(  "[" + product["product_id"] + "] - " +
-                    product["product_name"]+" - " 
-                    + cart["cart_quantity"] + " items" )
-    print("There are " +  str(count) + " item(s)")
+    
+    current_user_cart=[]
+    for cart_item in carts:
+        if cart_item["cart_buyer_id"] == user_session["session_id"]:
+            current_user_cart.append(cart_item)
+
+    for cart_item in current_user_cart:
+        product = products[int(cart_item["cart_product_id"])]
+        print(  "[" + cart_item["cart_id"] + "] - " +
+                product["product_name"]+" - " 
+                + cart_item["cart_quantity"] + " units " )
+    print("There are " +  str(len(current_user_cart)) + " item(s)")
     checkout = str(input("Checkout an item?[y/n]"))
     if checkout == 'y':
-        product_id = str(input("Enter product id of item: "))
+        cart_item_id = str(input("Enter [cart item id] of item: "))
+        cart_item = current_user_cart[int(cart_item_id)]
+        print(cart_item)
+        
 
 
 
 
 def buyer_view_search():
     product_view_search()
-    add_to_cart = str(input("Add to card?[y/n]"))
+    add_to_cart = str(input("Add to cart?[y/n]"))
 
     global user_session
     global carts

@@ -3,16 +3,13 @@ import getpass, os, hashlib
 from .globals import *
 from .product import *
 
-
 #global variables
-
-
-seller_admin_dict = {   "seller_id":"0",
-                        "seller_email":"admin@gmail.com",
-                        "seller_first_name":"admin",
-                        "seller_last_name":"seller",
-                        "seller_password_hash":"1234"
-                    }
+#seller_admin_dict = {   "seller_id":"0",
+#                        "seller_email":"admin@gmail.com",
+#                        "seller_first_name":"admin",
+#                        "seller_last_name":"seller",
+#                        "seller_password_hash":"1234"
+#                    }
 
 def seller_create_dict( seller_id,
                         seller_email,
@@ -55,7 +52,7 @@ def seller_init():
     if not os.path.exists("data/seller.db"):
         seller_db_handle = open("data/seller.db","w")
         seller_db_handle.close()
-        seller_save_dict(seller_admin_dict)    
+        #seller_save_dict(seller_admin_dict)    
     seller_load_db()
 
 
@@ -166,12 +163,15 @@ def seller_view_menu():
     while choice != 'q':
         print(">>[Seller Menu]<<")
         print("[1] Add Product ")
-        print("[2] View Sales ")
+        print("[2] Search ")
+        print("[3] View Sales ")
         print("[q] Exit ")
         choice = str(input("Enter choice: "))
         if choice == "1":
             seller_view_add_product()
         elif choice == "2":
+            product_view_search()            
+        elif choice == "3":
             seller_view_sales()
 
     print("\nThank you for using LAPERA! See you again!\n")    
