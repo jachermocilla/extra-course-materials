@@ -1,5 +1,5 @@
 import getpass, os, hashlib
-from datetime import date
+from datetime import datetime
 
 from .globals import *
 from .product import *
@@ -190,7 +190,8 @@ def buyer_view_cart():
     current_user_cart=[]
     for cart_item in carts:
         if cart_item["cart_buyer_id"] == user_session["session_id"]:
-            current_user_cart.append(cart_item)
+            if cart_item["cart_checkedout"] != "1":
+                current_user_cart.append(cart_item)
 
     count = 0
     for cart_item in current_user_cart:
@@ -204,7 +205,11 @@ def buyer_view_cart():
     checkout = str(input("Checkout an item?[y/n]"))
     if checkout == 'y':
         cart_item_id = str(input("Enter [item id] of item: "))
-        cart_item = current_user_cart[int(cart_item_id)]
+        
+        for cart_item in current_user_cart:
+            if cart_item["cart_id"] == cart_item_id:
+                break;
+        
         #print(cart_item)
         product = products[int(cart_item["cart_product_id"])]
         
@@ -222,14 +227,22 @@ def buyer_view_cart():
                             cart_item["cart_product_id"],
                             cart_item["cart_quantity"],
                             str(total_amount),
-                            str(date.today())
+                            str(datetime.now())
                         ))
-        product["product_quantity"] =str(remaining_qty)
+        
+        #update the quantity in products
+        product["product_quantity"] = str(remaining_qty)
+
+        #make the cart item checkedout
+        cart_item["cart_checkedout"] = "1"
+        #print(carts)
         #print(products)
+        
+        #flush to file and reload
         product_flush_to_file()
-        product_load_db()
-
-
+        #product_load_db()
+        cart_flush_to_file()
+        #cart_load_db()
 
 
 def buyer_view_search():
@@ -246,7 +259,7 @@ def buyer_view_search():
                             product_id,
                             qty,
                             "0",
-                            str(date.today()))
+                            str(datetime.now()))
                     )
         cart_load_db()
 

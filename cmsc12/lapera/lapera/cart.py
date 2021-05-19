@@ -60,4 +60,16 @@ def cart_init():
         cart_db_handle.close()
     cart_load_db()
 
-
+def cart_flush_to_file():
+    cart_db_handle = open("data/cart.db","w")
+    
+    for cart_dict in carts:
+        output_line = str(cart_dict["cart_id"]+","+
+                        cart_dict["cart_buyer_id"]+","+
+                        cart_dict["cart_product_id"]+","+ 
+                        cart_dict["cart_quantity"]+","+ 
+                        cart_dict["cart_checkedout"]+","+
+                        cart_dict["cart_date"]+"\n") 
+        #print(output_line)
+        cart_db_handle.write(output_line)
+    cart_db_handle.close()
