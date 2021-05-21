@@ -112,6 +112,7 @@ def seller_view_register():
     in names of functions which require user
     interaction.
     """
+    global sellers 
 
     print(">>[Register Seller]<<")
     
