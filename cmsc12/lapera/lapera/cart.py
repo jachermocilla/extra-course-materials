@@ -29,7 +29,7 @@ def cart_save_dict(cart_dict):
                     cart_dict["cart_quantity"]+","+ 
                     cart_dict["cart_checkedout"]+","+
                     cart_dict["cart_date"]+"\n") 
-    print(output_line)
+    #print(output_line)
     cart_db_handle.write(output_line)
     cart_db_handle.close()
 
