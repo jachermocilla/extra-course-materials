@@ -4,6 +4,6 @@
 
 int main(){
    int *x = (int *) malloc(sizeof(int)); // allocated
-   printf("*x = %d n", *x); // uninitialized memory access
+   printf("*x = %d \n", *x); // uninitialized memory access
    free(x);
 }

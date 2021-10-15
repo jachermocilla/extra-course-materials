@@ -7,6 +7,7 @@ int main(){
    char *dst;
    dst = (char *)malloc(strlen(src));
    strcpy(dst,src);
+   printf("%s\n",dst);
    free(dst);
    return 0;
 }
