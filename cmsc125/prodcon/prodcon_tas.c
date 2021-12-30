@@ -7,10 +7,10 @@
 //solution to prod-con problem using a counter to be able to use  
 //all slots in the buffer. Uses test and set.
 //-jach
-//
+
 
 #define BUFFER_SIZE 5
-#define NITER 100
+#define NITER 10000
 
 //Function prototypes
 void *producer();
@@ -50,7 +50,7 @@ int main(){
    pthread_join(prod_thread, NULL);
    pthread_join(con_thread, NULL);
 
-   printf("Counter: %d\n",counter);
+   printf("Counter Final: %d\n",counter);
 
    return 0;
 }
@@ -61,6 +61,7 @@ void *producer(){
    int next_produced; 
    //while (1){
    for (int i=0; i< NITER; i++) { 
+      printf("Counter in producer: %d\n", counter);
       /* produce an item in next produced */ 
       next_produced=rand() % 100 + 1;
 
@@ -88,6 +89,7 @@ void *consumer(){
    int next_consumed; 
    //while(1){ 
    for (int i=0; i< NITER; i++) { 
+      printf("Counter in consumer: %d\n", counter);
 
       //Do nothing until an item is available
       while (counter==0) 
