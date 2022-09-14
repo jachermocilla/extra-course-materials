@@ -1,5 +1,5 @@
 $date
-  Thu Aug 20 16:39:51 2020
+  Wed Sep 14 22:17:35 2022
 $end
 $version
   GHDL v0
@@ -17,21 +17,21 @@ $var reg 1 " output $end
 $scope module uut $end
 $var reg 1 # a $end
 $var reg 1 $ b $end
-$var reg 1 % op $end
+$var reg 1 % operation $end
 $var reg 1 & result $end
 $var reg 1 ' u $end
 $var reg 1 ( v $end
-$scope module u1 $end
+$scope module u1_and $end
 $var reg 1 ) a $end
 $var reg 1 * b $end
 $var reg 1 + c $end
 $upscope $end
-$scope module u2 $end
+$scope module u2_or $end
 $var reg 1 , a $end
 $var reg 1 - b $end
 $var reg 1 . c $end
 $upscope $end
-$scope module u3 $end
+$scope module u3_mux $end
 $var reg 1 / a $end
 $var reg 1 0 b $end
 $var reg 1 1 s $end
@@ -61,60 +61,75 @@ b000 !
 02
 #10000000
 b001 !
-1%
-11
+1$
+1(
+1*
+1-
+1.
+10
 #20000000
 b010 !
 1#
-0%
-1(
+0$
 1)
+0*
 1,
-1.
-10
-01
+0-
 #30000000
 b011 !
 1"
-1%
+1$
 1&
-11
+1'
+1*
+1+
+1-
+1/
 12
 #40000000
 b100 !
 0"
 0#
-1$
-0%
+0$
+1%
 0&
+0'
+0(
 0)
-1*
+0*
+0+
 0,
-1-
-01
+0-
+0.
+0/
+00
+11
 02
 #50000000
 b101 !
 1"
-1%
+1$
 1&
-11
+1(
+1*
+1-
+1.
+10
 12
 #60000000
 b110 !
-1"
 1#
-0%
-1&
-1'
+0$
 1)
-1+
+0*
 1,
-1/
-01
-12
+0-
 #70000000
 b111 !
-1%
-11
+1$
+1'
+1*
+1+
+1-
+1/
 #80000000

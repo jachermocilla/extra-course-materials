@@ -22,9 +22,9 @@ ARCHITECTURE behavioral OF and_or IS
    SIGNAL u: STD_LOGIC;
    SIGNAL v: STD_LOGIC;
 BEGIN
-   u1: and_gate port map(a, b, u);
-   u2: or_gate port map(a, b, v);
-   u3: mux_2to1 port map(u, v,
+   u1_and: and_gate port map(a, b, u);
+   u2_or: or_gate port map(a, b, v);
+   u3_mux: mux_2to1 port map(u, v,
                    Operation,
                    Result); 
 END behavioral;

@@ -1,0 +1,45 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Wed Sep 14 14:22:34 2022
+[*]
+[dumpfile] "/home/cmsc132/Sources/github/cmsc132/cmsc132/vhdl/and_or/and_or_tb.vcd"
+[dumpfile_mtime] "Wed Sep 14 14:17:35 2022"
+[dumpfile_size] 1149
+[savefile] "/home/cmsc132/Sources/github/cmsc132/cmsc132/vhdl/and_or/sample_save.gtkw"
+[timestart] 0
+[size] 1848 896
+[pos] -51 -51
+*-24.000000 7540000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] and_or_tb.
+[treeopen] and_or_tb.uut.
+[sst_width] 233
+[signals_width] 221
+[sst_expanded] 1
+[sst_vpaned_height] 247
+@29
+and_or_tb.input[2:0]
+@200
+-and
+@28
+and_or_tb.uut.u1_and.a
+and_or_tb.uut.u1_and.b
+and_or_tb.uut.u1_and.c
+@200
+-or
+@28
+and_or_tb.uut.u2_or.a
+and_or_tb.uut.u2_or.b
+and_or_tb.uut.u2_or.c
+@200
+-mux
+@28
+and_or_tb.uut.u3_mux.a
+and_or_tb.uut.u3_mux.b
+and_or_tb.uut.u3_mux.c
+and_or_tb.uut.u3_mux.s
+@200
+-and_or
+@28
+and_or_tb.output
+[pattern_trace] 1
+[pattern_trace] 0

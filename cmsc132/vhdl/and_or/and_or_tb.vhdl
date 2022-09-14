@@ -12,9 +12,9 @@ ARCHITECTURE behavior OF and_or_tb IS
    SIGNAL output: STD_LOGIC;
 BEGIN 
    UUT: and_or PORT MAP (
+      Operation => input(2),
       a => input(1),
       b => input(0),
-      Operation => input(2),
       Result => output
    );
    STIM_PROC: PROCESS
