@@ -104,7 +104,7 @@ A programming exercise for implementing the scheduling algorithms discussed.
 
 ## Acknowledgements
 
-This material builds on top of the work by previous CMSC 125 instructors: Joman Encinas, Chris Templado, Betel de Robles, and Berna Pelaez 
+This material builds on top of the work by previous CMSC 125 instructors: Joman Encinas, Chris Templado, Betel de Robles, Zenith Arnejo, and Berna Pelaez 
 
 
 
