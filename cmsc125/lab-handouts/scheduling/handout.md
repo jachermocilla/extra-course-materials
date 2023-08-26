@@ -20,7 +20,7 @@ titlepage: true
 At the end of this session, the students should be able to:
 
 1. describe the different process scheduling algorithms; and
-2. implement simulations of the different process scheduling algorithms.
+2. implement a simulation of a process scheduling algorithm.
 
 ## Prerequisites 
 
