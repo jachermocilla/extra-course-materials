@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{LIBRARY} \PYG{n+nn}{ieee}\PYG{p}{;}
+\PYG{k}{USE} \PYG{n+nn}{ieee.std\PYGZus{}logic\PYGZus{}1164.}\PYG{k}{all}\PYG{p}{;}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{k}{ENTITY} \PYG{n+nc}{decoder\PYGZus{}3to8} \PYG{k}{IS}
+   \PYG{k}{PORT} \PYG{p}{(}
+      \PYG{n}{I2}\PYG{p}{,} \PYG{n}{I1}\PYG{p}{,} \PYG{n}{I0}\PYG{o}{:} \PYG{k}{IN} \PYG{k+kt}{STD\PYGZus{}LOGIC}\PYG{p}{;}
+      \PYG{n}{Out7}\PYG{p}{,} \PYG{n}{Out6}\PYG{p}{,} \PYG{n}{Out5}\PYG{p}{,} \PYG{n}{Out4}\PYG{p}{,} \PYG{n}{Out3}\PYG{p}{,} \PYG{n}{Out2}\PYG{p}{,}
+         \PYG{n}{Out1}\PYG{p}{,} \PYG{n}{Out0}\PYG{o}{:} \PYG{k}{OUT} \PYG{k+kt}{STD\PYGZus{}LOGIC}
+   \PYG{p}{);}
+\PYG{k}{END} \PYG{n+nc}{decoder\PYGZus{}3to8}\PYG{p}{;}
+\PYG{c+c1}{\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{k}{ARCHITECTURE} \PYG{n+nc}{pure\PYGZus{}logic} \PYG{k}{OF} \PYG{n+nc}{decoder\PYGZus{}3to8} \PYG{k}{IS}
+\PYG{k}{BEGIN}
+   \PYG{n}{Out0} \PYG{o}{\PYGZlt{}=} \PYG{k}{NOT} \PYG{n}{I2} \PYG{k}{AND} \PYG{k}{NOT} \PYG{n}{I1} \PYG{k}{and} \PYG{k}{NOT} \PYG{n}{I0}\PYG{p}{;}
+   \PYG{n}{Out1} \PYG{o}{\PYGZlt{}=} \PYG{k}{NOT} \PYG{n}{I2} \PYG{k}{AND} \PYG{k}{NOT} \PYG{n}{I1} \PYG{k}{and} \PYG{n}{I0}\PYG{p}{;}
+   \PYG{n}{Out2} \PYG{o}{\PYGZlt{}=} \PYG{k}{NOT} \PYG{n}{I2} \PYG{k}{AND} \PYG{n}{I1} \PYG{k}{and} \PYG{k}{NOT} \PYG{n}{I0}\PYG{p}{;}
+   \PYG{n}{Out3} \PYG{o}{\PYGZlt{}=} \PYG{k}{NOT} \PYG{n}{I2} \PYG{k}{AND} \PYG{n}{I1} \PYG{k}{and} \PYG{n}{I0}\PYG{p}{;}
+   \PYG{n}{Out4} \PYG{o}{\PYGZlt{}=} \PYG{n}{I2} \PYG{k}{AND} \PYG{k}{NOT} \PYG{n}{I1} \PYG{k}{and} \PYG{k}{NOT} \PYG{n}{I0}\PYG{p}{;}
+   \PYG{n}{Out5} \PYG{o}{\PYGZlt{}=} \PYG{n}{I2} \PYG{k}{AND} \PYG{k}{NOT} \PYG{n}{I1} \PYG{k}{and} \PYG{n}{I0}\PYG{p}{;}
+   \PYG{n}{Out6} \PYG{o}{\PYGZlt{}=} \PYG{n}{I2} \PYG{k}{AND} \PYG{n}{I1} \PYG{k}{and} \PYG{k}{NOT} \PYG{n}{I0}\PYG{p}{;}
+   \PYG{n}{Out7} \PYG{o}{\PYGZlt{}=} \PYG{n}{I2} \PYG{k}{AND} \PYG{n}{I1} \PYG{k}{and} \PYG{n}{I0}\PYG{p}{;}
+\PYG{k}{END} \PYG{n+nc}{pure\PYGZus{}logic}\PYG{p}{;}
+\end{Verbatim}
