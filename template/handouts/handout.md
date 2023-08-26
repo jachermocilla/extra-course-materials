@@ -1,7 +1,7 @@
 ---
-title: "Combinational Logic Circuits"
+title: "Thread Programming using PThreads"
 author: [JAC Hermocilla]
-date: "2017-02-20"
+date: "2023-08-26"
 subject: "Markdown"
 keywords: [Markdown, Example]
 header-left: "CMSC 125 | Operating Systems"
@@ -13,14 +13,12 @@ footer-right: "\\theauthor"
 titlepage: true
 ...
 
-# Vinaque sanguine metuenti cuiquam Alcyone fixus
+# Thread Programming in PThreads
 
-## Aesculeae domus vincemur et Veneris adsuetus lapsum
+## What are Threads?
 
-Lorem markdownum Letoia, et alios: figurae flectentem annis aliquid Peneosque ab
-esse, obstat gravitate. Obscura atque coniuge, per de coniunx, sibi **medias
-commentaque virgine** anima tamen comitemque petis, sed. In Amphion vestros
-hamos ire arceor mandere spicula, in licet aliquando.
+Threads are the smallest usint of execution in a computer. It consists of the 
+machine instructions to execute as well as a memory are called the stack.
 
 ```java
 public class Example implements LoremIpsum {
