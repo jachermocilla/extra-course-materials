@@ -1,7 +1,7 @@
 ---
 title: "Process Scheduling"
 author: [JAC Hermocilla]
-date: "2023-08-26"
+date: "\\today"
 subject: "Markdown"
 keywords: [Markdown, Example]
 header-left: "CMSC 125 | Operating Systems"
