@@ -101,6 +101,11 @@ Preemption occurs whenever the process is unable to finish within Q. In the even
 
 A programming exercise for implementing the scheduling algorithms discussed.
 
+
+## Acknowlegements
+
+## Further Reading
+
 ## References
 
 Galvin, Peter B., Greg Gagne, and Abraham Silberschatz. “CPU Scheduling”. Operating system concepts. 10th ed., John Wiley & Sons, 2018, pp. 190-211
