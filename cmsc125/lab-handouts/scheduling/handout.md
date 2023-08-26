@@ -27,7 +27,7 @@ At the end of this session, the students should be able to:
 1. Ubuntu 20.04 or higher with build tools
 2. File I/O in C
 
-## Process Scheduling
+## Process Scheduling (aka CPU Scheduling)
 
 A process usually spends its run time in either executing instructions (CPU burst) or waiting for I/O completion (I/O burst). Assuming we have a single CPU, when waiting for I/O, the CPU is idle, doing nothing. In multiprogramming and time-sharing systems, several processes are allowed to run to maximize CPU utilization. When a process is waiting for I/O completion, another process is allowed to execute, keeping the CPU busy. Since CPU is one of the primary computer resources, scheduling of this kind is an important function to the operating system.
 
