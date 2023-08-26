@@ -102,7 +102,11 @@ Preemption occurs whenever the process is unable to finish within Q. In the even
 A programming exercise for implementing the scheduling algorithms discussed.
 
 
-## Acknowlegements
+## Acknowledgements
+
+This material builds on top of the work by previous CMSC 125 instructors.  
+
+
 
 ## Further Reading
 
