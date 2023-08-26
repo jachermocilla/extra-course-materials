@@ -22,10 +22,9 @@ At the end of this session, the students should be able to:
 1. describe the different process scheduling algorithms; and
 2. implement simulations of the different process scheduling algorithms.
 
-## Prerequisites 
+## Software Requirements
 
 1. Ubuntu 20.04 or higher with build tools
-2. File I/O in C
 
 ## Process Scheduling
 
@@ -33,7 +32,7 @@ A process usually spends its run time in either executing instructions (CPU burs
 
 Selecting the process to execute is the task of the process scheduler module of an operating system. The process scheduler has access to the set of processes that are in the READY state. This set is often referred to as the ready queue. Processes in the ready queue are often referred to as blocked processes. Given the important role of the process scheduler, it is frequently invoked, and thus, hooked to the timer interrupt. The dispatcher is another process scheduling component which gives control of the CPU to the process selected by the scheduler.
 
-## Preemptive and Nonpreemptive Scheduling
+## Preemptive and Nonpreemprtive Scheduling
 
 Process scheduling decisions take place when a process (1) switches from running to waiting state, (2) switches from running to ready state, (3) switches from waiting to ready state, or (4) terminates. These instances can be preemptive or nonpreemptive. In nonpreemptive systems, once the process scheduler has selected a process to execute, the process is allowed to run until completion. This happens when a new process must be selected, for instance, the first and fourth situations stated above. In preemptive systems, a process may be removed from the CPU when a new process arrives, even if it is not yet done with its task. This happens when certain conditions for preemption are met, for instance, the second and third situations described above. Modern operating systems are preemptive.
 
@@ -85,22 +84,5 @@ The process with the shortest execution time gets selected for execution (non-pr
 Preemptive SJF. Preemption occurs whenever the new process has an execution time shorter than the remaining
 time of the process being executed by the CPU.
 
+
 ![Shortest Remaining Processing Time Schedule](./sked_srpt.png "")
-
-
-### Round-Robin
-
-Preemptive FCFS. Each job is allowed to occupy the CPU for a maximum period equal to time quantum, Q.
-Preemption occurs whenever the process is unable to finish within Q. In the event that Q has expired, the next process in the ready queue is executed. For the example below, let’s define Q=3.
-
-
-![Round-Robin Schedule](./sked_rr.png "")
-
-
-## Assesment Tool
-
-A programming exercise for implementing the scheduling algorithms discussed.
-
-## References
-
-Galvin, Peter B., Greg Gagne, and Abraham Silberschatz. “CPU Scheduling”. Operating system concepts. 10th ed., John Wiley & Sons, 2018, pp. 190-211
