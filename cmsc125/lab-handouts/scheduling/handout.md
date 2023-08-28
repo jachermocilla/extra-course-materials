@@ -4,12 +4,12 @@ author: [JAC Hermocilla]
 date: "\\today"
 subject: "Markdown"
 keywords: [Markdown, Example]
-header-left: "CMSC 125 | Operating Systems"
-header-center: "Process Scheduling"
-header-right: "ICS-UPLB"
+header-left: "CMSC 125 | Operating Systems "
+header-center: ""
+header-right: "Process Scheduling"
 footer-left: "Revision: \\today "
 footer-center: "\\thepage"
-footer-right: "\\theauthor"
+footer-right: "\\theauthor | ICS-UPLB"
 titlepage: true
 ...
 
@@ -17,7 +17,7 @@ titlepage: true
 
 ## Learning Outcomes
 
-At the end of this session, the students should be able to:
+At the end of this laboratory session, the students should be able to:
 
 1. describe the different process scheduling algorithms; and
 2. implement a simulation of a process scheduling algorithm.
@@ -68,16 +68,16 @@ Consider the following processes for the scheduling algorithm examples:
 
 The processes will run in the CPU in the order they arrived at the ready queue. 
 Once a process is running on the CPU, it cannot be interrupted until it completes 
-its burst time.
+its execution time.
 
-![First-Come, First Serve Schedule"](./sked_fcfs.png "")
+![First-Come, First Serve Schedule](./sked_fcfs.png)
 
 ### Shortest Job First (SJF) 
 
 The process with the shortest execution time gets selected for execution (non-preemptive). It is assumed that the execution time is known upon the arrival of the process in the ready queue.
 
 
-![Shortest Job First Schedule](./sked_sjf.png "")
+![Shortest Job First Schedule](./sked_sjf.png )
 
 
 ### Shortest Remaining Processing Time (SRPT)
@@ -85,7 +85,7 @@ The process with the shortest execution time gets selected for execution (non-pr
 Preemptive SJF. Preemption occurs whenever the new process has an execution time shorter than the remaining
 time of the process being executed by the CPU.
 
-![Shortest Remaining Processing Time Schedule](./sked_srpt.png "")
+![Shortest Remaining Processing Time Schedule](./sked_srpt.png )
 
 
 ### Round-Robin
@@ -94,22 +94,23 @@ Preemptive FCFS. Each job is allowed to occupy the CPU for a maximum period equa
 Preemption occurs whenever the process is unable to finish within Q. In the event that Q has expired, the next process in the ready queue is executed. For the example below, let’s define Q=3.
 
 
-![Round-Robin Schedule](./sked_rr.png "")
+![Round-Robin Schedule](./sked_rr.png )
 
 
 ## Assesment Tool
 
 A programming exercise for implementing the scheduling algorithms discussed.
 
-## Acknowledgements
-
-This material builds on top of the contributions by previous CMSC 125 instructors: Joman Encinas, Chris Templado, Betel de Robles, Zenith Arnejo, and Berna Pelaez 
-
 ## Further Reading
 
 ## References
 
 Galvin, Peter B., Greg Gagne, and Abraham Silberschatz. “CPU Scheduling”. Operating system concepts. 10th ed., John Wiley & Sons, 2018, pp. 190-211
+
+## Acknowledgment
+
+This material builds on top of the contributions by former CMSC 125 instructors: Joman Encinas, Chris Templado, Betel de Robles, Zenith Arnejo, and Berna Pelaez 
+
 
 ## License
 
