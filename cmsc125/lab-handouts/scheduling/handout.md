@@ -4,7 +4,7 @@ author: [JAC Hermocilla]
 date: "\\today"
 subject: "Markdown"
 keywords: [Markdown, Example]
-header-left: "CMSC 125 | Operating Systems "
+header-left: "CMSC 125 | Operating Systems (Laboratory)"
 header-center: ""
 header-right: "Process Scheduling"
 footer-left: "Revision: \\today "
@@ -25,7 +25,7 @@ At the end of this laboratory session, the students should be able to:
 ## Prerequisites 
 
 1. Ubuntu 20.04 or higher with build tools
-2. File I/O in C
+2. File I/O programming in C
 
 ## Process Scheduling (aka CPU Scheduling)
 
@@ -99,7 +99,7 @@ Preemption occurs whenever the process is unable to finish within Q. In the even
 
 ## Assesment Tool
 
-A programming exercise for implementing the scheduling algorithms discussed.
+A programming exercise for implementing one of the scheduling algorithms discussed.
 
 ## Further Reading
 
@@ -109,7 +109,7 @@ Galvin, Peter B., Greg Gagne, and Abraham Silberschatz. “CPU Scheduling”. Op
 
 ## Acknowledgment
 
-This material builds on top of the contributions by former CMSC 125 instructors: Joman Encinas, Chris Templado, Betel de Robles, Zenith Arnejo, and Berna Pelaez 
+This material builds on top of the contributions by former CMSC 125 instructors: Joman Encinas, Chris Templado, Betel de Robles, Zenith Arnejo, Berna Pelaez 
 
 
 ## License
