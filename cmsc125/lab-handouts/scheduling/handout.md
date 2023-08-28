@@ -50,7 +50,7 @@ There are several algorithms for process scheduling. To determine which scheduli
 
 ## Scheduling Algorithms
 
-Though most CPU architectures today support multiple processing cores, only a single processing core with one CPU burst in milliseconds per process will be considered in the examples. The measure of comparison that we will use is the average waiting time (AWT).
+Though most CPU architectures today support multiple processing cores, only a single processing core with one CPU burst in milliseconds per process will be considered in the examples. The measure of comparison that we will use is the average waiting time (AWT). AWT is the sum of the waiting time of each process divided by the number of processes.
 
 Consider the following processes for the scheduling algorithm examples:
 
