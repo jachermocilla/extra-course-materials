@@ -29,7 +29,7 @@ At the end of this laboratory session, the students should be able to:
 
 ## Process Scheduling (aka CPU Scheduling)
 
-A process usually spends its run time in either executing instructions (CPU burst) or waiting for I/O completion (I/O burst). Assuming we have a single CPU, when waiting for I/O, the CPU is idle, doing nothing. In multiprogramming and time-sharing systems, several processes are allowed to run to maximize CPU utilization. When a process is waiting for I/O completion, another process is allowed to execute, keeping the CPU busy. Since CPU is one of the primary computer resources, scheduling of this kind is an important function to the operating system.
+A process usually spends its run time in either executing instructions (CPU burst) or waiting for I/O completion (I/O burst). Assuming we have a single CPU, when waiting for I/O, the CPU is idle, doing nothing. In multiprogramming and time-sharing systems, several processes are allowed to run to maximize CPU utilization. When a process is waiting for I/O completion, another process is allowed to execute, keeping the CPU busy. Since CPU is one of the primary computing hardware resources (memory being the other), scheduling of this kind is an important function of the operating system.
 
 Selecting the process to execute is the task of the process scheduler module of an operating system. The process scheduler has access to the set of processes that are in the READY state. This set is often referred to as the ready queue. Processes in the ready queue are often referred to as blocked processes. Given the important role of the process scheduler, it is frequently invoked, and thus, hooked to the timer interrupt. The dispatcher is another process scheduling component which gives control of the CPU to the process selected by the scheduler.
 
@@ -70,7 +70,11 @@ The processes will run in the CPU in the order they arrived at the ready queue.
 Once a process is running on the CPU, it cannot be interrupted until it completes 
 its execution time.
 
+
 ![First-Come, First Serve Schedule](./sked_fcfs.png)
+
+To compute the AWT for this set of processes scheduled using FCFS, first get the waiting time of each process.
+As seen in the schedule, the following are the waiting times:  P~1~=0, P~2~=2, P~3~=4, P~4~=3, P~5~=4. Thus, the AWT is 2.8.  
 
 ### Shortest Job First (SJF) 
 
@@ -96,16 +100,19 @@ Preemption occurs whenever the process is unable to finish within Q. In the even
 
 ![Round-Robin Schedule](./sked_rr.png )
 
+## Self Assesment Questions
+
+1. What is the AWT for SJF? SRPT? RR?
+
+
 
 ## Assesment Tool
 
 A programming exercise for implementing one of the scheduling algorithms discussed.
 
-## Further Reading
+## References and Further Reading
 
-## References
-
-Galvin, Peter B., Greg Gagne, and Abraham Silberschatz. “CPU Scheduling”. Operating system concepts. 10th ed., John Wiley & Sons, 2018, pp. 190-211
+1. Galvin, Peter B., Greg Gagne, and Abraham Silberschatz. “CPU Scheduling”. Operating system concepts. 10th ed., John Wiley & Sons, 2018, pp. 190-211
 
 ## Acknowledgment
 
