@@ -5,5 +5,8 @@ EXTERN _exit
 GLOBAL _start
 SECTION .text
 _start:
-   push    dword 42
-   call    _exit
+;   push    dword 42
+;   call    _exit
+   mov eax, 1
+   mov ebx, 42
+   int 0x80
