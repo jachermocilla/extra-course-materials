@@ -8,4 +8,5 @@ Useful commands:
 * `size`
 * `readelf`
 * `gcc`
-* `nasm` 
+* `nasm`
+* `gdb` 
