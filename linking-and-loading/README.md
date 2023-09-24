@@ -10,3 +10,4 @@ Useful commands:
 * `gcc`
 * `nasm`
 * `gdb` 
+* `pmap` 
