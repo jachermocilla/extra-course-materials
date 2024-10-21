@@ -3,7 +3,7 @@
 #include <string.h>
 
 int main(){
-   int *x = (int *) malloc(sizeof(int)); // allocated
-   printf("*x = %d \n", *x); // uninitialized memory access
+   int *x = (int *) malloc(sizeof(int)); 
+   printf("*x = %d \n", *x); 
    free(x);
 }
