@@ -18,7 +18,7 @@ void multiply_and_add(const float* a, const float* b, const float* c, float* d) 
 int main(){
    float result[N];
    multiply_and_add(array_a,array_b,array_c,result);
-   for(int i=0; i<N; i++) {
-      printf("[%d]: %.2f\n",i,result[i]);
-   }   
+//   for(int i=0; i<N; i++) {
+//      printf("[%d]: %.2f\n",i,result[i]);
+//   }   
 }

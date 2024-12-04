@@ -20,9 +20,9 @@ int main(){
 
    float *result = (float *) &vector_d;
 
-   for(int i=0; i<8; i++) {
-      printf("[%d]: %.2f\n",i,result[i]);
-   }   
+//   for(int i=0; i<8; i++) {
+//      printf("[%d]: %.2f\n",i,result[i]);
+//   }   
 }
 
 

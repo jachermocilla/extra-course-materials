@@ -1,4 +1,8 @@
 #!/bin/bash  
+
+gcc -o vector-avx2.elf vector-avx2.c -mavx2
+gcc -o non-vector.elf non-vector.c 
+
 ts=$(date +%s%N)  
 ./non-vector.elf
 echo "Non-vector: $((($(date +%s%N) - $ts)/1000000)) ms" > times.txt 
