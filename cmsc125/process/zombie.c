@@ -5,18 +5,22 @@
 #include <stdlib.h> 
 #include <sys/types.h> 
 #include <unistd.h> 
+#include <stdio.h>
+#include "common.h"
+
 int main() 
 { 
    pid_t pid = fork(); 
   
    // Parent process  
    if (pid > 0){ 
-        sleep(60); //sleep longer that child so that the child dies first
+      printf("Parent: pid: %d\n",getpid());  
+      Spin(60); //sleep longer than child so that the child dies first
    }
    
    // Child process 
    else{
-      execlp("./child.exe","child.exe",NULL);
+      execlp("./child.elf","child.elf","child","40",NULL);
    } 
    return 0; 
 } 

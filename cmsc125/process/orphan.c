@@ -11,7 +11,7 @@ int main()
    pid_t pid = fork(); 
 
    if (pid > 0){ 
-      printf("Parent: I am alive but I'll die before my child.\n"); 
+      printf("Parent: I am alive but I'll die before my child. pid: %d\n",getpid()); 
       sleep(20); //parent will die young, lives shorter than child
       printf("Parent: I died. Child becomes orphan.\n"); 
    }
@@ -20,7 +20,7 @@ int main()
    // and negative if fork() fails 
    else if (pid == 0) 
    { 
-      execlp("./child.exe","child.exe",NULL);
+      execlp("./child.elf","child.elf","child","30",NULL);
    } 
 
    return 0; 
