@@ -10,7 +10,7 @@
 //
 
 #define BUFFER_SIZE 5
-#define NITER 15
+#define NITER 35
 
 //Function prototypes
 void *producer();
