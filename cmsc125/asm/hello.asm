@@ -1,6 +1,6 @@
 ;; nasm -f elf64 -o hello.o hello.asm
 ;; ld -o hello.elf hello.o
-
+;; https://filippo.io/linux-syscall-table/
 
 BITS 64
 section .data
