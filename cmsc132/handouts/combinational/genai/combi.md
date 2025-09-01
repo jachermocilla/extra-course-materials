@@ -234,6 +234,17 @@ Step 3: Y = A + Ā·B
 
 - **Outputs**: A>B, A=B, A<B
 
+
+**Logic**:
+
+(uses XNOR gate)
+
+- A>B = A1·B̄1 + (A1⊙B1)·A0·B̄0
+
+- A=B = (A1⊙B1)·(A0⊙B0)  
+
+- A<B = Ā1·B1 + (A1⊙B1)·Ā0·B0
+
 ## Design Process
 
 ### Step 1: Problem Definition
@@ -302,4 +313,4 @@ Convert the simplified expression into logic gates.
 
 ---
 
-*This tutorial was generated with Claude AI. Modified and reviewed by JACH for CMSC 132.2025-09-01*
+*This tutorial was generated with Claude AI(accessed: 2025-09-01). Modified and reviewed by JACH for CMSC 132.*

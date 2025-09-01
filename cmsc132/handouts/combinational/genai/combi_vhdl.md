@@ -524,4 +524,4 @@ end Behavioral;
 
 ---
 
-*This tutorial was generated with Claude AI. Modified and reviewed by JACH for CMSC 132.2025-09-01.*
+*This tutorial was generated with Claude AI(accessed: 2025-09-01). Modified and reviewed by JACH for CMSC 132.*
