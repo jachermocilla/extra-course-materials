@@ -1,4 +1,11 @@
-# Combinational Circuits Tutorial
+---
+header-includes: |
+    \usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyfoot[CO,CE]{This tutorial was generated with Claude AI(accessed: 2025-09-01). Modified and reviewed by JACH for CMSC 132.}
+...
+
+# Combinational Circuits 
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -8,7 +15,6 @@
 5. [Common Combinational Circuits](#common-combinational-circuits)
 6. [Design Process](#design-process)
 7. [Real-World Applications](#real-world-applications)
-8. [Practice Problems](#practice-problems)
 
 ## Introduction
 
@@ -313,4 +319,3 @@ Convert the simplified expression into logic gates.
 
 ---
 
-*This tutorial was generated with Claude AI(accessed: 2025-09-01). Modified and reviewed by JACH for CMSC 132.*
