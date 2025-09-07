@@ -1,8 +1,8 @@
 
-all: child.elf parent.elf parent2.elf orphan.elf zombie.elf
+all: child.elf parent.elf parent2.elf orphan.elf zombie.elf cpu-bound.elf io-bound.elf
 
 clean:
-	rm child.elf parent.elf parent2.elf orphan.elf zombie.elf
+	rm child.elf parent.elf parent2.elf orphan.elf zombie.elf cpu-bound.elf io-bound.elf
 
 child.elf: child.c
 	gcc -o child.elf child.c -Wall
@@ -18,4 +18,11 @@ orphan.elf: orphan.c
 
 zombie.elf: zombie.c
 	gcc -o zombie.elf zombie.c -Wall
+
+
+cpu-bound.elf: cpu-bound.c
+	gcc -o cpu-bound.elf cpu-bound.c -Wall
+
+io-bound.elf: io-bound.c
+	gcc -o io-bound.elf io-bound.c -Wall
 
