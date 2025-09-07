@@ -137,6 +137,7 @@ void print_scheduling_info() {
     printf("\n================== SCHEDULING INFO (IO-BOUND) ==================\n");
     printf("Timestamp: %s\n", time_str);
     printf("PID: %d\n", pid);
+    printf("Running on CPU core: %d\n",sched_getcpu());
     printf("State: %s\n", state_to_string(get_process_state(pid)));
     printf("Policy: %s (%d)\n", get_policy_name(policy), policy);
     printf("RT Priority: %d\n", param.sched_priority);
