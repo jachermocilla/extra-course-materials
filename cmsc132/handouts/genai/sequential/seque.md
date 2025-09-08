@@ -27,6 +27,7 @@ header-includes: |
 Sequential circuits are digital logic circuits whose outputs depend not only on the current inputs but also on the previous states (history). Unlike combinational circuits, they have memory capability.
 
 ### Key Characteristics:
+
 - **Memory Elements**: Store previous state information
 - **Feedback Loops**: Output feeds back to input through memory elements  
 - **Clock Dependency**: Most sequential circuits are synchronous (clock-driven)
@@ -50,6 +51,7 @@ Latches are basic memory elements that can store one bit of information. They ar
 ### 1. SR Latch (Set-Reset Latch)
 
 #### Using NOR Gates:
+
 - **Inputs**: S (Set), R (Reset)
 - **Outputs**: Q, Q̄ (complement of Q)
 
@@ -63,19 +65,23 @@ Latches are basic memory elements that can store one bit of information. They ar
 | 1 | 1 | 0      | 0       | **Invalid/Forbidden** |
 
 **Characteristic Equations**:
+
 - Q(t+1) = S + R̄·Q(t)
 - Invalid when S = R = 1
 
 #### Using NAND Gates (SR̄ Latch):
+
 - **Inputs**: S̄ (active-low Set), R̄ (active-low Reset)
 - **Invalid state**: S̄ = R̄ = 0
 
 ### 2. Gated SR Latch
+
 - **Inputs**: S, R, Enable (E)
 - **Operation**: SR latch is active only when Enable = 1
 - **Truth Table**: Same as SR latch, but only when E = 1
 
 **Logic**:
+
 - Internal S = S_input · E
 - Internal R = R_input · E
 
@@ -415,6 +421,7 @@ S0 -----> S0    S0 -----> S1    S1 -----> S2    S2 -----> S3
 Design a synchronous counter that counts in the sequence: 0, 2, 5, 6, 0, 2, 5, 6, ...
 
 **Requirements**:
+
 - Use JK flip-flops
 - Draw state diagram
 - Create state table
@@ -424,6 +431,7 @@ Design a synchronous counter that counts in the sequence: 0, 2, 5, 6, 0, 2, 5, 6
 Design a Moore machine that outputs '1' when it detects the sequence "1011" in a serial input stream.
 
 **Requirements**:
+
 - Draw state diagram
 - Create state table with state assignments
 - Implement using D flip-flops
@@ -434,6 +442,7 @@ Design a traffic light controller for a 4-way intersection.
 **States**: North-South Green (30s), NS Yellow (5s), East-West Green (25s), EW Yellow (5s)
 
 **Requirements**:
+
 - Use a counter for timing
 - Emergency override input
 - Pedestrian crossing request
@@ -442,6 +451,7 @@ Design a traffic light controller for a 4-way intersection.
 Design a UART transmitter that sends 8-bit data with 1 start bit and 1 stop bit.
 
 **Requirements**:
+
 - Shift register for parallel-to-serial conversion
 - State machine for protocol control
 - Baud rate generation
@@ -449,21 +459,25 @@ Design a UART transmitter that sends 8-bit data with 1 start bit and 1 stop bit.
 ## Advanced Topics
 
 ### 1. Clock Domain Crossing:
+
 - **Synchronizers**: Prevent metastability
 - **FIFO Buffers**: Handle rate differences
 - **Handshaking**: Ensure reliable data transfer
 
 ### 2. Pipeline Design:
+
 - **Pipeline Registers**: Store intermediate results
 - **Hazard Detection**: Handle data dependencies
 - **Branch Prediction**: Reduce pipeline stalls
 
 ### 3. Low Power Techniques:
+
 - **Clock Gating**: Conditional clock distribution
 - **Power Gating**: Turn off power to unused blocks
 - **Voltage Scaling**: Dynamic voltage adjustment
 
 ### 4. Testability:
+
 - **Scan Chains**: For manufacturing test
 - **BIST**: Built-in self-test
 - **Design for Debug**: Observability and controllability
