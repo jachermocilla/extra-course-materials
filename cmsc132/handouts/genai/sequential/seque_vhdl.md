@@ -1,3 +1,13 @@
+---
+header-includes: |
+    \usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyfoot[CO,CE]{This tutorial was generated with Claude AI(accessed: 2025-09-01). Modified and reviewed by JACH for CMSC 132.}
+...
+
+
+# Sequential Circuits
+
 ```vhdl
 
 -- ========================================

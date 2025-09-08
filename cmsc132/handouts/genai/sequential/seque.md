@@ -1,3 +1,12 @@
+---
+header-includes: |
+    \usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyfoot[CO,CE]{This tutorial was generated with Claude AI(accessed: 2025-09-08). Modified and reviewed by JACH for CMSC 132.}
+...
+
+
+
 # Sequential Circuits Tutorial
 
 ## Table of Contents
@@ -45,6 +54,7 @@ Latches are basic memory elements that can store one bit of information. They ar
 - **Outputs**: Q, Q̄ (complement of Q)
 
 **Truth Table**:
+
 | S | R | Q(t+1) | Q̄(t+1) | Action |
 |---|---|--------|---------|--------|
 | 0 | 0 | Q(t)   | Q̄(t)    | Hold (No change) |
@@ -75,6 +85,7 @@ Latches are basic memory elements that can store one bit of information. They ar
 - **Operation**: Q follows D when Enable = 1
 
 **Truth Table**:
+
 | D | E | Q(t+1) | Action |
 |---|---|--------|--------|
 | X | 0 | Q(t)   | Hold |
@@ -88,6 +99,7 @@ Latches are basic memory elements that can store one bit of information. They ar
 - **Advantage**: No invalid states (unlike SR latch)
 
 **Truth Table**:
+
 | J | K | E | Q(t+1) | Action |
 |---|---|---|--------|--------|
 | X | X | 0 | Q(t)   | Hold |
@@ -107,6 +119,7 @@ Flip-flops are **edge-triggered** memory elements (sensitive to clock transition
 - **Operation**: Q changes to D value on positive clock edge (0→1)
 
 **Truth Table**:
+
 | D | CLK | Q(t+1) | Action |
 |---|-----|--------|--------|
 | X | 0 or 1 (no edge) | Q(t) | Hold |
@@ -125,6 +138,7 @@ Flip-flops are **edge-triggered** memory elements (sensitive to clock transition
 - **Advantage**: No invalid states, includes toggle function
 
 **Truth Table**:
+
 | J | K | CLK | Q(t+1) | Action |
 |---|---|-----|--------|--------|
 | X | X | No edge | Q(t) | Hold |
@@ -140,6 +154,7 @@ Flip-flops are **edge-triggered** memory elements (sensitive to clock transition
 - **Operation**: Toggles output when T = 1
 
 **Truth Table**:
+
 | T | CLK | Q(t+1) | Action |
 |---|-----|--------|--------|
 | X | No edge | Q(t) | Hold |
@@ -207,6 +222,7 @@ Store data and shift it left or right on each clock cycle.
 - **Control**: Mode select inputs determine operation
 
 **Mode Control**:
+
 | S1 | S0 | Operation |
 |----|----| ----------|
 | 0  | 0  | Hold |
@@ -462,17 +478,5 @@ Design a UART transmitter that sends 8-bit data with 1 start bit and 1 stop bit.
 6. **Clock distribution affects performance** and power consumption
 7. **Proper reset strategy is essential** for reliable operation
 
-## Next Steps
-
-After mastering sequential circuits, consider studying:
-- **Advanced state machine techniques** (hierarchical FSMs)
-- **Memory design and optimization**
-- **High-speed digital design** (timing closure)
-- **Low-power design techniques**
-- **FPGA and ASIC implementation**
-- **Hardware description languages** (Verilog/VHDL)
-- **System-on-Chip (SoC) design**
-
 ---
 
-*This tutorial provides a comprehensive foundation for understanding sequential circuits. The concepts learned here are essential for digital system design, computer architecture, and embedded systems development.*
