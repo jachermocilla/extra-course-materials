@@ -62,12 +62,17 @@ Performance is inversely related to execution time:
 ```
 Performance = 1 / Execution Time
 ```
+thus
+
+```
+Execution Time = 1 / Performance
+```
 
 If machine A runs a program in 10 seconds and machine B runs it in 15 seconds:
 
 - Performance_A = 1/10 = 0.1 tasks/second
-- Performance_B = 1/15 = 0.067 tasks/second
-- Machine A is faster than machine B
+- Performance_B = 1/15 = 0.0666 tasks/second
+- Machine A is (1.5 times) faster than machine B
 
 ## Components of Execution Time {#components-of-execution-time}
 
@@ -302,6 +307,7 @@ MIPS = 2500 / 2.2 = 1136 MIPS
 ### Example 5: Performance Improvement Analysis
 
 **Problem**: We're considering three improvements to a processor:
+
 1. Reduce CPI from 2.0 to 1.6 (20% reduction)
 2. Increase clock rate from 3 GHz to 3.6 GHz (20% increase)  
 3. Reduce instruction count by 15% through compiler optimization
@@ -362,6 +368,7 @@ Machine A is slightly faster overall, but the difference is small.
 ### Performance Counters
 
 Modern processors include hardware performance counters that measure:
+
 - Instructions retired
 - Cache hits/misses
 - Branch mispredictions
