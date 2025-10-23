@@ -159,7 +159,7 @@ void cond_destroy(cond_t* cond) {
 
 // ========== PRODUCER-CONSUMER EXAMPLE ==========
 
-#define BUFFER_SIZE 5
+#define BUFFER_SIZE 30
 #define NUM_ITEMS 20
 
 typedef struct {
