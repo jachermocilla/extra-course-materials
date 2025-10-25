@@ -2,7 +2,7 @@
  * Adapted from the osbook 3rd ed by EAAlbacea
  * COMPILATION AND EXECUTION:
  * gcc starvation.c -o starvation -pthread
- * ./starvation_demo
+ * ./starvation
 
  * KEY STARVATION ISSUE:
  * The line "turn = other" forces STRICT ALTERNATION. This means:
