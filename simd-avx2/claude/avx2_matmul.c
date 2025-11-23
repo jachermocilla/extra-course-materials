@@ -51,7 +51,7 @@ void matrix_multiply_avx2(Matrix *a, Matrix *b, Matrix *c) {
     int k = a->cols;
 
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j += 8) {
+        for (int j = 0; j < m; j += 8) {  //step by 8
             // Create a 256-bit vector filled with zeros (8 x int32 = 0)
             __m256i sum = _mm256_setzero_si256();
 
