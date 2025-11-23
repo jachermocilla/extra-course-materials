@@ -52,20 +52,36 @@ void matrix_multiply_avx2(Matrix *a, Matrix *b, Matrix *c) {
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j += 8) {
+            // Create a 256-bit vector filled with zeros (8 x int32 = 0)
             __m256i sum = _mm256_setzero_si256();
 
             for (int p = 0; p < k; p++) {
                 elem_t a_elem = *matrix_at(a, i, p);
+
+                // Replicate one int32 value into all 8 lanes of a 256-bit vector
+                // Result: [a_elem, a_elem, a_elem, a_elem, a_elem, a_elem, a_elem, a_elem]
                 __m256i a_vec = _mm256_set1_epi32(a_elem);
+
+                // Load 8 consecutive int32 values from matrix B (unaligned load)
+                // From address: &b->data[p * m + j] loads 8 values
                 __m256i b_vec = _mm256_loadu_si256((__m256i*)matrix_at(b, p, j));
 
+                // Multiply corresponding elements: a_vec[i] * b_vec[i] for all 8 lanes
+                // Result: 8 multiplied values in one vector
                 __m256i prod = _mm256_mullo_epi32(a_vec, b_vec);
+
+                // Add the 8 products to the accumulator
+                // sum[i] += prod[i] for all 8 lanes
                 sum = _mm256_add_epi32(sum, prod);
             }
 
+            // Store the 8 accumulated results back to matrix C (unaligned store)
+            // Writes 8 int32 values to: &c->data[i * m + j]
             _mm256_storeu_si256((__m256i*)matrix_at(c, i, j), sum);
         }
 
+        // Handle remaining columns that don't fit in 8-element chunks
+        // If m is not divisible by 8, process leftover columns with scalar code
         for (int j = (m / 8) * 8; j < m; j++) {
             elem_t result = 0;
             for (int p = 0; p < k; p++) {
