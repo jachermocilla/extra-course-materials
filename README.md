@@ -1,4 +1,4 @@
-This repo contains (extra) course materials for courses that I teach. 
-Check out the branches for spefic courses.
+# CMSC 291
+## Clone this branch only
 
-Enjoy! :) 
+git clone --single-branch -b cmsc291 https://github.com/jachermocilla/extra-course-materials.git cmsc291-public
