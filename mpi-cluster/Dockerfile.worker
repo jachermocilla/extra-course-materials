@@ -1,0 +1,9 @@
+# Worker node - executes MPI tasks
+FROM mpi-mpi-base:latest
+
+LABEL description="OpenMPI Worker Node"
+
+COPY scripts/worker-entrypoint.sh /usr/local/bin/worker-entrypoint.sh
+RUN chmod +x /usr/local/bin/worker-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/worker-entrypoint.sh"]
