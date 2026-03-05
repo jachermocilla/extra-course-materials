@@ -33,9 +33,13 @@ docker compose exec master bash
 su - mpiuser
 cd mpi_work
 
-mpirun --hostfile hostfile -np 2 ./examples/hello_world
-mpirun --hostfile hostfile -np 2 ./examples/pi_calculation
-mpirun --hostfile hostfile -np 2 ./examples/ring_communication
+scp ./shared/*.elf worker1:./mpi_work/shared/.
+scp ./shared/*.elf worker2:./mpi_work/shared/.
+scp ./shared/*.elf worker3:./mpi_work/shared/.
+
+mpirun --hostfile hostfile -np 4 ./shared/hello_world.elf
+mpirun --hostfile hostfile -np 4 ./shared/pi_calculation.elf
+mpirun --hostfile hostfile -np 4 ./shared/ring_communication.elf
 ```
 
 ## Scaling Workers
