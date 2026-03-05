@@ -13,6 +13,8 @@ echo "Waiting for worker nodes..."
   echo "master slots=${SLOTS}"
 } > "$HOSTFILE"
 
+chown mpiuser:mpiuser "$HOSTFILE"
+
 for i in $(seq 1 "$WORKER_COUNT"); do
   HOST="${WORKER_PREFIX}${i}"
   echo -n "  Pinging ${HOST}... "
@@ -33,4 +35,3 @@ echo ""
 echo "Generated hostfile:"
 cat "$HOSTFILE"
 
-chown mpiuser:mpiuser "$HOSTFILE"

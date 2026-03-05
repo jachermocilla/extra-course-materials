@@ -20,9 +20,10 @@ WORKDIR /home/mpiuser/mpi_work
 
 # Compile example programs
 RUN cd examples && \
-    mpicc -o hello_world hello_world.c && \
-    mpicc -o pi_calculation pi_calculation.c && \
-    mpicc -o ring_communication ring_communication.c
+    mpicc -o hello_world.elf hello_world.c && \
+    mpicc -o pi_calculation.elf pi_calculation.c && \
+    mpicc -o ring_communication.elf ring_communication.c && \
+    cp *.elf ../shared
 
 USER root
 
