@@ -1,5 +1,5 @@
 # Worker node - executes MPI tasks
-FROM mpi-mpi-base:latest
+FROM mpi-base:latest
 
 LABEL description="OpenMPI Worker Node"
 

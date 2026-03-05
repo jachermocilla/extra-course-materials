@@ -1,5 +1,5 @@
 # Master node - orchestrates MPI jobs
-FROM mpi-mpi-base:latest
+FROM mpi-base:latest
 
 LABEL description="OpenMPI Master Node"
 

@@ -28,6 +28,7 @@ services:
 
   # ── Build the shared base image ──────────────
   mpi-base:
+    image: mpi-base:latest
     build:
       context: .
       dockerfile: Dockerfile.base
