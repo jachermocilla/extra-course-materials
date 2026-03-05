@@ -45,14 +45,17 @@ Add more worker services to `docker-compose.yml` and bump `MPI_WORKER_COUNT` on 
 ```yaml
 # docker-compose.yml — add a fourth worker
 worker4:
-  image: mpi-worker:latest
-  hostname: worker4
-  networks:
-    mpi-cluster:
-      ipv4_address: 192.137.125.14
-  volumes:
-    - mpi-shared:/home/mpiuser/mpi_work/shared
-    - ssh-keys:/home/mpiuser/.ssh
+   build:
+      context: .
+      dockerfile: Dockerfile.worker
+   container_name: mpi-worker4
+   hostname: worker4
+   networks:
+     mpi-cluster:
+       ipv4_address: 192.137.125.14
+   volumes:
+     - mpi-shared:/home/mpiuser/mpi_work/shared
+     - ssh-keys:/home/mpiuser/.ssh
 
 # master service environment:
   - MPI_WORKER_COUNT=4
