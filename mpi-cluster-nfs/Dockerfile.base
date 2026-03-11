@@ -1,0 +1,60 @@
+# Base image for all MPI nodes
+FROM ubuntu:22.04
+
+LABEL maintainer="MPI Cluster"
+LABEL description="Base OpenMPI node image"
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    openssh-server \
+    openssh-client \
+    openmpi-bin \
+    openmpi-common \
+    libopenmpi-dev \
+    build-essential \
+    gcc \
+    g++ \
+    gfortran \
+    python3 \
+    python3-pip \
+    vim \
+    wget \
+    curl \
+    iputils-ping \
+    net-tools \
+    nfs-common \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create mpiuser
+RUN useradd -m -s /bin/bash mpiuser && \
+    echo "mpiuser:mpiuser" | chpasswd
+
+# Setup SSH
+RUN mkdir -p /var/run/sshd && \
+    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config && \
+    sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
+
+# Generate SSH keys for mpiuser
+RUN mkdir -p /home/mpiuser/.ssh && \
+    ssh-keygen -t rsa -b 4096 -f /home/mpiuser/.ssh/id_rsa -N "" && \
+    cat /home/mpiuser/.ssh/id_rsa.pub >> /home/mpiuser/.ssh/authorized_keys && \
+    chmod 700 /home/mpiuser/.ssh && \
+    chmod 600 /home/mpiuser/.ssh/authorized_keys && \
+    chown -R mpiuser:mpiuser /home/mpiuser/.ssh
+
+# Add SSH config to skip host key checking within cluster
+RUN echo "Host *\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null" \
+    > /home/mpiuser/.ssh/config && \
+    chmod 600 /home/mpiuser/.ssh/config && \
+    chown mpiuser:mpiuser /home/mpiuser/.ssh/config
+
+# Create shared working directory
+RUN mkdir -p /home/mpiuser/mpi_work && \
+    chown mpiuser:mpiuser /home/mpiuser/mpi_work
+
+WORKDIR /home/mpiuser/mpi_work
+
+EXPOSE 22

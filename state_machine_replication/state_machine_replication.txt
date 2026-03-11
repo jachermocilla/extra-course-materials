@@ -1,0 +1,19 @@
+┌─────────┐   write   ┌──────────────┐   append  ┌──────────────────────────────┐
+│  Client │──────────▶│    Leader    │──────────▶│        Replicated Log        │
+└─────────┘           │  (Primary)   │           │  [1] SET user=alice          │
+     ▲                └──────────────┘           │  [2] SET lang=Go             │
+     │                       │                   │  [3] DEL lang                │
+     │                       │ propagate()       │  [4] SET city=Paris          │
+     │                       │                   └──────────────────────────────┘
+     │                       │                          │         │         │
+     │                    CatchUp()               CatchUp()  CatchUp()  CatchUp()
+     │                       │                          │         │         │
+     │                       ▼                          ▼         ▼         ▼
+     │               ┌──────────────┐          ┌───────────┐ ┌───────────┐ ┌───────────┐
+     │               │  Replica R1  │          │ Replica R1│ │ Replica R2│ │ Replica R3│
+     │               │ KVStateMach. │          │ applied=4 │ │ applied=4 │ │ applied=4 │
+     └── read ───────│  (Leader's   │          │ user=alice│ │ user=alice│ │ user=alice│
+                     │   own copy)  │          │ city=Paris│ │ city=Paris│ │ city=Paris│
+                     └──────────────┘          └───────────┘ └───────────┘ └───────────┘
+
+  KEY INVARIANT: All replicas apply commands in the same order → identical state

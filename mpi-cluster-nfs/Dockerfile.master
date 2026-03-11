@@ -1,0 +1,31 @@
+# Master node - orchestrates MPI jobs
+FROM mpi-base:latest
+
+LABEL description="OpenMPI Master Node"
+
+# Copy example MPI programs
+COPY examples/ /home/mpiuser/mpi_work/examples/
+
+# Copy entrypoint scripts
+COPY scripts/master-entrypoint.sh /usr/local/bin/master-entrypoint.sh
+COPY scripts/generate-hostfile.sh /usr/local/bin/generate-hostfile.sh
+COPY scripts/mount-nfs.sh         /usr/local/bin/mount-nfs.sh
+
+RUN chmod +x /usr/local/bin/master-entrypoint.sh \
+             /usr/local/bin/generate-hostfile.sh \
+             /usr/local/bin/mount-nfs.sh && \
+    chown -R mpiuser:mpiuser /home/mpiuser/mpi_work
+
+USER mpiuser
+WORKDIR /home/mpiuser/mpi_work
+
+# Compile example programs
+RUN cd examples && \
+    mpicc -o hello_world hello_world.c && \
+    mpicc -o pi_calculation pi_calculation.c && \
+    mpicc -o ring_communication ring_communication.c
+
+USER root
+
+ENTRYPOINT ["/usr/local/bin/master-entrypoint.sh"]
+CMD ["bash"]

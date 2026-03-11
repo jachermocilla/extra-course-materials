@@ -1,0 +1,156 @@
+#version: "3.9"
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  OpenMPI Cluster with NFS shared storage
+#
+#  Topology  (172.20.0.0/24):
+#    nfs     172.20.0.5   — NFS server, exports /exports/mpi
+#    master  172.20.0.10  — MPI master, mounts NFS at /home/mpiuser/mpi_work/shared
+#    worker1 172.20.0.11  ┐
+#    worker2 172.20.0.12  ├─ MPI workers, each mounts the same NFS share
+#    worker3 172.20.0.13  ┘
+#
+#  Usage:
+#    docker compose up --build -d
+#    docker compose exec master bash
+#    su - mpiuser && cd mpi_work
+#    mpirun --hostfile hostfile -np 8 ./examples/hello_world
+#
+#  The NFS share gives every node a common filesystem for:
+#    - compiled MPI binaries  (write once on master, run everywhere)
+#    - input / output data files
+#    - the MPI hostfile itself
+# ─────────────────────────────────────────────────────────────────────────────
+
+networks:
+  mpi-cluster:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.137.125.0/24
+
+
+
+volumes:
+  mpi-shared:
+    driver: local 
+
+services:
+
+  # ── Build the shared base image ──────────────
+  mpi-base:
+    image: mpi-base:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.base
+    profiles:
+      - build   # only used as a build target; never started directly
+
+  # ── NFS server ───────────────────────────────────────────────────────────
+  nfs:
+    build:
+      context: .
+      dockerfile: Dockerfile.nfs
+    image: mpi-nfs:latest
+    container_name: mpi-nfs
+    hostname: nfs
+    volumes:
+      - mpi-shared:/exports/mpi
+    networks:
+      mpi-cluster:
+        ipv4_address: 192.137.125.5
+    # NFS kernel server requires these capabilities and a private PID namespace
+    cap_add:
+      - SYS_ADMIN
+      - SETPCAP
+    security_opt:
+      - no-new-privileges:false   # nfsd needs privilege escalation
+    privileged: true              # required for kernel NFS in a container
+
+  # ── Master node ──────────────────────────────────────────────────────────
+  master:
+    build:
+      context: .
+      dockerfile: Dockerfile.master
+    image: mpi-master:latest
+    container_name: mpi-master
+    hostname: master
+    networks:
+      mpi-cluster:
+        ipv4_address: 192.137.125.10
+    ports:
+      - "2222:22"
+    environment:
+      - MPI_WORKER_COUNT=3
+      - MPI_WORKER_PREFIX=worker
+      - MPI_SLOTS=2
+      - NFS_SERVER=nfs                       # hostname of the NFS container
+      - NFS_EXPORT=/exports/mpi              # path exported by the NFS server
+      - NFS_MOUNT=/home/mpiuser/mpi_work/shared
+    cap_add:
+      - SYS_ADMIN                            # required to run mount inside container
+    depends_on:
+      - nfs
+      - worker1
+      - worker2
+      - worker3
+    stdin_open: true
+    tty: true
+
+  # ── Worker nodes ─────────────────────────────────────────────────────────
+  worker1:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    image: mpi-worker:latest
+    container_name: mpi-worker1
+    hostname: worker1
+    networks:
+      mpi-cluster:
+        ipv4_address: 192.137.125.11
+    environment:
+      - NFS_SERVER=nfs
+      - NFS_EXPORT=/exports/mpi
+      - NFS_MOUNT=/home/mpiuser/mpi_work/shared
+    cap_add:
+      - SYS_ADMIN
+    depends_on:
+      - nfs
+
+  worker2:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    image: mpi-worker:latest
+    container_name: mpi-worker2
+    hostname: worker2
+    networks:
+      mpi-cluster:
+        ipv4_address: 192.137.125.12
+    environment:
+      - NFS_SERVER=nfs
+      - NFS_EXPORT=/exports/mpi
+      - NFS_MOUNT=/home/mpiuser/mpi_work/shared
+    cap_add:
+      - SYS_ADMIN
+    depends_on:
+      - nfs
+
+  worker3:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    image: mpi-worker:latest
+    container_name: mpi-worker3
+    hostname: worker3
+    networks:
+      mpi-cluster:
+        ipv4_address: 192.137.125.13
+    environment:
+      - NFS_SERVER=nfs
+      - NFS_EXPORT=/exports/mpi
+      - NFS_MOUNT=/home/mpiuser/mpi_work/shared
+    cap_add:
+      - SYS_ADMIN
+    depends_on:
+      - nfs

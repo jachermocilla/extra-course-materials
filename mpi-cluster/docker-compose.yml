@@ -20,7 +20,7 @@ networks:
 
 volumes:
   mpi-shared:
-    driver: local 
+#    driver: local 
   ssh-keys:
     driver: local
 
