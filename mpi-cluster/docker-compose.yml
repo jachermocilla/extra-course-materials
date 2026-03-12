@@ -19,8 +19,6 @@ networks:
         - subnet: 192.137.125.0/24
 
 volumes:
-  mpi-shared:
-#    driver: local 
   ssh-keys:
     driver: local
 
@@ -48,7 +46,7 @@ services:
     ports:
       - "2222:22"       # SSH access from host
     volumes:
-      - mpi-shared:/home/mpiuser/mpi_work/shared
+      - ./mpi-shared:/home/mpiuser/mpi_work/shared
       - ssh-keys:/home/mpiuser/.ssh
     environment:
       - MPI_WORKER_COUNT=3
@@ -71,7 +69,7 @@ services:
       mpi-cluster:
         ipv4_address: 192.137.125.11
     volumes:
-      - mpi-shared:/home/mpiuser/mpi_work/shared
+      - ./mpi-shared:/home/mpiuser/mpi_work/shared
       - ssh-keys:/home/mpiuser/.ssh
 
   worker2:
@@ -84,7 +82,7 @@ services:
       mpi-cluster:
         ipv4_address: 192.137.125.12
     volumes:
-      - mpi-shared:/home/mpiuser/mpi_work/shared
+      - ./mpi-shared:/home/mpiuser/mpi_work/shared
       - ssh-keys:/home/mpiuser/.ssh
 
   worker3:
@@ -97,5 +95,5 @@ services:
       mpi-cluster:
         ipv4_address: 192.137.125.13
     volumes:
-      - mpi-shared:/home/mpiuser/mpi_work/shared
+      - ./mpi-shared:/home/mpiuser/mpi_work/shared
       - ssh-keys:/home/mpiuser/.ssh

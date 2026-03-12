@@ -15,14 +15,15 @@ echo "Waiting for worker nodes..."
 
 chown mpiuser:mpiuser "$HOSTFILE"
 
+
 for i in $(seq 1 "$WORKER_COUNT"); do
   HOST="${WORKER_PREFIX}${i}"
   echo -n "  Pinging ${HOST}... "
 
   # Retry up to 30 s
   for attempt in $(seq 1 30); do
-    if ssh -o ConnectTimeout=2 -o StrictHostKeyChecking=no \
-           mpiuser@"$HOST" "echo ok" &>/dev/null; then
+#    if ssh -o ConnectTimeout=2 -o StrictHostKeyChecking=no mpiuser@"$HOST" "echo ok" &>/dev/null; then
+    if ping -c 5 "$HOST" &>/dev/null; then
       echo "✓"
       echo "${HOST} slots=${SLOTS}" >> "$HOSTFILE"
       break
