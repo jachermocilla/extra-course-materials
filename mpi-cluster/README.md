@@ -17,6 +17,7 @@ mpi-cluster/
 └── examples/
     ├── hello_world.c          # Basic rank/hostname print
     ├── pi_calculation.c       # Distributed π via numerical integration
+    ├── mpi_bcast.c            # MPI Broadcast
     └── ring_communication.c   # Token-passing ring topology
 ```
 
@@ -24,57 +25,27 @@ mpi-cluster/
 
 ```bash
 # 1. Build and start the cluster
-docker compose up --build -d
+docker compose up --build 
 
-# 2. Shell into the master node
-docker compose exec master bash
+# 2. SSH into the master node
+ssh -p 2222 mpiuser@localhost #password is 'mpiuser
 
-# 3. Switch to mpiuser and run a job
-su - mpiuser
-cd mpi_work
+# 3. Go to the shared folder (mpi-shared in local)
+cd mpi_work/shared
 
-scp ./shared/*.elf worker1:./mpi_work/shared/.
-scp ./shared/*.elf worker2:./mpi_work/shared/.
-scp ./shared/*.elf worker3:./mpi_work/shared/.
 
-mpirun --hostfile hostfile -np 4 ./shared/hello_world.elf
-mpirun --hostfile hostfile -np 4 ./shared/pi_calculation.elf
-mpirun --hostfile hostfile -np 4 ./shared/ring_communication.elf
-```
+# 4. Compile and run examples
 
-## Scaling Workers
+mpicc hello_world.c -o hello_world.elf
+mpicc pi_calculation.c -o pi_calculation.elf
+mpicc ring_communication.c -o ring_communication.elf
+mpicc mpi_broadcast.c -o hello_world.elf
 
-Add more worker services to `docker-compose.yml` and bump `MPI_WORKER_COUNT` on the master:
+mpirun --hostfile ../hostfile -np 8 ./hello_world.elf
+mpirun --hostfile ../hostfile -np 8 ./pi_calculation.elf
+mpirun --hostfile ../hostfile -np 8 ./ring_communication.elf
+mpirun --hostfile ../hostfile -np 8 ./mpi_broadcast.elf
 
-```yaml
-# docker-compose.yml — add a fourth worker
-worker4:
-   build:
-      context: .
-      dockerfile: Dockerfile.worker
-   container_name: mpi-worker4
-   hostname: worker4
-   networks:
-     mpi-cluster:
-       ipv4_address: 192.137.125.14
-   volumes:
-     - mpi-shared:/home/mpiuser/mpi_work/shared
-     - ssh-keys:/home/mpiuser/.ssh
-
-# master service environment:
-  - MPI_WORKER_COUNT=4
-```
-
-Then rebuild: `docker compose up --build -d`
-
-## Adjusting CPU Slots
-
-Edit `SLOTS` in `scripts/generate-hostfile.sh` to match the number of cores you want each node to contribute (default: 2).
-
-## SSH Access from Host
-
-```bash
-ssh -p 2222 mpiuser@localhost   # password: mpiuser
 ```
 
 ## Teardown
