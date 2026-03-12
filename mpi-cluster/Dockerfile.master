@@ -3,9 +3,6 @@ FROM mpi-base:latest
 
 LABEL description="OpenMPI Master Node"
 
-# Copy example MPI programs
-#COPY examples/ /home/mpiuser/mpi_work/examples/
-#COPY examples/ /home/mpiuser/mpi_work/shared/
 
 # Copy entrypoint and hostfile generation script
 COPY scripts/master-entrypoint.sh /usr/local/bin/master-entrypoint.sh
@@ -17,13 +14,6 @@ RUN chmod +x /usr/local/bin/master-entrypoint.sh && \
 
 USER mpiuser
 WORKDIR /home/mpiuser/mpi_work
-
-# Compile example programs
-#RUN cd examples && \
-#    mpicc -o hello_world.elf hello_world.c && \
-#    mpicc -o pi_calculation.elf pi_calculation.c && \
-#    mpicc -o ring_communication.elf ring_communication.c && \
-#    cp *.elf ../shared
 
 USER root
 
