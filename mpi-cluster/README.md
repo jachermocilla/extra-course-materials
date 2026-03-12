@@ -53,4 +53,3 @@ mpirun --hostfile ../hostfile -np 8 ./mpi_bcast.elf
 ```bash
 docker compose down -v   # -v removes named volumes (shared data + SSH keys)
 `
-`
