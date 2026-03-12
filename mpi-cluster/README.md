@@ -39,12 +39,12 @@ cd mpi_work/shared
 mpicc hello_world.c -o hello_world.elf
 mpicc pi_calculation.c -o pi_calculation.elf
 mpicc ring_communication.c -o ring_communication.elf
-mpicc mpi_broadcast.c -o hello_world.elf
+mpicc mpi_bcast.c -o mpi_bcast.elf
 
 mpirun --hostfile ../hostfile -np 8 ./hello_world.elf
 mpirun --hostfile ../hostfile -np 8 ./pi_calculation.elf
 mpirun --hostfile ../hostfile -np 8 ./ring_communication.elf
-mpirun --hostfile ../hostfile -np 8 ./mpi_broadcast.elf
+mpirun --hostfile ../hostfile -np 8 ./mpi_bcast.elf
 
 ```
 
