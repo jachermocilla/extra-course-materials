@@ -28,7 +28,7 @@ mpi-cluster/
 docker compose up --build 
 
 # 2. SSH into the master node
-ssh -p 2222 mpiuser@localhost #password is 'mpiuser
+ssh -p 2222 mpiuser@localhost #password is 'mpiuser'
 
 # 3. Go to the shared folder (mpi-shared in local)
 cd mpi_work/shared
