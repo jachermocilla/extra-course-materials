@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package kv;
+
+option go_package = "github.com/pixperk/plethora/proto";
+
+message VectorClock {
+  map<string, uint64> entries = 1;
+}
+
+message Value {
+  string data = 1;
+  VectorClock clock = 2;
+}
+
+message PutRequest {
+  string key = 1;
+  Value value = 2;
+}
+
+message HintedPutRequest {
+  string key = 1;
+  Value value = 2;
+  string target_node_id = 3;
+}
+
+message PutResponse {}
+
+message GetRequest {
+  string key = 1;
+}
+
+message GetResponse {
+  repeated Value values = 1;
+  bool found = 2;
+}
+
+// anti-entropy: exchange key hashes to detect divergence via merkle trees
+message KeyHashEntry {
+  string key = 1;
+  bytes hash = 2; // 16-byte md5 hash
+}
+
+message GetKeyHashesRequest {}
+
+message GetKeyHashesResponse {
+  repeated KeyHashEntry entries = 1;
+}
+
+// anti-entropy: fetch actual values for divergent keys
+message SyncKeysRequest {
+  repeated string keys = 1;
+}
+
+message SyncKeysResponse {
+  map<string, GetResponse> data = 1; // key -> values for that key
+}
+
+// gossip: exchange membership lists for failure detection and node discovery
+message GossipMember {
+  string node_id = 1;
+  string addr = 2;
+  uint64 heartbeat = 3;
+}
+
+message GossipRequest {
+  repeated GossipMember members = 1;
+}
+
+message GossipResponse {
+  repeated GossipMember members = 1;
+}
+
+service KV {
+  rpc Put(PutRequest) returns (PutResponse);
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc HintedPut(HintedPutRequest) returns (PutResponse);
+  rpc GetKeyHashes(GetKeyHashesRequest) returns (GetKeyHashesResponse);
+  rpc SyncKeys(SyncKeysRequest) returns (SyncKeysResponse);
+  rpc Gossip(GossipRequest) returns (GossipResponse);
+}
