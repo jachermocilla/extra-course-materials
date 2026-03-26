@@ -1,6 +1,6 @@
 module github.com/pixperk/plethora
 
-go 1.24.0
+go 1.24
 
 require (
 	google.golang.org/grpc v1.79.1
