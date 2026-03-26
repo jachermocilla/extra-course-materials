@@ -1,0 +1,3 @@
+[submodule "dynamo/plethora"]
+	path = dynamo/plethora
+	url = https://github.com/pixperk/plethora.git
