@@ -1,4 +1,3 @@
-# docker-compose.yml
 services:
 
   zoo1:
@@ -9,8 +8,23 @@ services:
       - "8080:8080"
     environment:
       ZOO_MY_ID: 1
-      ZOO_SERVERS: server.1=zoo1:2888:3888;2181
-      ZOO_4LW_COMMANDS_WHITELIST: "*"
+      ZOO_SERVERS: server.1=172.28.0.11:2888:3888;2181 server.2=172.28.0.12:2888:3888;2181 server.3=172.28.0.13:2888:3888;2181
+      ZOO_4LW_COMMANDS_WHITELIST: "mntr,conf,ruok,stat,srvr,cons,dump,envi,wchs,wchp,wchc,dirs"
+      ZOO_INIT_LIMIT: 10
+      ZOO_SYNC_LIMIT: 5
+    networks:
+      zk-net:
+        ipv4_address: 172.28.0.11
+    volumes:
+      - zoo1-data:/data
+      - zoo1-datalog:/datalog
+    healthcheck:
+      test: ["CMD-SHELL", "zkServer.sh status 2>/dev/null | grep -E 'leader|follower|standalone'"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: always
 
   zoo2:
     image: zookeeper:3.9
@@ -19,8 +33,23 @@ services:
       - "2182:2181"
     environment:
       ZOO_MY_ID: 2
-      ZOO_SERVERS: server.1=zoo1:2888:3888;2181 server.2=zoo2:2888:3888;2181
-      ZOO_4LW_COMMANDS_WHITELIST: "*"
+      ZOO_SERVERS: server.1=172.28.0.11:2888:3888;2181 server.2=172.28.0.12:2888:3888;2181 server.3=172.28.0.13:2888:3888;2181
+      ZOO_4LW_COMMANDS_WHITELIST: "mntr,conf,ruok,stat,srvr,cons,dump,envi,wchs,wchp,wchc,dirs"
+      ZOO_INIT_LIMIT: 10
+      ZOO_SYNC_LIMIT: 5
+    networks:
+      zk-net:
+        ipv4_address: 172.28.0.12
+    volumes:
+      - zoo2-data:/data
+      - zoo2-datalog:/datalog
+    healthcheck:
+      test: ["CMD-SHELL", "zkServer.sh status 2>/dev/null | grep -E 'leader|follower|standalone'"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: always
 
   zoo3:
     image: zookeeper:3.9
@@ -29,5 +58,37 @@ services:
       - "2183:2181"
     environment:
       ZOO_MY_ID: 3
-      ZOO_SERVERS: server.1=zoo1:2888:3888;2181 server.2=zoo2:2888:3888;2181 server.3=zoo3:2888:3888;2181
-      ZOO_4LW_COMMANDS_WHITELIST: "*"
+      ZOO_SERVERS: server.1=172.28.0.11:2888:3888;2181 server.2=172.28.0.12:2888:3888;2181 server.3=172.28.0.13:2888:3888;2181
+      ZOO_4LW_COMMANDS_WHITELIST: "mntr,conf,ruok,stat,srvr,cons,dump,envi,wchs,wchp,wchc,dirs"
+      ZOO_INIT_LIMIT: 10
+      ZOO_SYNC_LIMIT: 5
+    networks:
+      zk-net:
+        ipv4_address: 172.28.0.13
+    volumes:
+      - zoo3-data:/data
+      - zoo3-datalog:/datalog
+    healthcheck:
+      test: ["CMD-SHELL", "zkServer.sh status 2>/dev/null | grep -E 'leader|follower|standalone'"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: always
+
+networks:
+  zk-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
+          gateway: 172.28.0.1
+
+volumes:
+  zoo1-data:
+  zoo1-datalog:
+  zoo2-data:
+  zoo2-datalog:
+  zoo3-data:
+  zoo3-datalog:
