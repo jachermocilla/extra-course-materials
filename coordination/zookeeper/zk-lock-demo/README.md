@@ -70,7 +70,6 @@ networks:
 ```bash
 docker compose up -d
 
-# verify all three nodes are up (~20s)
 for port in 2181; do
   echo -n "zoo $port: "
   echo ruok | nc localhost $port
