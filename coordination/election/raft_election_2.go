@@ -54,25 +54,22 @@ type Message struct {
 type Server struct {
 	mu sync.Mutex
 
-	id            int
-	role          Role
-	currentTerm   int
-	votedFor      int
-	leaderID      int
+	id          int
+	role        Role
+	currentTerm int
+	votedFor    int
+	leaderID    int
 	votesReceived int
 
-	peers           map[int]*Server
-	inbox           chan Message
-	alive           bool
-	lastHeartbeat   time.Time
+	peers         map[int]*Server
+	inbox         chan Message
+	alive         bool
+	lastHeartbeat time.Time
 	electionTimeout time.Duration
-
-	// stop channel restarts goroutines on recover
-	stopCh chan struct{}
 }
 
 func NewServer(id int) *Server {
-	s := &Server{
+	return &Server{
 		id:              id,
 		role:            FOLLOWER,
 		currentTerm:     0,
@@ -83,42 +80,14 @@ func NewServer(id int) *Server {
 		lastHeartbeat:   time.Now(),
 		electionTimeout: randomTimeout(),
 		peers:           make(map[int]*Server),
-		stopCh:          make(chan struct{}),
 	}
-	return s
 }
 
 func randomTimeout() time.Duration {
 	return time.Duration(150+rand.Intn(150)) * time.Millisecond
 }
 
-// ─────────────────────────────────────────────
-//  GOROUTINE LIFECYCLE
-// ─────────────────────────────────────────────
-
-// Start launches all background goroutines for this server
-func (s *Server) Start() {
-	go s.runMessageHandler()
-	go s.runElectionTimer()
-	go s.runHeartbeatSender()
-}
-
-// stop signals all goroutines to exit
-func (s *Server) stop() {
-	close(s.stopCh)
-}
-
-// restart creates a new stopCh and relaunches goroutines
-func (s *Server) restart() {
-	s.stopCh = make(chan struct{})
-	go s.runMessageHandler()
-	go s.runElectionTimer()
-	go s.runHeartbeatSender()
-}
-
-// ─────────────────────────────────────────────
-//  SEND HELPERS — never called while holding s.mu
-// ─────────────────────────────────────────────
+// ── send helpers — never called while holding s.mu ───────────
 
 func (s *Server) sendTo(peerID int, msg Message) {
 	s.mu.Lock()
@@ -135,10 +104,7 @@ func (s *Server) sendTo(peerID int, msg Message) {
 	}
 	go func() {
 		time.Sleep(time.Duration(rand.Intn(15)+2) * time.Millisecond)
-		select {
-		case peer.inbox <- msg:
-		default: // drop if inbox full — prevents goroutine leak
-		}
+		peer.inbox <- msg
 	}()
 }
 
@@ -149,49 +115,17 @@ func (s *Server) broadcastMsg(msg Message) {
 		peerIDs = append(peerIDs, id)
 	}
 	s.mu.Unlock()
+	// send outside the lock
 	for _, id := range peerIDs {
 		s.sendTo(id, msg)
 	}
 }
 
-// ─────────────────────────────────────────────
-//  BACKGROUND GOROUTINES
-// ─────────────────────────────────────────────
-
-func (s *Server) runMessageHandler() {
-	for {
-		select {
-		case <-s.stopCh:
-			return
-		case msg, ok := <-s.inbox:
-			if !ok {
-				return
-			}
-			s.mu.Lock()
-			alive := s.alive
-			s.mu.Unlock()
-			if !alive {
-				continue
-			}
-			switch msg.kind {
-			case VOTE_REQUEST:
-				s.handleVoteRequest(msg)
-			case VOTE_RESPONSE:
-				s.handleVoteResponse(msg)
-			case HEARTBEAT:
-				s.handleHeartbeat(msg)
-			}
-		}
-	}
-}
+// ── election timer ────────────────────────────────────────────
 
 func (s *Server) runElectionTimer() {
 	for {
-		select {
-		case <-s.stopCh:
-			return
-		case <-time.After(10 * time.Millisecond):
-		}
+		time.Sleep(10 * time.Millisecond)
 
 		s.mu.Lock()
 		alive := s.alive
@@ -200,23 +134,23 @@ func (s *Server) runElectionTimer() {
 		last := s.lastHeartbeat
 		s.mu.Unlock()
 
-		if !alive || role == LEADER {
+		if !alive {
+			return
+		}
+		if role == LEADER {
 			continue
 		}
-
 		if time.Since(last) > timeout {
-			s.startElection()
+			s.startElection() // called without holding lock
 		}
 	}
 }
 
+// ── heartbeat sender ──────────────────────────────────────────
+
 func (s *Server) runHeartbeatSender() {
 	for {
-		select {
-		case <-s.stopCh:
-			return
-		case <-time.After(50 * time.Millisecond):
-		}
+		time.Sleep(50 * time.Millisecond)
 
 		s.mu.Lock()
 		alive := s.alive
@@ -225,10 +159,13 @@ func (s *Server) runHeartbeatSender() {
 		id := s.id
 		s.mu.Unlock()
 
-		if !alive || role != LEADER {
+		if !alive {
+			return
+		}
+		if role != LEADER {
 			continue
 		}
-
+		// send outside the lock
 		s.broadcastMsg(Message{
 			kind:     HEARTBEAT,
 			term:     term,
@@ -237,11 +174,31 @@ func (s *Server) runHeartbeatSender() {
 	}
 }
 
-// ─────────────────────────────────────────────
-//  RAFT RULES
-// ─────────────────────────────────────────────
+// ── message handler ───────────────────────────────────────────
 
-// stepDownIfNeeded — called with lock HELD
+func (s *Server) HandleMessages() {
+	for msg := range s.inbox {
+		s.mu.Lock()
+		alive := s.alive
+		s.mu.Unlock()
+		if !alive {
+			continue
+		}
+
+		// all handlers acquire the lock themselves
+		switch msg.kind {
+		case VOTE_REQUEST:
+			s.handleVoteRequest(msg)
+		case VOTE_RESPONSE:
+			s.handleVoteResponse(msg)
+		case HEARTBEAT:
+			s.handleHeartbeat(msg)
+		}
+	}
+}
+
+// ── step down helper — called with lock HELD ─────────────────
+
 func (s *Server) stepDownIfNeeded(term int) {
 	if term > s.currentTerm {
 		fmt.Printf("  [S%d] term %d > %d — step down to FOLLOWER\n",
@@ -252,6 +209,8 @@ func (s *Server) stepDownIfNeeded(term int) {
 		s.leaderID = -1
 	}
 }
+
+// ── handle VOTE_REQUEST ───────────────────────────────────────
 
 func (s *Server) handleVoteRequest(msg Message) {
 	s.mu.Lock()
@@ -279,10 +238,12 @@ func (s *Server) handleVoteRequest(msg Message) {
 		voteGranted: grant,
 	}
 	senderID := msg.senderID
-	s.mu.Unlock() // unlock BEFORE sending
+	s.mu.Unlock() // ← unlock BEFORE sending
 
 	s.sendTo(senderID, resp)
 }
+
+// ── handle VOTE_RESPONSE ──────────────────────────────────────
 
 func (s *Server) handleVoteResponse(msg Message) {
 	s.mu.Lock()
@@ -293,7 +254,7 @@ func (s *Server) handleVoteResponse(msg Message) {
 		return
 	}
 
-	elected := false
+	becomeLeader := false
 	if msg.voteGranted {
 		s.votesReceived++
 		majority := (len(s.peers)+1)/2 + 1
@@ -303,17 +264,18 @@ func (s *Server) handleVoteResponse(msg Message) {
 		if s.votesReceived >= majority {
 			s.role = LEADER
 			s.leaderID = s.id
-			elected = true
+			becomeLeader = true
 			fmt.Printf("  [S%d] *** ELECTED LEADER for term %d ***\n",
 				s.id, s.currentTerm)
 		}
 	}
 
+	// capture what we need before releasing
 	term := s.currentTerm
 	id := s.id
-	s.mu.Unlock() // unlock BEFORE broadcasting
+	s.mu.Unlock() // ← unlock BEFORE broadcasting
 
-	if elected {
+	if becomeLeader {
 		s.broadcastMsg(Message{
 			kind:     HEARTBEAT,
 			term:     term,
@@ -321,6 +283,8 @@ func (s *Server) handleVoteResponse(msg Message) {
 		})
 	}
 }
+
+// ── handle HEARTBEAT ──────────────────────────────────────────
 
 func (s *Server) handleHeartbeat(msg Message) {
 	s.mu.Lock()
@@ -336,19 +300,20 @@ func (s *Server) handleHeartbeat(msg Message) {
 	}
 }
 
-// startElection — called WITHOUT holding lock
+// ── start election — called WITHOUT holding lock ──────────────
+
 func (s *Server) startElection() {
 	s.mu.Lock()
 	s.currentTerm++
 	s.role = CANDIDATE
 	s.votedFor = s.id
-	s.votesReceived = 1 // vote for self
+	s.votesReceived = 1
 	s.leaderID = -1
 	s.lastHeartbeat = time.Now()
 	s.electionTimeout = randomTimeout()
 	term := s.currentTerm
 	id := s.id
-	s.mu.Unlock() // unlock BEFORE broadcasting
+	s.mu.Unlock() // ← unlock BEFORE broadcasting
 
 	fmt.Printf("  [S%d] starting election for term %d\n", id, term)
 
@@ -359,32 +324,26 @@ func (s *Server) startElection() {
 	})
 }
 
-// ─────────────────────────────────────────────
-//  CRASH / RECOVER
-// ─────────────────────────────────────────────
+// ── crash / recover ───────────────────────────────────────────
 
 func (s *Server) Crash() {
 	s.mu.Lock()
+	defer s.mu.Unlock()
 	s.alive = false
 	s.role = FOLLOWER
-	s.mu.Unlock()
-
 	fmt.Printf("  [S%d] *** CRASHED ***\n", s.id)
-	s.stop() // signal goroutines to exit
 }
 
 func (s *Server) Recover() {
 	s.mu.Lock()
+	defer s.mu.Unlock()
 	s.alive = true
 	s.role = FOLLOWER
 	s.votedFor = -1
 	s.leaderID = -1
 	s.lastHeartbeat = time.Now()
 	s.electionTimeout = randomTimeout()
-	s.mu.Unlock()
-
 	fmt.Printf("  [S%d] *** RECOVERED (term=%d) ***\n", s.id, s.currentTerm)
-	s.restart() // relaunch goroutines with a fresh stopCh
 }
 
 // ─────────────────────────────────────────────
@@ -395,7 +354,7 @@ func printStatus(servers []*Server) {
 	fmt.Println()
 	fmt.Printf("  %-6s %-10s %-6s %-8s %s\n",
 		"Server", "Role", "Term", "Leader", "VotedFor")
-	fmt.Println("  " + strings.Repeat("-", 46))
+	fmt.Println("  " + strings.Repeat("-", 44))
 	for _, s := range servers {
 		s.mu.Lock()
 		alive := s.alive
@@ -409,12 +368,13 @@ func printStatus(servers []*Server) {
 		if !alive {
 			roleStr = "CRASHED  "
 		}
-		leaderStr, votedStr := "---", "---"
-		if leader != -1 {
-			leaderStr = fmt.Sprintf("S%d", leader)
+		leaderStr := fmt.Sprintf("S%d", leader)
+		votedStr := fmt.Sprintf("S%d", voted)
+		if leader == -1 {
+			leaderStr = "---"
 		}
-		if voted != -1 {
-			votedStr = fmt.Sprintf("S%d", voted)
+		if voted == -1 {
+			votedStr = "---"
 		}
 		fmt.Printf("  S%-5d %s %-6d %-8s %s\n",
 			s.id, roleStr, term, leaderStr, votedStr)
@@ -458,11 +418,13 @@ func main() {
 		}
 	}
 	for _, s := range servers {
-		s.Start()
+		go s.HandleMessages()
+		go s.runElectionTimer()
+		go s.runHeartbeatSender()
 	}
 
 	// ── Scenario 1: initial election ──────────────────────────
-	fmt.Println("\n  Scenario 1: Initial election at startup")
+	fmt.Println("\n  Scenario 1: Initial election")
 	fmt.Println(strings.Repeat("-", 60))
 	time.Sleep(700 * time.Millisecond)
 	printStatus(servers)
@@ -473,7 +435,6 @@ func main() {
 	fmt.Println(strings.Repeat("-", 60))
 	leader := findLeader(servers)
 	if leader != nil {
-		fmt.Printf("\n  Crashing leader S%d\n", leader.id)
 		leader.Crash()
 	}
 	time.Sleep(700 * time.Millisecond)
@@ -489,80 +450,18 @@ func main() {
 	time.Sleep(700 * time.Millisecond)
 	printStatus(servers)
 
-	// ── Scenario 4: split vote ────────────────────────────────
-	fmt.Println(strings.Repeat("-", 60))
-	fmt.Println("  Scenario 4: Split vote — two simultaneous candidates")
-	fmt.Println(strings.Repeat("-", 60))
-
-	// pause the cluster by crashing the current leader so no
-	// heartbeats suppress the forced elections below
-	currentLeader := findLeader(servers)
-	if currentLeader != nil {
-		fmt.Printf("\n  Pausing cluster — crashing S%d\n",
-			currentLeader.id)
-		currentLeader.Crash()
-	}
-	time.Sleep(100 * time.Millisecond)
-
-	// force two alive servers to start elections simultaneously
-	// by directly calling startElection (bypasses timeout)
-	var s1, s2 *Server
-	for _, s := range servers {
-		s.mu.Lock()
-		alive := s.alive
-		s.mu.Unlock()
-		if alive && s1 == nil {
-			s1 = s
-		} else if alive && s2 == nil {
-			s2 = s
-			break
-		}
-	}
-
-	if s1 != nil && s2 != nil {
-		fmt.Printf("  Forcing simultaneous elections: S%d and S%d\n\n",
-			s1.id, s2.id)
-		// launch at exactly the same time
-		var wg sync.WaitGroup
-		wg.Add(2)
-		go func() { defer wg.Done(); s1.startElection() }()
-		go func() { defer wg.Done(); s2.startElection() }()
-		wg.Wait()
-	}
-
-	// Raft resolves split votes via randomized re-election timeout
-	// give it enough time to retry and converge (~600ms)
-	fmt.Println("  Waiting for Raft to resolve split vote via random retry...")
-	time.Sleep(800 * time.Millisecond)
-	fmt.Println("  Result after split vote resolution:")
-	printStatus(servers)
-
-	// restore crashed leader so cluster is healthy again
-	if currentLeader != nil {
-		currentLeader.Recover()
-	}
-	time.Sleep(400 * time.Millisecond)
-
 	fmt.Println(strings.Repeat("=", 60))
-	fmt.Println("  SUMMARY")
+	fmt.Println("  DEADLOCK FIXES APPLIED")
 	fmt.Println(strings.Repeat("=", 60))
 	fmt.Println(`
-  Deadlock fixes applied:
+  Three rules followed throughout:
 
-    1. stopCh per server  — goroutines exit cleanly on crash
-                            and restart on recover
-    2. Unlock before send — lock released before any sendTo
-                            or broadcastMsg call
-    3. select on stopCh   — goroutine loops use select so they
-                            respond to stop signal immediately
-    4. Non-blocking send  — inbox send uses select/default to
-                            drop messages if inbox is full
-                            preventing goroutine leaks
+    1. Never call sendTo or broadcastMsg while holding s.mu
+       → capture needed values, unlock, then send
 
-  Split vote resolution:
+    2. Never acquire another server's lock while holding s.mu
+       → sendTo locks the peer only after releasing own lock
 
-    When two candidates tie neither reaches majority
-    Each picks a NEW random timeout (150-300ms)
-    Whichever times out first wins the retry
-    Randomization makes ties increasingly unlikely`)
+    3. stepDownIfNeeded called only while lock is held
+       → it only mutates local state, never sends messages`)
 }
