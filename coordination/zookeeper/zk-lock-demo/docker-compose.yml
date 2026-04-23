@@ -1,0 +1,23 @@
+# docker-compose.yml
+services:
+
+  zoo1:
+    image: zookeeper:3.9
+    hostname: zoo1
+    container_name: zoo1
+    ports:
+      - "2181:2181"
+      - "8080:8080"
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_STANDALONE_ENABLED: "true"
+      ZOO_4LW_COMMANDS_WHITELIST: "mntr,conf,ruok,stat,srvr,cons,dump,envi,wchs,wchp,wchc,dirs"
+      ZOO_LOG_LEVEL: ERROR
+      ZOOKEEPER_LOG4J_ROOT_LOGLEVEL: ERROR
+    networks:
+      - zk-net
+    restart: on-failure
+
+networks:
+  zk-net:
+    driver: bridge
