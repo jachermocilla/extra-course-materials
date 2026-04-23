@@ -1,0 +1,73 @@
+version: "3.8"
+
+networks:
+  cassandra-net:
+    driver: bridge
+
+services:
+  cassandra-seed:
+    image: cassandra:4.1
+    container_name: cassandra-seed
+    hostname: cassandra-seed
+    networks:
+      - cassandra-net
+    environment:
+      - CASSANDRA_CLUSTER_NAME=FacebookDemoCluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_NUM_TOKENS=16
+      - MAX_HEAP_SIZE=512M
+      - HEAP_NEWSIZE=100M
+    ports:
+      - "9042:9042"
+    healthcheck:
+      test: ["CMD-SHELL", "nodetool status | grep -c '^UN' | grep -qx '1'"]
+      interval: 30s
+      timeout: 15s
+      retries: 20
+      start_period: 90s
+
+  cassandra-node1:
+    image: cassandra:4.1
+    container_name: cassandra-node1
+    hostname: cassandra-node1
+    networks:
+      - cassandra-net
+    environment:
+      - CASSANDRA_CLUSTER_NAME=FacebookDemoCluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack2
+      - CASSANDRA_SEEDS=cassandra-seed
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_NUM_TOKENS=16
+      - MAX_HEAP_SIZE=512M
+      - HEAP_NEWSIZE=100M
+    depends_on:
+      cassandra-seed:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "nodetool status | grep -c '^UN' | grep -qx '2'"]
+      interval: 30s
+      timeout: 15s
+      retries: 20
+      start_period: 90s
+
+  cassandra-node2:
+    image: cassandra:4.1
+    container_name: cassandra-node2
+    hostname: cassandra-node2
+    networks:
+      - cassandra-net
+    environment:
+      - CASSANDRA_CLUSTER_NAME=FacebookDemoCluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack3
+      - CASSANDRA_SEEDS=cassandra-seed
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_NUM_TOKENS=16
+      - MAX_HEAP_SIZE=512M
+      - HEAP_NEWSIZE=100M
+    depends_on:
+      cassandra-node1:
+        condition: service_healthy
