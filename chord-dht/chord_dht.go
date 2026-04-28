@@ -172,11 +172,11 @@ func main() {
 	}
 
 	fmt.Println("── Building ring ──")
-	nodes[0].join(nil) // Alice starts a new ring.
+	nodes[0].join(nil) // JACH starts a new ring.
 	fmt.Printf("  %s joined (new ring)\n", nodes[0])
 
 	for i := 1; i < len(nodes); i++ {
-		nodes[i].join(nodes[0]) // everyone else joins via Alice
+		nodes[i].join(nodes[0]) // everyone else joins via JACH
 		fmt.Printf("  %s joined via %s\n", nodes[i], nodes[0])
 	}
 
@@ -205,7 +205,7 @@ func main() {
 		"elder":  "a dark berry",
 	}
 	for k, v := range kv {
-		nodes[0].Put(k, v) // We always start lookups from Alice.
+		nodes[0].Put(k, v) // We always start lookups from JACH.
 	}
 
 	fmt.Println("\n── Retrieving values ──")
