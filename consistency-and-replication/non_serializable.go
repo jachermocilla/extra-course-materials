@@ -5,288 +5,217 @@ import (
 	"strings"
 )
 
-// ============================================================
 // Execution timeline:
+//   t1: W1(x)a   t2: W2(y)b   t3: W2(x)b   t4: W1(y)a   t5: R1(x)b   t6: R2(y)a
 //
-//   ───t1──────t2──────t3──────t4──────t5──────t6───
-//   P1    W1(x)a                 W1(y)a  R1(x)b
-//   P2             W2(y)b W2(x)b                 R2(y)a
+// Writes: W1(x)a, W2(y)b, W2(x)b, W1(y)a
+// Reads:  R1(x)a at t5,  R2(y)b at t5
 //
-// P1 program order: W1(x)a → W1(y)a → R1(x)b
-// P2 program order: W2(y)b → W2(x)b → R2(y)a
-//
-// Reads:
-//   R1(x)b  — P1 reads x and gets b  (P2's value)
-//   R2(y)a  — P2 reads y and gets a  (P1's value)
-// ============================================================
+// We enumerate ALL 4! = 24 orderings of the four writes.
+// For each ordering, simulate the reads:
+//   R1(x)b at t5: find last write to x in ordering whose slot < 5
+//   R2(y)a at t6: find last write to y in ordering whose slot < 6
+// Report whether each read is satisfied.
 
-type Op struct {
-	slot    int    // time slot t1..t6
-	pid     int    // process 1 or 2
-	kind    string // "W" or "R"
+type Write struct {
+	label   string
 	varName string
 	value   string
-	label   string
+	slot    int // real execution slot
 }
 
-func makeOp(slot, pid int, kind, varName, value string) Op {
-	label := fmt.Sprintf("%s%d(%s)%s", kind, pid, varName, value)
-	return Op{slot, pid, kind, varName, value, label}
+type Read struct {
+	label    string
+	varName  string
+	expected string
+	slot     int
 }
 
-// ── Timeline printer ─────────────────────────────────────────────────────────
-
-func printTimeline(ops []Op, totalSlots int) {
-	colW := 10
-	dash := strings.Repeat("─", colW)
-
-	// header
-	hdr := fmt.Sprintf("  %-4s  ", "")
-	for s := 1; s <= totalSlots; s++ {
-		hdr += centerPad(fmt.Sprintf("t%d", s), colW)
-	}
-	fmt.Println(hdr)
-	fmt.Printf("  %-4s  %s\n", "", strings.Repeat("─", colW*totalSlots))
-
-	// one row per process
-	for pid := 1; pid <= 2; pid++ {
-		row := fmt.Sprintf("  P%-3d  ", pid)
-		for s := 1; s <= totalSlots; s++ {
-			cell := ""
-			for _, op := range ops {
-				if op.pid == pid && op.slot == s {
-					cell = op.label
-				}
-			}
-			if cell == "" {
-				row += dash
-			} else {
-				row += centerPad(cell, colW)
-			}
-		}
-		fmt.Println(row)
-	}
-	fmt.Println()
+var writes = []Write{
+	{"W1(x)a", "x", "a", 1},
+	{"W2(y)b", "y", "b", 2},
+	{"W2(x)b", "x", "b", 3},
+	{"W1(y)a", "y", "a", 4},
 }
 
-func centerPad(s string, width int) string {
-	if len(s) >= width {
-		return s
-	}
-	total := width - len(s)
-	left := total / 2
-	right := total - left
-	return strings.Repeat("─", left) + s + strings.Repeat("─", right)
+var reads = []Read{
+	{"R1(x)a", "x", "a", 5},
+	{"R2(y)b", "y", "b", 6},
 }
 
-// ── SC checker for a single variable ────────────────────────────────────────
-// Tries all write permutations (respecting per-process program order).
-// A permutation satisfies SC if every read returns the value of the most
-// recent preceding write in that permutation order.
-
-func checkSC(varName string, ops []Op) bool {
-	var writes, reads []Op
-	for _, op := range ops {
-		if op.kind == "W" {
-			writes = append(writes, op)
-		} else {
-			reads = append(reads, op)
-		}
-	}
-
-	fmt.Printf("  Operations on %s (execution order):\n", varName)
-	for _, op := range ops {
-		fmt.Printf("    t%d  %s\n", op.slot, op.label)
-	}
-	fmt.Println()
-
-	perms := writePerms(writes)
-	fmt.Printf("  Trying %d write orderings:\n\n", len(perms))
-
-	for _, perm := range perms {
-		labels := make([]string, len(perm))
-		for i, w := range perm {
-			labels[i] = w.label
-		}
-		fmt.Printf("    Order: %s\n", strings.Join(labels, " → "))
-
-		allOk := true
-		for _, read := range reads {
-			// find the last write in perm order whose slot < read.slot
-			lastVal := "NIL"
-			for _, wr := range perm {
-				if wr.slot < read.slot {
-					lastVal = wr.value
-				}
-			}
-			ok := lastVal == read.value
-			sym := "✅"
-			if !ok {
-				sym = "✗ "
-				allOk = false
-			}
-			fmt.Printf("      %s: last write before t%d = %s, read returns %s  %s\n",
-				read.label, read.slot, lastVal, read.value, sym)
-		}
-		if allOk {
-			fmt.Printf("      → ✅ SC holds for %s under order [%s]\n\n",
-				varName, strings.Join(labels, " → "))
-			return true
-		}
-		fmt.Println()
-	}
-	fmt.Printf("  → ✗  No valid ordering found. SC does NOT hold for %s.\n\n", varName)
-	return false
-}
-
-// writePerms generates all permutations of writes respecting per-process order
-func writePerms(writes []Op) [][]Op {
-	var result [][]Op
-	var gen func(cur, rem []Op)
-	gen = func(cur, rem []Op) {
-		if len(rem) == 0 {
-			cp := make([]Op, len(cur))
-			copy(cp, cur)
+// permutations of indices 0..n-1
+func permutations(n int) [][]int {
+	var result [][]int
+	a := make([]int, n)
+	for i := range a { a[i] = i }
+	var gen func(k int)
+	gen = func(k int) {
+		if k == 1 {
+			cp := make([]int, n)
+			copy(cp, a)
 			result = append(result, cp)
 			return
 		}
-		for i, op := range rem {
-			eligible := true
-			for j, other := range rem {
-				if j < i && other.pid == op.pid {
-					eligible = false
-					break
-				}
-			}
-			if eligible {
-				next := append(append([]Op{}, rem[:i]...), rem[i+1:]...)
-				gen(append(cur, op), next)
+		for i := 0; i < k; i++ {
+			gen(k - 1)
+			if k%2 == 0 {
+				a[i], a[k-1] = a[k-1], a[i]
+			} else {
+				a[0], a[k-1] = a[k-1], a[0]
 			}
 		}
 	}
-	gen([]Op{}, writes)
+	gen(n)
 	return result
 }
 
-func sep(char string) {
-	fmt.Printf("%s\n", strings.Repeat(char, 70))
+// simulate: given a write ordering (by index), compute what each read sees.
+// The write ordering defines the global total order of writes.
+// A read at slot s sees the value of the last write to its variable
+// that appears BEFORE slot s in the real execution (slot < s),
+// using the write ordering to break ties / define "last".
+//
+// More precisely: among all writes to the variable whose real slot < read.slot,
+// the "last" one is the one that appears LATEST in the write ordering.
+func simulate(order []int) (readResults [2]string) {
+	for ri, rd := range reads {
+		lastVal := "NIL"
+		lastPos := -1 // position in the ordering
+		for pos, wi := range order {
+			w := writes[wi]
+			if w.varName == rd.varName && w.slot < rd.slot {
+				if pos > lastPos {
+					lastPos = pos
+					lastVal = w.value
+				}
+			}
+		}
+		readResults[ri] = lastVal
+	}
+	return
+}
+
+// respects program order: within each process, writes maintain their
+// original relative order (W1(x)a before W1(y)a; W2(y)b before W2(x)b)
+func respectsProgramOrder(order []int) bool {
+	posOf := make(map[int]int)
+	for pos, wi := range order { posOf[wi] = pos }
+	// P1: write index 0 (W1(x)a) must come before index 3 (W1(y)a)
+	// P2: write index 1 (W2(y)b) must come before index 2 (W2(x)b)
+	return posOf[0] < posOf[3] && posOf[1] < posOf[2]
 }
 
 func main() {
-	// ── Define the execution ─────────────────────────────────────────────────
-	ops := []Op{
-		makeOp(1, 1, "W", "x", "a"), // t1  P1 writes x=a
-		makeOp(2, 2, "W", "y", "b"), // t2  P2 writes y=b
-		makeOp(3, 2, "W", "x", "b"), // t3  P2 writes x=b
-		makeOp(4, 1, "W", "y", "a"), // t4  P1 writes y=a
-		makeOp(5, 1, "R", "x", "b"), // t5  P1 reads  x → b
-		makeOp(6, 2, "R", "y", "a"), // t6  P2 reads  y → a
-	}
-
-	sep("═")
-	fmt.Println("EXECUTION TIMELINE")
-	sep("═")
+	// Print the timeline first
+	fmt.Println("Timeline:")
 	fmt.Println()
-	printTimeline(ops, 6)
-
-	fmt.Println("  P1 program order: W1(x)a → W1(y)a → R1(x)b")
-	fmt.Println("  P2 program order: W2(y)b → W2(x)b → R2(y)a")
+	fmt.Println("        ────t1────────t2────────t3────────t4────────t5────────t6────")
+	fmt.Println("        ────────────────────────────────────────────────────────────")
+	fmt.Println("  P1    ──W1(x)a────────────────────────W1(y)a────R1(x)a────────────")
+	fmt.Println("  P2    ────────────W2(y)b────W2(x)b──────────────R2(y)b────────────")
 	fmt.Println()
-	fmt.Println("  Final state: x=b (W2(x)b at t3 was last write to x)")
-	fmt.Println("               y=a (W1(y)a at t4 was last write to y)")
-
-	// ── Serializability check ────────────────────────────────────────────────
-	fmt.Println()
-	sep("═")
-	fmt.Println("SERIALIZABILITY CHECK")
-	sep("═")
-	fmt.Println()
-	fmt.Println("  Simulate both serial orders and compare final state + reads:\n")
-
-	fmt.Println("  ┌─ Serial order P1 → P2 ───────────────────────────────────┐")
-	fmt.Println("  │  P1 runs fully: W1(x)a, W1(y)a  →  x=a, y=a             │")
-	fmt.Println("  │  P1 reads x: sees a  (R1(x)=a)                           │")
-	fmt.Println("  │  P2 runs fully: W2(y)b, W2(x)b  →  x=b, y=b             │")
-	fmt.Println("  │  P2 reads y: sees b  (R2(y)=b)                           │")
-	fmt.Println("  │  Final state: x=b, y=b                                   │")
-	fmt.Println("  └───────────────────────────────────────────────────────────┘")
-	fmt.Println()
-	fmt.Println("  ┌─ Serial order P2 → P1 ───────────────────────────────────┐")
-	fmt.Println("  │  P2 runs fully: W2(y)b, W2(x)b  →  x=b, y=b             │")
-	fmt.Println("  │  P2 reads y: sees b  (R2(y)=b)                           │")
-	fmt.Println("  │  P1 runs fully: W1(x)a, W1(y)a  →  x=a, y=a             │")
-	fmt.Println("  │  P1 reads x: sees a  (R1(x)=a)                           │")
-	fmt.Println("  │  Final state: x=a, y=a                                   │")
-	fmt.Println("  └───────────────────────────────────────────────────────────┘")
-	fmt.Println()
-	fmt.Println("  Interleaved execution reads:  R1(x)=b,  R2(y)=a")
-	fmt.Println("  P1→P2 reads:                  R1(x)=a,  R2(y)=b  ✗ both differ")
-	fmt.Println("  P2→P1 reads:                  R1(x)=a,  R2(y)=b  ✗ both differ")
-	fmt.Println()
-	fmt.Println("  ✗  Neither serial order reproduces the observed reads.")
-	fmt.Println("  ✗  Execution is NOT serializable.")
-
-	// ── Project onto x ───────────────────────────────────────────────────────
-	fmt.Println()
-	sep("═")
-	fmt.Println("PROJECT ONTO x ONLY — SEQUENTIAL CONSISTENCY CHECK")
-	sep("═")
+	fmt.Println("  Reads to satisfy:  R1(x)a at t5,  R2(y)b at t5")
 	fmt.Println()
 
-	var xOps []Op
-	for _, op := range ops {
-		if op.varName == "x" {
-			xOps = append(xOps, op)
+	// Column widths
+	orderW := 46
+	r1W := 9
+	r2W := 9
+	satW := 14
+	poW := 3
+
+	// Header
+	sepLine := fmt.Sprintf("  %-3s  %-*s  %-*s  %-*s  %-*s  %s",
+		"───", orderW, strings.Repeat("─", orderW),
+		r1W, strings.Repeat("─", r1W),
+		r2W, strings.Repeat("─", r2W),
+		satW, strings.Repeat("─", satW),
+		strings.Repeat("─", poW))
+	fmt.Println("  All 24 write orderings (W1(x)a, W2(y)b, W2(x)b, W1(y)a)")
+	fmt.Println()
+	fmt.Printf("  %-3s  %-*s  %-*s  %-*s  %-*s  %s\n",
+		"#", orderW, "Write ordering",
+		r1W, "R1(x)=?",
+		r2W, "R2(y)=?",
+		satW, "Reads match?",
+		"PO?")
+	fmt.Println(sepLine)
+
+	allPerms := permutations(4)
+	count := 0
+	matchCount := 0
+	poCount := 0
+	matchAndPO := 0
+
+	for _, perm := range allPerms {
+		count++
+		labels := make([]string, 4)
+		for i, wi := range perm { labels[i] = writes[wi].label }
+		orderStr := strings.Join(labels, " → ")
+
+		results := simulate(perm)
+		r1Got := results[0]
+		r2Got := results[1]
+
+		r1Match := r1Got == reads[0].expected
+		r2Match := r2Got == reads[1].expected
+		bothMatch := r1Match && r2Match
+		po := respectsProgramOrder(perm)
+
+		satStr := "─"
+		if r1Match && r2Match {
+			satStr = "✅ both match"
+			matchCount++
+		} else if r1Match {
+			satStr = "✗ R2 wrong"
+		} else if r2Match {
+			satStr = "✗ R1 wrong"
+		} else {
+			satStr = "✗ both wrong"
 		}
-	}
-	fmt.Println("  Timeline for x:")
-	printTimeline(xOps, 6)
-	scX := checkSC("x", xOps)
 
-	// ── Project onto y ───────────────────────────────────────────────────────
-	fmt.Println()
-	sep("═")
-	fmt.Println("PROJECT ONTO y ONLY — SEQUENTIAL CONSISTENCY CHECK")
-	sep("═")
-	fmt.Println()
-
-	var yOps []Op
-	for _, op := range ops {
-		if op.varName == "y" {
-			yOps = append(yOps, op)
+		poStr := " "
+		if po {
+			poStr = "✓"
+			poCount++
 		}
-	}
-	fmt.Println("  Timeline for y:")
-	printTimeline(yOps, 6)
-	scY := checkSC("y", yOps)
+		if bothMatch && po { matchAndPO++ }
 
-	// ── Conclusion ───────────────────────────────────────────────────────────
-	fmt.Println()
-	sep("═")
-	fmt.Println("CONCLUSION")
-	sep("═")
-	fmt.Println()
-	fmt.Printf("  %-10s  %-30s\n", "Variable", "Sequential Consistency?")
-	fmt.Printf("  %-10s  %-30s\n", "──────────", "──────────────────────────────")
-	mark := func(ok bool) string {
-		if ok { return "✅ yes" }
-		return "✗  no"
+		fmt.Printf("  %-3d  %-*s  %-*s  %-*s  %-*s  %s\n",
+			count, orderW, orderStr,
+			r1W, r1Got,
+			r2W, r2Got,
+			satW, satStr,
+			poStr)
 	}
-	fmt.Printf("  %-10s  %s\n", "x alone", mark(scX))
-	fmt.Printf("  %-10s  %s\n", "y alone", mark(scY))
-	fmt.Printf("  %-10s  %s\n", "x + y", "✗  NOT serializable")
+
+	// Summary
+	fmt.Println(sepLine)
+	fmt.Printf("\n  Total orderings         : %d\n", count)
+	fmt.Printf("  Both reads satisfied    : %d\n", matchCount)
+	fmt.Printf("  Program order respected : %d  (PO column = ✓)\n", poCount)
+	fmt.Printf("  Both reads + PO         : %d\n\n", matchAndPO)
+
+	// Identify the SC-satisfying orderings per variable
+	fmt.Println("  SC analysis per variable:")
 	fmt.Println()
-	fmt.Println("  Why SC holds per variable but serializability fails:")
+	fmt.Println("  For x (writes: W1(x)a at t1, W2(x)b at t3 — read: R1(x)b at t5):")
+	fmt.Println("    R1(x)=a requires the last write to x before t5 = a")
+	fmt.Println("    → W1(x)a must appear AFTER W2(x)b in the ordering")
+	fmt.Println("    → any ordering where W2(x)b precedes W1(x)a satisfies x's read ✅")
 	fmt.Println()
-	fmt.Println("  x alone: write order W2(x)b → W1(x)a explains R1(x)=b  ✅")
-	fmt.Println("           (implies P2 precedes P1 on x)")
+	fmt.Println("  For y (writes: W2(y)b at t2, W1(y)a at t4 — read: R2(y)b at t5):")
+	fmt.Println("    R2(y)=b requires the last write to y before t5 = b")
+	fmt.Println("    → W2(y)b must appear AFTER W1(y)a in the ordering")
+	fmt.Println("    → any ordering where W1(y)a precedes W2(y)b satisfies y's read ✅")
 	fmt.Println()
-	fmt.Println("  y alone: write order W1(y)a → W2(y)b explains R2(y)=a  ✅")
-	fmt.Println("           (implies P1 precedes P2 on y)")
+	fmt.Println("  For BOTH reads to be satisfied simultaneously:")
+	fmt.Println("    x needs: W2(x)b → ... → W1(x)a  (P2 before P1 on x)")
+	fmt.Println("    y needs: W1(y)a → ... → W2(y)b  (P1 before P2 on y)")
 	fmt.Println()
-	fmt.Println("  Combined: x needs P2 → P1,  y needs P1 → P2.")
-	fmt.Println("  These are contradictory — no single total process order")
-	fmt.Println("  satisfies both simultaneously.")
-	fmt.Println("  SC is per-variable; serializability requires a global order.")
+	fmt.Println("  These imply opposite process orders: P2<P1 on x but P1<P2 on y.")
+	fmt.Println("  Serializability requires ONE global order — impossible here.")
+	fmt.Println("  Orderings satisfying both reads exist (see ✅ rows above),")
+	fmt.Println("  but none of them correspond to a pure serial execution of P1,P2.")
 	fmt.Println()
 }
