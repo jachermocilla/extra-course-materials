@@ -67,5 +67,6 @@ int main(){
    printf("stack_local_pointer: %p\n",&stack_local_pointer);
    printf("pointed to by stack_local_pointer (in heap): %p\n",(void *)stack_local_pointer);
 
+   getchar();
    return 0;
 }
