@@ -26,6 +26,7 @@ import os
 import re
 import shutil
 import sys
+import textwrap
 import time
 from dataclasses import dataclass, field
 
@@ -61,6 +62,53 @@ CATEGORIES = {
 
 CATEGORY_ORDER = ["code", "rodata", "data", "heap", "stack",
                   "libtxt", "lib", "file", "anon", "kernel", "guard"]
+
+DESCRIPTIONS = {
+    "code":
+        "Machine instructions of the program itself, mapped r-x straight from "
+        "the executable file. Read-only so it can be shared: every process "
+        "running this binary points at the same physical pages.",
+    "rodata":
+        "Read-only data from the executable — string literals, constants, "
+        "jump tables, relocation info. Mapped r-- so a stray write faults "
+        "instead of corrupting it.",
+    "data":
+        "Writable globals and statics from the executable (.data and .bss). "
+        "Private and copy-on-write, so each process gets its own copy the "
+        "first time it writes.",
+    "heap":
+        "The classic heap, grown and shrunk by brk()/sbrk() on behalf of "
+        "malloc. Note that large allocations usually bypass this and come "
+        "back as separate anonymous mappings instead.",
+    "stack":
+        "The main thread's stack. Grows downward toward lower addresses, and "
+        "the kernel extends it automatically on fault. Threads get ordinary "
+        "anonymous mappings rather than a region labelled like this.",
+    "libtxt":
+        "Executable code of a shared library. One physical copy in RAM is "
+        "shared by every process that loaded the library, which is why "
+        "resident size is usually far smaller than it looks.",
+    "lib":
+        "The non-executable parts of a shared library: its read-only data, "
+        "the GOT/PLT the dynamic linker patches at load time, and its "
+        "writable globals.",
+    "file":
+        "Some other file mapped into memory with mmap — a data file, a locale "
+        "table, a memfd, or a System V shared memory segment. Pages are read "
+        "from the file on demand.",
+    "anon":
+        "Memory backed by no file at all: large malloc arenas, thread stacks, "
+        "and explicit mmap(MAP_ANONYMOUS). Handed out zero-filled on first "
+        "touch, which is why virtual size often far exceeds resident size.",
+    "kernel":
+        "Pages the kernel maps into every process. [vdso] holds code for fast "
+        "syscalls like gettimeofday, [vvar] the data that code reads, and "
+        "[vsyscall] is a legacy version of the same idea.",
+    "guard":
+        "No permissions at all (---p). Address space deliberately reserved so "
+        "that any access faults — used to pad the space between a library's "
+        "segments and to catch stack overflow.",
+}
 
 
 # ---------------------------------------------------------------------------
@@ -618,11 +666,35 @@ def render_legend(pal: Palette) -> list:
     for key in CATEGORY_ORDER:
         label, _ = CATEGORIES[key]
         parts.append(pal.cat(key, "█ " + label))
-    return [pal.dim("Legend  ") + "  ".join(parts)]
+    return [pal.dim("Legend  ") + "  ".join(parts),
+            pal.dim("        pass --explain for a description of each type")]
+
+
+def render_glossary(snap: Snapshot, pal: Palette, width: int) -> list:
+    """One paragraph per region type, restricted to types actually present."""
+    present = {r.category for r in snap.regions}
+    counts = {}
+    for r in snap.regions:
+        counts[r.category] = counts.get(r.category, 0) + 1
+
+    lines = [pal.bold("What each region type is")]
+    body_w = max(40, width - 14)
+    for key in CATEGORY_ORDER:
+        if key not in present:
+            continue
+        label = CATEGORIES[key][0]
+        head = f"  {pal.cat(key, '█ ' + label.ljust(8))} {pal.dim(f'x{counts[key]}')}"
+        lines.append(head)
+        for chunk in textwrap.wrap(DESCRIPTIONS[key], body_w):
+            lines.append("      " + chunk)
+        lines.append("")
+    if lines and lines[-1] == "":
+        lines.pop()
+    return lines
 
 
 def render_static(snap: Snapshot, pal: Palette, width: int,
-                  show_gaps: bool, limit: int) -> str:
+                  show_gaps: bool, limit: int, explain: bool = False) -> str:
     blocks = [
         render_header(snap, pal, width),
         render_panorama(snap, pal, width),
@@ -630,6 +702,8 @@ def render_static(snap: Snapshot, pal: Palette, width: int,
         render_regions(snap, pal, width, show_gaps, limit),
         render_legend(pal),
     ]
+    if explain:
+        blocks.insert(-1, render_glossary(snap, pal, width))
     out = []
     for b in blocks:
         out.extend(b)
@@ -677,6 +751,7 @@ def run_tui(pid: int, refresh: float):
             "sort": "address",
             "filter": "",
             "auto": refresh > 0,
+            "help": False,
             "status": "",
             "last": time.time(),
         }
@@ -696,7 +771,49 @@ def run_tui(pid: int, refresh: float):
                 regs = sorted(regs, key=lambda r: (r.rss or 0), reverse=True)
             return regs
 
+        def draw_help():
+            stdscr.erase()
+            h, w = stdscr.getmaxyx()
+            body_w = max(30, w - 10)
+            safe_addstr(stdscr, 0, 0, " vmmap — keys and region types",
+                        curses.A_BOLD)
+            y = 2
+            for key, what in (
+                ("↑ ↓ / j k", "move between regions"),
+                ("PgUp PgDn", "move a screenful"),
+                ("g / G", "jump to the lowest / highest address"),
+                ("s", "cycle sort: address, size, resident"),
+                ("/", "filter by name, category, or permissions"),
+                ("r", "re-read /proc now"),
+                ("a", "toggle auto-refresh"),
+                ("? ", "this screen"),
+                ("q", "quit"),
+            ):
+                safe_addstr(stdscr, y, 2, f"{key:<12} {what}"[: w - 3])
+                y += 1
+
+            y += 1
+            present = {r.category for r in state["snap"].regions}
+            for cat in CATEGORY_ORDER:
+                if cat not in present or y >= h - 2:
+                    continue
+                label = CATEGORIES[cat][0]
+                safe_addstr(stdscr, y, 2, ("█ " + label)[: w - 3], attr(cat))
+                y += 1
+                for chunk in textwrap.wrap(DESCRIPTIONS[cat], body_w):
+                    if y >= h - 2:
+                        break
+                    safe_addstr(stdscr, y, 6, chunk[: w - 7])
+                    y += 1
+                y += 1
+            safe_addstr(stdscr, h - 1, 0, " any key returns"[: w - 1],
+                        attr_rule(use_colour))
+            stdscr.refresh()
+
         def draw():
+            if state["help"]:
+                draw_help()
+                return
             stdscr.erase()
             h, w = stdscr.getmaxyx()
             snap = state["snap"]
@@ -704,7 +821,7 @@ def run_tui(pid: int, refresh: float):
             if not regs:
                 state["sel"] = 0
 
-            detail_h = 8
+            detail_h = 10
             list_top = 3
             list_h = max(3, h - list_top - detail_h - 1)
 
@@ -779,13 +896,18 @@ def run_tui(pid: int, refresh: float):
                     flags = d.get("VmFlags", "")
                     if flags:
                         info.append(f" flags {flags}")
+                desc = DESCRIPTIONS.get(r.category, "")
+                if desc:
+                    label = CATEGORIES[r.category][0]
+                    wrapped = textwrap.wrap(f"{label}: {desc}", max(30, w - 3))
+                    info.extend(" " + line for line in wrapped[:2])
                 for i, text in enumerate(info):
                     if dy + 1 + i < h - 1:
                         safe_addstr(stdscr, dy + 1 + i, 0, text[: w - 1],
                                     attr(r.category) if i == 0 else curses.A_NORMAL)
 
             keys = (" ↑↓ move  PgUp/PgDn page  g/G ends  s sort  "
-                    "/ filter  r refresh  a auto  q quit")
+                    "/ filter  r refresh  a auto  ? help  q quit")
             safe_addstr(stdscr, h - 1, 0, keys[: w - 1], attr_rule(use_colour))
             stdscr.refresh()
 
@@ -827,8 +949,15 @@ def run_tui(pid: int, refresh: float):
                 time.sleep(0.05)
                 continue
 
+            if state["help"]:
+                state["help"] = False
+                draw()
+                continue
+
             if ch in (ord("q"), 27):
                 break
+            elif ch == ord("?"):
+                state["help"] = True
             elif ch in (curses.KEY_DOWN, ord("j")):
                 state["sel"] += 1
             elif ch in (curses.KEY_UP, ord("k")):
@@ -895,6 +1024,8 @@ def build_parser():
                    help="hide the unmapped-gap rows")
     p.add_argument("--limit", type=int, default=0,
                    help="show at most N regions (0 = all)")
+    p.add_argument("--explain", action="store_true",
+                   help="describe each region type present in this process")
     p.add_argument("--no-color", action="store_true", help="disable colour")
     p.add_argument("--list", action="store_true",
                    help="list inspectable processes and exit")
@@ -935,7 +1066,8 @@ def main(argv=None):
             raise SystemExit(f"vmmap: not allowed to read /proc/{pid}/maps")
         except FileNotFoundError:
             raise SystemExit(f"vmmap: process {pid} exited")
-        return render_static(snap, pal, width, not args.no_gaps, limit)
+        return render_static(snap, pal, width, not args.no_gaps, limit,
+                             explain=args.explain)
 
     if args.watch:
         try:
