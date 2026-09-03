@@ -1,0 +1,230 @@
+[
+  {
+    "start": 1,
+    "title": "Chapter 1: A Dialogue on the Book"
+  },
+  {
+    "start": 3,
+    "title": "Chapter 2: Introduction"
+  },
+  {
+    "start": 22,
+    "title": "Chapter 3: A Dialogue on Virtualization"
+  },
+  {
+    "start": 26,
+    "title": "Chapter 4: Processes"
+  },
+  {
+    "start": 39,
+    "title": "Chapter 5: Process API"
+  },
+  {
+    "start": 54,
+    "title": "Chapter 6: Direct Execution"
+  },
+  {
+    "start": 70,
+    "title": "Chapter 7: CPU Scheduling"
+  },
+  {
+    "start": 83,
+    "title": "Chapter 8: Multi-level Feedback"
+  },
+  {
+    "start": 95,
+    "title": "Chapter 9: Lottery Scheduling"
+  },
+  {
+    "start": 109,
+    "title": "Chapter 10: Multi-CPU Scheduling"
+  },
+  {
+    "start": 122,
+    "title": "Chapter 11: Summary Dialogue on CPU Virtualization"
+  },
+  {
+    "start": 124,
+    "title": "Chapter 12: A Dialogue on Memory Virtualization"
+  },
+  {
+    "start": 126,
+    "title": "Chapter 13: Address Spaces"
+  },
+  {
+    "start": 135,
+    "title": "Chapter 14: Memory API"
+  },
+  {
+    "start": 147,
+    "title": "Chapter 15: Address Translation"
+  },
+  {
+    "start": 162,
+    "title": "Chapter 16: Segmentation"
+  },
+  {
+    "start": 174,
+    "title": "Chapter 17: Free Space Management"
+  },
+  {
+    "start": 192,
+    "title": "Chapter 18: Introduction to Paging"
+  },
+  {
+    "start": 207,
+    "title": "Chapter 19: Translation Lookaside Buffers"
+  },
+  {
+    "start": 223,
+    "title": "Chapter 20: Advanced Page Tables"
+  },
+  {
+    "start": 238,
+    "title": "Chapter 21: Swapping: Mechanisms"
+  },
+  {
+    "start": 249,
+    "title": "Chapter 22: Swapping: Policies"
+  },
+  {
+    "start": 267,
+    "title": "Chapter 23: Complete VM Systems"
+  },
+  {
+    "start": 286,
+    "title": "Chapter 24: Summary Dialogue on Memory Virtualization"
+  },
+  {
+    "start": 289,
+    "title": "Chapter 25: A Dialogue on Concurrency"
+  },
+  {
+    "start": 293,
+    "title": "Chapter 26: Concurrency and Threads"
+  },
+  {
+    "start": 309,
+    "title": "Chapter 27: Thread API"
+  },
+  {
+    "start": 321,
+    "title": "Chapter 28: Locks"
+  },
+  {
+    "start": 343,
+    "title": "Chapter 29: Locked Data Structures"
+  },
+  {
+    "start": 359,
+    "title": "Chapter 30: Condition Variables"
+  },
+  {
+    "start": 378,
+    "title": "Chapter 31: Semaphores"
+  },
+  {
+    "start": 398,
+    "title": "Chapter 32: Concurrency Bugs"
+  },
+  {
+    "start": 414,
+    "title": "Chapter 33: Event-based Concurrency"
+  },
+  {
+    "start": 426,
+    "title": "Chapter 34: Summary Dialogue on Concurrency"
+  },
+  {
+    "start": 428,
+    "title": "Chapter 35: A Dialogue on Persistence"
+  },
+  {
+    "start": 432,
+    "title": "Chapter 36: I/O Devices"
+  },
+  {
+    "start": 446,
+    "title": "Chapter 37: Hard Disk Drives"
+  },
+  {
+    "start": 462,
+    "title": "Chapter 38: Redundant Disk Arrays (RAID)"
+  },
+  {
+    "start": 480,
+    "title": "Chapter 39: Files and Directories"
+  },
+  {
+    "start": 509,
+    "title": "Chapter 40: File System Implementation"
+  },
+  {
+    "start": 527,
+    "title": "Chapter 41: Fast File System (FFS)"
+  },
+  {
+    "start": 541,
+    "title": "Chapter 42: FSCK and Journaling"
+  },
+  {
+    "start": 562,
+    "title": "Chapter 43: Log-structured File System (LFS)"
+  },
+  {
+    "start": 578,
+    "title": "Chapter 44: Flash-based SSDs"
+  },
+  {
+    "start": 602,
+    "title": "Chapter 45: Data Integrity and Protection"
+  },
+  {
+    "start": 616,
+    "title": "Chapter 46: Summary Dialogue on Persistence"
+  },
+  {
+    "start": 618,
+    "title": "Chapter 47: A Dialogue on Distribution"
+  },
+  {
+    "start": 620,
+    "title": "Chapter 48: Distributed Systems"
+  },
+  {
+    "start": 637,
+    "title": "Chapter 49: Network File System (NFS)"
+  },
+  {
+    "start": 655,
+    "title": "Chapter 50: Andrew File System (AFS)"
+  },
+  {
+    "start": 669,
+    "title": "Chapter 51: Summary Dialogue on Distribution"
+  },
+  {
+    "start": 671,
+    "title": "Chapter 52: A Dialogue on Security"
+  },
+  {
+    "start": 673,
+    "title": "Chapter 53: Intro Security"
+  },
+  {
+    "start": 685,
+    "title": "Chapter 54: Authentication"
+  },
+  {
+    "start": 704,
+    "title": "Chapter 55: Access Control"
+  },
+  {
+    "start": 722,
+    "title": "Chapter 56: Cryptography"
+  },
+  {
+    "start": 742,
+    "title": "Chapter 57: Distributed"
+  }
+]
