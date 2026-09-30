@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Watching malloc() and free() work</title>
+<style>
+:root{
+  --paper:#e9eef2;
+  --grid:#dae2e8;
+  --ink:#172033;
+  --ink-soft:#4d596b;
+  --panel:#f8fafb;
+  --hdr:#26324a;
+  --free-hdr:#cfd9e1;
+  --free-line:#98a9b7;
+  --focus:#f59f00;
+  --a:#e98b00; --a-tint:#fdebc8; --a-ink:#8a4f00;
+  --b:#0b8a9a; --b-tint:#cdeef1; --b-ink:#06606b;
+  --c:#c2255c; --c-tint:#f8d6e2; --c-ink:#961b47;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --sans: "Avenir Next", Avenir, "Segoe UI Variable Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --row: 26px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:24px 24px;
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.5;
+}
+.instant *{transition:none !important}
+.page{max-width:1240px;margin:0 auto;padding:32px 28px 48px}
+
+/* ---------- Header ---------- */
+.top{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:22px}
+h1{font-size:2.35rem;line-height:1.1;margin:0 0 10px;font-weight:700;letter-spacing:-.01em}
+h1 code{font-family:var(--mono);font-weight:700;font-size:.92em;background:var(--ink);color:var(--paper);padding:0 .22em;border-radius:3px}
+.intro{margin:0;max-width:68ch;color:var(--ink-soft)}
+h2{font-size:1.05rem;margin:0 0 10px;font-weight:700}
+
+/* ---------- Controls ---------- */
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+button,select{font:inherit;font-size:.95rem;color:var(--ink);background:var(--panel);border:2px solid var(--ink);border-radius:6px;padding:7px 14px;cursor:pointer}
+button:hover:not(:disabled){background:#fff}
+button:disabled{opacity:.4;cursor:default}
+button.primary{background:var(--ink);color:#fff}
+button.primary:hover:not(:disabled){background:#2c3a57}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.speed{display:flex;align-items:center;gap:6px;font-size:.9rem;color:var(--ink-soft)}
+select{padding:6px 8px}
+
+/* ---------- Timeline ---------- */
+.timeline{display:flex;gap:10px;margin:0 0 22px;padding:12px 14px 8px;background:var(--panel);border:2px solid var(--ink);border-radius:8px}
+.tl-group{min-width:44px;display:flex;flex-direction:column;gap:5px}
+.tl-steps{display:flex;gap:3px}
+.tl-step{flex:1;height:16px;padding:0;border:0;border-radius:2px;background:var(--g);opacity:.28;min-width:6px}
+.tl-step.done{opacity:1}
+.tl-step.now{opacity:1;box-shadow:0 0 0 2px var(--panel),0 0 0 4px var(--ink)}
+.kind-free .tl-step{background:repeating-linear-gradient(135deg,var(--g) 0 4px,#fff 4px 6px)}
+.tl-label{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.own-a{--g:var(--a)} .own-b{--g:var(--b)} .own-c{--g:var(--c)}
+.kind-start,.kind-note,.kind-bonus{--g:#7d8b99}
+
+/* ---------- Main layout ---------- */
+.main{display:grid;grid-template-columns:minmax(380px,500px) 1fr;gap:28px;align-items:start}
+.panel{background:var(--panel);border:2px solid var(--ink);border-radius:8px;padding:16px 18px}
+.stack{display:flex;flex-direction:column;gap:18px;min-width:0}
+
+/* ---------- Scale strip ---------- */
+.scale p{margin:0 0 8px;font-size:.9rem;color:var(--ink-soft)}
+.strip{position:relative;height:30px;border:2px solid var(--ink);background:repeating-linear-gradient(135deg,#f4f7f9 0 6px,#dde4ea 6px 7px);overflow:hidden}
+.seg{position:absolute;top:0;bottom:0}
+.seg.free{border-left:2px solid var(--free-line)}
+.seg.alloc{background:var(--g);border-left:3px solid var(--hdr)}
+.ticks{position:relative;height:20px;font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
+.ticks span{position:absolute;top:3px;transform:translateX(-50%)}
+.ticks span:first-child{transform:none}
+.ticks span:last-child{transform:translateX(-100%)}
+
+/* ---------- Memory map ---------- */
+.map-panel h2{margin-bottom:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 16px;padding:0;list-style:none;font-size:.85rem;color:var(--ink-soft)}
+.legend li{display:flex;align-items:center;gap:6px}
+.sw{width:16px;height:12px;border:1px solid var(--ink);display:inline-block}
+.sw.h-alloc{background:var(--hdr)}
+.sw.h-free{background:var(--free-hdr)}
+.sw.d-alloc{background:linear-gradient(90deg,var(--a) 0 33%,var(--b) 33% 66%,var(--c) 66%)}
+.sw.d-free{background:repeating-linear-gradient(135deg,#f4f7f9 0 3px,#b9c6d0 3px 4px)}
+
+.map-area{display:grid;grid-template-columns:1fr 104px}
+.map{display:flex;flex-direction:column}
+.chunk{display:grid;grid-template-columns:62px 1fr;overflow:hidden;transition:height .7s cubic-bezier(.6,.05,.3,1)}
+.adrs{display:flex;flex-direction:column;padding-top:1px;font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-align:right;padding-right:10px}
+.adrs span{height:var(--row);line-height:var(--row)}
+.cells{position:relative;display:flex;flex-direction:column;border:2px solid var(--ink);border-bottom:0;min-height:0}
+.cell{display:flex;align-items:center;padding-left:10px;font-family:var(--mono);font-size:13px;border-left:7px solid transparent;transition:background-color .5s,border-color .5s,color .5s;min-height:0}
+.c1,.c2{height:var(--row);flex:none}
+.cb{flex:1;flex-direction:column;align-items:flex-start;justify-content:center;border-top:1px solid var(--ink);overflow:hidden}
+.t{padding:0 4px;margin-left:-4px;border-radius:3px;white-space:nowrap}
+.note{font-family:var(--sans);font-size:12px;color:var(--ink-soft);margin-top:2px}
+.t.flash{animation:flash 1.8s ease-out}
+@keyframes flash{0%,40%{background:#ffd43b;color:var(--ink)}100%{background:transparent}}
+
+.chunk.alloc .c1,.chunk.alloc .c2{background:var(--hdr);color:#fff;border-left-color:var(--g)}
+.chunk.alloc .c2{border-top:1px dashed rgba(255,255,255,.35)}
+.chunk.alloc .cb{background:var(--gt);border-left-color:var(--g)}
+.chunk.alloc.own-a{--gt:var(--a-tint)} .chunk.alloc.own-b{--gt:var(--b-tint)} .chunk.alloc.own-c{--gt:var(--c-tint)}
+.chunk.free .c1,.chunk.free .c2{background:var(--free-hdr);border-left-color:var(--free-line)}
+.chunk.free .c2{border-top:1px dashed var(--free-line)}
+.chunk.free .cb{background:repeating-linear-gradient(135deg,#f4f7f9 0 8px,#e0e7ec 8px 9px);border-left-color:var(--free-line)}
+.chunk.focus .cells::after{content:"";position:absolute;inset:-2px -2px 0;border:3px solid var(--focus);pointer-events:none}
+
+.map-end{display:grid;grid-template-columns:62px 1fr}
+.map-end .adrs span{line-height:1;height:auto;transform:translateY(-6px)}
+.map-end .cells{border:0;border-top:2px solid var(--ink);height:14px}
+
+/* ---------- Pointer tags ---------- */
+.ptrs{position:relative}
+.ptr{position:absolute;left:0;display:flex;align-items:center;transform:translateY(-50%);color:var(--ink);transition:top .75s cubic-bezier(.6,.05,.3,1),opacity .4s;white-space:nowrap}
+.ptr.gone{opacity:0}
+.tip{width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-right:9px solid currentColor}
+.shaft{width:22px;height:2px;background:currentColor}
+.lbl{font-family:var(--mono);font-size:13px;font-weight:700;padding:1px 8px;border:2px solid currentColor;border-radius:5px;background:var(--panel)}
+.p-head .lbl{background:var(--ink);color:#fff;border-color:var(--ink)}
+.p-temp{color:var(--ink-soft)}
+.p-temp .lbl{border-style:dashed}
+.p-var.p-a{color:var(--a-ink)} .p-var.p-b{color:var(--b-ink)} .p-var.p-c{color:var(--c-ink)}
+.p-var.dangling{opacity:.55}
+.p-var.dangling .shaft{background:repeating-linear-gradient(90deg,currentColor 0 4px,transparent 4px 7px)}
+.p-var.dangling .lbl{border-style:dashed;text-decoration:line-through}
+.p-var.gone{opacity:0}
+
+/* ---------- Step card ---------- */
+.card{border-width:3px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start;min-height:172px;margin-bottom:12px}
+.step-count{margin:0 0 2px;font-size:.9rem;color:var(--ink-soft)}
+.card h2{font-size:1.5rem;line-height:1.2;margin:0 0 8px}
+.card p.body{margin:0;max-width:64ch}
+.card .calc{align-self:center}
+.calc{margin:0;padding:10px 12px;background:#fff;border-left:4px solid var(--ink);font-family:var(--mono);font-size:13.5px;line-height:1.6;white-space:pre-wrap;overflow-x:auto}
+
+/* ---------- Code ---------- */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.code{font-family:var(--mono);font-size:14px;margin:0}
+.ln{display:grid;grid-template-columns:26px 1fr;align-items:center;border-radius:4px;padding:1px 0;position:relative}
+.ln .no{color:#9aa6b2;font-size:12px;text-align:right;padding-right:10px}
+.ln code{font-family:inherit}
+.ln.done code{color:var(--ink-soft)}
+.ln.comment code{color:#7d8b99;font-style:italic}
+.ln.cur{background:#ffe8a3}
+.ln.cur::before{content:"";position:absolute;left:-10px;top:50%;transform:translateY(-50%);border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid var(--ink)}
+.structs{font-family:var(--mono);font-size:12.5px;line-height:1.55;margin:0;white-space:pre;overflow-x:auto;color:var(--ink)}
+.structs .cm{color:#7d8b99}
+
+/* ---------- Free list ---------- */
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px 0}
+.ln-head,.ln-null{font-family:var(--mono);font-size:13px;font-weight:700;padding:3px 9px;border-radius:5px}
+.ln-head{background:var(--ink);color:#fff}
+.ln-null{border:2px solid var(--ink-soft);color:var(--ink-soft)}
+.ln-arrow{width:30px;height:2px;background:var(--ink);position:relative;margin-right:8px}
+.ln-arrow::after{content:"";position:absolute;right:-8px;top:-5px;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:9px solid var(--ink)}
+.ln-item{display:flex;align-items:center}
+.ln-node{border:2px solid var(--ink);border-radius:5px;background:#fff;font-family:var(--mono);font-size:12.5px;overflow:hidden}
+.ln-addr{background:var(--free-hdr);padding:2px 8px;font-weight:700;border-bottom:1px solid var(--ink)}
+.ln-fields{display:flex;flex-direction:column;padding:3px 8px}
+.ln-node.is-focus{box-shadow:0 0 0 3px var(--focus)}
+.ln-node.flash{animation:nodeflash 1.8s ease-out}
+@keyframes nodeflash{0%,40%{background:#ffd43b}100%{background:#fff}}
+.detached{margin-top:12px;padding-top:10px;border-top:1px dashed var(--free-line)}
+.detached p{margin:0 0 6px;font-size:.88rem;color:var(--ink-soft)}
+.detached .ln-node{display:inline-block;border-style:dashed}
+
+/* ---------- Variables ---------- */
+.vars{display:flex;flex-direction:column;gap:6px}
+.var{display:grid;grid-template-columns:28px 64px 1fr;align-items:center;gap:8px;font-size:.92rem}
+.vname{font-family:var(--mono);font-weight:700;text-align:center;border-radius:4px;color:#fff;background:var(--g);padding:1px 0}
+.vval{font-family:var(--mono);font-size:13.5px}
+.vst{color:var(--ink-soft)}
+.var.st-unset .vname{background:#b7c2cc}
+.var.st-dangling .vval{text-decoration:line-through;color:var(--ink-soft)}
+
+.kbd-hint{margin:14px 0 0;font-size:.85rem;color:var(--ink-soft)}
+kbd{font-family:var(--mono);font-size:12px;border:1px solid var(--ink-soft);border-bottom-width:2px;border-radius:3px;padding:0 5px;background:#fff}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px){
+  .main{grid-template-columns:1fr}
+  .top{grid-template-columns:1fr}
+  .controls{justify-content:flex-start}
+  .two{grid-template-columns:1fr}
+  .card{grid-template-columns:1fr;gap:12px;min-height:0}
+}
+@media (max-width: 620px){
+  .page{padding:20px 14px 36px}
+  h1{font-size:1.75rem}
+  .tl-label{display:none}
+  .tl-group{min-width:0}
+  .timeline{gap:5px}
+  .map-area{grid-template-columns:1fr 84px}
+  .chunk,.map-end{grid-template-columns:50px 1fr}
+  .adrs{font-size:10.5px;padding-right:6px}
+  .cell{font-size:11.5px;padding-left:6px}
+  .shaft{width:12px}
+}
+@media (prefers-reduced-motion: reduce){
+  .chunk,.ptr,.cell{transition:none !important}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="top">
+    <div>
+      <h1>Watching <code>malloc()</code> and <code>free()</code> work</h1>
+      <p class="intro">A 4KB heap starting at virtual address 16KB, following the Free-Space Management chapter of OSTEP. Every allocated chunk begins with an 8-byte header: 4 bytes for its size and 4 bytes for a magic number. The allocator uses first fit, puts freed chunks at the front of the free list, and never coalesces.</p>
+    </div>
+    <div class="controls">
+      <button id="btnRestart" type="button">Restart</button>
+      <button id="btnPrev" type="button">Back</button>
+      <button id="btnPlay" type="button">Play</button>
+      <button id="btnNext" type="button" class="primary">Next step</button>
+      <label class="speed">Speed
+        <select id="speed">
+          <option value="3600">Slow</option>
+          <option value="2300" selected>Normal</option>
+          <option value="1300">Fast</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <section class="panel card" aria-live="polite">
+    <div class="card-text">
+      <p class="step-count" id="stepCount"></p>
+      <h2 id="stepTitle"></h2>
+      <p class="body" id="stepBody"></p>
+    </div>
+    <pre class="calc" id="stepCalc"></pre>
+  </section>
+
+  <nav class="timeline" id="timeline" aria-label="Jump to a step"></nav>
+
+  <div class="main">
+    <!-- Left: memory -->
+    <section class="panel map-panel" aria-label="Heap memory">
+      <div class="scale">
+        <h2>Heap memory</h2>
+        <p>Drawn to scale, the whole 4096-byte heap. The 100-byte chunks are thin slivers.</p>
+        <div class="strip" id="strip"></div>
+        <div class="ticks">
+          <span style="left:0">16KB</span>
+          <span style="left:25%">17KB</span>
+          <span style="left:50%">18KB</span>
+          <span style="left:75%">19KB</span>
+          <span style="left:100%">20KB</span>
+        </div>
+      </div>
+
+      <p style="margin:14px 0 8px;font-size:.9rem;color:var(--ink-soft)">Zoomed in, byte addresses on the left, pointers on the right.</p>
+      <ul class="legend">
+        <li><span class="sw h-alloc"></span>Header (size, magic)</li>
+        <li><span class="sw h-free"></span>Free-list node (size, next)</li>
+        <li><span class="sw d-alloc"></span>Data in use by a, b, c</li>
+        <li><span class="sw d-free"></span>Free space</li>
+      </ul>
+
+      <div class="map-area">
+        <div>
+          <div class="map" id="map"></div>
+          <div class="map-end"><div class="adrs"><span>20480</span></div><div class="cells"></div></div>
+        </div>
+        <div class="ptrs" id="ptrs"></div>
+      </div>
+    </section>
+
+    <!-- Right: explanation -->
+    <div class="stack">
+      <div class="two">
+        <section class="panel">
+          <h2>Program</h2>
+          <div class="code" id="code"></div>
+        </section>
+        <section class="panel">
+          <h2>Inside the 8 bytes</h2>
+<pre class="structs"><span class="cm">// while allocated</span>
+typedef struct {
+  int size;   <span class="cm">// 4 bytes</span>
+  int magic;  <span class="cm">// 4 bytes</span>
+} header_t;
+
+<span class="cm">// while free</span>
+typedef struct __node_t {
+  int size;
+  struct __node_t *next;
+} node_t;</pre>
+        </section>
+      </div>
+
+      <section class="panel">
+        <h2>Free list</h2>
+        <div class="chain" id="chain"></div>
+        <div id="detached"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Variables</h2>
+        <div class="vars" id="vars"></div>
+        <p class="kbd-hint">Keyboard: <kbd>←</kbd> <kbd>→</kbd> to step, <kbd>Space</kbd> to play or pause.</p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   Constants from the spec
+   ========================================================= */
+const HEAP_START = 16384;          // 16KB
+const HEAP_SIZE  = 4096;           // 4KB
+const HEAP_END   = HEAP_START + HEAP_SIZE;
+const HDR        = 8;              // 4 bytes size + 4 bytes magic
+const MAGIC      = 1234567;
+const OWNERS     = ['a', 'b', 'c'];
+
+const CODE = [
+  { text: 'a = malloc(100);' },
+  { text: 'b = malloc(100);' },
+  { text: 'c = malloc(100);' },
+  { text: '' },
+  { text: 'free(b);' },
+  { text: 'free(c);' },
+  { text: 'free(a);' },
+  { text: '' },
+  { text: '// what if we coalesced?', comment: true },
+];
+
+/* =========================================================
+   Simulator: runs the program and records a snapshot per step
+   ========================================================= */
+const steps = [];
+const groups = [];
+
+(function buildSteps () {
+  const S = {
+    chunks: [{ addr: HEAP_START, type: 'free', size: HEAP_SIZE - HDR, next: 0, was: null }],
+    head: HEAP_START,
+    vars: { a: { val: null, st: 'unset' }, b: { val: null, st: 'unset' }, c: { val: null, st: 'unset' } },
+  };
+  const find = a => S.chunks.find(c => c.addr === a);
+  const listStr = () => {
+    let s = 'head', p = S.head, guard = 0;
+    while (p && guard++ < 20) { const n = find(p); s += ` → ${p} (${n.size})`; p = n.next; }
+    return s + ' → NULL';
+  };
+  const addGroup = (label, owner, kind) => { groups.push({ label, owner, kind, start: steps.length, count: 0 }); return groups.length - 1; };
+  const snap = (g, o) => {
+    groups[g].count++;
+    steps.push({
+      group: g,
+      state: JSON.parse(JSON.stringify(S)),
+      line: o.line ?? -1,
+      title: o.title, body: o.body, calc: o.calc || [],
+      temps: o.temps || [], focus: o.focus ?? null, hideVars: !!o.hideVars,
+    });
+  };
+
+  function malloc (v, n, line) {
+    const g = addGroup(`${v} = malloc(${n})`, v, 'malloc');
+    const need = n + HDR;
+    snap(g, { line,
+      title: `${v} = malloc(${n}): how much space?`,
+      body: `The program asks for ${n} bytes. The library also has to store an 8-byte header in front of them, so it needs a free chunk with room for ${need} bytes.`,
+      calc: [`needed = ${n} + sizeof(header_t)`, `       = ${n} + 8 = ${need} bytes`] });
+
+    let prev = null, cur = S.head;
+    while (cur && find(cur).size < need) { prev = find(cur); cur = prev.next; }
+    const node = find(cur);
+    snap(g, { line, focus: cur,
+      title: 'Search the free list',
+      body: `Starting at head, the first node is at ${cur} and holds ${node.size} bytes. That is at least ${need}, so the search stops here. This is first fit.`,
+      calc: [`node at ${cur}: size = ${node.size}`, `${node.size} ≥ ${need}   ✓ fits`] });
+
+    const oldSize = node.size, rest = cur + need, restSize = oldSize - need, oldNext = node.next;
+    S.chunks.splice(S.chunks.indexOf(node), 1,
+      { addr: cur,  type: 'alloc', size: n, magic: MAGIC, owner: v },
+      { addr: rest, type: 'free',  size: restSize, next: oldNext, was: null });
+    if (prev) prev.next = rest; else S.head = rest;
+    snap(g, { line, focus: cur,
+      title: 'Split the chunk',
+      body: `The first ${need} bytes are carved off for this request. Their header records size = ${n} and the magic number ${MAGIC}. The rest becomes a smaller free node at ${rest}, and head moves to it.`,
+      calc: [`header at ${cur}: size = ${n}, magic = ${MAGIC}`,
+             `new node at ${cur} + ${need} = ${rest}`,
+             `node size = ${oldSize} − ${need} = ${restSize}`,
+             `head = ${rest}`] });
+
+    const ptr = cur + HDR;
+    S.vars[v] = { val: ptr, st: 'ok' };
+    snap(g, { line, focus: cur,
+      title: `malloc returns ${ptr}`,
+      body: `The caller gets the address just past the header, so the header stays out of sight. ${v} now points to ${n} usable bytes, from ${ptr} to ${ptr + n - 1}.`,
+      calc: [`ptr = ${cur} + sizeof(header_t)`, `    = ${cur} + 8 = ${ptr}`, `${v} = ${ptr}`] });
+  }
+
+  function free (v, line) {
+    const g = addGroup(`free(${v})`, v, 'free');
+    const ptr = S.vars[v].val, h = ptr - HDR, ch = find(h);
+    const temps = [{ name: 'hptr', addr: h }];
+    snap(g, { line, focus: h, temps,
+      title: `free(${v}): find the header`,
+      body: `free() receives only the pointer ${ptr}, not a size. The header sits in the 8 bytes right before that address, so the library steps back to read it.`,
+      calc: [`hptr = (header_t *) ptr − 1`, `     = ${ptr} − 8 = ${h}`] });
+
+    snap(g, { line, focus: h, temps,
+      title: 'Check the header',
+      body: `The magic number is intact, a quick check that ${ptr} really came from malloc(). The size field tells the library how much to take back: ${ch.size} bytes of data plus the header itself.`,
+      calc: [`hptr->magic == ${MAGIC}   ✓`, `hptr->size  = ${ch.size}`, `region freed = ${ch.size} + 8 = ${ch.size + HDR} bytes`] });
+
+    const oldHead = S.head;
+    ch.type = 'free'; ch.next = oldHead; ch.was = ch.owner;
+    delete ch.magic; delete ch.owner;
+    snap(g, { line, focus: h, temps,
+      title: 'Reuse the header as a free-list node',
+      body: `The same 8 bytes now act as a node_t. The size stays ${ch.size}. The slot that held the magic number now stores next, which points to the current head at ${oldHead}. Nothing points to this node yet.`,
+      calc: [`node->size = ${ch.size}`, `node->next = head = ${oldHead}`] });
+
+    S.head = h;
+    S.vars[v].st = 'dangling';
+    snap(g, { line, focus: h,
+      title: 'Insert the node at the head',
+      body: `head now points to ${h}, so this chunk is the first place the next malloc() will look. ${v} still holds ${ptr}, but that memory no longer belongs to the program: ${v} is now a dangling pointer.`,
+      calc: [`head = ${h}`, listStr()] });
+  }
+
+  /* Step 0: empty heap */
+  const g0 = addGroup('start', null, 'start');
+  snap(g0, {
+    title: 'The empty heap',
+    body: `The heap runs from 16KB (${HEAP_START}) to ${HEAP_END}. Before any call it is one big free chunk. Its first 8 bytes hold a free-list node, and head points to it.`,
+    calc: [`heap = ${HEAP_START} … ${HEAP_END - 1}  (4096 bytes)`, `node->size = 4096 − 8 = ${HEAP_SIZE - HDR}`, `node->next = 0 (NULL)`, `head = ${HEAP_START}`] });
+
+  malloc('a', 100, 0);
+  malloc('b', 100, 1);
+  malloc('c', 100, 2);
+  free('b', 4);
+  free('c', 5);
+  free('a', 6);
+
+  /* Fragmentation summary */
+  const sizes = []; let p = S.head;
+  while (p) { const n = find(p); sizes.push(n.size); p = n.next; }
+  const total = sizes.reduce((x, y) => x + y, 0), largest = Math.max(...sizes);
+  const gf = addGroup('end', null, 'note');
+  snap(gf, {
+    title: 'Everything is free, but the heap is fragmented',
+    body: `All three chunks are back on the free list, yet none were merged with their neighbours, so the list holds ${sizes.length} separate pieces. Any request larger than ${largest} bytes, say malloc(3800), fails even though ${total} bytes are free.`,
+    calc: [listStr(), `total free    = ${sizes.join(' + ')} = ${total}`, `largest chunk = ${largest}`] });
+
+  /* Bonus: coalescing */
+  const gc = addGroup('coalesce', null, 'bonus');
+  const frees = S.chunks.filter(c => c.type === 'free').sort((x, y) => x.addr - y.addr);
+  frees.forEach((c, i) => { c.next = i + 1 < frees.length ? frees[i + 1].addr : 0; });
+  S.head = frees[0].addr;
+  snap(gc, { line: 8,
+    title: 'Coalescing, part 1: link nodes in address order',
+    body: 'A real allocator would fix this by coalescing. Keeping the free list sorted by address puts chunks that sit side by side in memory next to each other in the list, so they are easy to compare.',
+    calc: [listStr()] });
+
+  const base = frees[0], calc = [];
+  for (let i = 1; i < frees.length; i++) {
+    const nx = frees[i], end = base.addr + HDR + base.size;
+    if (end === nx.addr) {
+      const newSize = base.size + HDR + nx.size;
+      calc.push(`${base.addr} + 8 + ${base.size} = ${end} = next node   → merge, size ${newSize}`);
+      base.size = newSize; base.next = nx.next;
+      S.chunks.splice(S.chunks.indexOf(nx), 1);
+    }
+  }
+  base.was = null;
+  snap(gc, { line: 8, focus: base.addr, hideVars: true,
+    title: 'Coalescing, part 2: merge neighbours',
+    body: `Each chunk ends exactly where the next one begins, so they fold together and swallow the headers in between. The heap is one ${base.size}-byte chunk again, exactly as it started.`,
+    calc: [...calc, listStr()] });
+})();
+
+/* =========================================================
+   Rendering
+   ========================================================= */
+const $ = id => document.getElementById(id);
+const mapEl = $('map'), ptrsEl = $('ptrs');
+const ROW = 26;
+const smallBody = () => (window.innerWidth < 620 ? 50 : 58);
+const mapHeight = () => (window.innerWidth < 620 ? 520 : 600);
+
+function layout (chunks) {
+  const sorted = [...chunks].sort((x, y) => x.addr - y.addr);
+  const isBig = c => c.size >= 1000;
+  const fixed = sorted.reduce((s, c) => s + ROW * 2 + (isBig(c) ? 0 : smallBody()), 0);
+  const bigTotal = sorted.filter(isBig).reduce((s, c) => s + c.size, 0);
+  const remain = Math.max(90, mapHeight() - fixed);
+  const L = new Map(); let y = 0;
+  for (const c of sorted) {
+    const bodyH = isBig(c) ? remain * c.size / bigTotal : smallBody();
+    L.set(c.addr, { top: y, h: ROW * 2 + bodyH, bodyH });
+    y += ROW * 2 + bodyH;
+  }
+  return { sorted, L, total: y };
+}
+
+function yOf (addr, lay) {
+  for (const c of lay.sorted) {
+    const g = lay.L.get(c.addr);
+    if (addr === c.addr) return g.top + ROW / 2 + 1;
+    const d = c.addr + HDR;
+    if (addr >= d && addr < d + c.size) return g.top + ROW * 2 + Math.max(13, (addr - d) / c.size * g.bodyH);
+  }
+  return 0;
+}
+
+function setText (span, txt, mode) {
+  if (span.dataset.v === txt && mode !== 'all') return;
+  const changed = span.dataset.v !== undefined && span.dataset.v !== txt;
+  span.dataset.v = txt;
+  span.textContent = txt;
+  if (mode === 'all' || (mode === 'changed' && changed)) {
+    span.classList.remove('flash'); void span.offsetWidth; span.classList.add('flash');
+  }
+}
+
+const chunkEls = new Map();
+function makeChunk () {
+  const el = document.createElement('div');
+  el.className = 'chunk';
+  el.innerHTML =
+    '<div class="adrs"><span></span><span></span><span></span></div>' +
+    '<div class="cells">' +
+      '<div class="cell c1"><span class="t"></span></div>' +
+      '<div class="cell c2"><span class="t"></span></div>' +
+      '<div class="cell cb"><span class="t"></span><span class="note"></span></div>' +
+    '</div>';
+  return el;
+}
+
+function fillChunk (el, c, mode, focus) {
+  const cls = c.type === 'alloc' ? `alloc own-${c.owner}` : 'free';
+  el.className = `chunk ${cls}${focus === c.addr ? ' focus' : ''}`;
+  const adrs = el.querySelectorAll('.adrs span');
+  adrs[0].textContent = c.addr; adrs[1].textContent = c.addr + 4; adrs[2].textContent = c.addr + 8;
+  const [t1, t2, tb] = el.querySelectorAll('.t');
+  setText(t1, `size: ${c.size}`, mode);
+  setText(t2, c.type === 'alloc' ? `magic: ${MAGIC}` : `next: ${c.next ? c.next : '0 (NULL)'}`, mode);
+  setText(tb, c.type === 'alloc'
+    ? `${c.size} bytes in use by ${c.owner}`
+    : `${c.size} bytes free${c.was ? ` (was ${c.was})` : ''}`, mode);
+  el.querySelector('.note').textContent = c.size >= 1000 ? 'not drawn to scale' : '';
+}
+
+function renderMap (step, animate) {
+  const st = step.state;
+  const lay = layout(st.chunks);
+  const keep = new Set(st.chunks.map(c => c.addr));
+
+  for (const [addr, el] of chunkEls) {
+    if (!keep.has(addr) && !el.classList.contains('leaving')) {
+      el.classList.add('leaving');
+      el.style.height = '0px';
+      el._t = setTimeout(() => {
+        if (el.classList.contains('leaving')) { el.remove(); chunkEls.delete(addr); }
+      }, animate ? 800 : 0);
+    }
+  }
+
+  let cursor = null;
+  for (const c of lay.sorted) {
+    let el = chunkEls.get(c.addr), fresh = false;
+    if (!el) {
+      el = makeChunk(); fresh = true;
+      mapEl.insertBefore(el, cursor ? cursor.nextSibling : mapEl.firstChild);
+      chunkEls.set(c.addr, el);
+      el.style.height = '0px';
+    } else if (el.classList.contains('leaving')) {
+      clearTimeout(el._t);
+    }
+    fillChunk(el, c, !animate ? 'none' : (fresh ? 'all' : 'changed'), step.focus);
+    if (fresh && animate) void el.offsetHeight;
+    el.style.height = lay.L.get(c.addr).h + 'px';
+    cursor = el;
+  }
+  ptrsEl.style.height = lay.total + 'px';
+  return lay;
+}
+
+const ptrEls = new Map();
+function renderPtrs (step, lay) {
+  const st = step.state, want = [];
+  if (st.head) want.push({ key: 'head', addr: st.head, cls: 'p-head', label: 'head' });
+  step.temps.forEach(t => want.push({ key: t.name, addr: t.addr, cls: 'p-temp', label: t.name }));
+  if (!step.hideVars) {
+    OWNERS.forEach(v => {
+      const x = st.vars[v];
+      if (x.val != null) want.push({ key: v, addr: x.val, cls: `p-var p-${v}${x.st === 'dangling' ? ' dangling' : ''}`, label: v });
+    });
+  }
+  const keys = new Set(want.map(w => w.key));
+  for (const [k, el] of ptrEls) {
+    if (!keys.has(k) && !el.classList.contains('gone')) {
+      el.classList.add('gone');
+      el._t = setTimeout(() => { if (el.classList.contains('gone')) { el.remove(); ptrEls.delete(k); } }, 450);
+    }
+  }
+  for (const w of want) {
+    const y = yOf(w.addr, lay);
+    let el = ptrEls.get(w.key);
+    if (!el) {
+      el = document.createElement('div');
+      el.innerHTML = '<span class="tip"></span><span class="shaft"></span><span class="lbl"></span>';
+      el.className = 'ptr gone ' + w.cls;
+      el.style.top = y + 'px';
+      ptrsEl.appendChild(el);
+      ptrEls.set(w.key, el);
+      void el.offsetWidth;
+    } else {
+      clearTimeout(el._t);
+    }
+    el.className = 'ptr ' + w.cls;
+    el.querySelector('.lbl').textContent = w.label;
+    el.title = `${w.label} = ${w.addr}`;
+    el.style.top = y + 'px';
+  }
+}
+
+function renderStrip (st) {
+  $('strip').innerHTML = st.chunks.map(c => {
+    const l = (c.addr - HEAP_START) / HEAP_SIZE * 100;
+    const w = (c.size + HDR) / HEAP_SIZE * 100;
+    const cls = c.type === 'alloc' ? `alloc own-${c.owner}` : 'free';
+    const who = c.type === 'alloc' ? `in use by ${c.owner}` : 'free';
+    return `<div class="seg ${cls}" style="left:${l}%;width:${w}%" title="${c.addr}–${c.addr + c.size + HDR - 1}, ${who}"></div>`;
+  }).join('');
+}
+
+let prevSig = new Map(), prevHead = null;
+function nodeHTML (n, focus, flash) {
+  return `<div class="ln-node${focus === n.addr ? ' is-focus' : ''}${flash ? ' flash' : ''}">` +
+    `<div class="ln-addr">${n.addr}</div>` +
+    `<div class="ln-fields"><span>size ${n.size}</span><span>next ${n.next || 'NULL'}</span></div></div>`;
+}
+function renderList (step, animate) {
+  const st = step.state;
+  const find = a => st.chunks.find(c => c.addr === a);
+  const sig = new Map();
+  st.chunks.filter(c => c.type === 'free').forEach(c => sig.set(c.addr, `${c.size}|${c.next}`));
+  const changed = a => animate && prevSig.get(a) !== sig.get(a);
+
+  let html = `<span class="ln-head">head</span>`;
+  const seen = new Set(); let p = st.head;
+  while (p && !seen.has(p)) {
+    seen.add(p);
+    const n = find(p);
+    html += `<span class="ln-item"><span class="ln-arrow" aria-hidden="true"></span>` + nodeHTML(n, step.focus, changed(p) || (animate && p === st.head && prevHead !== st.head)) + `</span>`;
+    p = n.next;
+  }
+  html += `<span class="ln-item"><span class="ln-arrow" aria-hidden="true"></span><span class="ln-null">NULL</span></span>`;
+  $('chain').innerHTML = html;
+
+  const detached = st.chunks.filter(c => c.type === 'free' && !seen.has(c.addr));
+  $('detached').innerHTML = detached.length
+    ? `<div class="detached"><p>Written, but not linked into the list yet:</p>${detached.map(n => nodeHTML(n, step.focus, changed(n.addr))).join(' ')}</div>`
+    : '';
+  prevSig = sig; prevHead = st.head;
+}
+
+function renderVars (st) {
+  $('vars').innerHTML = OWNERS.map(v => {
+    const x = st.vars[v];
+    let status = 'not assigned yet';
+    if (x.st === 'ok') status = `points to 100 bytes, ${x.val}–${x.val + 99}`;
+    if (x.st === 'dangling') status = 'dangling: that memory was freed';
+    return `<div class="var own-${v} st-${x.st}"><span class="vname">${v}</span>` +
+      `<span class="vval">${x.val ?? '—'}</span><span class="vst">${status}</span></div>`;
+  }).join('');
+}
+
+function renderCode (i) {
+  const step = steps[i];
+  const seen = Math.max(...steps.slice(0, i + 1).map(s => s.line));
+  $('code').innerHTML = CODE.map((l, idx) => {
+    const done = step.line >= 0 ? idx < step.line : idx <= seen;
+    const cls = ['ln', idx === step.line ? 'cur' : '', done ? 'done' : '', l.comment ? 'comment' : ''].join(' ');
+    return `<div class="${cls}"><span class="no">${idx + 1}</span><code>${l.text || '&nbsp;'}</code></div>`;
+  }).join('');
+}
+
+function renderCard (i) {
+  const s = steps[i];
+  $('stepCount').textContent = `Step ${i + 1} of ${steps.length}`;
+  $('stepTitle').textContent = s.title;
+  $('stepBody').textContent = s.body;
+  $('stepCalc').textContent = s.calc.join('\n');
+  $('stepCalc').style.display = s.calc.length ? '' : 'none';
+}
+
+function buildTimeline () {
+  $('timeline').innerHTML = groups.map(g => {
+    const own = g.owner ? ` own-${g.owner}` : '';
+    let btns = '';
+    for (let i = g.start; i < g.start + g.count; i++) {
+      btns += `<button class="tl-step" type="button" data-i="${i}" aria-label="Step ${i + 1}: ${steps[i].title}" title="Step ${i + 1}: ${steps[i].title}"></button>`;
+    }
+    return `<div class="tl-group kind-${g.kind}${own}" style="flex:${g.count} 1 0"><div class="tl-steps">${btns}</div><div class="tl-label">${g.label}</div></div>`;
+  }).join('');
+  $('timeline').addEventListener('click', e => {
+    const b = e.target.closest('.tl-step');
+    if (b) { stop(); go(+b.dataset.i); }
+  });
+}
+function renderTimeline (i) {
+  document.querySelectorAll('.tl-step').forEach(b => {
+    const k = +b.dataset.i;
+    b.classList.toggle('done', k < i);
+    b.classList.toggle('now', k === i);
+    b.setAttribute('aria-current', k === i ? 'step' : 'false');
+  });
+}
+
+/* =========================================================
+   Controls
+   ========================================================= */
+let current = 0, timer = null;
+
+function render (i, animate = true) {
+  current = i;
+  const root = document.documentElement;
+  if (!animate) root.classList.add('instant');
+  const step = steps[i];
+  const lay = renderMap(step, animate);
+  renderPtrs(step, lay);
+  renderStrip(step.state);
+  renderList(step, animate);
+  renderVars(step.state);
+  renderCode(i);
+  renderCard(i);
+  renderTimeline(i);
+  $('btnPrev').disabled = i === 0;
+  $('btnNext').disabled = i === steps.length - 1;
+  if (!animate) requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('instant')));
+}
+function go (i) { if (i >= 0 && i < steps.length && i !== current) render(i); }
+
+function play () {
+  if (current === steps.length - 1) render(0);
+  $('btnPlay').textContent = 'Pause';
+  const tick = () => {
+    if (current >= steps.length - 1) { stop(); return; }
+    go(current + 1);
+    timer = setTimeout(tick, +$('speed').value);
+  };
+  timer = setTimeout(tick, current === 0 ? 700 : +$('speed').value);
+}
+function stop () { clearTimeout(timer); timer = null; $('btnPlay').textContent = 'Play'; }
+function toggle () { timer ? stop() : play(); }
+
+$('btnNext').onclick = () => { stop(); go(current + 1); };
+$('btnPrev').onclick = () => { stop(); go(current - 1); };
+$('btnPlay').onclick = toggle;
+$('btnRestart').onclick = () => { stop(); render(0); };
+
+document.addEventListener('keydown', e => {
+  if (e.target.closest('select')) return;
+  if (e.key === 'ArrowRight') { stop(); go(current + 1); e.preventDefault(); }
+  else if (e.key === 'ArrowLeft') { stop(); go(current - 1); e.preventDefault(); }
+  else if (e.key === ' ' && !e.target.closest('button')) { toggle(); e.preventDefault(); }
+  else if (e.key === 'Home') { stop(); render(0); }
+});
+
+let resizeT;
+window.addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(() => render(current, false), 150); });
+
+buildTimeline();
+render(0, false);
+</script>
+</body>
+</html>
